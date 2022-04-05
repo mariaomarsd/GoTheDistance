@@ -48,23 +48,37 @@ export default function App() {
     libraries,
   });
 
+  const mapRef = React.useRef(); // part of move mapview to chosen destination
+  const onMapLoad = React.useCallback((map) => { // part of move mapview to chosen destination
+    mapRef.current = map; // part of move mapview to chosen destination
+  }, []);
+
+  const panTo = React.useCallback(({ lat, lng }) => { // part of move mapview to chosen destination
+    mapRef.current.panTo({ lat, lng }); // moving the location to the formentioned coordiantes
+    mapRef.current.setZoom(8); // how far zoomed in the view is 
+  }, []);// part of move mapview to chosen destination
+
+  // next panTo is passed to <Search panTo = {panTo}/>
+
+
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
   return (
     <div>
-      <Search  />
+      <Search panTo = {panTo}/>
       <GoogleMap id="map"
         mapContainerStyle={mapContainerStyle}
         zoom={8}
         center={center}
         options={options}
+        onLoad={onMapLoad}
         
       ></GoogleMap>
     </div>
   );
 }
-function Search() {
+function Search({ panTo }) {
   const {
     ready, // is it set up and redy to go with libraries, see above  in app function
     value, // what is the current value that user is writing
@@ -76,6 +90,7 @@ function Search() {
     
     },
   });
+  
 
   // "onSelect={(adress)=>" refers to when option chosen from drop down
   // "onChange={(e) => { setValue(e.target.value);" refers to user input
@@ -89,6 +104,7 @@ function Search() {
             const results = await getGeocode({ address });
             const { lat, lng } = await getLatLng(results[0]);
             console.log({ lat, lng });
+            panTo({ lat, lng }); // send the user view to the chosen location
           } catch (error) {
             //console.log(" Error: ", error);
           }
