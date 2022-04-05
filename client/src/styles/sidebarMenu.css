@@ -1,0 +1,17 @@
+.test {
+    position: absolute;
+}
+
+.sidebarView {
+    width: 20vw;
+    border-style: solid;
+    border-width: 0.05px;
+}
+
+.sidebar-menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-style: solid;
+    border-width: 0.05px;
+}
