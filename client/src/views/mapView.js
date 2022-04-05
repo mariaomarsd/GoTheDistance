@@ -24,7 +24,7 @@ import mapStyles from "../mapStyles";
 const libraries = ["places"];
 const mapContainerStyle = {
   height: "100vh",
-  width: "100vw",
+  width: "80vw",
 };
 
 const center = { // where to start the map, stockholm
