@@ -1,0 +1,51 @@
+
+.current-places-list {
+    width: 250px;
+    border-radius: 2px;
+    border: black;
+    border-style: inset;
+    margin-bottom: 10px;
+}
+
+.current-places-box {
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* .test {
+    background-color: blue;
+
+
+} */
+
+/* .current-places-x {
+}
+
+.current-places-name {
+    width: 50%;
+    margin-right: 0px;
+}
+
+.current-places-arrow {
+    /* float: right; */
+
+/* .current-places-list {
+    width: 250px;
+}
+
+.current-places-x {
+    float:left; 
+    background:Red;
+    width:10%;
+}
+.current-places-name {
+    float:left; 
+    background:Green;
+    width:70%;
+}
+.current-places-arrow {
+    float:right;
+    background:blue;
+    width:20%;
+} */

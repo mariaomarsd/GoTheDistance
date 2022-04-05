@@ -7,10 +7,10 @@ const NewTrip = require("./views/newTripView.js").default;
 
 export default function App() {
   return (
-    <div class="app">
+    <div className="app">
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<Map/>} />
+          {/* <Route exact path="/" element={<Map/>} /> */}
           <Route exact path="/" element={<NewTrip/>} />
         </Routes>
       </BrowserRouter>
