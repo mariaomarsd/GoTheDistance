@@ -1,3 +1,7 @@
+.test {
+    position: absolute;
+}
+
 .sidebarView {
     width: 300px;
     border-style: solid;
