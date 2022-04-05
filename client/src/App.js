@@ -12,13 +12,20 @@ const Sidebar = require("./views/sidebarView.js").default;
 export default function App() {
   return (
     <div className="app">
-      <BrowserRouter>
+      <div className="map-sidebar">
+        <div className="map-container">
+          <Map></Map>
+        </div>
+        <div className="sidebar-container">
+          <Sidebar></Sidebar>
+        </div>
+      </div>
+      {/* <BrowserRouter>
         <Routes>
-          {/* <Route exact path="/" element={<Map/>} /> */}
-          <Route exact path="/" element={<NewTrip/>} />
+          <Route exact path="/" element={<Map/>} />
           <Route exact path="/" element={<Sidebar/>} />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
     </div>
   );
 }
