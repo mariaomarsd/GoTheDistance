@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import SidebarViewMenu from './sidebarViewMenu';
 import NewTripView from './newTripView';
 import MyTripsView from './myTripsView';
+import StatisticsView from './statisticsView';
 
 function SidebarView(props){
 
@@ -20,7 +21,7 @@ function SidebarView(props){
         },
         {
             title: "STATISTICS",
-            content: <div>Book a new trip placeholder</div>,
+            content: <StatisticsView></StatisticsView>,
             isVisable: false
 
         },
