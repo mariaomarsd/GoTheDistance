@@ -16,9 +16,15 @@ import { // just for box looks
 } from "@reach/combobox";
 
 function NewTripView() {
+    // const places = [
+    //     {
+    //         name: "",
+    //         lng: 0,
+    //         lat: 0
+    //     }
+    // ]
     const [places, setPlaces] = useState([]);
     const [choosePlace, setChoosePlace] = useState("");
-    // const test = "";
 
     function saveLocation() {
         console.log(choosePlace);
@@ -51,10 +57,10 @@ function NewTripView() {
         try {
             const results = await getGeocode({ address });
             const { lat, lng } = await getLatLng(results[0]);
-            console.log({ lat, lng });
-            // console.log("RESULTS", results[0].formatted_address)
-            setChoosePlace(results[0].formatted_address);
-            // console.log("SAME", choosePlace)
+            const temp_results = (results[0].formatted_address).split(',')
+            const temp_place = temp_results[0] + ", " + temp_results.pop()
+            // console.log("TEMP_resutls", temp_place);
+            setChoosePlace(temp_place);
         } catch (error) {
             //console.log(" Error: ", error);
         }
@@ -66,19 +72,20 @@ function NewTripView() {
         <div className="search-place">
             {/* <input placeholder="Search a place!" id="place-to-add" /> */}
             {/* <SearchBar id="place-to-add"/> */}
-            <div className="Search">
+            <div className="search">
                 <Combobox onSelect={selectPlace} >
                     <ComboboxInput
                         value={value}
                         onChange={(e) => setValue(e.target.value)}
                         disabled={!ready}
-                        placeholder="Search your location"
+                        placeholder="Search a place!"
                     />
                     <ComboboxPopover>
                         {status === "OK" &&
-                            data.map(({ id, description, }) => (
-                                <ComboboxOption key={id} value={description} />
+                            data.map(({ place_id, description, }) => ( 
+                                <ComboboxOption key={place_id} value={description} />
                         ))}
+                        {console.log("DATA", data)}
                     </ComboboxPopover>
                 </Combobox>
             </div>
