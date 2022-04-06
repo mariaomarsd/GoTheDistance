@@ -39,28 +39,4 @@ function MyTripsView() {
   );
 }
 
-// return (
-//     <div>
-//         <div className="main-div">
-//             {insurances.map((item) => (
-//                 <div
-//                     key={item.id}
-//                     className={item.isChecked ? 'choice-border-dark' : 'choice-border-light'}
-//                 >
-//                     <Paragraph
-//                         className={item.isChecked ? 'text-choice-dark' : 'text-choice-light'}
-//                         onClick={() => { onCheck(item.id); }}
-//                     >
-//                         {item.title}
-//                         <Checkbox
-//                             className="check-box"
-//                             checked={item.isChecked}
-//                         />
-//                     </Paragraph>
-//                 </div>
-//             ))}
-//         </div>
-//     </div>
-// );
-
 export default MyTripsView;

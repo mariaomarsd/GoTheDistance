@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CloseOutlined, ArrowDownOutlined, RestFilled } from '@ant-design/icons';
-import newTripView from '../styles/newTripView.css';
+import '../styles/newTripView.css';
 
 import usePlacesAutocomplete, {
     getGeocode,
@@ -16,30 +16,9 @@ import { // just for box looks
 } from "@reach/combobox";
 
 function NewTripView() {
-    // const places = [
-    //     {
-    //         name: "",
-    //         lng: 0,
-    //         lat: 0
-    //     }
-    // ]
+
     const [places, setPlaces] = useState([]);
     const [choosePlace, setChoosePlace] = useState("");
-
-    function saveLocation() {
-        console.log(choosePlace);
-        // const item = document.getElementById("place-to-add").value;
-        setPlaces([...places, choosePlace]);
-    }
-
-    function removeLocation(item) {
-        function sameNameCB(place) {
-            return item != place;
-        }
-        var temp = places;
-        temp = temp.filter(sameNameCB);
-        setPlaces(temp)
-    }
 
     const {
         ready, // is it set up and redy to go with libraries, see above  in app function
@@ -52,6 +31,23 @@ function NewTripView() {
         
         },
     });
+
+    // Save location that is added to trip
+    function saveLocation() {
+        console.log(choosePlace);
+        // const item = document.getElementById("place-to-add").value;
+        setPlaces([...places, choosePlace]);
+    }
+
+    // Remove location that is deleted from trip
+    function removeLocation(item) {
+        function sameNameCB(place) {
+            return item != place;
+        }
+        var temp = places;
+        temp = temp.filter(sameNameCB);
+        setPlaces(temp)
+    }
 
     async function selectPlace(address) {
         try {
@@ -72,23 +68,20 @@ function NewTripView() {
         <div className="search-place">
             {/* <input placeholder="Search a place!" id="place-to-add" /> */}
             {/* <SearchBar id="place-to-add"/> */}
-            <div className="search">
-                <Combobox onSelect={selectPlace} >
-                    <ComboboxInput
-                        value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                        disabled={!ready}
-                        placeholder="Search a place!"
-                    />
-                    <ComboboxPopover>
-                        {status === "OK" &&
-                            data.map(({ place_id, description, }) => ( 
-                                <ComboboxOption key={place_id} value={description} />
-                        ))}
-                        {console.log("DATA", data)}
-                    </ComboboxPopover>
-                </Combobox>
-            </div>
+            <Combobox onSelect={selectPlace} >
+                <ComboboxInput
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
+                    disabled={!ready}
+                    placeholder="Search a place!"
+                />
+                <ComboboxPopover>
+                    {status === "OK" &&
+                        data.map(({ place_id, description, }) => ( 
+                            <ComboboxOption key={place_id} value={description} />
+                    ))}
+                </ComboboxPopover>
+            </Combobox>
             <button onClick={saveLocation} > Add to trip! </button>
         </div>
         <div className="current-places">
