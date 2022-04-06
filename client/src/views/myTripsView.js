@@ -25,15 +25,16 @@ function MyTripsView() {
   return ( 
      <div className="my-trips-view">
         {myTrips.map((items) => 
-        <div className="my-trips-view-box">
-            <div className="my-trip-checkbox">
-                {/* <Checkbox></Checkbox> */}
-                <input type="checkbox"></input>
+            <div className="my-trips-view-box" key={items.name}>
+                <div className="my-trip-checkbox">
+                    {/* <Checkbox></Checkbox> */}
+                    <input type="checkbox"></input>
+                </div>
+                <div className="my-trip-name">
+                    {items.name}
+                </div>
             </div>
-            <div className="my-trip-name">
-                {items.name}
-            </div>
-        </div>)}
+        )}
     </div>
   );
 }

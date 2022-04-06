@@ -36,7 +36,7 @@ function SidebarView(props){
         <div>
         <div className="sidebarView">
             {sidebarMenuItems.map(({ title, content, isVisable }) => (
-                <SidebarViewMenu title={title} content={content} />
+                <SidebarViewMenu title={title} content={content} key={title} />
             ))}
       </div>
     </div>

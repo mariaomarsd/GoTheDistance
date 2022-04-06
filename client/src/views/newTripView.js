@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
 import { CloseOutlined, ArrowDownOutlined, RestFilled } from '@ant-design/icons';
 import newTripView from '../styles/newTripView.css';
-import SearchBar from './searchBarView';
 
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
   } from "use-places-autocomplete";
-  
-  ///*
-    import { // just for box looks
+
+import { // just for box looks
     Combobox,
     ComboboxInput,
     ComboboxPopover,
     ComboboxList,
     ComboboxOption,
-  } from "@reach/combobox";
+} from "@reach/combobox";
 
 function NewTripView() {
     const [places, setPlaces] = useState([]);
@@ -25,7 +23,6 @@ function NewTripView() {
     function saveLocation() {
         console.log(choosePlace);
         // const item = document.getElementById("place-to-add").value;
-        // console.log("ITEM",item);
         setPlaces([...places, choosePlace]);
     }
 
