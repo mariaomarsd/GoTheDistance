@@ -57,6 +57,7 @@ function NewTripView() {
             const temp_place = temp_results[0] + ", " + temp_results.pop()
             // console.log("TEMP_resutls", temp_place);
             setChoosePlace(temp_place);
+            console.log([lat, lng])
         } catch (error) {
             //console.log(" Error: ", error);
         }
