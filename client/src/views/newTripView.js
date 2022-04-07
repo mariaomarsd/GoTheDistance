@@ -5,13 +5,12 @@ import '../styles/newTripView.css';
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
-  } from "use-places-autocomplete";
+} from "use-places-autocomplete";
 
-import { // just for box looks
+import { 
     Combobox,
     ComboboxInput,
     ComboboxPopover,
-    ComboboxList,
     ComboboxOption,
 } from "@reach/combobox";
 
@@ -26,17 +25,13 @@ function NewTripView(props) {
         value, // what is the current value that user is writing
         suggestions: { status, data }, // what is the data from these suggestions
         setValue, 
-        clearSuggestions,
         } = usePlacesAutocomplete({
         requestOptions: { // preffer places that are near this location 
-        
         },
     });
 
     // Save location that is added to trip
     function saveLocation() {
-        console.log(choosePlace);
-        // const item = document.getElementById("place-to-add").value;
         setPlaces([...places, choosePlace]);
         props.setLocation(cord);
     }
@@ -58,23 +53,16 @@ function NewTripView(props) {
             setCord({lat,lng});
             const temp_results = (results[0].formatted_address).split(',')
             const temp_place = temp_results[0] + ", " + temp_results.pop()
-            // console.log("TEMP_resutls", temp_place);
             setChoosePlace(temp_place);
-            // console.log([lat, lng])
-            //console.log([latitude, longitude]);
-            console.log("CORD", cord);
-            console.log("LATLONG", [lat,lng]);
+
         } catch (error) {
             //console.log(" Error: ", error);
         }
-        // console.log("ADDRESS", results);
     }
 
   return ( 
      <div className="new-trip-view">
         <div className="search-place">
-            {/* <input placeholder="Search a place!" id="place-to-add" /> */}
-            {/* <SearchBar id="place-to-add"/> */}
             <Combobox onSelect={selectPlace} >
                 <ComboboxInput
                     value={value}
@@ -83,9 +71,8 @@ function NewTripView(props) {
                     placeholder="Search a place!"
                 />
                 <ComboboxPopover>
-                    {status === "OK" &&
-                        data.map(({ place_id, description, }) => ( 
-                            <ComboboxOption key={place_id} value={description} />
+                    {status === "OK" && data.map(({ place_id, description, }) => ( 
+                        <ComboboxOption key={place_id} value={description}/>
                     ))}
                 </ComboboxPopover>
             </Combobox>

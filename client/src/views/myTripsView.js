@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Checkbox } from 'antd';
 import '../styles/myTripView.css';
 
 function MyTripsView() {

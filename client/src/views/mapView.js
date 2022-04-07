@@ -1,30 +1,24 @@
-//import React from "react";
 import React, { Component, useState } from "react";
+
 import {
   GoogleMap,
   useLoadScript,
-  Marker,
-  InfoWindow,
   Polyline
 } from "@react-google-maps/api";
+
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
 
-///*
-  import { // just for box looks
+import { // just for box looks
   Combobox,
   ComboboxInput,
   ComboboxPopover,
-  ComboboxList,
   ComboboxOption,
 } from "@reach/combobox";
-//*/
-import "@reach/combobox/styles.css";
-//import { formatRelative } from "date-fns";
 
-//import "@reach/combobox/styles.css";
+import "@reach/combobox/styles.css";
 import mapStyles from "../mapStyles";
 
 const libraries = ["places"];
@@ -37,6 +31,7 @@ const center = { // where to start the map, stockholm
   lat: 59.327607,
   lng: 18.064266,
 };
+
 const options = {
   styles: mapStyles,
   disableDefaultUI: true,
@@ -49,8 +44,8 @@ function MapView(props) {
     libraries,
   });
 
-  const mapRef = React.useRef(); // part of move mapview to chosen destination
-  const onMapLoad = React.useCallback((map) => { // part of move mapview to chosen destination
+const mapRef = React.useRef(); // part of move mapview to chosen destination
+const onMapLoad = React.useCallback((map) => { // part of move mapview to chosen destination
     mapRef.current = map; // part of move mapview to chosen destination
   }, []);
 
@@ -58,16 +53,6 @@ function MapView(props) {
     mapRef.current.panTo({ lat, lng }); // moving the location to the formentioned coordiantes
     mapRef.current.setZoom(8); // how far zoomed in the view is 
   }, []);// part of move mapview to chosen destination
-
-  // next panTo is passed to <Search panTo = {panTo}/>
-
-  
-  const path = [
-    {lat: 59.32932349999999, lng: 18.0685808}, 
-    {lat: 64.963051, lng: -19.020835},
-    {lat: 51.5072178, lng: -0.1275862},
-    {lat: 48.856614, lng: 2.3522219}  
-  ];
 
   const pathOptions = {
     geodesic: true,
@@ -87,16 +72,16 @@ function MapView(props) {
         zoom={8}
         center={center}
         options={options}
-        onLoad={onMapLoad}
-        >
+        onLoad={onMapLoad}>
         <Polyline
           path={props.locationList}
-          options={pathOptions}
-        />
+          options={pathOptions}/>
       </GoogleMap>
     </div>
   );
 }
+
+// Additional search bar (Only temp!!)
 function Search({ panTo }) {
   const {
     ready, // is it set up and redy to go with libraries, see above  in app function
@@ -105,29 +90,22 @@ function Search({ panTo }) {
     setValue, 
     clearSuggestions,
   } = usePlacesAutocomplete({
-    requestOptions: { // preffer places that are near this location 
-    
+    requestOptions: { 
+      // preffer places that are near this location 
     },
   });
   
-
-//   // "onSelect={(adress)=>" refers to when option chosen from drop down
-//   // "onChange={(e) => { setValue(e.target.value);" refers to user input
-//   // " "
-
   return (
     <div className="Search">
       <Combobox 
-        onSelect={async (address)=> {
+        onSelect={async (address) => {
           try {
             const results = await getGeocode({ address });
             const { lat, lng } = await getLatLng(results[0]);
-            console.log({ lat, lng });
             panTo({ lat, lng }); // send the user view to the chosen location
           } catch (error) {
-            //console.log(" Error: ", error);
+            console.log(" Error: ", error);
           }
-          console.log(address);
         }}>
         <ComboboxInput
           value={value}
@@ -138,14 +116,11 @@ function Search({ panTo }) {
           placeholder="Search your location"
         />
         <ComboboxPopover>
-        {status === "OK" &&
-              data.map(({ id, description, }) => (
-                <ComboboxOption key={id} value={description} />
-              ))}
+        {status === "OK" && data.map(({ id, description, }) => (
+          <ComboboxOption key={id} value={description}/> ))}
         </ComboboxPopover>
-        
-       </Combobox>
-     </div>
+      </Combobox>
+    </div>
   );
 }
 
