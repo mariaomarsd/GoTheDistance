@@ -19,7 +19,7 @@ function NewTripView(props) {
 
     const [places, setPlaces] = useState([]);
     const [choosePlace, setChoosePlace] = useState("");
-    const [cord, setCord]  =  useState([{lat:"", lng:""}]);
+    const [cord, setCord]  =  useState({lat:"", lng:""});
 
     const {
         ready, // is it set up and redy to go with libraries, see above  in app function

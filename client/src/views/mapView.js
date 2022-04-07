@@ -1,5 +1,5 @@
 //import React from "react";
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import {
   GoogleMap,
   useLoadScript,
@@ -61,7 +61,7 @@ function MapView(props) {
 
   // next panTo is passed to <Search panTo = {panTo}/>
 
-  // 
+  
   const path = [
     {lat: 59.32932349999999, lng: 18.0685808}, 
     {lat: 64.963051, lng: -19.020835},
@@ -90,7 +90,7 @@ function MapView(props) {
         onLoad={onMapLoad}
         >
         <Polyline
-          path={props.locations}
+          path={props.locationList}
           options={pathOptions}
         />
       </GoogleMap>

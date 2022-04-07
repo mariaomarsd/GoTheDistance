@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Map = require("../views/mapView.js").default;
 const Sidebar = require("../views/sidebarView.js").default;
 
 function MainPrestenter(){
     
-    var locations = [];
+    const [locations, setLocations] = useState([]);
 
     function addLocationCB(placeToAdd){
-        locations.push(placeToAdd);
+        setLocations([...locations, placeToAdd]);
     }
-
 
     return(
         <div className="main-presenter">
