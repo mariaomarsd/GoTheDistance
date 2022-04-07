@@ -49,28 +49,28 @@ We split the project into a client (frontend) and server (backend).
 
 ### Client
 
-App.js: Used to render the main presenter.
+- App.js: Used to render the main presenter.
 
 #### Presetners
 
-mainPresenter.js: Renders the map and sidebar 
+- mainPresenter.js: Renders the map and sidebar 
 
 #### Views
 
-mapView.js: Here the Google maps is called and presented in the view. Providing zoom and ability for the user to move the view around the map. Polyline is used to draw lines between LatLng coordinates on the map. 
+- mapView.js: Here the Google maps is called and presented in the view. Providing zoom and ability for the user to move the view around the map. Polyline is used to draw lines between LatLng coordinates on the map. 
 
-myTripView.js: Renders different trips for the user. The user can choose which trips they see on the map by checking each checkbox.
+- myTripView.js: Renders different trips for the user. The user can choose which trips they see on the map by checking each checkbox.
 
-newTripView.js: Here the user can search for locations and chose the correct one. Here we have a call to a places API that maps out locations that the user is searching for. The user can add a locations to their trip and the chosen location are presented to the user. The user can delete and add as many locations as they want.
+- newTripView.js: Here the user can search for locations and chose the correct one. Here we have a call to a places API that maps out locations that the user is searching for. The user can add a locations to their trip and the chosen location are presented to the user. The user can delete and add as many locations as they want.
 
-sidebarView.js: Renders the Sidebar menu with the four different components by rendering a sidebarViewMenu component for each of the four components
+- sidebarView.js: Renders the Sidebar menu with the four different components by rendering a sidebarViewMenu component for each of the four components
 
-sidebarViewMenu.js: Renders a component with a title and content
+- sidebarViewMenu.js: Renders a component with a title and content
 Hides/Shows the content when the title is clicked
 
-statisticsView.js:Renders a component that includes statistics about the user’s travels
+- statisticsView.js:Renders a component that includes statistics about the user’s travels
 
-profileView.js: #TODO
+- profileView.js: #TODO
 
 #### Styles
 
