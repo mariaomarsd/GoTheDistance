@@ -5,6 +5,7 @@ import {
   useLoadScript,
   Marker,
   InfoWindow,
+  Polyline
 } from "@react-google-maps/api";
 import usePlacesAutocomplete, {
   getGeocode,
@@ -60,7 +61,21 @@ function MapView() {
 
   // next panTo is passed to <Search panTo = {panTo}/>
 
+  // 
+  const path = [
+    {lat: 59.32932349999999, lng: 18.0685808}, 
+    {lat: 64.963051, lng: -19.020835},
+    {lat: 51.5072178, lng: -0.1275862},
+    {lat: 48.856614, lng: 2.3522219}  
+  ];
 
+  const pathOptions = {
+    geodesic: true,
+    strokeColor: "#FF0000",
+    strokeOpacity: 1.0,
+    strokeWeight: 4
+  };
+  
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
@@ -73,8 +88,12 @@ function MapView() {
         center={center}
         options={options}
         onLoad={onMapLoad}
-        
-      ></GoogleMap>
+        >
+        <Polyline
+          path={path}
+          options={pathOptions}
+        />
+      </GoogleMap>
     </div>
   );
 }
