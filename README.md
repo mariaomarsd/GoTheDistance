@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+# Getting Started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+git clone https://github.com/mariaomarsd/GoTheDistance.git
 
-## Available Scripts
+cd client
 
-In the project directory, you can run:
-
+### `npm install`
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Project Description 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+A website that keeps track of all your travels. You can see a visual representation of all your travels (displayed as lined on the map), view individual trips in more detail and see statistics about your travels. To add a new trip you can either search for the places you want to add to the trip or choose them from the map. When you have added all the places that you visited you can create the trip and it is added to your list of trips. 
 
-### `npm test`
+## What we have done
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## What we plan to do
 
-### `npm run build`
+## File Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+We split the project into a client (frontend) and server (backend).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Client
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+App.js: 
 
-### `npm run eject`
+#### Presetners
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### Views
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+mapView.js:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+myTripView.js:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+newTripView.js:
 
-## Learn More
+sidebarView.js:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+sidebarViewMenu.js:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+statisticsView.js:
 
-### Code Splitting
+#### Styles
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Individual files that 
 
-### Analyzing the Bundle Size
+### Server
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+####
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Short description of your project
+What you have done
+What you still plan to do
+Your project file structure (short description/purpose of each file)
