@@ -15,10 +15,11 @@ import { // just for box looks
     ComboboxOption,
 } from "@reach/combobox";
 
-function NewTripView() {
+function NewTripView(props) {
 
     const [places, setPlaces] = useState([]);
     const [choosePlace, setChoosePlace] = useState("");
+    const [cord, setCord]  =  useState([{lat:"", lng:""}]);
 
     const {
         ready, // is it set up and redy to go with libraries, see above  in app function
@@ -37,6 +38,7 @@ function NewTripView() {
         console.log(choosePlace);
         // const item = document.getElementById("place-to-add").value;
         setPlaces([...places, choosePlace]);
+        props.setLocation(cord);
     }
 
     // Remove location that is deleted from trip
@@ -53,11 +55,15 @@ function NewTripView() {
         try {
             const results = await getGeocode({ address });
             const { lat, lng } = await getLatLng(results[0]);
+            setCord({lat,lng});
             const temp_results = (results[0].formatted_address).split(',')
             const temp_place = temp_results[0] + ", " + temp_results.pop()
             // console.log("TEMP_resutls", temp_place);
             setChoosePlace(temp_place);
-            console.log([lat, lng])
+            // console.log([lat, lng])
+            //console.log([latitude, longitude]);
+            console.log("CORD", cord);
+            console.log("LATLONG", [lat,lng]);
         } catch (error) {
             //console.log(" Error: ", error);
         }

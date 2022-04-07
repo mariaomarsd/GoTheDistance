@@ -9,7 +9,7 @@ function SidebarView(props){
     const sidebarMenuItems = [
         {
             title: "NEW TRIP",
-            content: <NewTripView></NewTripView>,
+            content: <NewTripView setLocation={props.setLocation}></NewTripView>,
             isVisable: false
 
         },

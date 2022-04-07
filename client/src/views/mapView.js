@@ -43,7 +43,7 @@ const options = {
   zoomControl: true,
 };
 
-function MapView() {
+function MapView(props) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -90,7 +90,7 @@ function MapView() {
         onLoad={onMapLoad}
         >
         <Polyline
-          path={path}
+          path={props.locations}
           options={pathOptions}
         />
       </GoogleMap>
