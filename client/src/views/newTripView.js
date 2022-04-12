@@ -65,7 +65,7 @@ function NewTripView(props) {
         <div className="search-place">
             <Combobox onSelect={selectPlace} >
                 <ComboboxInput
-                    value={value}
+                    value={selectPlace.address}
                     onChange={(e) => setValue(e.target.value)}
                     disabled={!ready}
                     placeholder="Search a place!"
