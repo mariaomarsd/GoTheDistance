@@ -10,25 +10,29 @@ function SidebarView(props){
         {
             title: "NEW TRIP",
             content: <NewTripView setLocation={props.setLocation}></NewTripView>,
-            isVisable: false
+            isVisable: false,
+            id: "new"
 
         },
         {
             title: "MY TRIPS",
             content: <MyTripsView></MyTripsView>,
-            isVisable: false
+            isVisable: false,
+            id: "my"
 
         },
         {
             title: "STATISTICS",
             content: <StatisticsView></StatisticsView>,
-            isVisable: false
+            isVisable: false,
+            id: "stat"
 
         },
         {
             title: "PROFILE",
             content: <div>Book a new trip placeholder</div>,
-            isVisable: false
+            isVisable: false,
+            id: "prof"
 
         }
     ];
@@ -36,8 +40,8 @@ function SidebarView(props){
     return (
         <div>
         <div className="sidebarView">
-            {sidebarMenuItems.map(({ title, content, isVisable }) => (
-                <SidebarViewMenu title={title} content={content} key={title} />
+            {sidebarMenuItems.map(({ title, content, id }) => (
+                <SidebarViewMenu title={title} content={content} key={title} id={id}/>
             ))}
       </div>
     </div>

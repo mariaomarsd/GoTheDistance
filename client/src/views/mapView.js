@@ -24,7 +24,6 @@ import mapStyles from "../mapStyles";
 const libraries = ["places"];
 const mapContainerStyle = {
   height: "100vh",
-  width: "80vw",
 };
 
 const center = { // where to start the map, stockholm
@@ -44,10 +43,10 @@ function MapView(props) {
     libraries,
   });
 
-const mapRef = React.useRef(); // part of move mapview to chosen destination
-const onMapLoad = React.useCallback((map) => { // part of move mapview to chosen destination
-    mapRef.current = map; // part of move mapview to chosen destination
-  }, []);
+  const mapRef = React.useRef(); // part of move mapview to chosen destination
+  const onMapLoad = React.useCallback((map) => { // part of move mapview to chosen destination
+      mapRef.current = map; // part of move mapview to chosen destination
+    }, []);
 
   const panTo = React.useCallback(({ lat, lng }) => { // part of move mapview to chosen destination
     mapRef.current.panTo({ lat, lng }); // moving the location to the formentioned coordiantes
@@ -66,7 +65,7 @@ const onMapLoad = React.useCallback((map) => { // part of move mapview to chosen
 
   return (
     <div>
-      <Search panTo = {panTo}/>
+      {/* <Search panTo = {panTo}/> */}
       <GoogleMap id="map"
         mapContainerStyle={mapContainerStyle}
         zoom={8}
@@ -81,47 +80,47 @@ const onMapLoad = React.useCallback((map) => { // part of move mapview to chosen
   );
 }
 
-// Additional search bar (Only temp!!)
-function Search({ panTo }) {
-  const {
-    ready, // is it set up and redy to go with libraries, see above  in app function
-    value, // what is the current value that user is writing
-    suggestions: { status, data }, // what is the data from these suggestions
-    setValue, 
-    clearSuggestions,
-  } = usePlacesAutocomplete({
-    requestOptions: { 
-      // preffer places that are near this location 
-    },
-  });
+// // Additional search bar (Only temp!!)
+// function Search({ panTo }) {
+//   const {
+//     ready, // is it set up and redy to go with libraries, see above  in app function
+//     value, // what is the current value that user is writing
+//     suggestions: { status, data }, // what is the data from these suggestions
+//     setValue, 
+//     clearSuggestions,
+//   } = usePlacesAutocomplete({
+//     requestOptions: { 
+//       // preffer places that are near this location 
+//     },
+//   });
   
-  return (
-    <div className="Search">
-      <Combobox 
-        onSelect={async (address) => {
-          try {
-            const results = await getGeocode({ address });
-            const { lat, lng } = await getLatLng(results[0]);
-            panTo({ lat, lng }); // send the user view to the chosen location
-          } catch (error) {
-            console.log(" Error: ", error);
-          }
-        }}>
-        <ComboboxInput
-          value={value}
-          onChange={(e) => {
-            setValue(e.target.value);
-          }}
-          disabled={!ready}
-          placeholder="Search your location"
-        />
-        <ComboboxPopover>
-        {status === "OK" && data.map(({ id, description, }) => (
-          <ComboboxOption key={id} value={description}/> ))}
-        </ComboboxPopover>
-      </Combobox>
-    </div>
-  );
-}
+//   return (
+//     <div className="Search">
+//       <Combobox 
+//         onSelect={async (address) => {
+//           try {
+//             const results = await getGeocode({ address });
+//             const { lat, lng } = await getLatLng(results[0]);
+//             panTo({ lat, lng }); // send the user view to the chosen location
+//           } catch (error) {
+//             console.log(" Error: ", error);
+//           }
+//         }}>
+//         <ComboboxInput
+//           value={value}
+//           onChange={(e) => {
+//             setValue(e.target.value);
+//           }}
+//           disabled={!ready}
+//           placeholder="Search your location"
+//         />
+//         <ComboboxPopover>
+//         {status === "OK" && data.map(({ id, description, }) => (
+//           <ComboboxOption key={id} value={description}/> ))}
+//         </ComboboxPopover>
+//       </Combobox>
+//     </div>
+//   );
+// }
 
 export default MapView;
