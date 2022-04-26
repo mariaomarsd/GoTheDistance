@@ -1,51 +1,29 @@
-import React, {useState} from 'react';
-import SidebarViewMenu from './sidebarViewMenu';
-import NewTripView from './newTripView';
-import MyTripsView from './myTripsView';
-import StatisticsView from './statisticsView';
+import React from "react";
 
-function SidebarView(props){
 
-    const sidebarMenuItems = [
-        {
-            title: "NEW TRIP",
-            content: <NewTripView setLocation={props.setLocation}></NewTripView>,
-            isVisable: false,
-            id: "new"
+const NewTripPresenter = require("../presenters/newTripPresenter.js").default;
+//const MyTripsPresenter = require("../presenters/myTripsPresenter.js").default;
 
-        },
-        {
-            title: "MY TRIPS",
-            content: <MyTripsView></MyTripsView>,
-            isVisable: false,
-            id: "my"
 
-        },
-        {
-            title: "STATISTICS",
-            content: <StatisticsView></StatisticsView>,
-            isVisable: false,
-            id: "stat"
-
-        },
-        {
-            title: "PROFILE",
-            content: <div>Book a new trip placeholder</div>,
-            isVisable: false,
-            id: "prof"
-
-        }
-    ];
-
-    return (
-        <div>
-        <div className="sidebarView">
-            {sidebarMenuItems.map(({ title, content, id }) => (
-                <SidebarViewMenu title={title} content={content} key={title} id={id}/>
-            ))}
-      </div>
-    </div>
-  );
+function SidebarView(props) {
+    return(
+        <div className="sidebar-view">
+           <div>
+                <NewTripPresenter
+                    newTripsLocationList={props.newTripsLocationList} 
+                    addToNewTrip={props.addToNewTrip}
+                    removeFromNewTrip={props.removeFromNewTrip}
+                    saveTrip={props.saveTrip}
+                />
+           </div>
+           <div>
+               {/* <MyTripsPresenter
+                    myTripsList={props.myTripsList}
+                    setVisableTrips={props.setVisableTrips}
+               /> */}
+           </div>
+        </div>
+    );
 }
 
 export default SidebarView;

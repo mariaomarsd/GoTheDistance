@@ -5,26 +5,16 @@ import './styles/sidebarMenu.css'
 import './styles/statisticsView.css'
 
 
-//tjekka hvort virki, breyta svo í presenter
-const Map = require("./views/mapView.js").default;
-const NewTrip = require("./views/newTripView.js").default;
-const Sidebar = require("./views/sidebarView.js").default;
-const Presenter = require("./presenters/mainPresenter").default;
+const Presenter = require("./views/mainView.js").default;
+const TripsModel = require("./tripsModel.js").default;
+const tripsModel= new TripsModel();
 
 export default function App() {
   return (
     <div className="app">
-      {/* <div className="map-sidebar">
-        <div className="map-container">
-          <Map></Map>
-        </div>
-        <div className="sidebar-container">
-          <Sidebar></Sidebar>
-        </div>
-      </div> */}
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<Presenter/>} />
+          <Route exact path="/" element={<Presenter model={tripsModel}/>} />
         </Routes>
       </BrowserRouter>
     </div>
