@@ -27,14 +27,15 @@ const mapContainerStyle = {
 };
 
 const center = { // where to start the map, stockholm
-  lat: 59.327607,
-  lng: 18.064266,
+  lat: 23.818858,
+  lng: 6.094477,
 };
 
 const options = {
   styles: mapStyles,
   disableDefaultUI: true,
   zoomControl: true,
+  minZoom: 3,
 };
 
 function MapView(props) {
@@ -68,7 +69,7 @@ function MapView(props) {
       {/* <Search panTo = {panTo}/> */}
       <GoogleMap id="map"
         mapContainerStyle={mapContainerStyle}
-        zoom={8}
+        zoom={3}
         center={center}
         options={options}
         onLoad={onMapLoad}>
