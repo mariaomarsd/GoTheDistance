@@ -1,16 +1,14 @@
 import React, { useEffect } from "react";
 
-
 function NewTripView(props) {
 
     useEffect(listChangedCB, [props.locationList]);
-
+    
     function listChangedCB(){
         console.log(props.locationList);
     }
 
     function addToTripACB() {
-
         const lat = 3;
         const lng = 4;
         var name = document.getElementById("input").value;

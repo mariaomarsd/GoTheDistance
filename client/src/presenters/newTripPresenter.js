@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
-import {GoogleMap,useLoadScript,Polyline} from "@react-google-maps/api";
-import usePlacesAutocomplete, {getGeocode,getLatLng} from "use-places-autocomplete";
+// import {GoogleMap,useLoadScript,Polyline} from "@react-google-maps/api";
+import usePlacesAutocomplete from "use-places-autocomplete";
 
 const NewTripView = require("../views/newTripView.js").default;
 
 function NewTripPresenter(props) {
-
     const [locationList, setLocationList] = useState(props.model.newTripsLocationList);
 
-    // const {
-    //     ready, // is it set up and redy to go with libraries, see above  in app function
-    //     value, // what is the current value that user is writing
-    //     suggestions: { status, data }, // what is the data from these suggestions
-    //     setValue 
-    //     } = usePlacesAutocomplete();
+    const {
+        ready, // is it set up and redy to go with libraries, see above  in app function
+        value, // what is the current value that user is writing
+        suggestions: { status, data }, // what is the data from these suggestions
+        setValue 
+    } = usePlacesAutocomplete();
     
     // function testFunction(){
     //     console.log("status", status, "data", data);

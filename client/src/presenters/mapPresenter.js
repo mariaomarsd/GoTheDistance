@@ -1,8 +1,12 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import {GoogleMap,useLoadScript,Polyline} from "@react-google-maps/api";
+import usePlacesAutocomplete, {
+    getGeocode,
+    getLatLng,
+  } from "use-places-autocomplete";
 import mapStyles from "../mapStyles";
 
-const libraries = ["places"];
+// const libraries = ["places"];
 
 const center = { // where to start the map, stockholm
     lat: 23.818858,
@@ -22,10 +26,12 @@ const mapContainerStyle = {
 
 function MapPresenter(props){
     
-    const{ isLoaded, loadError } = useLoadScript({
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-        libraries,
-    });
+    // const{ isLoaded, loadError } = useLoadScript({
+    //     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    //     libraries: ["places"],
+    //     // apiKey: "--GOOGLE-MAPS-KEY--",
+    //     // libraries: ["places"]
+    // });
 
     const mapRef = useRef(); // part of move mapview to chosen destination
 
@@ -33,18 +39,18 @@ function MapPresenter(props){
         mapRef.current = map; // part of move mapview to chosen destination
     }, []);
 
-    if (loadError) return "Error";
-    if (!isLoaded) return "Loading...";
+    // if (loadError) return "Error";
+    // if (!props.value) return "Loading...";
     
     return(
           <div>
-              <GoogleMap id="map"
+              {props.value && <GoogleMap id="map"
                 mapContainerStyle={mapContainerStyle}
                 zoom={3}
                 center={center}
                 options={options}
                 onLoad={onMapLoad}>
-                </GoogleMap>
+                </GoogleMap>}
           </div>
       );
 }
