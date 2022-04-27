@@ -1,6 +1,6 @@
 import React from "react";
 
-//const MapPresenter = require("../presenters/mapPresenter.js").default;
+const MapPresenter = require("../presenters/mapPresenter.js").default;
 const SidebarView = require("../views/sidebarView.js").default;
 
 function MainView(props){
@@ -8,10 +8,7 @@ function MainView(props){
     return(
         <div className="main-view">
             <div className="map-container">
-                    {/* <MapPresenter 
-                        newTripsLocationList={props.model.newTripsLocationList} 
-                        myTripsList={props.model.myTripsList}
-                    /> */}
+                    <MapPresenter/>
             </div>
             <div className="sidebar-container">
                 <SidebarView

@@ -15,11 +15,10 @@ function NewTripView(props) {
         const lng = 4;
         var name = document.getElementById("input").value;
         props.addToTrip({name,lat,lng});
-        console.log("locationList:", props.locationList);        
     }
 
     function renderListItemCB(item){
-        return <div>{item}</div>
+        return <div key={item.name}>{item.name}</div>
     }
     
     return(
@@ -38,7 +37,7 @@ function NewTripView(props) {
                 Current trip
               </div>
               <ul>
-                  {/* {props.locationList.map(renderListItemCB)} */}
+                  {props.locationList.map(renderListItemCB)}
               </ul>
           </div>
         </div>
