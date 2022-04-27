@@ -10,10 +10,11 @@ function SidebarView(props) {
         <div className="sidebar-view">
            <div>
                 <NewTripPresenter
-                    newTripsLocationList={props.newTripsLocationList} 
-                    addToNewTrip={props.addToNewTrip}
-                    removeFromNewTrip={props.removeFromNewTrip}
-                    saveTrip={props.saveTrip}
+                    model = {props.model}
+                    // newTripsLocationList={props.newTripsLocationList} 
+                    // addToNewTrip={props.addToNewTrip}
+                    // removeFromNewTrip={props.removeFromNewTrip}
+                    // saveTrip={props.saveTrip}
                 />
            </div>
            <div>

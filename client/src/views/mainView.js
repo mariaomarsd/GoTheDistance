@@ -14,13 +14,14 @@ function MainView(props){
                     /> */}
             </div>
             <div className="sidebar-container">
-                <SidebarView 
-                    newTripsLocationList={props.model.newTripsLocationList} 
-                    myTripsList={props.model.myTripsList} 
-                    addToNewTrip={props.model.addToNewTrip}
-                    removeFromNewTrip={props.model.removeFromNewTrip}
-                    saveTrip={props.model.saveTrip}
-                    setVisableTrips={props.model.setVisableTrips} 
+                <SidebarView
+                    model = {props.model} 
+                    // newTripsLocationList={props.model.newTripsLocationList} 
+                    // myTripsList={props.model.myTripsList} 
+                    // addToNewTrip={props.model.addToNewTrip}
+                    // removeFromNewTrip={props.model.removeFromNewTrip}
+                    // saveTrip={props.model.saveTrip}
+                    // setVisableTrips={props.model.setVisableTrips} 
                 />
             </div>
         </div>

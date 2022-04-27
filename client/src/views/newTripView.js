@@ -1,20 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 
 function NewTripView(props) {
 
+    useEffect(listChangedCB, [props.locationList]);
+
+    function listChangedCB(){
+        console.log(props.locationList);
+    }
 
     function addToTripACB() {
 
         const lat = 3;
         const lng = 4;
-        //var name = document.getElementById("input").value;
-        const name = "sigga";
-        console.log("newTrip",name);
+        var name = document.getElementById("input").value;
         props.addToTrip({name,lat,lng});
-        //props.addToTrip(name);
-        console.log("locationList:", props.locationList);
-        
+        console.log("locationList:", props.locationList);        
+    }
+
+    function renderListItemCB(item){
+        return <div>{item}</div>
     }
     
     return(
@@ -33,7 +38,7 @@ function NewTripView(props) {
                 Current trip
               </div>
               <ul>
-                  {/* slælar*/}
+                  {/* {props.locationList.map(renderListItemCB)} */}
               </ul>
           </div>
         </div>
