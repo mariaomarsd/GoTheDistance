@@ -1,5 +1,4 @@
 import React from "react";
-
 import {useLoadScript} from "@react-google-maps/api";
 
 const MapPresenter = require("../presenters/mapPresenter.js").default;
@@ -23,12 +22,6 @@ function MainView(props){
                 <SidebarView
                     model = {props.model} 
                     value = {isLoaded}
-                    // newTripsLocationList={props.model.newTripsLocationList} 
-                    // myTripsList={props.model.myTripsList} 
-                    // addToNewTrip={props.model.addToNewTrip}
-                    // removeFromNewTrip={props.model.removeFromNewTrip}
-                    // saveTrip={props.model.saveTrip}
-                    // setVisableTrips={props.model.setVisableTrips} 
                 />
             </div>
         </div>

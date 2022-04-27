@@ -3,6 +3,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import './styles/base.css'
 import './styles/sidebarMenu.css'
 import './styles/statisticsView.css'
+import "@reach/combobox/styles.css";
 
 const Presenter = require("./views/mainView.js").default;
 const TripsModel = require("./tripsModel.js").default;
