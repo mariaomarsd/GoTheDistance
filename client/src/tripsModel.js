@@ -7,7 +7,7 @@ class TripsModel {
 
     addToNewTrip(item) {
         // this.newTripsLocationList = [...this.newTripsLocationList, item];
-        this.notifyObservers({newTripsLocationList: this.newTripsLocationList});
+        this.notifyObservers({locationToAdd: item});
         // console.log("Current list: ", this.newTripsLocationList);
         //this.newTripsLocationList = item;
         this.newTripsLocationList = [...this.newTripsLocationList, item];
