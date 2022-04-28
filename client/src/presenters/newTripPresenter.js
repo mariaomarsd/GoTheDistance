@@ -35,6 +35,7 @@ function NewTripPresenter(props) {
     }
 
     function saveTripACB(item) {
+        // console.log('NTP savetrip', item)
         props.model.saveTrip(item);
     }
 

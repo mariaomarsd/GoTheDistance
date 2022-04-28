@@ -1,7 +1,7 @@
 import React from "react";
 
 const NewTripPresenter = require("../presenters/newTripPresenter.js").default;
-//const MyTripsPresenter = require("../presenters/myTripsPresenter.js").default;
+const MyTripsPresenter = require("../presenters/myTripsPresenter.js").default;
 
 function SidebarView(props) {
     return(
@@ -9,17 +9,14 @@ function SidebarView(props) {
            <div>
                 {props.value && <NewTripPresenter
                     model = {props.model}
-                    // newTripsLocationList={props.newTripsLocationList} 
-                    // addToNewTrip={props.addToNewTrip}
-                    // removeFromNewTrip={props.removeFromNewTrip}
-                    // saveTrip={props.saveTrip}
                 />}
            </div>
            <div>
-               {/* <MyTripsPresenter
-                    myTripsList={props.myTripsList}
-                    setVisableTrips={props.setVisableTrips}
-               /> */}
+               <MyTripsPresenter
+                    // myTripsList={props.model.myTripsList}
+                    // setVisableTrips={props.model.setVisableTrips}
+                    model={props.model}
+               />
            </div>
         </div>
     );

@@ -5,7 +5,7 @@ import './styles/sidebarMenu.css'
 import './styles/statisticsView.css'
 import "@reach/combobox/styles.css";
 
-const Presenter = require("./views/mainView.js").default;
+const MainView = require("./views/mainView.js").default;
 
 
 export default function App(props) {
@@ -13,7 +13,7 @@ export default function App(props) {
     <div className="app">
       {/* <BrowserRouter> */}
         <Routes>
-          <Route exact path="/" element={<Presenter model={props.model} />} />
+          <Route exact path="/" element={<MainView model={props.model} />} />
         </Routes>
       {/* </BrowserRouter> */}
     </div>

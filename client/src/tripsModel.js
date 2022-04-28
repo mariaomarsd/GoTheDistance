@@ -1,3 +1,5 @@
+import resolvePromise from "./resolvePromise.js";
+
 class TripsModel {
     constructor(newTripsLocationList = [], myTripsList = []) {
         this.newTripsLocationList = newTripsLocationList;
@@ -7,24 +9,28 @@ class TripsModel {
 
     addToNewTrip(item) {
         // this.newTripsLocationList = [...this.newTripsLocationList, item];
-        this.notifyObservers({locationToAdd: item});
-        // console.log("Current list: ", this.newTripsLocationList);
+        // this.notifyObservers({locationToAdd: item});
+        console.log("Current item: ", item);
         //this.newTripsLocationList = item;
+
         this.newTripsLocationList = [...this.newTripsLocationList, item];
+        this.notifyObservers();
     }
 
     removeFromNewTrip(id) {
-        console.log("what are you", id);
+        // console.log("what are you", id);
         function hasSameIdCB(item) {
             return id !== item.name; // change later 
         }
         this.newTripsLocationList = this.newTripsLocationList.filter(hasSameIdCB);
-        console.log("status after filteR:", this.newTripsLocationList);
+        // console.log("status after filteR:", this.newTripsLocationList);
         this.notifyObservers();
     }
 
     saveTrip(item) {
         this.myTripsList = [...this.myTripsList, item];
+        console.log("Current My trips: ", this.myTripsList);
+        this.notifyObservers();
     }
 
     setVisableTrips(id) {

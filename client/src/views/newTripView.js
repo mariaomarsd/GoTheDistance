@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
 
-import SearchBar from "../components/searchbarComponent.js"
+import SearchBar from "../components/searchbarComponent.js";
+import SaveTripPopup from "../components/saveTripComponent.js";
 
 function NewTripView(props) {
 
     useEffect(listChangedCB, [props.locationList]);
-    const [chosen, setChosen] = useState()
+    const [chosen, setChosen] = useState();
+
+    const [visible, setVisisble] = useState(false);
 
     const {
         ready, // is it set up and redy to go with libraries, see above  in app function
@@ -39,7 +42,7 @@ function NewTripView(props) {
     // id is name temp
     function removeFromTripACB(id) {
         props.removeFromTrip(id);
-        console.log("remove list?", props.locationList);
+        // console.log("remove list?", props.locationList);
     }
 
     function renderListItemCB(item) {
@@ -49,6 +52,20 @@ function NewTripView(props) {
                         X
                     </button>
                 </div>
+    }
+
+    function saveTripACB(name) {
+        // console.log("NAME of TO ADD", name)
+        props.confirmTrip({name: name, locations: props.locationList});
+        setVisisble(false);
+    }
+
+    function openModal() {
+        setVisisble(true);
+    }
+
+    function closeModal() {
+        setVisisble(false);
     }
     
     return(
@@ -61,10 +78,6 @@ function NewTripView(props) {
                 setValue={setValue}
                 ready={ready}
             />
-            {/* <input
-                placeholder="search"
-                id="input"
-            /> */}
             <button onClick={addToTripACB}>
                 Add To Trip!
             </button>
@@ -77,6 +90,10 @@ function NewTripView(props) {
                   {props.locationList.map(renderListItemCB)}
               </ul>
           </div>
+          <button onClick={openModal}>
+            Save Trip!
+          </button>
+          {visible && <SaveTripPopup confirm={saveTripACB} cancel={closeModal}/>}
         </div>
     );
 }

@@ -8,12 +8,12 @@ const REF = "gothedistance"
 
 function updateFirebaseFromModel(model) {
     function observerACB(payload) {
-        console.log("PAYLOAD", payload.locationToAdd)
-        console.log("MODEL", model.newTripsLocationList)
+        // console.log("PAYLOAD", payload.locationToAdd)
+        // console.log("MODEL", model.newTripsLocationList)
         
-        if(payload.locationToAdd) {
-            firebase.database().ref(REF+"/newTripsLocationList/"+payload.locationToAdd.name).set(payload.locationToAdd.name);
-        }
+        // if(payload.locationToAdd) {
+        //     firebase.database().ref(REF+"/newTripsLocationList/"+payload.locationToAdd.name).set(payload.locationToAdd.name);
+        // }
     }
     console.log("MODEL", model)
     model.addObserver(observerACB);
