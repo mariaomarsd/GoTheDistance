@@ -6,11 +6,11 @@ class TripsModel {
     }
 
     addToNewTrip(item) {
-        this.newTripsLocationList = [...this.newTripsLocationList, item];
-        this.notifyObservers();
-        console.log("Current list: ", this.newTripsLocationList);
-
+        // this.newTripsLocationList = [...this.newTripsLocationList, item];
+        this.notifyObservers({newTripsLocationList: this.newTripsLocationList});
+        // console.log("Current list: ", this.newTripsLocationList);
         //this.newTripsLocationList = item;
+        this.newTripsLocationList = [...this.newTripsLocationList, item];
     }
 
     removeFromNewTrip(id) {

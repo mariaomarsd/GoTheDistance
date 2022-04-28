@@ -1,13 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// import firebase from "firebase/compat/app";
+import { initializeApp } from "firebase/app";
+import firebaseConfig from "./firebaseConfig.js";
+import { BrowserRouter } from 'react-router-dom';
+
+const TripsModel = require("./tripsModel.js").default;
+const tripsModel= new TripsModel();
+
+// var admin = require("firebase-admin");
+
+// var serviceAccount = require("path/to/serviceAccountKey.json");
+
+initializeApp(firebaseConfig);
+
+const {updateFirebaseFromModel, updateModelFromFirebase}=require("./firebaseModel.js");
+
+function ReactRoot() {
+  // const [model, setModel] = useState();
+  
+  useEffect(function onStartACB() {
+      updateFirebaseFromModel(tripsModel)
+  }, [])
+  return (
+    <BrowserRouter>
+      <App model={tripsModel}/>
+    </BrowserRouter>
+  );
+}
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  // <React.StrictMode>
+  //   <App />
+  // </React.StrictMode>,
+  <ReactRoot/>,
   document.getElementById('root')
 );
 
