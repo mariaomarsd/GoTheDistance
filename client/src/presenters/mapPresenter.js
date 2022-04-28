@@ -26,20 +26,20 @@ const pathOptions = {
   };
 
 function MapPresenter(props){
-    
- 
+
+    useEffect(observerCB, []);
+
     const mapRef = useRef(); // part of move mapview to chosen destination
 
     const onMapLoad = useCallback((map) => { // part of move mapview to chosen destination
         mapRef.current = map; // part of move mapview to chosen destination
     }, []);
 
-    const [test, setTest] = useState(props.model.newTripsLocationList);
-    
-    useEffect(observerCB, []);
+    const [pathList, setPathList] = useState([]);
 
     function observerCB(){
         props.model.addObserver(getCurrentPathCB);
+        // console.log("OBSERVEL", test)
         function componentDiesCB() {
             props.model.removeObserver(getCurrentPathCB);
         }
@@ -48,13 +48,11 @@ function MapPresenter(props){
     }
 
     function getCurrentPathCB() {
-        //const pathList = test; 
-        
-        test.forEach(item => {
+        var tempPathList = JSON.parse(JSON.stringify(props.model.newTripsLocationList));
+        tempPathList.forEach(item => {
             delete item['name'];
         });
-        console.log("ourPathList:", test);
-        //setTest(pathList);
+        setPathList(tempPathList);
     }
 
     return(
@@ -67,7 +65,7 @@ function MapPresenter(props){
                 options={options}
                 onLoad={onMapLoad}>
                  <Polyline
-                    path={test}
+                    path={pathList}
                     options={pathOptions}/> 
                 </GoogleMap>}
           </div>
