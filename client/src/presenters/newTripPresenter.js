@@ -5,14 +5,8 @@ import React, { useEffect, useState } from "react";
 const NewTripView = require("../views/newTripView.js").default;
 
 function NewTripPresenter(props) {
+    
     const [locationList, setLocationList] = useState(props.model.newTripsLocationList);
-
-    // const {
-    //     ready, // is it set up and redy to go with libraries, see above  in app function
-    //     value, // what is the current value that user is writing
-    //     suggestions: { status, data }, // what is the data from these suggestions
-    //     setValue 
-    // } = usePlacesAutocomplete();
 
     // called when component is created or the list changes
     useEffect(observerCB, []);

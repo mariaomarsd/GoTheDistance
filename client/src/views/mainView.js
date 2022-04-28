@@ -16,7 +16,8 @@ function MainView(props){
     return(
         <div className="main-view">
             <div className="map-container">
-                <MapPresenter value={isLoaded}/>
+                <MapPresenter value={isLoaded}
+                model = {props.model} />
             </div>
             <div className="sidebar-container">
                 <SidebarView

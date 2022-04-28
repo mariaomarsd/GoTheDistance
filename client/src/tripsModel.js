@@ -6,19 +6,21 @@ class TripsModel {
     }
 
     addToNewTrip(item) {
-        console.log( "Hér", item); 
         this.newTripsLocationList = [...this.newTripsLocationList, item];
         this.notifyObservers();
-        console.log(this.newTripsLocationList);
+        console.log("Current list: ", this.newTripsLocationList);
 
         //this.newTripsLocationList = item;
     }
 
     removeFromNewTrip(id) {
+        console.log("what are you", id);
         function hasSameIdCB(item) {
-            return id !== item.id;
+            return id !== item.name; // change later 
         }
-        this.newTripsLocationList.filter(hasSameIdCB);
+        this.newTripsLocationList = this.newTripsLocationList.filter(hasSameIdCB);
+        console.log("status after filteR:", this.newTripsLocationList);
+        this.notifyObservers();
     }
 
     saveTrip(item) {
@@ -36,7 +38,6 @@ class TripsModel {
     addObserver(callback) {
         this.observers.push(callback);
     }
-
 
     removeObserver(callback) {
         function removeObserverCB(cb){

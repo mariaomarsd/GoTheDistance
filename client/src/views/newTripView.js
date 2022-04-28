@@ -36,9 +36,19 @@ function NewTripView(props) {
         props.addToTrip(chosen);
     }
 
-    function renderListItemCB(item){
+    // id is name temp
+    function removeFromTripACB(id) {
+        props.removeFromTrip(id);
+        console.log("remove list?", props.locationList);
+    }
+
+    function renderListItemCB(item) {
         // console.log("ITEM",item)
-        return <div key={item.name}>{item.name}</div>
+        return <div key={item.name}>{item.name}
+                    <button onClick={() => removeFromTripACB(item.name)}>
+                        X
+                    </button>
+                </div>
     }
     
     return(
