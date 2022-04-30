@@ -6,11 +6,11 @@ function MyTripsView(props) {
     // const [test, setTest ] = useState(props.myTripsList);
 
     function listChangedCB(){
-        console.log("EFTIR ÞETTA",props.myTripsList);
+        // console.log("EFTIR ÞETTA",props.myTripsList);
     }
 
     function renderItemsCB(item) {
-        console.log("RENDER ITEMS", item)
+        // console.log("RENDER ITEMS", item)
         return <div key={item.name}> {item.name} </div>
     }
     

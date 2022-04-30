@@ -10,7 +10,7 @@ class TripsModel {
     addToNewTrip(item) {
         // this.newTripsLocationList = [...this.newTripsLocationList, item];
         // this.notifyObservers({locationToAdd: item});
-        console.log("Current item: ", item);
+        // console.log("Current item: ", item);
         //this.newTripsLocationList = item;
 
         this.newTripsLocationList = [...this.newTripsLocationList, item];
@@ -29,8 +29,9 @@ class TripsModel {
 
     saveTrip(item) {
         this.myTripsList = [...this.myTripsList, item];
-        console.log("Current My trips: ", this.myTripsList);
-        this.notifyObservers();
+        console.log("Current My item: ", item);
+        this.notifyObservers({tripToAdd: item});
+        // this.notifyObservers();
     }
 
     setVisableTrips(id) {
