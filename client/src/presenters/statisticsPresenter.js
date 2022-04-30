@@ -13,7 +13,7 @@ function StatisticsPresenter(props) {
     }
     return(
         <div className="statistics-presenter">
-            <div className="statistics-title" onClick={setVisibleCB}>
+            <div className="sidebar-titles" onClick={setVisibleCB}>
                 STATISTICS
             </div>
             {isVisible && <StatisticsView />}

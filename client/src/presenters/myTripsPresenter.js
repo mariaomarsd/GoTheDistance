@@ -31,12 +31,14 @@ function MyTripsPresenter(props) {
     
     return(
         <div className="my-trips-presenter">
-            <div className="my-trips-title" onClick={setVisibleCB}>
+            <div className="sidebar-titles" onClick={setVisibleCB}>
                 MY TRIPS
             </div>
-            {isVisible && <MyTripsView
-                myTripsList={tripList}
-            />}
+            <div>
+                {isVisible && <MyTripsView
+                    myTripsList={tripList}
+                />}
+            </div>
         </div>
     );
 }

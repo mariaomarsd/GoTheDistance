@@ -7,25 +7,15 @@ import {
 
 function SearchBar(props){
 
-    // function selectPlace(){
-
-    // }
     return(
-        <div className="serch-bar-component">
-            {/* <Combobox onSelect={selectPlace}>
-                <ComboboxInput>
-                
-                </ComboboxInput>
-                <ComboboxPopover>
-                    
-                </ComboboxPopover>
-            </Combobox> */}
-            <Combobox onSelect={props.selectPlace} >
+        <div className="search-bar-component">
+            <Combobox onSelect={props.selectPlace}>
                 <ComboboxInput
                     value={props.selectPlace.address}
                     onChange={(e) => props.setValue(e.target.value)}
                     disabled={!props.ready}
                     placeholder="Search a place!"
+                    id="search-bar-input"
                 />
                 <ComboboxPopover>
                     {props.status === "OK" && props.data.map(({ place_id, description, }) => ( 

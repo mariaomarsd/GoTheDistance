@@ -47,7 +47,7 @@ function NewTripPresenter(props) {
 
     return(
         <div className="new-trip-presenter">
-            <div className="new-trip-title" onClick={setVisibleCB}>
+            <div className="sidebar-titles" onClick={setVisibleCB}>
                 NEW TRIP
             </div>
             <div>   

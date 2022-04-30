@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import "../styles/presenters.css";
 
 const NewTripPresenter = require("../presenters/newTripPresenter.js").default;
 const MyTripsPresenter = require("../presenters/myTripsPresenter.js").default;
 const StatisticsPresenter = require("../presenters/statisticsPresenter.js").default;
-
-
+const ProfilePresenter = require("../presenters/profilePresenter.js").default;
 
 function SidebarView(props) {
 
@@ -36,14 +34,14 @@ function SidebarView(props) {
 
     return(
         <div className="sidebar-view">
-           <div >
+           <div className="sidebar-item" >
                 {props.value && <NewTripPresenter
                     model = {props.model}
                     visible={visibleList}
                     setVisible={setVisibleCB}
                 />}
            </div>
-           <div >
+           <div className="sidebar-item">
                <MyTripsPresenter
                     model={props.model}
                     visible={false}
@@ -51,8 +49,16 @@ function SidebarView(props) {
                     setVisible={setVisibleCB}
                />
            </div>
-           <div >
+           <div className="sidebar-item">
                <StatisticsPresenter 
+                    model={props.model}
+                    visible={false}
+                    visible={visibleList}
+                    setVisible={setVisibleCB}
+                />
+           </div>
+           <div className="sidebar-item">
+               <ProfilePresenter 
                     model={props.model}
                     visible={false}
                     visible={visibleList}
