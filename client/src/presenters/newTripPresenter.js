@@ -7,6 +7,7 @@ const NewTripView = require("../views/newTripView.js").default;
 function NewTripPresenter(props) {
     
     const [locationList, setLocationList] = useState(props.model.newTripsLocationList);
+    const [isVisible, setIsVisible] = useState();
 
     // called when component is created or the list changes
     useEffect(observerCB, []);
@@ -39,14 +40,24 @@ function NewTripPresenter(props) {
         props.model.saveTrip(item);
     }
 
+    function setVisibleCB() {
+        props.setVisible(0)
+        setIsVisible(props.visible[0]);
+    }
+
     return(
         <div className="new-trip-presenter">
-            <NewTripView
-                locationList={locationList} 
-                addToTrip={addToNewTripACB}
-                removeFromTrip={removeFromNewTripACB}
-                confirmTrip={saveTripACB}
-            />
+            <div className="new-trip-title" onClick={setVisibleCB}>
+                NEW TRIP
+            </div>
+            <div>   
+                {isVisible && <NewTripView
+                    locationList={locationList} 
+                    addToTrip={addToNewTripACB}
+                    removeFromTrip={removeFromNewTripACB}
+                    confirmTrip={saveTripACB}
+                />}
+            </div>
         </div>
     );
 }
