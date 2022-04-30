@@ -4,6 +4,7 @@ const NewTripPresenter = require("../presenters/newTripPresenter.js").default;
 const MyTripsPresenter = require("../presenters/myTripsPresenter.js").default;
 const StatisticsPresenter = require("../presenters/statisticsPresenter.js").default;
 const ProfilePresenter = require("../presenters/profilePresenter.js").default;
+const SignUpPresenter = require("../presenters/signUpPresenter.js").default;
 
 function SidebarView(props) {
 
@@ -65,6 +66,9 @@ function SidebarView(props) {
                     setVisible={setVisibleCB}
                 />
            </div>
+          <div>
+               <SignUpPresenter model = {props.model}/>
+          </div>
         </div>
     );
 }

@@ -9,7 +9,7 @@ import { initializeApp } from "firebase/app";
 import firebaseConfig from "./firebaseConfig.js";
 import { BrowserRouter } from 'react-router-dom';
 
-const TripsModel = require("./tripsModel.js").default;
+const TripsModel = require("./tripsModel").default;
 const tripsModel= new TripsModel();
 
 // var admin = require("firebase-admin");
