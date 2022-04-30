@@ -1,0 +1,138 @@
+.new-trip-view {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.search-component {
+    width: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.search-bar-component {
+    padding-right: 5px;
+}
+
+#search-bar-input {
+    height: 23px;
+    font-size: 14px;
+}
+
+.new-trip-button {
+    width: 95px;
+    height: 40px;
+    border: none;
+    font-size: 16px;
+    display: inline-block;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+}
+
+.new-trip-button:hover {
+    border-style: solid;
+    border-width: 1px;
+    
+}
+
+#add {
+    width: 50px;
+    height: 30px;
+    background-color: rgb(158, 226, 246);
+}
+
+#add:hover {
+    background-color: rgb(227, 246, 251);
+    border-color: rgb(154, 225, 246);
+}
+
+#save {
+    background-color: rgb(255, 214, 167);
+}
+
+#save:hover {
+    background-color: rgb(251, 242, 231);
+    border-color:rgb(255, 214, 167);
+}
+
+.new-trips-item-list {
+    padding-left: 0px;
+    width: 15vw;
+}
+
+.new-trip-item {
+    /* border-style: solid;
+    border-width: 2px; */
+    margin-top: 10px;
+    box-shadow: 1px 8px 10px 0 rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.new-trip-item-button {
+    width: 22px;
+    height: 22px;
+    border-style: none;
+    justify-content: center;
+    font-size: 16px;
+    background-color: white;
+    margin-right: 10px;
+}
+
+.new-trip-item-name{
+    width: 10vw;
+    font-size: 18px;
+}
+
+
+/* Save trip container styles */
+.save-trip-container {
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.save-trip-title {
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+#trip-name{
+    height: 23px;
+    font-size: 14px;
+}
+
+.save-trip-button-container {
+    display: flex;
+    flex-direction: row;
+    padding-top: 10px;
+}
+
+#cancel {
+    background-color: rgb(246, 132, 132);
+    margin-right: 5px;
+}
+
+#cancel:hover {
+    background-color: rgb(248, 231, 231);
+    border-color: rgb(246, 132, 132);
+}
+
+#confirm {
+    background-color: rgb(161, 240, 177);
+    margin-left: 5px;
+}
+
+#confirm:hover {
+    background-color: rgb(228, 245, 232);
+    border-color: rgb(161, 240, 177);
+}
+

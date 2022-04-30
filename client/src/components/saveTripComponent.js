@@ -1,24 +1,25 @@
-import { useState } from "react";
-import '../styles/saveTripPopup.css'
-
 function SaveTripPopup(props){
 
     // const [name, setName] = useState("");
 
     function getName() {
-        var name = document.getElementById("tripName").value;
+        var name = document.getElementById("trip-name").value;
         props.confirm(name)
     }
 
     return(
-        <div className="save-trip-component">
-            Give your trip a fun name
+        <div className="save-trip-container">
+            <div className="save-trip-title">
+                Give your trip a fun name
+            </div>
             <input
                 placeholder="Name your trip"
-                id="tripName"
+                id="trip-name"
             />
-            <button onClick={props.cancel}>cancel</button>
-            <button onClick={getName}>confirm</button>
+            <div className="save-trip-button-container">
+                <button onClick={props.cancel} className="new-trip-button" id="cancel" >Cancel</button>
+                <button onClick={getName} className="new-trip-button" id="confirm">Confirm</button>
+            </div>
         </div>
     );
 }

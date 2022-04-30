@@ -17,7 +17,7 @@ function MyTripsView(props) {
     return(
         <div className="my-trips-view">
             {/* <button onClick={prufa}>prufa</button> */}
-            My Trips
+            List of my trips:
             <ul>
                 {props.myTripsList.map(renderItemsCB)}
             </ul>

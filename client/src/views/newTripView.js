@@ -46,16 +46,17 @@ function NewTripView(props) {
     }
 
     function renderListItemCB(item) {
-        // console.log("ITEM",item)
-        return <div key={item.name}>{item.name}
-                    <button onClick={() => removeFromTripACB(item.name)}>
+        return <div className="new-trip-item" key={item.name}>
+                    <button className="new-trip-item-button" onClick={() => removeFromTripACB(item.name)}>
                         X
                     </button>
+                    <div className="new-trip-item-name">
+                        {item.name}
+                    </div>
                 </div>
     }
 
     function saveTripACB(name) {
-        // console.log("NAME of TO ADD", name)
         props.confirmTrip({name: name, locations: props.locationList});
         setVisisble(false);
     }
@@ -70,7 +71,7 @@ function NewTripView(props) {
     
     return(
         <div className="new-trip-view">
-          <div>
+          <div className="search-component">
             <SearchBar 
                 selectPlace={selectPlace}
                 data={data}
@@ -78,20 +79,17 @@ function NewTripView(props) {
                 setValue={setValue}
                 ready={ready}
             />
-            <button onClick={addToTripACB}>
-                Add To Trip!
+            <button className="new-trip-button" id="add" onClick={addToTripACB}>
+                Add
             </button>
           </div>
           <div>
-              <div>
-                Current trip
-              </div>
-              <ul>
+              <ul className="new-trips-item-list">
                   {props.locationList.map(renderListItemCB)}
               </ul>
           </div>
-          <button onClick={openModal}>
-            Save Trip!
+          <button className="new-trip-button" id="save" onClick={openModal}>
+            Save Trip
           </button>
           {visible && <SaveTripPopup confirm={saveTripACB} cancel={closeModal}/>}
         </div>
