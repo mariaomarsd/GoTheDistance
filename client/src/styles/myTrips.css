@@ -1,0 +1,29 @@
+.my-trips-view {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.my-trips-item-list {
+    padding-left: 0px;
+}
+
+.my-trips-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-self: center;
+}
+
+.my-trips-item-check {
+    width: 22px;
+    height: 22px;
+    margin-right: 10px;
+}
+
+.my-trips-item-name {
+    font-size: 18px;
+}

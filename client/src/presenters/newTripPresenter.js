@@ -36,13 +36,15 @@ function NewTripPresenter(props) {
     }
 
     function saveTripACB(item) {
-        // console.log('NTP savetrip', item)
         props.model.saveTrip(item);
     }
 
     function setVisibleCB() {
-        props.setVisible(0)
+        // console.log("props.visible", props.visible)
+        props.setVisible(0);
         setIsVisible(props.visible[0]);
+        // console.log("NUNA VISIBLE", props.visible[0])
+        // props(props.setVisible(0)).then(setIsVisible(props.visible[0]))
     }
 
     return(

@@ -3,7 +3,7 @@ import React from "react";
 function StatisticsView(props) {
     return(
         <div className="statistic-view">
-            TODO
+            STATISTIC FOR USERS TRIPS
         </div>
     );
 }
