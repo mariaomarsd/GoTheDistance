@@ -10,6 +10,7 @@ function NewTripView(props) {
     const [chosen, setChosen] = useState();
 
     const [visible, setVisisble] = useState(false);
+    // const [confirmVisible, setConfirmVisible] = useState(false);
 
     const {
         ready, // is it set up and redy to go with libraries, see above  in app function
@@ -59,6 +60,9 @@ function NewTripView(props) {
     function saveTripACB(name) {
         props.confirmTrip({name: name, locations: props.locationList});
         setVisisble(false);
+        // console.log("conform visible fyrir", confirmVisible);
+        // setConfirmVisible(true);
+        // console.log("conform visible eftir", confirmVisible);
     }
 
     function openModal() {
@@ -92,6 +96,7 @@ function NewTripView(props) {
             Save Trip
           </button>
           {visible && <SaveTripPopup confirm={saveTripACB} cancel={closeModal}/>}
+          {/* {confirmVisible && <div> IT WORKED </div>} */}
         </div>
     );
 }

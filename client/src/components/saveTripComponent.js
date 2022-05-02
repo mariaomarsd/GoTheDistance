@@ -1,6 +1,6 @@
-function SaveTripPopup(props){
+// import { useState } from "react";
 
-    // const [name, setName] = useState("");
+function SaveTripPopup(props){
 
     function getName() {
         var name = document.getElementById("trip-name").value;

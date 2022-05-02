@@ -6,12 +6,15 @@ const center = { // where to start the map, stockholm
     lat: 23.818858,
     lng: 6.094477,
 };
+
   
 const options = {
+    backgroundColor: "light blue",
     styles: mapStyles,
     disableDefaultUI: true,
     zoomControl: true,
     minZoom: 3,
+    maxZoom: 6,
 };
   
 const mapContainerStyle = {
@@ -57,7 +60,6 @@ function MapPresenter(props){
 
     return(
           <div>
-              {/* <button onClick={getCurrentPath}>test</button> */}
               {props.value && <GoogleMap id="map"
                 mapContainerStyle={mapContainerStyle}
                 zoom={3}

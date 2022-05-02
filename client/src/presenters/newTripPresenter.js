@@ -9,6 +9,8 @@ function NewTripPresenter(props) {
     const [locationList, setLocationList] = useState(props.model.newTripsLocationList);
     const [isVisible, setIsVisible] = useState();
 
+    // const [vis, setVis] = useState(false)
+
     // called when component is created or the list changes
     useEffect(observerCB, []);
 
@@ -37,14 +39,14 @@ function NewTripPresenter(props) {
 
     function saveTripACB(item) {
         props.model.saveTrip(item);
+        props.setVisible(0)
+        setIsVisible(props.visible[0]);
+        props.confirmation()
     }
 
     function setVisibleCB() {
-        // console.log("props.visible", props.visible)
         props.setVisible(0);
         setIsVisible(props.visible[0]);
-        // console.log("NUNA VISIBLE", props.visible[0])
-        // props(props.setVisible(0)).then(setIsVisible(props.visible[0]))
     }
 
     return(
