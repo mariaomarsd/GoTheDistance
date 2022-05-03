@@ -73,13 +73,8 @@ function MapPresenter(props){
                 onLoad={onMapLoad}>
                  <Polyline
                     path={pathList}
-<<<<<<< HEAD
-                    options={pathOptions}
-                    /> 
-=======
                     options={pathOptions}/> 
                 {pathList.map(renderListItemCB)}
->>>>>>> 3916985b6ca1006edb22a4eb0b8a21bc4be5a0f0
                 </GoogleMap>}
           </div>
       );
