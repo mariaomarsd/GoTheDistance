@@ -43,6 +43,7 @@ function MapPresenter(props){
 
     function observerCB(){
         props.model.addObserver(getCurrentPathCB);
+    
         // console.log("OBSERVEL", test)
         function componentDiesCB() {
             props.model.removeObserver(getCurrentPathCB);
@@ -56,18 +57,13 @@ function MapPresenter(props){
         tempPathList.forEach(item => {
             delete item['name'];
         });
+
         setPathList(tempPathList);
     }
 
-    // function testing() {
-    //     // const encodeString = google.maps.geometry.encoding.encodePath(path);
-    //     var path = {lat: 30, lng:40} 
-    //     const encodeString = geometry.computeDistanceBetween(path);
-    //     // console.log("TETING", encodeString)
-    // }
-
     return(
           <div>
+              
               {props.value && <GoogleMap id="map"
                 mapContainerStyle={mapContainerStyle}
                 zoom={3}
@@ -76,11 +72,9 @@ function MapPresenter(props){
                 onLoad={onMapLoad}>
                  <Polyline
                     path={pathList}
-                    options={pathOptions}/> 
+                    options={pathOptions}
+                    /> 
                 </GoogleMap>}
-                {/* <button onClick={testing}>
-                    TESTING
-                </button> */}
           </div>
       );
 }
