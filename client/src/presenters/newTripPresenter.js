@@ -50,12 +50,8 @@ function NewTripPresenter(props) {
     }
 
     function test() {
-            // var path = {lat: 30, lng:40} 
             const latlng1 = new geometry.LatLng(72, 6);
             const latlng2 = new geometry.LatLng(16, 150);
-            // latlng.x = latlng.lng();
-            // latlng.y = latlng.lat();
-            // const encodeString = google.maps.spherical.computeDistanceBetween(path);
             var test = geometry.computeDistanceBetween(latlng1, latlng2);
             console.log("HALLO HÆ", test/1000)
     }

@@ -41,7 +41,6 @@ function MapPresenter(props){
 
     function observerCB(){
         props.model.addObserver(getCurrentPathCB);
-        // console.log("OBSERVEL", test)
         function componentDiesCB() {
             props.model.removeObserver(getCurrentPathCB);
         }
@@ -57,6 +56,11 @@ function MapPresenter(props){
         setPathList(tempPathList);
     }
 
+    function renderListItemCB(item){
+        return <Marker position={item}>
+        </Marker>
+    }
+
     return(
           <div>
               {props.value && <GoogleMap id="map"
@@ -68,12 +72,8 @@ function MapPresenter(props){
                  <Polyline
                     path={pathList}
                     options={pathOptions}/> 
-                {/* {test} */}
+                {pathList.map(renderListItemCB)}
                 </GoogleMap>}
-                {/* <button onClick={testing}>
-                    TESTING
-                </button> */}
-                
           </div>
       );
 }
