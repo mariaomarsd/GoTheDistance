@@ -5,6 +5,7 @@ const MyTripsPresenter = require("../presenters/myTripsPresenter.js").default;
 const StatisticsPresenter = require("../presenters/statisticsPresenter.js").default;
 const ProfilePresenter = require("../presenters/profilePresenter.js").default;
 const SignUpPresenter = require("../presenters/signUpPresenter.js").default;
+const LoginPresenter = require("../presenters/loginPresenter.js").default;
 
 function SidebarView(props) {
 
@@ -35,40 +36,42 @@ function SidebarView(props) {
 
     return(
         <div className="sidebar-view">
-           <div className="sidebar-item" >
-                {props.value && <NewTripPresenter
-                    model = {props.model}
-                    visible={visibleList}
-                    setVisible={setVisibleCB}
-                />}
-           </div>
-           <div className="sidebar-item">
-               <MyTripsPresenter
-                    model={props.model}
-                    visible={false}
-                    visible={visibleList}
-                    setVisible={setVisibleCB}
-               />
-           </div>
-           <div className="sidebar-item">
-               <StatisticsPresenter 
-                    model={props.model}
-                    visible={false}
-                    visible={visibleList}
-                    setVisible={setVisibleCB}
-                />
-           </div>
-           <div className="sidebar-item">
-               <ProfilePresenter 
-                    model={props.model}
-                    visible={false}
-                    visible={visibleList}
-                    setVisible={setVisibleCB}
-                />
-           </div>
-          <div>
-               <SignUpPresenter model = {props.model}/>
-          </div>
+        {props.visible  &&
+            <div>
+                <div className="sidebar-item" >
+                        {props.value && <NewTripPresenter
+                            model = {props.model}
+                            visible={visibleList}
+                            setVisible={setVisibleCB}
+                        />}
+                </div>
+                <div className="sidebar-item">
+                    <MyTripsPresenter
+                            model={props.model}
+                            //visible={false}
+                            visible={visibleList}
+                            setVisible={setVisibleCB}
+                    />
+                </div>
+                <div className="sidebar-item">
+                    <StatisticsPresenter 
+                            model={props.model}
+                            //visible={false}
+                            visible={visibleList}
+                            setVisible={setVisibleCB}
+                        />
+                </div>
+                <div className="sidebar-item">
+                    <ProfilePresenter 
+                            model={props.model}
+                            //visible={false}
+                            visible={visibleList}
+                            setVisible={setVisibleCB}
+                            isLoggedIn = {props.isLoggedIn}
+                        />
+                </div>
+            </div>
+            }
         </div>
     );
 }

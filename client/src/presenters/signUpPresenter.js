@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SignUpView from "../views/signUpView";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile} from "firebase/auth";
 import firebase from "firebase/compat/app";
 import firebaseConfig from "../firebaseConfig";
 import { ReactSession } from "react-client-session";
@@ -24,7 +24,6 @@ function SignUpPresenter(props){
 
     function updateUsername(newUserName) {
         setUsername(newUserName);
-        console.log("username", username);
     }
 
     function updateEmail(newEmail){
@@ -41,16 +40,21 @@ function SignUpPresenter(props){
 
     function createUser(event){
         function setUserCredentials(userCredential){
-            const userId = userCredential.user.uid;
-            ReactSession.set("uid", userId);
-            ReactSession.set("uName", username);
-            console.log("uid", ReactSession.get("uid"));
-            console.log("username", ReactSession.get("uName"));
-            setUsername("");
-            setEmail("");
-            setPassword("");
-            setConfirmPassword("");
-            setDiplayErrorMessage("");
+            function setUserNameCB(){
+                ReactSession.set("uid", userId);
+                ReactSession.set("uName", user.displayName);
+                setUsername("");
+                setEmail("");
+                setPassword("");
+                setConfirmPassword("");
+                setDiplayErrorMessage("");
+            }    
+            const user = userCredential.user;
+            const userId = user.uid;
+            updateProfile(user, {displayName: username})
+                .then(setUserNameCB)
+                .then(props.isLoggedIn)
+                .catch((e) => {console.log(e)});
        }
        
        function handleError(error) {
