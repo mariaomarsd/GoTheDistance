@@ -36,11 +36,15 @@ class TripsModel {
     }
 
     setVisableTrips(id) {
-        for (let i = 0; i < this.myTripsList.length; i++) {
-           if(this.myTripsList[i].id === id) {
-               this.myTripsList[i].show = !this.myTripsList[i].show;
-           }
-        }
+        // for (let i = 0; i < this.myTripsList.length; i++) {
+        //     console.log("for hér")
+        //    if(this.myTripsList[i].id === id) {
+        //        console.log("id of trip", id)
+        //        this.myTripsList[i].show = !this.myTripsList[i].show;
+        //    }
+        // }
+        this.myTripsList[id].show = !this.myTripsList[id].show;
+        console.log('VISIBLE TRIPS', this.myTripsList)
     }
 
     addObserver(callback) {

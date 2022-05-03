@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 // import {GoogleMap,useLoadScript,Polyline} from "@react-google-maps/api";
 // import usePlacesAutocomplete from "use-places-autocomplete";
 
+import * as geometry from 'spherical-geometry-js';
+
 const NewTripView = require("../views/newTripView.js").default;
 
 function NewTripPresenter(props) {
     
     const [locationList, setLocationList] = useState(props.model.newTripsLocationList);
     const [isVisible, setIsVisible] = useState();
-
-    // const [vis, setVis] = useState(false)
 
     // called when component is created or the list changes
     useEffect(observerCB, []);
@@ -49,6 +49,17 @@ function NewTripPresenter(props) {
         setIsVisible(props.visible[0]);
     }
 
+    function test() {
+            // var path = {lat: 30, lng:40} 
+            const latlng1 = new geometry.LatLng(72, 6);
+            const latlng2 = new geometry.LatLng(16, 150);
+            // latlng.x = latlng.lng();
+            // latlng.y = latlng.lat();
+            // const encodeString = google.maps.spherical.computeDistanceBetween(path);
+            var test = geometry.computeDistanceBetween(latlng1, latlng2);
+            console.log("HALLO HÆ", test/1000)
+    }
+
     return(
         <div className="new-trip-presenter">
             <div className="sidebar-titles" onClick={setVisibleCB}>
@@ -62,6 +73,7 @@ function NewTripPresenter(props) {
                     confirmTrip={saveTripACB}
                 />}
             </div>
+            <button onClick={test}>HALLO HÆ BLESSUP</button>
         </div>
     );
 }

@@ -4,8 +4,12 @@ function MyTripsView(props) {
 
     useEffect(listChangedCB ,[props.myTripsList])
 
+    const [visableList, setVisibleList] = useState([props.myTripsList])
+    // const [allMyTrips, setAllMyTrips] = useState([props.myTripsList])
+
     function listChangedCB(){
         // console.log("EFTIR ÞETTA",props.myTripsList);
+        getVisibleList();
     }
 
     function renderItemsCB(item) {
@@ -16,6 +20,25 @@ function MyTripsView(props) {
                     </div>
                 </div> 
     }
+
+    function getVisibleList() {
+        var tempList = [];
+        for(let i = 0; i<props.myTripsList.length; i++) {
+            // console.log("NOW", props.myTripsList[i].show)
+            if(props.myTripsList[i].show){
+                // var tempVar = props.myTripsList[i].show
+                tempList.push(props.myTripsList[i].show)
+                // console.log("NAME", props.myTripsList[i].name)
+            }
+        }
+        console.log("TEMOP LIST", tempList)
+        // props.setVisibleTrips(0);
+        setVisibleList(tempList)
+    }
+
+    function changeVisability() {
+        props.setVisibleTrips(0);
+    }
     
     return(
         <div className="my-trips-view">
@@ -23,6 +46,7 @@ function MyTripsView(props) {
             <ul className="my-trips-item-list">
                 {props.myTripsList.map(renderItemsCB)}
             </ul>}
+            <button onClick={changeVisability}>TEST</button>
         </div>
     );
 }

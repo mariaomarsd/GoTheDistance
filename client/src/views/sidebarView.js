@@ -26,6 +26,10 @@ function SidebarView(props) {
         setTimeout(function() {setConfirmationVisible(false) }, 2500)
     }
 
+    // function testing() {
+    //     const encodeString = google.maps.geometry.encoding.encodePath(path)
+    // }
+
     return(
         <div className="sidebar-view">
            <div className="sidebar-item" >
@@ -64,6 +68,9 @@ function SidebarView(props) {
                <SignUpPresenter model = {props.model}/>
           </div>
           {confirmationVisible && <Confirm />}
+          {/* <button onClick={testing}>
+              TESTING
+          </button> */}
         </div>
     );
 }

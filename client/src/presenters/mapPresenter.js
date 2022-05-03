@@ -1,13 +1,14 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import {GoogleMap,useLoadScript,Polyline} from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, Polyline } from "@react-google-maps/api";
 import mapStyles from "../mapStyles";
+import * as geometry from 'spherical-geometry-js';
+// const { computeDistanceBetween } = require('spherical-geometry-js')
 
 const center = { // where to start the map, stockholm
     lat: 23.818858,
     lng: 6.094477,
 };
 
-  
 const options = {
     backgroundColor: "light blue",
     styles: mapStyles,
@@ -58,6 +59,13 @@ function MapPresenter(props){
         setPathList(tempPathList);
     }
 
+    // function testing() {
+    //     // const encodeString = google.maps.geometry.encoding.encodePath(path);
+    //     var path = {lat: 30, lng:40} 
+    //     const encodeString = geometry.computeDistanceBetween(path);
+    //     // console.log("TETING", encodeString)
+    // }
+
     return(
           <div>
               {props.value && <GoogleMap id="map"
@@ -70,6 +78,9 @@ function MapPresenter(props){
                     path={pathList}
                     options={pathOptions}/> 
                 </GoogleMap>}
+                {/* <button onClick={testing}>
+                    TESTING
+                </button> */}
           </div>
       );
 }
