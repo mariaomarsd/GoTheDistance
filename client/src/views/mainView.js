@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {useLoadScript} from "@react-google-maps/api";
 import * as geometry from 'spherical-geometry-js';
+import { ReactSession } from "react-client-session";
 
 const MapPresenter = require("../presenters/mapPresenter.js").default;
 const SidebarView = require("../views/sidebarView.js").default;
@@ -48,12 +49,6 @@ function MainView(props){
                     visible = {!userLoggedIn}
                     isLoggedIn = {isLoggedIn}
                 />
-            </div>
-            <button onClick={test}>
-                HALLO HÆ
-            </button>
-            <div>
-                Hér er ég
             </div>
         </div>
     );

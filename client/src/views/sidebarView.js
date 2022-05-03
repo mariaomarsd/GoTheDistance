@@ -67,9 +67,6 @@ function SidebarView(props) {
                     setVisible={setVisibleCB}
                 />
            </div>
-          <div>
-               <SignUpPresenter model = {props.model}/>
-          </div>
           {confirmationVisible && <Confirm />}
           {/* <button onClick={testing}>
               TESTING
