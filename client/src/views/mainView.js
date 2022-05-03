@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import {useLoadScript} from "@react-google-maps/api";
 import * as geometry from 'spherical-geometry-js';
 
 const MapPresenter = require("../presenters/mapPresenter.js").default;
 const SidebarView = require("../views/sidebarView.js").default;
+const SignUpPresenter = require("../presenters/signUpPresenter").default;
+const LoginPresenter = require("../presenters/loginPresenter").default;
+const AuthenticationPresenter = require("../presenters/authenticationPresenter").default;
 
 const libraries = ["places", "geometry"];
 
@@ -14,6 +17,12 @@ function MainView(props){
         libraries,
     });
 
+  const [userLoggedIn, setUserLoggedIn] = useState(ReactSession.get("uid") != null);
+
+    function isLoggedIn(){
+        setUserLoggedIn(ReactSession.get("uid") != null);
+    }
+      
     function test() {
         var path = {lat: 30, lng:40} 
         // const encodeString = google.maps.spherical.computeDistanceBetween(path);
@@ -30,6 +39,14 @@ function MainView(props){
                 <SidebarView
                     model = {props.model} 
                     value = {isLoaded}
+                    visible = {userLoggedIn}
+                    isLoggedIn  = {isLoggedIn}
+                />
+            </div>
+            <div className="auth-container">
+                <AuthenticationPresenter
+                    visible = {!userLoggedIn}
+                    isLoggedIn = {isLoggedIn}
                 />
             </div>
             <button onClick={test}>

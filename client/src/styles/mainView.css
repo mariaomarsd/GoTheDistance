@@ -7,6 +7,13 @@
     width: 20vw;
 }
 
+.auth-container {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    width: 40vw;
+}
+
 /* Located in sidebar presenter files */
 .sidebar-titles {
     height: 5vh;
@@ -20,6 +27,12 @@
         position: absolute;
         top: 10%;
         left: 75%;
+        width: 260px;
+    }
+    .auth-container {
+        position: absolute;
+        top: 35%;
+        left: 50%;
         width: 260px;
     }
 }
