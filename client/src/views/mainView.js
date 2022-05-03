@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import {useLoadScript} from "@react-google-maps/api";
 import * as geometry from 'spherical-geometry-js';
+import { ReactSession } from "react-client-session";
 
 const MapPresenter = require("../presenters/mapPresenter.js").default;
 const SidebarView = require("../views/sidebarView.js").default;
+const SignUpPresenter = require("../presenters/signUpPresenter").default;
+const LoginPresenter = require("../presenters/loginPresenter").default;
+const AuthenticationPresenter = require("../presenters/authenticationPresenter").default;
 
 const libraries = ["places", "geometry"];
 
@@ -14,9 +18,14 @@ function MainView(props){
         libraries,
     });
 
+  const [userLoggedIn, setUserLoggedIn] = useState(ReactSession.get("uid") != null);
+
+    function isLoggedIn(){
+        setUserLoggedIn(ReactSession.get("uid") != null);
+    }
+      
     function test() {
         var path = {lat: 30, lng:40} 
-        // const encodeString = google.maps.spherical.computeDistanceBetween(path);
         console.log("HALLO HÆ", geometry.computeDistanceBetween(path))
     }
     
@@ -30,13 +39,17 @@ function MainView(props){
                 <SidebarView
                     model = {props.model} 
                     value = {isLoaded}
+                    //visible = {userLoggedIn}
+                    visible = {true} // Change to use authentication
+                    isLoggedIn  = {isLoggedIn}
                 />
             </div>
-            <button onClick={test}>
-                HALLO HÆ
-            </button>
-            <div>
-                Hér er ég
+            <div className="auth-container">
+                <AuthenticationPresenter
+                    // visible = {!userLoggedIn}
+                    visible = {false} // Change to use authentication
+                    isLoggedIn = {isLoggedIn}
+                />
             </div>
         </div>
     );

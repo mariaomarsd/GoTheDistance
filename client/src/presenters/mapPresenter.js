@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import { GoogleMap, useLoadScript, Polyline } from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, Polyline, Marker } from "@react-google-maps/api";
 import mapStyles from "../mapStyles";
-import * as geometry from 'spherical-geometry-js';
-// const { computeDistanceBetween } = require('spherical-geometry-js')
 
 const center = { // where to start the map, stockholm
     lat: 23.818858,
@@ -43,8 +41,6 @@ function MapPresenter(props){
 
     function observerCB(){
         props.model.addObserver(getCurrentPathCB);
-    
-        // console.log("OBSERVEL", test)
         function componentDiesCB() {
             props.model.removeObserver(getCurrentPathCB);
         }
@@ -61,6 +57,11 @@ function MapPresenter(props){
         setPathList(tempPathList);
     }
 
+    function renderListItemCB(item){
+        return <Marker position={item}>
+        </Marker>
+    }
+
     return(
           <div>
               
@@ -72,8 +73,13 @@ function MapPresenter(props){
                 onLoad={onMapLoad}>
                  <Polyline
                     path={pathList}
+<<<<<<< HEAD
                     options={pathOptions}
                     /> 
+=======
+                    options={pathOptions}/> 
+                {pathList.map(renderListItemCB)}
+>>>>>>> 3916985b6ca1006edb22a4eb0b8a21bc4be5a0f0
                 </GoogleMap>}
           </div>
       );

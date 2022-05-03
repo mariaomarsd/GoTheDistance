@@ -43,8 +43,9 @@ class TripsModel {
         //        this.myTripsList[i].show = !this.myTripsList[i].show;
         //    }
         // }
+        console.log("ID TO CHANGE", id)
         this.myTripsList[id].show = !this.myTripsList[id].show;
-        console.log('VISIBLE TRIPS', this.myTripsList)
+        console.log('IS ID VISIBLE ', this.myTripsList[id].show)
     }
 
     addObserver(callback) {
