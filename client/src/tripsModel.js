@@ -7,39 +7,45 @@ class TripsModel {
         this.observers = []; 
     }
 
+    /* Safe location to new trips list in the model (not safe to the database) */
     addToNewTrip(item) {
-        // this.newTripsLocationList = [...this.newTripsLocationList, item];
-        // this.notifyObservers({locationToAdd: item});
-        // console.log("Current item: ", item);
-        //this.newTripsLocationList = item;
-
         this.newTripsLocationList = [...this.newTripsLocationList, item];
         this.notifyObservers();
     }
 
+    /* Remove location from the new trip list in the model */
     removeFromNewTrip(id) {
-        // console.log("what are you", id);
         function hasSameIdCB(item) {
             return id !== item.name; // change later 
         }
         this.newTripsLocationList = this.newTripsLocationList.filter(hasSameIdCB);
-        // console.log("status after filteR:", this.newTripsLocationList);
         this.notifyObservers();
     }
 
+    /* Safe current trip to users trips  */
     saveTrip(item) {
         this.myTripsList = [...this.myTripsList, item];
         console.log("Current My item: ", item);
         this.notifyObservers({tripToAdd: item});
-        // this.notifyObservers();
+    }
+
+    setMyTripsList(list) {
+        this.myTripsList = list
+        console.log("CURENT LIST FROM MODEL ", this.myTripsList);
+        this.notifyObservers();
     }
 
     setVisableTrips(id) {
-        for (let i = 0; i < this.myTripsList.length; i++) {
-           if(this.myTripsList[i].id === id) {
-               this.myTripsList[i].show = !this.myTripsList[i].show;
-           }
-        }
+        // for (let i = 0; i < this.myTripsList.length; i++) {
+        //     console.log("for hér")
+        //    if(this.myTripsList[i].id === id) {
+        //        console.log("id of trip", id)
+        //        this.myTripsList[i].show = !this.myTripsList[i].show;
+        //    }
+        // }
+        console.log("ID TO CHANGE", id)
+        this.myTripsList[id].show = !this.myTripsList[id].show;
+        console.log('IS ID VISIBLE ', this.myTripsList[id].show)
     }
 
     addObserver(callback) {

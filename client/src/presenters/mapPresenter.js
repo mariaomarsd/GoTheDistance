@@ -1,17 +1,19 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import {GoogleMap,useLoadScript,Polyline} from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, Polyline, Marker } from "@react-google-maps/api";
 import mapStyles from "../mapStyles";
 
 const center = { // where to start the map, stockholm
     lat: 23.818858,
     lng: 6.094477,
 };
-  
+
 const options = {
+    backgroundColor: "light blue",
     styles: mapStyles,
     disableDefaultUI: true,
     zoomControl: true,
     minZoom: 3,
+    maxZoom: 6,
 };
   
 const mapContainerStyle = {
@@ -57,7 +59,6 @@ function MapPresenter(props){
 
     return(
           <div>
-              {/* <button onClick={getCurrentPath}>test</button> */}
               {props.value && <GoogleMap id="map"
                 mapContainerStyle={mapContainerStyle}
                 zoom={3}
@@ -67,7 +68,12 @@ function MapPresenter(props){
                  <Polyline
                     path={pathList}
                     options={pathOptions}/> 
+                {/* {test} */}
                 </GoogleMap>}
+                {/* <button onClick={testing}>
+                    TESTING
+                </button> */}
+                
           </div>
       );
 }

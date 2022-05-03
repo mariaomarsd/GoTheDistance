@@ -7,6 +7,8 @@ import "./styles/presenters.css";
 import "./styles/sidebarView.css";
 import "./styles/newTrip.css";
 import "./styles/myTrips.css";
+import "./styles/statistics.css";
+import "./styles/profile.css"
 
 const MainView = require("./views/mainView.js").default;
 

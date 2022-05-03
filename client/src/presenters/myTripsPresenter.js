@@ -9,6 +9,7 @@ function MyTripsPresenter(props) {
     useEffect(observerCB, []);
     const [tripList, setTripList] = useState(props.model.myTripsList);
     const [isVisible, setIsVisible] = useState();
+    // const [visibleTrips, setVisibleTrips] = useState();
 
 
     function observerCB(){
@@ -28,6 +29,10 @@ function MyTripsPresenter(props) {
         props.setVisible(1)
         setIsVisible(props.visible[1]);
     }
+
+    function setVisibleTripsCB(id) {
+        props.model.setVisableTrips(id);
+    }
     
     return(
         <div className="my-trips-presenter">
@@ -37,6 +42,7 @@ function MyTripsPresenter(props) {
             <div>
                 {isVisible && <MyTripsView
                     myTripsList={tripList}
+                    setVisibleTrips={setVisibleTripsCB}
                 />}
             </div>
         </div>

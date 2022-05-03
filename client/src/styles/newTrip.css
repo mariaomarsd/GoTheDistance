@@ -136,3 +136,31 @@
     border-color: rgb(161, 240, 177);
 }
 
+.confirm-container {
+    background-color: white;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    height: 50px;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    top: -400px;
+    align-items: center;
+    justify-content: center;
+    border-style: solid;
+    border-width: 0.5px;
+}
+
+.confirmation-text {
+    font-size: 20px;
+    padding-right: 15px;
+}
+
+.confirmation-icon {
+    font-size: 20px;
+    color:rgb(161, 240, 177);
+}

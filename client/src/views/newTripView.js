@@ -10,6 +10,7 @@ function NewTripView(props) {
     const [chosen, setChosen] = useState();
 
     const [visible, setVisisble] = useState(false);
+    // const [confirmVisible, setConfirmVisible] = useState(false);
 
     const {
         ready, // is it set up and redy to go with libraries, see above  in app function
@@ -57,7 +58,7 @@ function NewTripView(props) {
     }
 
     function saveTripACB(name) {
-        props.confirmTrip({name: name, locations: props.locationList});
+        props.confirmTrip({name: name, locations: props.locationList, show: true});
         setVisisble(false);
     }
 
