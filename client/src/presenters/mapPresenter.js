@@ -89,8 +89,6 @@ function MapPresenter(props){
                     path={pathList}
                     options={pathOptions}/> 
                 {pathList.map(renderMarkers)}
-                {number =0/* To reset the counter for the rendering 
-                of numbers for markers used in "renderMarkers"*/}
                 </GoogleMap>}
           </div>
       );
