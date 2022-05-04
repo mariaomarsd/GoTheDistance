@@ -57,9 +57,23 @@ function MapPresenter(props){
         setPathList(tempPathList);
     }
 
-    function renderListItemCB(item){
-        return <Marker position={item}>
-        </Marker>
+    var number = 0;
+    function renderMarkers(item){
+        try {
+        number++;
+        var s = number.toString();
+         }catch(error){}
+        return(
+                <Marker key= {s}
+                position = {item}
+                icon = {{
+                    url: "/BlackAndWhite-marker.png"
+                }}
+                label = {s}
+                />
+            ); 
+              
+        
     }
 
     return(
@@ -74,7 +88,9 @@ function MapPresenter(props){
                  <Polyline
                     path={pathList}
                     options={pathOptions}/> 
-                {pathList.map(renderListItemCB)}
+                {pathList.map(renderMarkers)}
+                {number =0/* To reset the counter for the rendering 
+                of numbers for markers used in "renderMarkers"*/}
                 </GoogleMap>}
           </div>
       );
