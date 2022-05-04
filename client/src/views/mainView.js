@@ -54,3 +54,22 @@ function MainView(props){
     );
 }
 export default MainView;
+
+/*
+  "rules": {
+    "users": {
+       "$uid": {
+         // Allow only authenticated content owners access to their data
+         ".read": "auth != null && auth.uid == $uid" ,
+         ".write": "auth != null && auth.uid == $uid"
+       }
+     },
+     "gothedistance": {
+       "$uid": {
+         // Allow only authenticated content owners to write to their data, all authenticated can read (e.g. forum posts)
+         ".read": "auth != null" ,
+         ".write": "auth != null && auth.uid == $uid"
+       }
+     }
+  }
+*/
