@@ -41,7 +41,6 @@ function MapPresenter(props){
 
     function observerCB(){
         props.model.addObserver(getCurrentPathCB);
-        // console.log("OBSERVEL", test)
         function componentDiesCB() {
             props.model.removeObserver(getCurrentPathCB);
         }
@@ -54,9 +53,29 @@ function MapPresenter(props){
         tempPathList.forEach(item => {
             delete item['name'];
         });
+
         setPathList(tempPathList);
+        mapRef.current.panTo(tempPathList.at(-1));
     }
 
+    var number = 0;
+    function renderMarkers(item){
+        try {
+        number++;
+        var s = number.toString();
+         }catch(error){}
+        return(
+                <Marker key= {s}
+                position = {item}
+                icon = {{
+                    url: "/BlackAndWhite-marker.png"
+                }}
+                label = {s}
+                />
+            ); 
+    }
+
+    
     return(
           <div>
               {props.value && <GoogleMap id="map"
@@ -68,12 +87,8 @@ function MapPresenter(props){
                  <Polyline
                     path={pathList}
                     options={pathOptions}/> 
-                {/* {test} */}
+                {pathList.map(renderMarkers)}
                 </GoogleMap>}
-                {/* <button onClick={testing}>
-                    TESTING
-                </button> */}
-                
           </div>
       );
 }

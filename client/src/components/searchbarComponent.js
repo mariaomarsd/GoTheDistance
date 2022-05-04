@@ -16,10 +16,12 @@ function SearchBar(props){
                     disabled={!props.ready}
                     placeholder="Search a place!"
                     id="search-bar-input"
+                    autoComplete="off"
+                    
                 />
-                <ComboboxPopover>
+                <ComboboxPopover >
                     {props.status === "OK" && props.data.map(({ place_id, description, }) => ( 
-                        <ComboboxOption key={place_id} value={description}/>
+                        <ComboboxOption key={place_id} value={description} autoComplete="off" />
                     ))}
                 </ComboboxPopover>
             </Combobox>

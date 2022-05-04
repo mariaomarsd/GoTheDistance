@@ -26,7 +26,6 @@ function MainView(props){
       
     function test() {
         var path = {lat: 30, lng:40} 
-        // const encodeString = google.maps.spherical.computeDistanceBetween(path);
         console.log("HALLO HÆ", geometry.computeDistanceBetween(path))
     }
     
@@ -40,13 +39,15 @@ function MainView(props){
                 <SidebarView
                     model = {props.model} 
                     value = {isLoaded}
-                    visible = {userLoggedIn}
+                    //visible = {userLoggedIn}
+                    visible = {true} // Change to use authentication
                     isLoggedIn  = {isLoggedIn}
                 />
             </div>
             <div className="auth-container">
                 <AuthenticationPresenter
-                    visible = {!userLoggedIn}
+                    // visible = {!userLoggedIn}
+                    visible = {false} // Change to use authentication
                     isLoggedIn = {isLoggedIn}
                 />
             </div>
