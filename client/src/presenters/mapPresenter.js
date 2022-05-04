@@ -55,6 +55,7 @@ function MapPresenter(props){
         });
 
         setPathList(tempPathList);
+        mapRef.current.panTo(tempPathList.at(-1));
     }
 
     var number = 0;
@@ -72,13 +73,14 @@ function MapPresenter(props){
                 label = {s}
                 />
             ); 
-              
-        
     }
-
+    const panTo = React.useCallback(({ lat, lng}) => {
+        mapRef.current.panTo({lat, lng});
+        mapRef.current.setZoom(5);
+        }, []);
+    
     return(
           <div>
-              
               {props.value && <GoogleMap id="map"
                 mapContainerStyle={mapContainerStyle}
                 zoom={3}
