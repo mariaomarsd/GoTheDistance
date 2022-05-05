@@ -17,19 +17,20 @@ function SidebarView(props) {
     const [confirmationVisible, setConfirmationVisible] = useState(false)
 
     function setVisibleCB(id) {
-        visibleList[id] = !visibleList[id]
-        setVisibleList(visibleList)
+        if(visibleList[0] === true) {
+            props.setLoc(1)
+        }
+        else{
+            props.setLoc(0)
+        }
+        visibleList[id] = !visibleList[id];
+        setVisibleList(visibleList);
     }
 
     function setConfirmationCB() {
-        // console.log('NUNA')
         setConfirmationVisible(true)
         setTimeout(function() {setConfirmationVisible(false) }, 2500)
     }
-
-    // function testing() {
-    //     const encodeString = google.maps.geometry.encoding.encodePath(path)
-    // }
 
     return(
         <div className="sidebar-view">

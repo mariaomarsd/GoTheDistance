@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { GoogleMap, useLoadScript, Polyline, Marker } from "@react-google-maps/api";
 import mapStyles from "../mapStyles";
+import randomColor from "randomcolor";
 
 const center = { // where to start the map, stockholm
     lat: 23.818858,
@@ -37,7 +38,8 @@ function MapPresenter(props){
         mapRef.current = map; // part of move mapview to chosen destination
     }, []);
 
-    const [pathList, setPathList] = useState([]);
+    const [newTripPathList, setNewTripPathList] = useState([]);
+    const [myTripsPathList, setMyTripsPathList] = useState([]);
 
     function observerCB(){
         props.model.addObserver(getCurrentPathCB);
@@ -48,49 +50,64 @@ function MapPresenter(props){
         return componentDiesCB;
     }
 
+    function getMyTripsPathListCB() {
+        // console.log("GET LIST, befor everything", props.model.myTripsList)
+        var myList = JSON.parse(JSON.stringify(props.model.myTripsList));
+        var temp = []
+        myList.forEach(item => {
+            delete item['name'];
+            delete item['show'];
+            delete item['distanceNewTrip'];
+        });
+        for(var i = 0; i<myList.length; i++) {
+            var latLng = [];
+            myList[i].locations.forEach(item => {
+                delete item['name'];
+                latLng.push({lat: item["lat"], lng: item["lng"]})
+            });
+            temp.push(latLng)
+        }
+        setMyTripsPathList(temp);
+    }
+
     function getCurrentPathCB() {
-        // console.log("now", props.model.newTripsLocationList)
-        // console.log("What I want", props.model.myTripsList)
         var tempPathList = JSON.parse(JSON.stringify(props.model.newTripsLocationList));
-        // var temp = JSON.parse(JSON.stringify(props.model.myTripsList));
-        // temp.forEach(item => {
-        //     delete item['name'];
-        //     delete item['show'];
-        // });
-        // for(var i = 0; i<temp.length; i++) {
-        //     console.log("TESTING", temp[i])
-        //     temp[i].locations.forEach(item => {
-        //         delete item['name'];
-        //     });
-        // }
-        // console.log("What I want", temp)
         tempPathList.forEach(item => {
             delete item['name'];
         });
-        setPathList(tempPathList);
-
-        setPathList(tempPathList);
-        mapRef.current.panTo(tempPathList.at(-1));
+        setNewTripPathList(tempPathList);
+        if(props.model.myTripsList.length !== 0) {
+            getMyTripsPathListCB();
+        }
     }
 
     var number = 0;
     function renderMarkers(item){
         try {
-        number++;
-        var s = number.toString();
+            number++;
+            var s = number.toString();
          }catch(error){}
         return(
                 <Marker key= {s}
-                position = {item}
-                icon = {{
-                    url: "/BlackAndWhite-marker.png"
-                }}
-                label = {s}
+                    position = {item}
+                    icon = {{ url: "/BlackAndWhite-marker.png" }}
+                    label = {s}
                 />
             ); 
     }
 
-    
+    function renderPolyline(trip) {
+        let color = randomColor();
+        const myTripsPathOptions = {
+            geodesic: true,
+            strokeColor: color,
+            strokeOpacity: 1.0,
+            strokeWeight: 4
+        };
+        // console.log('POLYLINE', trip)
+        return <Polyline key={color} path={trip} options={myTripsPathOptions}/>
+    }
+
     return(
           <div>
               {props.value && <GoogleMap id="map"
@@ -99,13 +116,15 @@ function MapPresenter(props){
                 center={center}
                 options={options}
                 onLoad={onMapLoad}>
+                {/* Draw polyline for the new trip that is created */}
                 <Polyline
-                    path={pathList}
+                    path={newTripPathList}
                     options={pathOptions}
                 /> 
-                {/* {pathList.map(renderListItemCB)} */}
-                    {/* options={pathOptions}/>  */}
-                {pathList.map(renderMarkers)}
+                {/* Draw polyline for all trips that are in my trips */}
+                {myTripsPathList.map(renderPolyline)}
+                {/* Draw markers for the new trip that is created */}
+                {newTripPathList.map(renderMarkers)}
                 </GoogleMap>}
           </div>
       );

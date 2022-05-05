@@ -13,7 +13,9 @@ const libraries = ["places", "geometry"];
 
 function MainView(props){
 
-    const{ isLoaded, loadError } = useLoadScript({
+  const [inNewTrip, setInNewTrip] = useState(false);
+
+  const{ isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries,
     });
@@ -23,29 +25,36 @@ function MainView(props){
     function isLoggedIn(){
         setUserLoggedIn(ReactSession.get("uid") != null);
     }
-      
-    function test() {
-        var path = {lat: 30, lng:40} 
-        console.log("HALLO HÆ", geometry.computeDistanceBetween(path))
+
+    function setInNewTripCB(id){
+      if(id === 1) {
+        setInNewTrip(true)
+      }
+      else{
+        setInNewTrip(false)
+      }
     }
-    
+
     return(
         <div className="main-view">
             <div className="map-container">
                 <MapPresenter value={isLoaded}
-                model={props.model} />
+                  model={props.model}
+                  inNewTrip={inNewTrip}
+                />
             </div>
-            <div> {  userLoggedIn  &&
+            {/* <div> {  userLoggedIn  && */}
                 <div className="sidebar-container">
                     <SidebarView
                         model = {props.model} 
                         value = {isLoaded}
                         visible = {isLoggedIn}
-                        //visible = {true} // Change to use authentication
+                        // visible = {true} // Change to use authentication
                         isLoggedIn  = {isLoggedIn}
+                        setLoc = {setInNewTripCB}
                     />
-                </div>
-                }
+                {/* </div> */}
+                {/* } */}
             </div>
             <div>
             {!userLoggedIn && <div className="auth-container">
@@ -54,8 +63,7 @@ function MainView(props){
                     //visible = {false} // Change to use authentication
                     isLoggedIn = {isLoggedIn}
                 />
-            </div>
-            }
+            </div>}
             </div>
         </div>
     );
