@@ -85,9 +85,11 @@ function NewTripView(props) {
             </button>
           </div>
           <div>
+              {/* Start location */}
               <ul className="new-trips-item-list">
                   {props.locationList.map(renderListItemCB)}
               </ul>
+              {/* End location */}
           </div>
           <button className="new-trip-button" id="save" onClick={openModal}>
             Save Trip

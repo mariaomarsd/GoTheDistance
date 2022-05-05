@@ -61,7 +61,7 @@ function NewTripPresenter(props) {
         for (let i = 0; i < tempDistanceList.length - 1; i++) {
             distanceLength  += geometry.computeDistanceBetween(tempDistanceList[i], tempDistanceList[i + 1]);
         }
-        return distanceLength/1000 + "KM";
+        return distanceLength/1000 /*+ "KM"*/;
     }
 
     return(
