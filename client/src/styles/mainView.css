@@ -8,7 +8,7 @@
 }
 
 .auth-container {
-    position: absolute;
+    position: relative;
     top: 35%;
     left: 50%;
     width: 40vw;

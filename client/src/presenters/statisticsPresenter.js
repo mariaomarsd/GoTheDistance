@@ -6,8 +6,7 @@ const StatisticsView = require("../views/statisticsView.js").default;
 function StatisticsPresenter(props) {
 
     const [isVisible, setIsVisible] = useState();
-    // const [stats, setStats] = useState()
-
+    
     function setVisibleCB() {
         props.setVisible(2)
         setIsVisible(props.visible[2]);
@@ -18,7 +17,7 @@ function StatisticsPresenter(props) {
             <div className="sidebar-titles" onClick={setVisibleCB}>
                 STATISTICS
             </div>
-            {isVisible && <StatisticsView myTripsList={props.model.myTripsList} /*stat={props.model.myTripsList[0].distanceNewTrip}*//>}
+            {isVisible && <StatisticsView myTripsList={props.model.myTripsList} />}
         </div>
     );
 }
