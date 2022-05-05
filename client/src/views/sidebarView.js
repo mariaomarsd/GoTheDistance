@@ -65,6 +65,7 @@ function SidebarView(props) {
                     // visible={false}
                     visible={visibleList}
                     setVisible={setVisibleCB}
+                    isLoggedIn={props.isLoggedIn}
                 />
            </div>
           {confirmationVisible && <Confirm />}
