@@ -35,14 +35,17 @@ function MainView(props){
                 <MapPresenter value={isLoaded}
                 model={props.model} />
             </div>
-            <div className="sidebar-container">
-                <SidebarView
-                    model = {props.model} 
-                    value = {isLoaded}
-                    //visible = {isLoggedIn}
-                    visible = {true} // Change to use authentication
-                    isLoggedIn  = {isLoggedIn}
-                />
+            <div> {  userLoggedIn  &&
+                <div className="sidebar-container">
+                    <SidebarView
+                        model = {props.model} 
+                        value = {isLoaded}
+                        visible = {isLoggedIn}
+                        //visible = {true} // Change to use authentication
+                        isLoggedIn  = {isLoggedIn}
+                    />
+                </div>
+                }
             </div>
             <div>
             {!userLoggedIn && <div className="auth-container">
