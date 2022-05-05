@@ -119,7 +119,7 @@ function MapPresenter(props){
                         label = {(index+1).toString()}
                     />
                       );
-
+                    
                 })}
                 </GoogleMap>}
           </div>
