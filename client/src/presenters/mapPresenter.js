@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { GoogleMap, useLoadScript, Polyline, Marker } from "@react-google-maps/api";
 import mapStyles from "../mapStyles";
+import randomColor from "randomcolor";
 
 const center = { // where to start the map, stockholm
     lat: 23.818858,
@@ -50,21 +51,23 @@ function MapPresenter(props){
     }
 
     function getMyTripsPathListCB() {
-        var temp = JSON.parse(JSON.stringify(props.model.myTripsList));
-        var test = Array(temp.length).fill([])
-        temp.forEach(item => {
+        // console.log("GET LIST, befor everything", props.model.myTripsList)
+        var myList = JSON.parse(JSON.stringify(props.model.myTripsList));
+        var temp = []
+        myList.forEach(item => {
             delete item['name'];
             delete item['show'];
             delete item['distanceNewTrip'];
         });
-        for(var i = 0; i<temp.length; i++) {
-            temp[i].locations.forEach(item => {
+        for(var i = 0; i<myList.length; i++) {
+            var latLng = [];
+            myList[i].locations.forEach(item => {
                 delete item['name'];
-                console.log("length", test)
-                test[i].push({lat: item["lat"], lng: item["lng"]})
+                latLng.push({lat: item["lat"], lng: item["lng"]})
             });
+            temp.push(latLng)
         }
-        setMyTripsPathList(test);
+        setMyTripsPathList(temp);
     }
 
     function getCurrentPathCB() {
@@ -78,11 +81,11 @@ function MapPresenter(props){
         }
     }
 
+    var number = 0;
     function renderMarkers(item){
         try {
-        var number = 0;
-        number++;
-        var s = number.toString();
+            number++;
+            var s = number.toString();
          }catch(error){}
         return(
                 <Marker key= {s}
@@ -94,11 +97,15 @@ function MapPresenter(props){
     }
 
     function renderPolyline(trip) {
-        var number = 0;
-        number++;
-        var key = number.toString();
-        console.log('POLYLINE', trip)
-        return <Polyline key={key} path={trip} options={pathOptions}/>
+        let color = randomColor();
+        const myTripsPathOptions = {
+            geodesic: true,
+            strokeColor: color,
+            strokeOpacity: 1.0,
+            strokeWeight: 4
+        };
+        // console.log('POLYLINE', trip)
+        return <Polyline key={color} path={trip} options={myTripsPathOptions}/>
     }
 
     return(
@@ -109,14 +116,14 @@ function MapPresenter(props){
                 center={center}
                 options={options}
                 onLoad={onMapLoad}>
+                {/* Draw polyline for the new trip that is created */}
                 <Polyline
                     path={newTripPathList}
                     options={pathOptions}
                 /> 
-                {/* {!props.inNewTrip && props.model.myTripsList.map(renderPolyline)} */}
+                {/* Draw polyline for all trips that are in my trips */}
                 {myTripsPathList.map(renderPolyline)}
-                {/* {pathList.map(renderListItemCB)} */}
-                    {/* options={pathOptions}/>  */}
+                {/* Draw markers for the new trip that is created */}
                 {newTripPathList.map(renderMarkers)}
                 </GoogleMap>}
           </div>
