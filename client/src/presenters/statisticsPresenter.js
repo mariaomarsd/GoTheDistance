@@ -18,7 +18,7 @@ function StatisticsPresenter(props) {
             <div className="sidebar-titles" onClick={setVisibleCB}>
                 STATISTICS
             </div>
-            {isVisible && <StatisticsView stat={props.model.myTripsList[0].distanceNewTrip}/>}
+            {isVisible && <StatisticsView myTripsList={props.model.myTripsList} /*stat={props.model.myTripsList[0].distanceNewTrip}*//>}
         </div>
     );
 }
