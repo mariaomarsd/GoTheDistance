@@ -39,17 +39,20 @@ function MainView(props){
                 <SidebarView
                     model = {props.model} 
                     value = {isLoaded}
-                    //visible = {userLoggedIn}
+                    //visible = {isLoggedIn}
                     visible = {true} // Change to use authentication
                     isLoggedIn  = {isLoggedIn}
                 />
             </div>
-            <div className="auth-container">
+            <div>
+            {!userLoggedIn && <div className="auth-container">
                 <AuthenticationPresenter
-                    // visible = {!userLoggedIn}
-                    visible = {false} // Change to use authentication
+                    visible = {!userLoggedIn}
+                    //visible = {false} // Change to use authentication
                     isLoggedIn = {isLoggedIn}
                 />
+            </div>
+            }
             </div>
         </div>
     );

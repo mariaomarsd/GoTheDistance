@@ -12,6 +12,9 @@
     top: 35%;
     left: 50%;
     width: 40vw;
+    background-color: white;
+    padding: 20px;
+    border-style: solid;
 }
 
 /* Located in sidebar presenter files */
@@ -34,5 +37,8 @@
         top: 35%;
         left: 50%;
         width: 260px;
+        background-color: white;
+        padding: 20px;
+        border-style: solid;
     }
 }
