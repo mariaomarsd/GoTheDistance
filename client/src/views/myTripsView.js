@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Checkbox } from 'antd';
+// import { Checkbox } from 'antd';
 
 function MyTripsView(props) {
 
@@ -21,12 +21,11 @@ function MyTripsView(props) {
     }
 
     function renderItemsCB(item) {
-        return <div className="my-trips-item" key={item.name} >
-                    <div onClick={() => click(item)}> 
-                        <Checkbox checked={item.show} />
-                        <div className="my-trips-item-name">
-                            {item.name}
-                        </div>
+        return <div onClick={() => click(item)} className="my-trips-item" key={item.name} >
+                    {/* <Checkbox checked={item.show} className="my-trips-item-check"/> */}
+                    <input type="checkbox" checked={item.show} className="my-trips-item-check" />
+                    <div className="my-trips-item-name">
+                        {item.name}
                     </div>
                 </div>
     }
