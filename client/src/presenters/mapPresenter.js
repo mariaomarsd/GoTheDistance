@@ -37,7 +37,8 @@ function MapPresenter(props){
         mapRef.current = map; // part of move mapview to chosen destination
     }, []);
 
-    const [pathList, setPathList] = useState([]);
+    const [newTripPathList, setNewTripPathList] = useState([]);
+    const [myTripsPathList, setMyTripsPathList] = useState([]);
 
     function observerCB(){
         props.model.addObserver(getCurrentPathCB);
@@ -48,49 +49,58 @@ function MapPresenter(props){
         return componentDiesCB;
     }
 
+    function getMyTripsPathListCB() {
+        var temp = JSON.parse(JSON.stringify(props.model.myTripsList));
+        var test = Array(temp.length).fill([])
+        temp.forEach(item => {
+            delete item['name'];
+            delete item['show'];
+            delete item['distanceNewTrip'];
+        });
+        for(var i = 0; i<temp.length; i++) {
+            temp[i].locations.forEach(item => {
+                delete item['name'];
+                console.log("length", test)
+                test[i].push({lat: item["lat"], lng: item["lng"]})
+            });
+        }
+        setMyTripsPathList(test);
+    }
+
     function getCurrentPathCB() {
-        // console.log("now", props.model.newTripsLocationList)
-        // console.log("What I want", props.model.myTripsList)
         var tempPathList = JSON.parse(JSON.stringify(props.model.newTripsLocationList));
-        // var temp = JSON.parse(JSON.stringify(props.model.myTripsList));
-        // temp.forEach(item => {
-        //     delete item['name'];
-        //     delete item['show'];
-        // });
-        // for(var i = 0; i<temp.length; i++) {
-        //     console.log("TESTING", temp[i])
-        //     temp[i].locations.forEach(item => {
-        //         delete item['name'];
-        //     });
-        // }
-        // console.log("What I want", temp)
         tempPathList.forEach(item => {
             delete item['name'];
         });
-        setPathList(tempPathList);
-
-        setPathList(tempPathList);
-        mapRef.current.panTo(tempPathList.at(-1));
+        setNewTripPathList(tempPathList);
+        if(props.model.myTripsList.length !== 0) {
+            getMyTripsPathListCB();
+        }
     }
 
-    var number = 0;
     function renderMarkers(item){
         try {
+        var number = 0;
         number++;
         var s = number.toString();
          }catch(error){}
         return(
                 <Marker key= {s}
-                position = {item}
-                icon = {{
-                    url: "/BlackAndWhite-marker.png"
-                }}
-                label = {s}
+                    position = {item}
+                    icon = {{ url: "/BlackAndWhite-marker.png" }}
+                    label = {s}
                 />
             ); 
     }
 
-    
+    function renderPolyline(trip) {
+        var number = 0;
+        number++;
+        var key = number.toString();
+        console.log('POLYLINE', trip)
+        return <Polyline key={key} path={trip} options={pathOptions}/>
+    }
+
     return(
           <div>
               {props.value && <GoogleMap id="map"
@@ -100,12 +110,14 @@ function MapPresenter(props){
                 options={options}
                 onLoad={onMapLoad}>
                 <Polyline
-                    path={pathList}
+                    path={newTripPathList}
                     options={pathOptions}
                 /> 
+                {/* {!props.inNewTrip && props.model.myTripsList.map(renderPolyline)} */}
+                {myTripsPathList.map(renderPolyline)}
                 {/* {pathList.map(renderListItemCB)} */}
                     {/* options={pathOptions}/>  */}
-                {pathList.map(renderMarkers)}
+                {newTripPathList.map(renderMarkers)}
                 </GoogleMap>}
           </div>
       );

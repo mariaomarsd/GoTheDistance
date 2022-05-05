@@ -10,7 +10,7 @@ const REF = "gothedistance"
 
 function updateFirebaseFromModel(model) {
     function observerACB(payload) {
-        console.log("PAYLOAD", payload)
+        // console.log("PAYLOAD", payload)
         if(payload && payload.tripToAdd) {
             // userID = 1 now
             firebase.database().ref(REF+"/userTrips/"+"1").set(payload.tripToAdd);
@@ -23,7 +23,7 @@ function updataModelFromFirebase(model) {
     // userID = 1 now
     firebase.database().ref(REF+"/UserTrips/"+"1").on("value",
         function myTripsChangedInModel(firebaseData){
-            console.log('FOR HER')
+            // console.log('FOR HER')
             model.setMyTripsList(firebaseData.val());
         });
 

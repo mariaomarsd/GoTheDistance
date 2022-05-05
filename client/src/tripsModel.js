@@ -25,7 +25,7 @@ class TripsModel {
     /* Safe current trip to users trips  */
     saveTrip(item) {
         this.myTripsList = [...this.myTripsList, item];
-        // this.newTripsLocationList = []
+        this.newTripsLocationList = []
         // console.log("Current My item: ", item);
         this.notifyObservers({tripToAdd: item});
     }
