@@ -49,11 +49,25 @@ function MapPresenter(props){
     }
 
     function getCurrentPathCB() {
-        var tempPathList = JSON.parse(JSON.stringify(props.model.newTripsLocationList));
-        tempPathList.forEach(item => {
+        // console.log("now", props.model.newTripsLocationList)
+        // console.log("What I want", props.model.myTripsList)
+        // var tempPathList = JSON.parse(JSON.stringify(props.model.newTripsLocationList));
+        var temp = JSON.parse(JSON.stringify(props.model.myTripsList));
+        temp.forEach(item => {
             delete item['name'];
+            delete item['show'];
         });
-        setPathList(tempPathList);
+        for(var i = 0; i<temp.length; i++) {
+            console.log("TESTING", temp[i])
+            temp[i].locations.forEach(item => {
+                delete item['name'];
+            });
+        }
+        console.log("What I want", temp)
+        // tempPathList.forEach(item => {
+        //     delete item['name'];
+        // });
+        setPathList(temp);
     }
 
     function renderListItemCB(item){
@@ -69,10 +83,10 @@ function MapPresenter(props){
                 center={center}
                 options={options}
                 onLoad={onMapLoad}>
-                 <Polyline
+                 {/* <Polyline
                     path={pathList}
-                    options={pathOptions}/> 
-                {pathList.map(renderListItemCB)}
+                    options={pathOptions}/>  */}
+                {/* {pathList.map(renderListItemCB)} */}
                 </GoogleMap>}
           </div>
       );
