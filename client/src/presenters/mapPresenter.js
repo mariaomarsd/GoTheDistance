@@ -81,21 +81,6 @@ function MapPresenter(props){
         }
     }
 
-    var number = 0;
-    function renderMarkers(item){
-        try {
-            number++;
-            var s = number.toString();
-         }catch(error){}
-        return(
-                <Marker key= {s}
-                    position = {item}
-                    icon = {{ url: "/BlackAndWhite-marker.png" }}
-                    label = {s}
-                />
-            ); 
-    }
-
     function renderPolyline(trip) {
         let color = randomColor();
         const myTripsPathOptions = {
@@ -124,7 +109,18 @@ function MapPresenter(props){
                 {/* Draw polyline for all trips that are in my trips */}
                 {myTripsPathList.map(renderPolyline)}
                 {/* Draw markers for the new trip that is created */}
-                {newTripPathList.map(renderMarkers)}
+                { newTripPathList.map((item, index) => {                      
+                      
+                          console.log("item: "+ item + " index: "+ index)
+                        return (
+                        <Marker key= {(index+1).toString()}
+                        position = {item}
+                        icon = {{ url: "/BlackAndWhite-marker.png" }}
+                        label = {(index+1).toString()}
+                    />
+                      );
+
+                })}
                 </GoogleMap>}
           </div>
       );
