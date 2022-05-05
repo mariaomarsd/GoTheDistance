@@ -2,6 +2,8 @@ import React from "react";
 
 function StatisticsView(props) {
 
+    
+
     return(
         <div className="statistic-view">
             <div className="distance-travelled">
@@ -11,8 +13,13 @@ function StatisticsView(props) {
                 {props.myTripsList.length === 0 ? <div>0.0 km</div> :
                 <div className="statistic-number">
                     {props.myTripsList[0].distanceNewTrip.toFixed(2)}
-                    {/* {console.log("kkk", props.myTripsList[0])} */}
                 </div>}
+                <div className="statistic-title">
+                    Places visited
+                </div>
+                <div className="statistic-number">
+                    <p>{props.numberOfPlaces}</p>
+                </div>
             </div>
         </div>
     );
