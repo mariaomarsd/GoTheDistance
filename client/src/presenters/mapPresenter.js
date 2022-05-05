@@ -51,30 +51,46 @@ function MapPresenter(props){
     function getCurrentPathCB() {
         // console.log("now", props.model.newTripsLocationList)
         // console.log("What I want", props.model.myTripsList)
-        // var tempPathList = JSON.parse(JSON.stringify(props.model.newTripsLocationList));
-        var temp = JSON.parse(JSON.stringify(props.model.myTripsList));
-        temp.forEach(item => {
-            delete item['name'];
-            delete item['show'];
-        });
-        for(var i = 0; i<temp.length; i++) {
-            console.log("TESTING", temp[i])
-            temp[i].locations.forEach(item => {
-                delete item['name'];
-            });
-        }
-        console.log("What I want", temp)
-        // tempPathList.forEach(item => {
+        var tempPathList = JSON.parse(JSON.stringify(props.model.newTripsLocationList));
+        // var temp = JSON.parse(JSON.stringify(props.model.myTripsList));
+        // temp.forEach(item => {
         //     delete item['name'];
+        //     delete item['show'];
         // });
-        setPathList(temp);
+        // for(var i = 0; i<temp.length; i++) {
+        //     console.log("TESTING", temp[i])
+        //     temp[i].locations.forEach(item => {
+        //         delete item['name'];
+        //     });
+        // }
+        // console.log("What I want", temp)
+        tempPathList.forEach(item => {
+            delete item['name'];
+        });
+        setPathList(tempPathList);
+
+        setPathList(tempPathList);
+        mapRef.current.panTo(tempPathList.at(-1));
     }
 
-    function renderListItemCB(item){
-        return <Marker position={item}>
-        </Marker>
+    var number = 0;
+    function renderMarkers(item){
+        try {
+        number++;
+        var s = number.toString();
+         }catch(error){}
+        return(
+                <Marker key= {s}
+                position = {item}
+                icon = {{
+                    url: "/BlackAndWhite-marker.png"
+                }}
+                label = {s}
+                />
+            ); 
     }
 
+    
     return(
           <div>
               {props.value && <GoogleMap id="map"
@@ -83,10 +99,13 @@ function MapPresenter(props){
                 center={center}
                 options={options}
                 onLoad={onMapLoad}>
-                 {/* <Polyline
+                <Polyline
                     path={pathList}
-                    options={pathOptions}/>  */}
+                    options={pathOptions}
+                /> 
                 {/* {pathList.map(renderListItemCB)} */}
+                    {/* options={pathOptions}/>  */}
+                {pathList.map(renderMarkers)}
                 </GoogleMap>}
           </div>
       );

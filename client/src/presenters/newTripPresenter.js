@@ -30,7 +30,6 @@ function NewTripPresenter(props) {
 
     function addToNewTripACB(item) {
         props.model.addToNewTrip(item);
-
     }
 
     function removeFromNewTripACB(id) {
@@ -38,6 +37,9 @@ function NewTripPresenter(props) {
     }
 
     function saveTripACB(item) {
+        item.distanceNewTrip = calculateDistanceCB();
+        console.log(item);
+        console.log("DISTANCE:", item.distanceNewTrip)
         props.model.saveTrip(item);
         props.setVisible(0)
         setIsVisible(props.visible[0]);
@@ -49,11 +51,17 @@ function NewTripPresenter(props) {
         setIsVisible(props.visible[0]);
     }
 
-    function test() {
-            const latlng1 = new geometry.LatLng(72, 6);
-            const latlng2 = new geometry.LatLng(16, 150);
-            var test = geometry.computeDistanceBetween(latlng1, latlng2);
-            console.log("HALLO HÆ", test/1000)
+    function calculateDistanceCB() {
+        var distanceLength = 0;
+        var tempDistanceList = JSON.parse(JSON.stringify(props.model.newTripsLocationList));
+        tempDistanceList.forEach(item => {
+            delete item['name'];
+        });
+        
+        for (let i = 0; i < tempDistanceList.length - 1; i++) {
+            distanceLength  += geometry.computeDistanceBetween(tempDistanceList[i], tempDistanceList[i + 1]);
+        }
+        return distanceLength/1000 + "KM";
     }
 
     return(
@@ -69,7 +77,7 @@ function NewTripPresenter(props) {
                     confirmTrip={saveTripACB}
                 />}
             </div>
-            <button onClick={test}>HALLO HÆ BLESSUP</button>
+            {/* <button onClick={test}>HALLO HÆ BLESSUP</button> */}
         </div>
     );
 }
