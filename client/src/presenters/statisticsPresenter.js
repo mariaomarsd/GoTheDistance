@@ -10,14 +10,26 @@ function StatisticsPresenter(props) {
 
     function listChangedCB(){
         getNumberOfPlacesCB();
+        getTotalKM();
     }
 
     const [isVisible, setIsVisible] = useState();
     const [numberOfPlaces, setNumberOfPlaces] = useState();
+    const [totalDistance, setTotalDistance] = useState();
     
     function setVisibleCB() {
         props.setVisible(2)
         setIsVisible(props.visible[2]);
+    }
+
+    function getTotalKM() {
+        var totalDistance = 0;
+        var tempDistanceList = JSON.parse(JSON.stringify(props.model.myTripsList));
+        tempDistanceList.forEach(element => {
+            totalDistance += element.distanceNewTrip;
+          });
+        setTotalDistance(totalDistance);
+        return totalDistance;
     }
 
     function getNumberOfPlacesCB() {
@@ -33,8 +45,8 @@ function StatisticsPresenter(props) {
         var listOfPlaces = [];
         temp.map(updateListOfPlaces)
         setNumberOfPlaces(listOfPlaces.length);
-        return listOfPlaces.length;
         
+        return listOfPlaces.length;        
     }
 
     return(
@@ -42,7 +54,9 @@ function StatisticsPresenter(props) {
             <div className="sidebar-titles" onClick={setVisibleCB}>
                 STATISTICS
             </div>
-            {isVisible && <StatisticsView myTripsList={props.model.myTripsList} numberOfPlaces = {numberOfPlaces}/>}
+            {isVisible && <StatisticsView myTripsList={props.model.myTripsList}
+                numberOfPlaces = {numberOfPlaces}
+                totalDistance = {totalDistance} />}
         </div>
     );
 }
