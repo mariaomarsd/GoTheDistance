@@ -81,7 +81,7 @@ function MapPresenter(props){
             getMyTripsPathListCB();
         }
         //
-        mapRef.current.panTo(tempPathList.at(-1));
+        
     }
 
     function renderPolyline(trip) {
@@ -96,7 +96,9 @@ function MapPresenter(props){
         return <Polyline key={color} path={trip} options={myTripsPathOptions}/>
     }
     function moveViewinMap(locationList){
-        mapRef.current.panTo(locationList.at(-1));
+       try{
+         mapRef.current.panTo(locationList.at(-1));
+       }catch(error){}
     }
 
     return(
@@ -124,9 +126,8 @@ function MapPresenter(props){
                     /> );
                     
                 })}
-                {moveViewinMap(newTripPathList)}
-                
-                    
+                {/*center the map view on the place most recently chosen*/
+                moveViewinMap(newTripPathList)}
                 </GoogleMap>}
           </div>
       );
