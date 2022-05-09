@@ -10,23 +10,33 @@ const REF = "gothedistance"
 
 function updateFirebaseFromModel(model) {
     function observerACB(payload) {
-        // console.log("PAYLOAD", payload)
         if(payload && payload.tripToAdd) {
-            // userID = 1 now
-            firebase.database().ref(REF+"/userTrips/"+"1").set(payload.tripToAdd);
+            firebase.database().ref(REF+"/"+payload.uid+"/userTrips/"+payload.tripToAdd.name).set(payload.tripToAdd);
         }
     }
     model.addObserver(observerACB);
 }
 
-function updataModelFromFirebase(model) {
-    // userID = 1 now
-    firebase.database().ref(REF+"/UserTrips/"+"1").on("value",
-        function myTripsChangedInModel(firebaseData){
-            // console.log('FOR HER')
-            model.setMyTripsList(firebaseData.val());
-        });
-
+function updateModelFromFirebase(model, uid) {
+    if (uid == null) {
+    }
+    firebase.database().ref(REF+"/"+uid+"/userTrips").on("value", firebaseData => {
+        function updateModelCB(trip) {
+            function checkIfInModelCB(tripInModel) {
+                if (tripInModel.name === trip.name){
+                    alreadyInModel = true;
+                }
+            }
+            var alreadyInModel = false;
+            model.myTripsList.map(checkIfInModelCB)
+            if(!alreadyInModel) {        
+                model.saveTrip(trip);
+            }
+        }   
+        const tripList = Object.values(firebaseData.val());
+        tripList.map(updateModelCB); 
+        console.log(Object.values(firebaseData.val()));
+    });
 }
 
 function firebaseModelPromise() {
@@ -44,4 +54,4 @@ function firebaseModelPromise() {
     // return firebase.database().ref(REF).once("value").then(makeBigPromiseACB);
 }
 
-export {updateFirebaseFromModel, updataModelFromFirebase, firebaseModelPromise}
+export {updateFirebaseFromModel, updateModelFromFirebase, firebaseModelPromise}
