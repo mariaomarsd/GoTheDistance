@@ -47,7 +47,7 @@ function NewTripView(props) {
     }
 
     function renderListItemCB(item) {
-        return <div className="new-trip-item" key={item.name}>
+        return <div className="new-trip-item" key={item.name} >
                     <button className="new-trip-item-button" onClick={() => removeFromTripACB(item.name)}>
                         X
                     </button>

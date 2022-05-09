@@ -62,7 +62,7 @@ function MainView(props){
                               className="auth-container"
                               animate={{
                                 scale: [1, 1, 1, 1, 1],
-                                rotate: [0, 0, 180, 170, 0],
+                                rotate: [180, 130, 80, 30, 0],
                                 borderRadius: ["10%", "10%", "10%", "10%", "10%"],
                               }}
                               >
