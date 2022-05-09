@@ -1,5 +1,9 @@
 /* @import "~antd/dist/antd.css"; */
 
+.map-blur {
+    filter: blur(6px);
+}
+
 .sidebar-container {
     position: absolute;
     top: 10%;

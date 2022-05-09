@@ -34,8 +34,8 @@ function SidebarView(props) {
 
     return(
         <motion.div className="sidebar-view"
-        animate={{ x: 80 }}
-        transition={{ ease: "easeOut", duration: 2 }}
+            animate={{ x: -50 }}
+            transition={{ ease: "easeOut", duration: 2 }}
         >
         {props.visible  &&
             <div>
