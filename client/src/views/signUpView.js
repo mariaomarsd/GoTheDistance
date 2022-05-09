@@ -26,36 +26,63 @@ function SignUpView(props) {
     return(
         <div className="sign-up-view">
             <form className = "sign-up-form">
-                <input          
-                    type="text"   
-                    onChange={updateUsernameCB}
-                    value={props.username}
-                    placeholder="Enter your username"
-                />
-                <input
-                    type="email"
-                    onChange={updateEmailCB}
-                    value = {props.email}
-                    placeholder="Enter your email address"
-                />
-                <input
-                    type="password"
-                    onChange={updatePasswordCB}
-                    value={props.password}
-                    placeholder="Enter your password"
-                />
-                <input
-                    type="password"
-                    onChange={updateConfirmPasswordCB}
-                    value={props.confirmPassword}
-                    placeholder="Repeat your password"
-                />
-                <p className="signup-error-message">
+                <div className="sign-up-heading">
+                    SIGN UP
+                </div>
+                <div className="sign-up-username">
+                    <div className="sign-up-title">
+                        Username
+                    </div>
+                    <input
+                        className="sign-up-input"      
+                        type="text"   
+                        onChange={updateUsernameCB}
+                        value={props.username}
+                        // placeholder="Enter your username"
+                    />
+                </div>
+                <div className="sign-up-email">
+                    <div className="signup-title">
+                        Email
+                    </div>
+                    <input
+                        className="sign-up-input" 
+                        type="email"
+                        onChange={updateEmailCB}
+                        value = {props.email}
+                        // placeholder="Enter your email address"
+                    />
+                </div>
+                <div className="sign-up-password">
+                    <div className="sign-up-title">
+                        Password
+                    </div>
+                    <input
+                        className="sign-up-input" 
+                        type="password"
+                        onChange={updatePasswordCB}
+                        value={props.password}
+                        // placeholder="Enter your password"
+                    />
+                </div>
+                <div className="sign-up-password">
+                    <div className="signup-title">
+                        Repeat your password
+                    </div>
+                    <input
+                        className="sign-up-input" 
+                        type="password"
+                        onChange={updateConfirmPasswordCB}
+                        value={props.confirmPassword}
+                        // placeholder="Repeat your password"
+                    />
+                </div>    
+                <p className="sign-up-error-message">
                     {props.displayErrorMessage}
                 </p>
             </form>
-            <button type="submit" onClick={createUserCB}>
-                    Submit
+            <button className="sign-up-button" type="submit" onClick={createUserCB}>
+                SIGN UP
             </button>
         </div>
     );
