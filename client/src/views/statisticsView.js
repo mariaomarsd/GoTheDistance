@@ -11,7 +11,7 @@ function StatisticsView(props) {
                 </div>
                 {props.myTripsList.length === 0 ? <div>0.0 km</div> :
                 <div className="statistic-number">
-                    <Counter from={0} to={props.totalDistance} /> km
+                    <Counter from={0} to={props.totalDistance} km /> 
                 </div>}
             </div>
             <div className="statistic-wrapper">

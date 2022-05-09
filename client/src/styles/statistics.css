@@ -13,14 +13,18 @@
     align-items: center;
     justify-content: center;
     box-shadow: 1px 8px 10px 0 rgba(0,0,0,0.2);
-    padding-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
 }
 
 .statistic-title {
+    padding: 10px;
     font-size: 18px;
     font-weight: bold;
 }
 
 .statistic-number {
     font-size: 16px;
+    padding: 10px;
 }

@@ -30,6 +30,12 @@ class TripsModel {
         this.notifyObservers();
     }
 
+    newOrder(item) {
+        this.newTripsLocationList = item;
+        console.log("NEW LIST", this.newTripsLocationList)
+        // this.notifyObservers();
+    }
+
     /* Safe current trip to users trips  */
     saveTrip(item) {
         this.myTripsList = [...this.myTripsList, item];
@@ -51,7 +57,8 @@ class TripsModel {
 
     setVisableTrips(id) {
         this.myTripsList[id].show = !this.myTripsList[id].show;
-        console.log('IS ID VISIBLE ', this.myTripsList[id].show)
+        console.log('IS ID VISIBLE ', this.myTripsList[id].show);
+        this.notifyObservers();
     }
 
     addObserver(callback) {
