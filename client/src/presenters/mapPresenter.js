@@ -51,6 +51,10 @@ function MapPresenter(props){
     }
 
     function getMyTripsPathListCB() {
+        if(props.model.myTripsList == 0) {
+            setMyTripsPathList([]);
+            return;
+        }
         var myList = JSON.parse(JSON.stringify(props.model.myTripsList));
         var temp = []
         var temp_color = []
@@ -83,9 +87,10 @@ function MapPresenter(props){
             delete item['name'];
         });
         setNewTripPathList(tempPathList);
-        if(props.model.myTripsList.length !== 0) {
-            getMyTripsPathListCB();
-        }
+        getMyTripsPathListCB();
+        // if(props.model.myTripsList.length !== 0) {
+        //     getMyTripsPathListCB();
+        // }
     }
 
     function renderPolyline(trip) {

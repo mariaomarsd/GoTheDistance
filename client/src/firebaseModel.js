@@ -19,24 +19,30 @@ function updateFirebaseFromModel(model) {
 
 function updateModelFromFirebase(model, uid) {
     if (uid == null) {
+        model.removeAllTrips();
     }
-    firebase.database().ref(REF+"/"+uid+"/userTrips").on("value", firebaseData => {
-        function updateModelCB(trip) {
-            function checkIfInModelCB(tripInModel) {
-                if (tripInModel.name === trip.name){
-                    alreadyInModel = true;
+    else {
+        firebase.database().ref(REF+"/"+uid+"/userTrips").on("value", firebaseData => {
+            function updateModelCB(trip) {
+                function checkIfInModelCB(tripInModel) {
+                    if (tripInModel.name === trip.name){
+                        alreadyInModel = true;
+                    }
+                }
+                var alreadyInModel = false;
+                model.myTripsList.map(checkIfInModelCB)
+                if(!alreadyInModel) {        
+                    model.saveTrip(trip);
                 }
             }
-            var alreadyInModel = false;
-            model.myTripsList.map(checkIfInModelCB)
-            if(!alreadyInModel) {        
-                model.saveTrip(trip);
+            if(firebaseData.val()) {
+                const tripList = Object.values(firebaseData.val());
+                tripList.map(updateModelCB); 
+                console.log(Object.values(firebaseData.val()));
             }
-        }   
-        const tripList = Object.values(firebaseData.val());
-        tripList.map(updateModelCB); 
-        console.log(Object.values(firebaseData.val()));
-    });
+        });
+    }
+    
 }
 
 function firebaseModelPromise() {

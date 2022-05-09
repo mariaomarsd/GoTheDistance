@@ -8,7 +8,7 @@ function MyTripsPresenter(props) {
 
     useEffect(observerCB, []);
     const [tripList, setTripList] = useState(props.model.myTripsList);
-    const [isVisible, setIsVisible] = useState();
+    const [isVisible, setIsVisible] = useState(); 
 
     function observerCB(){
         props.model.addObserver(setTripListCB);
