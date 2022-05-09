@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as geometry from 'spherical-geometry-js';
 import randomColor from "randomcolor";
 
+
 const NewTripView = require("../views/newTripView.js").default;
 
 function NewTripPresenter(props) {
@@ -64,7 +65,8 @@ function NewTripPresenter(props) {
     }
 
     return(
-        <div className="new-trip-presenter">
+        <div className="new-trip-presenter"
+            >
             <div className="sidebar-titles" onClick={setVisibleCB}>
                 NEW TRIP
             </div>

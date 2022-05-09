@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Confirm from "../components/confirm.js";
-
+import { motion } from "framer-motion"
 
 const NewTripPresenter = require("../presenters/newTripPresenter.js").default;
 const MyTripsPresenter = require("../presenters/myTripsPresenter.js").default;
@@ -33,49 +33,49 @@ function SidebarView(props) {
     }
 
     return(
-        <div className="sidebar-view">
+        <motion.div className="sidebar-view"
+        animate={{ x: 80 }}
+        transition={{ ease: "easeOut", duration: 2 }}
+        >
         {props.visible  &&
             <div>
-           <div className="sidebar-item" >
+            <div className="sidebar-item" >
                 {props.value && <NewTripPresenter
                     model = {props.model}
                     visible={visibleList}
                     setVisible={setVisibleCB}
                     confirmation={setConfirmationCB}
                 />}
-           </div>
-           <div className="sidebar-item">
-               <MyTripsPresenter
-                    model={props.model}
-                    // visible={false}
-                    visible={visibleList}
-                    setVisible={setVisibleCB}
-               />
-           </div>
-           <div className="sidebar-item">
-               <StatisticsPresenter 
+            </div>
+            <div className="sidebar-item">
+                <MyTripsPresenter
                     model={props.model}
                     // visible={false}
                     visible={visibleList}
                     setVisible={setVisibleCB}
                 />
-           </div>
-           <div className="sidebar-item">
-               <ProfilePresenter 
+            </div>
+            <div className="sidebar-item">
+                <StatisticsPresenter 
+                    model={props.model}
+                    // visible={false}
+                    visible={visibleList}
+                    setVisible={setVisibleCB}
+                />
+            </div>
+            <div className="sidebar-item">
+                <ProfilePresenter 
                     model={props.model}
                     // visible={false}
                     visible={visibleList}
                     setVisible={setVisibleCB}
                     isLoggedIn={props.isLoggedIn}
                 />
-           </div>
-          {confirmationVisible && <Confirm />}
-          {/* <button onClick={testing}>
-              TESTING
-          </button> */}
-           </div>
-          }
-        </div>
+            </div>
+            {confirmationVisible && <Confirm />}
+            </div>
+        }
+        </motion.div>
     );
 }
 

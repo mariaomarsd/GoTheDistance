@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { GoogleMap, useLoadScript, Polyline, Marker } from "@react-google-maps/api";
 import mapStyles from "../mapStyles";
-import randomColor from "randomcolor";
 
 const center = { // where to start the map, stockholm
     lat: 23.818858,
@@ -55,20 +54,23 @@ function MapPresenter(props){
         var myList = JSON.parse(JSON.stringify(props.model.myTripsList));
         var temp = []
         var temp_color = []
+        var temp_show = []
         myList.forEach(item => {
             delete item['name'];
-            delete item['show'];
+            // delete item['show'];
             delete item['distanceNewTrip'];
             temp_color.push(item.color)
+            temp_show.push(item.show)
             // console.log("TEMpo color", temp_color)
         });
         for(var i = 0; i<myList.length; i++) {
-            var latLng = [[],[]];
+            var latLng = [[],[],[]];
             myList[i].locations.forEach(item => {
                 delete item['name'];
                 latLng[0].push({lat: item["lat"], lng: item["lng"]})
             });
             latLng[1] = temp_color[i]
+            latLng[2] = temp_show[i]
             temp.push(latLng)
         }
         setMyTripsPathList(temp);
@@ -84,8 +86,6 @@ function MapPresenter(props){
         if(props.model.myTripsList.length !== 0) {
             getMyTripsPathListCB();
         }
-        //
-        
     }
 
     function renderPolyline(trip) {
@@ -96,8 +96,12 @@ function MapPresenter(props){
             strokeWeight: 4
         };
         console.log('POLYLINE', trip)
+        if(trip[2] === false) {
+            return
+        }
         return <Polyline key={trip[1]} path={trip[0]} options={myTripsPathOptions}/>
     }
+
     function moveViewinMap(locationList){
        try{
          mapRef.current.panTo(locationList.at(-1));

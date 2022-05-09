@@ -7,14 +7,86 @@
     width: 20vw;
 }
 
+/* Authentication styles */
 .auth-container {
     position: absolute;
     top: 35%;
-    left: 50%;
-    width: 40vw;
+    left: 40%;
+    width: 16vw;
+    height: 30vh;
     background-color: white;
     padding: 20px;
-    border-style: solid;
+    /* border-style: solid; */
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.login-form {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+    color: rgb(88, 88, 88);
+}
+
+.login-heading {
+    padding-bottom: 15px;
+    font-size: 18px;
+}
+
+.login-email .login-password {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-password {
+    padding-top: 20px;
+}
+
+.login-title {
+    padding-bottom: 4px;
+    font-size: 15px;
+}
+
+.login-input {
+    width: 12vw;
+    height: 22px;
+}
+
+.login-button{
+    width: 12.5vw;
+    height: 32px;
+    border-width: 0px;
+    border-radius: 5px;
+    background-color: rgb(219, 253, 199);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.divide-solid {
+    border-top: 1.5px solid #bbb;
+}
+
+.auth-button {
+    background-color: white;
+    border-width: 0px;
+    font-size: 16px;
+    padding-top: 10px;
+    /* padding: 0px; */
 }
 
 /* Located in sidebar presenter files */
@@ -24,7 +96,7 @@
     padding-top: 10px;
     text-align: center;
 }
-
+/* 
 @media screen and (min-width: 1100px) {
     .sidebar-container {
         position: absolute;
@@ -39,6 +111,5 @@
         width: 260px;
         background-color: white;
         padding: 20px;
-        border-style: solid;
     }
-}
+} */

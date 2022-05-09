@@ -12,6 +12,7 @@
     "antd": "^4.20.2",
     "dotenv": "^16.0.0",
     "firebase": "^9.6.11",
+    "framer-motion": "^6.3.3",
     "install": "^0.13.0",
     "npm": "^8.7.0",
     "randomcolor": "^0.6.2",

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
-
+import { motion } from "framer-motion"
 import SearchBar from "../components/searchbarComponent.js";
 import SaveTripPopup from "../components/saveTripComponent.js";
 
@@ -71,7 +71,10 @@ function NewTripView(props) {
     }
     
     return(
-        <div className="new-trip-view">
+        <motion.div className="new-trip-view"
+            initial={{ height: 0 }} 
+            animate={{ height: 100 }}
+            >
           <div className="search-component">
             <SearchBar 
                 selectPlace={selectPlace}
@@ -95,7 +98,7 @@ function NewTripView(props) {
             Save Trip
           </button>
           {visible && <SaveTripPopup confirm={saveTripACB} cancel={closeModal}/>}
-        </div>
+        </motion.div>
     );
 }
 
