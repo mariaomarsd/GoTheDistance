@@ -52,7 +52,8 @@ class TripsModel {
 
     setVisableTrips(id) {
         this.myTripsList[id].show = !this.myTripsList[id].show;
-        console.log('IS ID VISIBLE ', this.myTripsList[id].show)
+        console.log('IS ID VISIBLE ', this.myTripsList[id].show);
+        this.notifyObservers();
     }
 
     addObserver(callback) {

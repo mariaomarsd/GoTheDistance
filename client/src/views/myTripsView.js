@@ -12,7 +12,7 @@ function MyTripsView(props) {
     }
 
     function click(id) {
-        // console.log('ONCLICK', id)
+        console.log('ONCLICK', id)
         var temp = props.myTripsList.indexOf(id, 0)
         props.setVisibleTrips(temp);
         getVisibleList()
