@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-// import {GoogleMap,useLoadScript,Polyline} from "@react-google-maps/api";
-// import usePlacesAutocomplete from "use-places-autocomplete";
-
 import * as geometry from 'spherical-geometry-js';
+import randomColor from "randomcolor";
 
 const NewTripView = require("../views/newTripView.js").default;
 
@@ -38,8 +36,9 @@ function NewTripPresenter(props) {
 
     function saveTripACB(item) {
         item.distanceNewTrip = calculateDistanceCB();
-        console.log(item);
-        console.log("DISTANCE:", item.distanceNewTrip)
+        item.color = randomColor();
+        console.log("ITEM",item);
+        // console.log("DISTANCE:", item.distanceNewTrip)
         props.model.saveTrip(item);
         props.setVisible(0)
         setIsVisible(props.visible[0]);
@@ -77,7 +76,6 @@ function NewTripPresenter(props) {
                     confirmTrip={saveTripACB}
                 />}
             </div>
-            {/* <button onClick={test}>HALLO HÆ BLESSUP</button> */}
         </div>
     );
 }

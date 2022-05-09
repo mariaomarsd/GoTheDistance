@@ -40,6 +40,7 @@ function MapPresenter(props){
 
     const [newTripPathList, setNewTripPathList] = useState([]);
     const [myTripsPathList, setMyTripsPathList] = useState([]);
+    const [color, setColor] = useState([]);
 
     function observerCB(){
         props.model.addObserver(getCurrentPathCB);
@@ -51,20 +52,23 @@ function MapPresenter(props){
     }
 
     function getMyTripsPathListCB() {
-        // console.log("GET LIST, befor everything", props.model.myTripsList)
         var myList = JSON.parse(JSON.stringify(props.model.myTripsList));
         var temp = []
+        var temp_color = []
         myList.forEach(item => {
             delete item['name'];
             delete item['show'];
             delete item['distanceNewTrip'];
+            temp_color.push(item.color)
+            // console.log("TEMpo color", temp_color)
         });
         for(var i = 0; i<myList.length; i++) {
-            var latLng = [];
+            var latLng = [[],[]];
             myList[i].locations.forEach(item => {
                 delete item['name'];
-                latLng.push({lat: item["lat"], lng: item["lng"]})
+                latLng[0].push({lat: item["lat"], lng: item["lng"]})
             });
+            latLng[1] = temp_color[i]
             temp.push(latLng)
         }
         setMyTripsPathList(temp);
@@ -97,15 +101,14 @@ function MapPresenter(props){
     }
 
     function renderPolyline(trip) {
-        let color = randomColor();
         const myTripsPathOptions = {
             geodesic: true,
-            strokeColor: color,
+            strokeColor: trip[1],
             strokeOpacity: 1.0,
             strokeWeight: 4
         };
-        // console.log('POLYLINE', trip)
-        return <Polyline key={color} path={trip} options={myTripsPathOptions}/>
+        console.log('POLYLINE', trip)
+        return <Polyline key={trip[1]} path={trip[0]} options={myTripsPathOptions}/>
     }
 
     return(

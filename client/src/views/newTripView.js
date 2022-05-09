@@ -58,7 +58,7 @@ function NewTripView(props) {
     }
 
     function saveTripACB(name) {
-        props.confirmTrip({name: name, locations: props.locationList, show: true});
+        props.confirmTrip({name: name, locations: props.locationList, show: true, color: ""});
         setVisisble(false);
     }
 

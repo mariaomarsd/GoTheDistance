@@ -6,15 +6,13 @@ function MyTripsView(props) {
     useEffect(listChangedCB ,[props.myTripsList])
 
     const [visableList, setVisibleList] = useState([props.myTripsList])
-    // const [allMyTrips, setAllMyTrips] = useState([props.myTripsList])
 
     function listChangedCB(){
-        // console.log("EFTIR ÞETTA",props.myTripsList);
         getVisibleList();
     }
 
     function click(id) {
-        console.log('ONCLICK', id)
+        // console.log('ONCLICK', id)
         var temp = props.myTripsList.indexOf(id, 0)
         props.setVisibleTrips(temp);
         getVisibleList()
