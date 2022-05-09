@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as geometry from 'spherical-geometry-js';
 import randomColor from "randomcolor";
+import {testReadFromDatabase} from "../firebaseModel";
 
 
 const NewTripView = require("../views/newTripView.js").default;

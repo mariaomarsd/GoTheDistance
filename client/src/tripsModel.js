@@ -1,10 +1,14 @@
 import resolvePromise from "./resolvePromise.js";
+import { ReactSession } from "react-client-session";
+
+
 
 class TripsModel {
     constructor(newTripsLocationList = [], myTripsList = []) {
         this.newTripsLocationList = newTripsLocationList;
         this.myTripsList = myTripsList;
-        this.observers = []; 
+        this.observers = [];
+        //this.uid = uid; 
     }
 
     /* Safe location to new trips list in the model (not safe to the database) */
@@ -12,6 +16,10 @@ class TripsModel {
         this.newTripsLocationList = [...this.newTripsLocationList, item];
         this.notifyObservers();
     }
+
+    // signIn(uid) {
+    //     this.uid = uid;
+    // }
 
     /* Remove location from the new trip list in the model */
     removeFromNewTrip(id) {
@@ -33,7 +41,7 @@ class TripsModel {
         this.myTripsList = [...this.myTripsList, item];
         this.newTripsLocationList = []
         // console.log("Current My item: ", item);
-        this.notifyObservers({tripToAdd: item});
+        this.notifyObservers({tripToAdd: item, uid: ReactSession.get("uid")});
     }
 
     setMyTripsList(list) {

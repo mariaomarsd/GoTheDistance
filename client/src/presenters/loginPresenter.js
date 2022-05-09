@@ -25,7 +25,7 @@ function LoginPresenter(props) {
 
     function loginCB(){
         function signIn(userCredential){
-            const uid = userCredential.user;
+            const uid = userCredential.user.uid;
             const uName = userCredential.user.displayName;
             ReactSession.set("uid", uid);
             ReactSession.set("uName", uName);

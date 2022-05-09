@@ -15,6 +15,7 @@ function StatisticsPresenter(props) {
 
     const [isVisible, setIsVisible] = useState();
     const [numberOfPlaces, setNumberOfPlaces] = useState();
+    const [numberOfCountries, setNumberOfCountries] = useState();
     const [totalDistance, setTotalDistance] = useState();
     
     function setVisibleCB() {
@@ -35,18 +36,33 @@ function StatisticsPresenter(props) {
     function getNumberOfPlacesCB() {
         function updateListOfPlaces(trip) {
             function addToListCB(location) {
+                console.log("Location", location);
                 if(!listOfPlaces.includes(location["name"])) {
                     listOfPlaces.push(location["name"]);
+                    let text = location["name"];
+                    var  splitArray = text.split(",");
+                    tempArray = splitArray.pop();
+                    //listOfCountries.push(tempArray);
+                    
+                    if(!listOfCountries.includes(tempArray)){
+                       listOfCountries.push(tempArray);
+                    }
                 }
             }
             trip.locations.forEach(addToListCB);
         }
         var temp = props.model.myTripsList;
         var listOfPlaces = [];
+        var listOfCountries = [];
+        var tempArray = [];
+       
+        console.log("PLACES", listOfPlaces);
+        console.log("Countries: ", listOfCountries);
         temp.map(updateListOfPlaces)
         setNumberOfPlaces(listOfPlaces.length);
-        
-        return listOfPlaces.length;        
+        setNumberOfCountries(listOfCountries.length);
+       
+        return listOfPlaces.length, listOfCountries.length;        
     }
 
     return(
@@ -56,7 +72,8 @@ function StatisticsPresenter(props) {
             </div>
             {isVisible && <StatisticsView myTripsList={props.model.myTripsList}
                 numberOfPlaces = {numberOfPlaces}
-                totalDistance = {totalDistance} />}
+                totalDistance = {totalDistance}
+                numberOfCountries = {numberOfCountries} />}
         </div>
     );
 }
