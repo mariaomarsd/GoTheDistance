@@ -49,7 +49,7 @@ function MainView(props){
                   inNewTrip={inNewTrip}
                 />
             </div>
-            {/* <div> {  userLoggedIn  && */}
+            <div> {  userLoggedIn  &&
                 <div className="sidebar-container">
                     <SidebarView
                         model = {props.model} 
@@ -59,8 +59,8 @@ function MainView(props){
                         isLoggedIn  = {isLoggedIn}
                         setLoc = {setInNewTripCB}
                     />
-                {/* </div> */}
-                {/* } */}
+                </div>
+                }
             </div>
             <div>
             {!userLoggedIn && <motion.div 
