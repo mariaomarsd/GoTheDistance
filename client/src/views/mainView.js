@@ -3,6 +3,7 @@ import {useLoadScript} from "@react-google-maps/api";
 import * as geometry from 'spherical-geometry-js';
 import { ReactSession } from "react-client-session";
 import { motion } from "framer-motion"
+import { updateModelFromFirebase } from "../firebaseModel.js";
 
 const MapPresenter = require("../presenters/mapPresenter.js").default;
 const SidebarView = require("../views/sidebarView.js").default;
@@ -25,6 +26,10 @@ function MainView(props){
 
     function isLoggedIn(){
         setUserLoggedIn(ReactSession.get("uid") != null);
+        // props.model.signIn(ReactSession.get("uid"));
+        updateModelFromFirebase(props.model, ReactSession.get("uid"));
+        console.log("session", ReactSession.get("uid"));
+        console.log("model", ReactSession.get("uid"));
     }
 
     function setInNewTripCB(id){

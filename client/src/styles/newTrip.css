@@ -5,6 +5,8 @@
     align-items: center;
     padding-top: 14px;
     padding-bottom: 14px;
+    /* overflow: auto; */
+    /* height: 200px; */
 }
 
 .search-component {
