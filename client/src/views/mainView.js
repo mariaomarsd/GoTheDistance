@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {useLoadScript} from "@react-google-maps/api";
 import * as geometry from 'spherical-geometry-js';
 import { ReactSession } from "react-client-session";
+import { motion } from "framer-motion"
 
 const MapPresenter = require("../presenters/mapPresenter.js").default;
 const SidebarView = require("../views/sidebarView.js").default;
@@ -37,7 +38,7 @@ function MainView(props){
 
     return(
         <div className="main-view">
-            <div className="map-container">
+            <div className={ userLoggedIn ? "map-container" : "map-blur"}>
                 <MapPresenter value={isLoaded}
                   model={props.model}
                   inNewTrip={inNewTrip}
@@ -57,13 +58,20 @@ function MainView(props){
                 {/* } */}
             </div>
             <div>
-            {!userLoggedIn && <div className="auth-container">
+            {!userLoggedIn && <motion.div 
+                              className="auth-container"
+                              animate={{
+                                scale: [1, 1, 1, 1, 1],
+                                rotate: [180, 130, 80, 30, 0],
+                                borderRadius: ["10%", "10%", "10%", "10%", "10%"],
+                              }}
+                              >
                 <AuthenticationPresenter
                     visible = {!userLoggedIn}
                     //visible = {false} // Change to use authentication
                     isLoggedIn = {isLoggedIn}
                 />
-            </div>}
+            </motion.div>}
             </div>
         </div>
     );

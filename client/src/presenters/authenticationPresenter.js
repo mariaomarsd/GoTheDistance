@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion"
 
 const LoginPresenter = require("./loginPresenter").default;
 const SignUpPresenter = require("./signUpPresenter").default;

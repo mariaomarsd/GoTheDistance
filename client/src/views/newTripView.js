@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 import SearchBar from "../components/searchbarComponent.js";
 import SaveTripPopup from "../components/saveTripComponent.js";
 
@@ -47,7 +47,7 @@ function NewTripView(props) {
     }
 
     function renderListItemCB(item) {
-        return <div className="new-trip-item" key={item.name}>
+        return <div className="new-trip-item" key={item.name} >
                     <button className="new-trip-item-button" onClick={() => removeFromTripACB(item.name)}>
                         X
                     </button>

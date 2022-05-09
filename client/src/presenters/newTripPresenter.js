@@ -28,7 +28,12 @@ function NewTripPresenter(props) {
     }
 
     function addToNewTripACB(item) {
-        props.model.addToNewTrip(item);
+        // to prevent putting in the same place twice in a row
+        if((props.model.newTripsLocationList.length === 0 )){
+            props.model.addToNewTrip(item);
+        }
+        else if (item.name != props.model.newTripsLocationList.at(-1).name){ 
+        props.model.addToNewTrip(item);}
     }
 
     function removeFromNewTripACB(id) {
