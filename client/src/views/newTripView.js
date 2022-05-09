@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
-import { motion } from "framer-motion";
+import { motion, Reorder } from "framer-motion";
 import SearchBar from "../components/searchbarComponent.js";
 import SaveTripPopup from "../components/saveTripComponent.js";
 
@@ -8,7 +8,7 @@ function NewTripView(props) {
 
     useEffect(listChangedCB, [props.locationList]);
     const [chosen, setChosen] = useState();
-
+    const [items, setItems] = useState(props.locationList);
     const [visible, setVisisble] = useState(false);
     // const [confirmVisible, setConfirmVisible] = useState(false);
 
@@ -30,14 +30,20 @@ function NewTripView(props) {
         } catch (error) {
             console.log(" Error: ", error);
         }
+        // console.log("items", items)
     }
 
     function listChangedCB(){
-        // console.log("EFTIR ÞETTA",props.locationList);
+        // console.log("NUNA");
+        setItems(props.locationList)
+        // console.log(" OG SVO NUNA", items);
     }
 
     function addToTripACB() {
+        // console.log("first", items)
         props.addToTrip(chosen);
+        // console.log("now", items)
+        // props.addToTrip(items)
     }
 
     // id is name temp
@@ -47,19 +53,29 @@ function NewTripView(props) {
     }
 
     function renderListItemCB(item) {
-        return <div className="new-trip-item" key={item.name} >
+        // console.log("eitt item", items)
+        // props.updateOrder(items)
+        updateOrdertest()
+        return <Reorder.Item className="new-trip-item" key={item.name} value={item} >
                     <button className="new-trip-item-button" onClick={() => removeFromTripACB(item.name)}>
                         X
                     </button>
                     <div className="new-trip-item-name">
                         {item.name}
                     </div>
-                </div>
+                    {/* {item.name} */}
+                </Reorder.Item>
     }
 
     function saveTripACB(name) {
-        props.confirmTrip({name: name, locations: props.locationList, show: true, color: ""});
+        // console.log('SAVED', items)
+        props.confirmTrip({name: name, locations: items, show: true, color: ""});
         setVisisble(false);
+    }
+
+    function updateOrdertest() {
+        // console.log('NOW', items)
+        props.updateOrder(items)
     }
 
     function openModal() {
@@ -71,9 +87,9 @@ function NewTripView(props) {
     }
     
     return(
-        <motion.div className="new-trip-view"
-            initial={{ height: 0 }} 
-            animate={{ height: 100 }}
+        <div className="new-trip-view"
+            // initial={{ height: 0 }} 
+            // animate={{ height: 200 }}
             >
           <div className="search-component">
             <SearchBar 
@@ -89,16 +105,16 @@ function NewTripView(props) {
           </div>
           <div>
               {/* Start location */}
-              <ul className="new-trips-item-list">
-                  {props.locationList.map(renderListItemCB)}
-              </ul>
+              <Reorder.Group className="new-trips-item-list" values={items} onReorder={setItems}>
+                  {items.map(renderListItemCB)}
+              </Reorder.Group>
               {/* End location */}
           </div>
           <button className="new-trip-button" id="save" onClick={openModal}>
             Save Trip
           </button>
           {visible && <SaveTripPopup confirm={saveTripACB} cancel={closeModal}/>}
-        </motion.div>
+        </div>
     );
 }
 

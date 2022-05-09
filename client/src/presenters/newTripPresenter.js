@@ -32,18 +32,24 @@ function NewTripPresenter(props) {
         if((props.model.newTripsLocationList.length === 0 )){
             props.model.addToNewTrip(item);
         }
-        else if (item.name != props.model.newTripsLocationList.at(-1).name){ 
-        props.model.addToNewTrip(item);}
+        else if (item.name != props.model.newTripsLocationList.at(-1).name) { 
+            props.model.addToNewTrip(item);
+        }
+        // console.log('her')
     }
 
     function removeFromNewTripACB(id) {
         props.model.removeFromNewTrip(id)
     }
 
+    function updateOrderACB(item) {
+        props.model.newOrder(item)
+    }
+
     function saveTripACB(item) {
         item.distanceNewTrip = calculateDistanceCB();
         item.color = randomColor();
-        console.log("ITEM",item);
+        // console.log("ITEM",item);
         // console.log("DISTANCE:", item.distanceNewTrip)
         props.model.saveTrip(item);
         props.setVisible(0)
@@ -81,6 +87,7 @@ function NewTripPresenter(props) {
                     addToTrip={addToNewTripACB}
                     removeFromTrip={removeFromNewTripACB}
                     confirmTrip={saveTripACB}
+                    updateOrder={updateOrderACB}
                 />}
             </div>
         </div>

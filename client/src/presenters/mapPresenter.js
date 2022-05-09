@@ -39,7 +39,7 @@ function MapPresenter(props){
 
     const [newTripPathList, setNewTripPathList] = useState([]);
     const [myTripsPathList, setMyTripsPathList] = useState([]);
-    const [color, setColor] = useState([]);
+    // const [color, setColor] = useState([]);
 
     function observerCB(){
         props.model.addObserver(getCurrentPathCB);
