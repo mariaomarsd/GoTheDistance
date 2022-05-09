@@ -72,6 +72,7 @@ function MapPresenter(props){
             temp.push(latLng)
         }
         setMyTripsPathList(temp);
+        
     }
 
     function getCurrentPathCB() {
@@ -83,21 +84,8 @@ function MapPresenter(props){
         if(props.model.myTripsList.length !== 0) {
             getMyTripsPathListCB();
         }
-    }
-
-    var number = 0;
-    function renderMarkers(item){
-        try {
-            number++;
-            var s = number.toString();
-         }catch(error){}
-        return(
-                <Marker key= {s}
-                    position = {item}
-                    icon = {{ url: "/BlackAndWhite-marker.png" }}
-                    label = {s}
-                />
-            ); 
+        //
+        
     }
 
     function renderPolyline(trip) {
@@ -109,6 +97,11 @@ function MapPresenter(props){
         };
         console.log('POLYLINE', trip)
         return <Polyline key={trip[1]} path={trip[0]} options={myTripsPathOptions}/>
+    }
+    function moveViewinMap(locationList){
+       try{
+         mapRef.current.panTo(locationList.at(-1));
+       }catch(error){}
     }
 
     return(
@@ -127,7 +120,17 @@ function MapPresenter(props){
                 {/* Draw polyline for all trips that are in my trips */}
                 {myTripsPathList.map(renderPolyline)}
                 {/* Draw markers for the new trip that is created */}
-                {newTripPathList.map(renderMarkers)}
+                { newTripPathList.map((item, index) => {                      
+                        return (
+                        <Marker key= {(index+1).toString()}
+                        position = {item}
+                        icon = {{ url: "/BlackAndWhite-marker.png" }}
+                        label = {(index+1).toString()}
+                    /> );
+                    
+                })}
+                {/*center the map view on the place most recently chosen*/
+                moveViewinMap(newTripPathList)}
                 </GoogleMap>}
           </div>
       );
