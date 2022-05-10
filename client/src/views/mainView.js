@@ -4,9 +4,13 @@ import * as geometry from 'spherical-geometry-js';
 import { ReactSession } from "react-client-session";
 import { motion } from "framer-motion"
 import { updateModelFromFirebase } from "../firebaseModel.js";
+import ProfilePresenter from "../presenters/profilePresenter.js";
 
 const MapPresenter = require("../presenters/mapPresenter.js").default;
 const SidebarView = require("../views/sidebarView.js").default;
+const ProfileView = require("../views/profileView.js").default;
+
+
 const SignUpPresenter = require("../presenters/signUpPresenter").default;
 const LoginPresenter = require("../presenters/loginPresenter").default;
 const AuthenticationPresenter = require("../presenters/authenticationPresenter").default;
@@ -60,6 +64,19 @@ function MainView(props){
                         setLoc = {setInNewTripCB}
                     />
                 </div>
+                
+                }
+            </div>
+            <div> {  userLoggedIn  &&
+                <div className="user-container">
+                    <ProfilePresenter
+                        model = {props.model} 
+                        value = {isLoaded}
+                        visible = {isLoggedIn}
+                        isLoggedIn  = {isLoggedIn}
+                    />
+                </div>
+                
                 }
             </div>
             <div>

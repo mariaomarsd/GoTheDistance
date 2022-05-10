@@ -64,13 +64,13 @@ function SidebarView(props) {
                 />
             </div>
             <div className="sidebar-item">
-                <ProfilePresenter 
+                {/* <ProfilePresenter 
                     model={props.model}
                     // visible={false}
                     visible={visibleList}
                     setVisible={setVisibleCB}
                     isLoggedIn={props.isLoggedIn}
-                />
+                /> */}
             </div>
             {confirmationVisible && <Confirm />}
             </div>

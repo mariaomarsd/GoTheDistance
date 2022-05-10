@@ -5,23 +5,60 @@ function ProfileView(props) {
         props.signout();
     }
     function loginCB(){
-        props.login();
+        //props.login();
     }
     return(
-        <div className="profile-view">
+
+        <div className="user-container">
             <div> 
                 {props.loggedInUser != null && 
-                    <div>
-                        <p>Signed in as {props.loggedInUser} </p>
-                        <button onClick={signoutCB}>Sign out</button>
+                    <div className="user-view">
+                        {/* <i className="fa-solid fa-user"></i> */}
+                        <span className="user">Welcome {props.loggedInUser}!</span>
+                        <div> 
+                            <button className="user-button" id="user"onClick={signoutCB}>
+                                Sign out
+                            <span> <i className="fa-solid fa-person-walking-luggage"></i> </span>
+                        </button></div>
                     </div>
                 }
             </div>
+
             <div>
                 {props.loggedInUser == null && 
-                 <button onClick={loginCB}>Log in</button>}
+                <button onClick={loginCB}>Log in</button>}
             </div>
         </div>
+        
+        // <div className="user-container">
+        //     <div> 
+        //         {props.loggedInUser != null && 
+        //             <div>
+        //                 <p>Signed in as {props.loggedInUser} </p>
+        //                 <button onClick={signoutCB}>Sign out</button>
+                        
+        //             </div>
+        //         }
+        //     </div>
+        //     <div>
+        //         <div className="user-view" id="screen">
+        //             <button className="user-button" id="user" onClick={loginCB}>
+        //                 <i className="fa-solid fa-person-walking-luggage"></i>
+        //             </button>
+        //             <div>
+        //             <i className="fa-solid fa-person-walking-luggage"></i>
+        //              <span className="user">Signed in as {props.loggedInUser}</span>
+        //              <span><button className="user-button" id="user"onClick={signoutCB}>Sign out</button></span>
+        //             </div>
+                    
+                    
+        //         </div>
+        //         <div className="user-popout">
+        //                 {props.loggedInUser == null && 
+        //                 <button onClick={loginCB}>Log in</button>}
+        //             </div>
+        //     </div>
+        // </div>
     );
 }
 
