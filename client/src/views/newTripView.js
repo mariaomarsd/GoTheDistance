@@ -52,20 +52,7 @@ function NewTripView(props) {
         // console.log("remove list?", props.locationList);
     }
 
-    function renderListItemCB(item) {
-        // console.log("eitt item", items)
-        // props.updateOrder(items)
-        updateOrdertest()
-        return <Reorder.Item className="new-trip-item" key={item.name} value={item} >
-                    <button className="new-trip-item-button" onClick={() => removeFromTripACB(item.name)}>
-                        X
-                    </button>
-                    <div className="new-trip-item-name">
-                        {item.name}
-                    </div>
-                    {/* {item.name} */}
-                </Reorder.Item>
-    }
+
 
     function saveTripACB(name) {
         // console.log('SAVED', items)
@@ -106,7 +93,22 @@ function NewTripView(props) {
           <div>
               {/* Start location */}
               <Reorder.Group className="new-trips-item-list" values={items} onReorder={setItems}>
-                  {items.map(renderListItemCB)}
+                  {//items.map(renderListItemCB)
+                  //newTripPathList.map((item, index) => {
+                    items.map((item,index) => {
+                        //updateOrdertest()
+                        console.log()
+                    return <Reorder.Item className="new-trip-item" key={index} value={item} >
+                    <button className="new-trip-item-button" onClick={() => removeFromTripACB(index)}>
+                        X
+                    </button>
+                    <div className="new-trip-item-name">
+                        {item.name}
+                    </div>
+                    {/* {item.name} */}
+                             </Reorder.Item>
+                    })
+                  }
               </Reorder.Group>
               {/* End location */}
           </div>
