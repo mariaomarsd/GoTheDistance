@@ -1,6 +1,7 @@
 import { FundViewOutlined } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 // import "../styles/presenters.css";
+import { motion } from "framer-motion";
 
 const StatisticsView = require("../views/statisticsView.js").default;
 
@@ -66,15 +67,24 @@ function StatisticsPresenter(props) {
     }
 
     return(
-        <div className="statistics-presenter">
-            <div className="sidebar-titles" onClick={setVisibleCB}>
+        <motion.div className="statistics-presenter"
+            // variants={props.variants}
+            // whileHover={{ scale: 1.1 }}
+            // whileTap={{ scale: 0.95 }}
+        >
+            <motion.div className="sidebar-titles" 
+                variants={props.variants}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={setVisibleCB}
+            >
                 STATISTICS
-            </div>
+            </motion.div>
             {isVisible && <StatisticsView myTripsList={props.model.myTripsList}
                 numberOfPlaces = {numberOfPlaces}
                 totalDistance = {totalDistance}
                 numberOfCountries = {numberOfCountries} />}
-        </div>
+        </motion.div>
     );
 }
 
