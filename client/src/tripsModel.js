@@ -23,16 +23,21 @@ class TripsModel {
 
     /* Remove location from the new trip list in the model */
     removeFromNewTrip(id) {
+        
         function hasSameIdCB(item) {
-            return id !== item.name; // change later 
+            //console.log("removeFromNewTrip: "+ item.id + " id: "+ id )
+            console.log("item.id: "+item.id+" id: "+ id)
+            //console.log(id)
+            return id !== item.id; // change later 
         }
         this.newTripsLocationList = this.newTripsLocationList.filter(hasSameIdCB);
+        
         this.notifyObservers();
     }
 
     newOrder(item) {
         this.newTripsLocationList = item;
-        console.log("NEW LIST", this.newTripsLocationList)
+        //console.log("NEW LIST", this.newTripsLocationList)
         // this.notifyObservers();
     }
 
