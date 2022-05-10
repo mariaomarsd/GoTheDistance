@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as geometry from 'spherical-geometry-js';
 import randomColor from "randomcolor";
 import {testReadFromDatabase} from "../firebaseModel";
+import { motion } from "framer-motion";
 
 
 const NewTripView = require("../views/newTripView.js").default;
@@ -77,11 +78,17 @@ function NewTripPresenter(props) {
     }
 
     return(
-        <div className="new-trip-presenter"
-            >
-            <div className="sidebar-titles" onClick={setVisibleCB}>
+        <motion.div className="new-trip-presenter"
+            // variants={props.variants}
+            // whileHover={{ scale: 1.1 }}
+            // whileTap={{ scale: 0.95 }}
+        >
+            <motion.div className="sidebar-titles" onClick={setVisibleCB}
+                variants={props.variants}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}>
                 NEW TRIP
-            </div>
+            </motion.div>
             <div>   
                 {isVisible && <NewTripView
                     locationList={locationList} 
@@ -91,7 +98,7 @@ function NewTripPresenter(props) {
                     updateOrder={updateOrderACB}
                 />}
             </div>
-        </div>
+        </motion.div>
     );
 }
 

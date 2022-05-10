@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import {GoogleMap,useLoadScript,Polyline} from "@react-google-maps/api";
 // import usePlacesAutocomplete from "use-places-autocomplete";
+import { motion } from "framer-motion";
 
 const MyTripsView = require("../views/myTripsView.js").default;
 
@@ -32,17 +33,26 @@ function MyTripsPresenter(props) {
     }
     
     return(
-        <div className="my-trips-presenter">
-            <div className="sidebar-titles" onClick={setVisibleCB}>
+        <motion.div className="my-trips-presenter" 
+            // variants={props.variants}
+            // whileHover={{ scale: 1.1 }}
+            // whileTap={{ scale: 0.95 }}
+        >
+            <motion.div className="sidebar-titles" 
+                variants={props.variants}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={setVisibleCB}
+            >
                 MY TRIPS
-            </div>
+            </motion.div>
             <div>
                 {isVisible && <MyTripsView
                     myTripsList={tripList}
                     setVisibleTrips={setVisibleTripsCB}
                 />}
             </div>
-        </div>
+        </motion.div>
     );
 }
 
