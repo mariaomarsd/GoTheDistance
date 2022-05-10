@@ -19,16 +19,26 @@ function NewTripView(props) {
         setValue 
     } = usePlacesAutocomplete();
 
+    function setIndexforItem(){
+        var temp =0
+        try{
+            temp = props.locationList.length +1
+    } catch (error) {}
+    //console.log("temp: "+temp)
+    
+    return temp
+    }
     async function selectPlace(address) {
         try {
             const results = await getGeocode({ address });
             const { lat, lng } = await getLatLng(results[0]);
             const temp_results = (results[0].formatted_address).split(',')
             const temp_place = temp_results[0] + ", " + temp_results.pop()
-            setChosen({name: temp_place, lat: lat, lng: lng})
+             //console.log("props.locationList.length: "+props.locationList.length)
+            setChosen({id: Math.random() ,name: temp_place, lat: lat, lng: lng})
 
         } catch (error) {
-            console.log(" Error: ", error);
+            //console.log(" Error: ", error);
         }
         // console.log("items", items)
     }
@@ -49,22 +59,8 @@ function NewTripView(props) {
     // id is name temp
     function removeFromTripACB(id) {
         props.removeFromTrip(id);
+        
         // console.log("remove list?", props.locationList);
-    }
-
-    function renderListItemCB(item) {
-        // console.log("eitt item", items)
-        // props.updateOrder(items)
-        updateOrdertest()
-        return <Reorder.Item className="new-trip-item" key={item.name} value={item} >
-                    <button className="new-trip-item-button" onClick={() => removeFromTripACB(item.name)}>
-                        X
-                    </button>
-                    <div className="new-trip-item-name">
-                        {item.name}
-                    </div>
-                    {/* {item.name} */}
-                </Reorder.Item>
     }
 
     function saveTripACB(name) {
@@ -106,7 +102,22 @@ function NewTripView(props) {
           <div>
               {/* Start location */}
               <Reorder.Group className="new-trips-item-list" values={items} onReorder={setItems}>
-                  {items.map(renderListItemCB)}
+                  {//items.map(renderListItemCB)
+                  //newTripPathList.map((item, index) => {
+                    items.map((item,index) => {
+                        updateOrdertest()
+                        //console.log("index in renderer: "+ index)
+                    return <Reorder.Item className="new-trip-item" key={index} value={item} >
+                    <button className="new-trip-item-button" onClick={() => removeFromTripACB(item.id)}>
+                        X
+                    </button>
+                    <div className="new-trip-item-name">
+                        {item.name}
+                    </div>
+                    {/* {item.name} */}
+                             </Reorder.Item>
+                    })
+                  }
               </Reorder.Group>
               {/* End location */}
           </div>
