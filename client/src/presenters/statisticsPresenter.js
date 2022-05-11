@@ -49,27 +49,36 @@ function StatisticsPresenter(props) {
             function addToListsCB(location) {
                 if(!listOfPlaces.includes(location["name"])) {
                     listOfPlaces.push(location["name"]);
-                    let text = location["name"];
-                    var  splitArray = text.split(",");
-                    tempArray = splitArray.pop();
-                    if(!listOfCountries.includes(tempArray)){
-                       listOfCountries.push(tempArray);
-                    }
                 }
             }
             trip.locations.forEach(addToListsCB);
         }
+        function getListOfCountriesCB(place) {
+            var splitArray = place.split(",");
+            var countryName = splitArray.pop();
+            var alreadyInList = false;
+            listOfCountries.forEach((item) => {
+                if(item.replace(/\s/g, '') === countryName.replace(/\s/g, '')) {
+                    alreadyInList = true;
+                }
+            });
+            if(!alreadyInList) {
+                listOfCountries.push(countryName);
+            }
+        }
+
         var temp = props.model.myTripsList;
         var listOfPlaces = [];
         var listOfCountries = [];
         var tempArray = [];
-       
+        console.log("TEMP ARRAY", tempArray);
         temp.map(updateStatisticsLists);
+        listOfPlaces.map(getListOfCountriesCB);
         
-        setNumberOfPlaces(listOfPlaces.length);
         setListOfPlaces(listOfPlaces);
-        setNumberOfCountries(listOfCountries.length);
+        setNumberOfPlaces(listOfPlaces.length);
         setListOfCountries(listOfCountries);
+        setNumberOfCountries(listOfCountries.length);
        
         return listOfPlaces.length, listOfCountries.length, listOfPlaces, listOfCountries;        
     }

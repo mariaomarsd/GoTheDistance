@@ -4,7 +4,7 @@ import Counter from "../components/counter.js"
 function StatisticsView(props) {
     function renderPlacesCB(name) {
         return  <div className="my-trips-item" key={name}>
-                    <div className="my-trips-item-name">
+                    <div className="statistic-text">
                         {name}
                     </div>
                 </div>     
@@ -12,7 +12,7 @@ function StatisticsView(props) {
 
     function renderCountriesCB(name) {
         return  <div className="my-trips-item" key={name}>
-                    <div className="my-trips-item-name">
+                    <div className="statistic-text">
                         {name}
                     </div>
                 </div>  
@@ -26,7 +26,7 @@ function StatisticsView(props) {
                 </div>
                 {props.myTripsList.length === 0 ? <div>0.0 km</div> :
                 <div className="statistic-number">
-                    <Counter from={0} to={props.totalDistance}/> <div>km</div>
+                    <Counter from={0} to={props.totalDistance}/><p className="km">km</p>
                 </div>}
             </div>
             <div className="statistic-wrapper">
@@ -38,15 +38,7 @@ function StatisticsView(props) {
                    <Counter from={0} to={props.numberOfPlaces} />
                 </div>}
             </div>
-            <div className="statistic-wrapper">
-                <div className="statistic-title">
-                    List of Places
-                </div>
-                {props.myTripsList.length === 0 ? <div>none</div> :
-                <div className="statistic-number">
-                     {props.ListOfPlaces.map(renderPlacesCB)}
-                </div>}
-            </div>
+            
             <div className="statistic-wrapper">
                 <div className="statistic-title">
                     Countries Visited
@@ -56,12 +48,21 @@ function StatisticsView(props) {
                     <Counter from={0} to={props.numberOfCountries} />
                 </div>}
             </div>
-            <div className="statistic-wrapper">
+            <div className="statistic-wrapper-lists ">
+                <div className="statistic-title">
+                    List of Places
+                </div>
+                {props.myTripsList.length === 0 ? <div>none</div> :
+                <div className="statistic-text">
+                     {props.ListOfPlaces.map(renderPlacesCB)}
+                </div>}
+            </div>
+            <div className="statistic-wrapper-lists ">
                 <div className="statistic-title">
                     List of Countries
                 </div>
                 {props.myTripsList.length === 0 ? <div>none</div> :
-                <div className="statistic-number">
+                <div className="statistic-text">
                     {props.ListOfCountries.map(renderCountriesCB)}
                 </div>}
             </div>
