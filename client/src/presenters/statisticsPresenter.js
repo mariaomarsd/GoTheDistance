@@ -81,8 +81,10 @@ function StatisticsPresenter(props) {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }} 
             >
-                <i className="fa-solid fa-arrow-trend-up"></i>
-                STATISTICS
+                <i className="fa-solid fa-arrow-trend-up" id="sidebar-icon" style={{ color:"pink" }}></i>
+                <div className="sidebar-name">
+                    STATISTICS
+                </div>
             </motion.div>
             {isVisible && <StatisticsView 
                 myTripsList={props.model.myTripsList}

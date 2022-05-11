@@ -58,7 +58,6 @@ const sidebar = {
         }
     }
 };
-  
 
 function SidebarView(props) {
 
@@ -126,16 +125,6 @@ function SidebarView(props) {
                         variants={variants}
                     />
                 </div>
-                <div className="sidebar-item">
-                    {/* <ProfilePresenter 
-                        model={props.model}
-                        // visible={false}
-                        visible={visibleList}
-                        setVisible={setVisibleCB}
-                        isLoggedIn={props.isLoggedIn}
-                    /> */}
-                </div>
-                
                 {confirmationVisible && <Confirm />}
             </div>
             <MenuToggle toggle={() => toggleOpen()} />

@@ -40,19 +40,34 @@
     top: 0;
     left: 0;
     bottom: 0;
-    width: 20vw;
-    background-color: rgb(75, 75, 75);
+    width: 16vw;
+    background-color: rgb(255, 255, 255);
     border-radius: 25px;
 }
 
 .sidebar-item-list {
     position: absolute;
     top: 60px;
-    width: 20vw;
+    width: 16vw;
 }
 
 .sidebar-item {
     
+}
+
+#sidebar-icon {
+    padding-right: 20px;
+    /* color: greenyellow; */
+}
+
+.sidebar-titles {
+    display: flex;
+    flex-direction: row;
+    height: 5vh;
+    font-size: 25px;
+    padding-top: 14px;
+    align-items: center;
+    justify-content: center;
 }
   
 /* 
