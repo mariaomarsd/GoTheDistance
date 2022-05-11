@@ -30,6 +30,10 @@ function MyTripsPresenter(props) {
     function setVisibleTripsCB(id) {
         props.model.setVisableTrips(id);
     }
+
+    function openEditCB(open) {
+        props.openEdit(open);
+    }
     
     return(
         <div className="my-trips-presenter">
@@ -40,6 +44,7 @@ function MyTripsPresenter(props) {
                 {isVisible && <MyTripsView
                     myTripsList={tripList}
                     setVisibleTrips={setVisibleTripsCB}
+                    openEdit = {openEditCB}
                 />}
             </div>
         </div>

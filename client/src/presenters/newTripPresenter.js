@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import * as geometry from 'spherical-geometry-js';
 import randomColor from "randomcolor";
-import {testReadFromDatabase} from "../firebaseModel";
-
 
 const NewTripView = require("../views/newTripView.js").default;
+const EditNewTripView = require("../views/editTripView.js").default;
 
 function NewTripPresenter(props) {
     
     const [locationList, setLocationList] = useState(props.model.newTripsLocationList);
     const [isVisible, setIsVisible] = useState();
+    const [addLocationsVisible, setAddLocationsVisible] = useState(false);
+    const [tripName, setTripName] = useState();
 
     // called when component is created or the list changes
     useEffect(observerCB, []);
@@ -36,7 +37,6 @@ function NewTripPresenter(props) {
         else if (item.name != props.model.newTripsLocationList.at(-1).name) { 
             props.model.addToNewTrip(item);
         }
-        // console.log('her')
     }
 
     function removeFromNewTripACB(id) {
@@ -48,14 +48,14 @@ function NewTripPresenter(props) {
     }
 
     function saveTripACB(item) {
+        item.name = tripName; 
         item.distanceNewTrip = calculateDistanceCB();
         item.color = randomColor();
-        // console.log("ITEM",item);
-        // console.log("DISTANCE:", item.distanceNewTrip)
         props.model.saveTrip(item);
         props.setVisible(0)
         setIsVisible(props.visible[0]);
         props.confirmation()
+        setAddLocationsVisible(false);
     }
 
     function setVisibleCB() {
@@ -76,6 +76,11 @@ function NewTripPresenter(props) {
         return distanceLength/1000 /*+ "KM"*/;
     }
 
+    function setTripNameCB(name) {
+        setTripName(name);
+        setAddLocationsVisible(true);
+    }
+    
     return(
         <div className="new-trip-presenter"
             >
@@ -83,13 +88,19 @@ function NewTripPresenter(props) {
                 NEW TRIP
             </div>
             <div>   
-                {isVisible && <NewTripView
+                {isVisible && <div><NewTripView
+                    saveTripName = {setTripNameCB}
+                />
+                {addLocationsVisible && <EditNewTripView
                     locationList={locationList} 
                     addToTrip={addToNewTripACB}
                     removeFromTrip={removeFromNewTripACB}
                     confirmTrip={saveTripACB}
                     updateOrder={updateOrderACB}
-                />}
+                />
+                }
+                </div>
+                }
             </div>
         </div>
     );
