@@ -4,7 +4,6 @@ import { motion, useCycle } from "framer-motion";
 import { useDimensions } from "./usedeme.js";
 import { MenuToggle } from "./menuToggle.js";
 
-
 const NewTripPresenter = require("../presenters/newTripPresenter.js").default;
 const MyTripsPresenter = require("../presenters/myTripsPresenter.js").default;
 const StatisticsPresenter = require("../presenters/statisticsPresenter.js").default;
@@ -29,16 +28,6 @@ const variants = {
     }
   };
 
-
-//   const variants2 = {
-//     open: {
-//       transition: { staggerChildren: 0.07, delayChildren: 0.2 }
-//     },
-//     closed: {
-//       transition: { staggerChildren: 0.05, staggerDirection: -1 }
-//     }
-//   };
-
 const sidebar = {
     open: (height = 1000) => ({
         clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
@@ -58,7 +47,6 @@ const sidebar = {
         }
     }
 };
-  
 
 function SidebarView(props) {
 
@@ -69,12 +57,12 @@ function SidebarView(props) {
     const { height } = useDimensions(containerRef);
 
     function setVisibleCB(id) {
-        if(visibleList[0] === true) {
-            props.setLoc(1)
-        }
-        else{
-            props.setLoc(0)
-        }
+        // if(visibleList[0] === true) {
+        //     props.setLoc(1)
+        // }
+        // else{
+        //     props.setLoc(0)
+        // }
         visibleList[id] = !visibleList[id];
         setVisibleList(visibleList);
     }
@@ -95,7 +83,7 @@ function SidebarView(props) {
             >
             <motion.div
                 className="sidebar-background"
-                style={{ height: height }}
+                style={{ height: "40vh" }}
                 variants={sidebar}
             />
             <div className="sidebar-item-list">
@@ -126,16 +114,6 @@ function SidebarView(props) {
                         variants={variants}
                     />
                 </div>
-                <div className="sidebar-item">
-                    {/* <ProfilePresenter 
-                        model={props.model}
-                        // visible={false}
-                        visible={visibleList}
-                        setVisible={setVisibleCB}
-                        isLoggedIn={props.isLoggedIn}
-                    /> */}
-                </div>
-                
                 {confirmationVisible && <Confirm />}
             </div>
             <MenuToggle toggle={() => toggleOpen()} />

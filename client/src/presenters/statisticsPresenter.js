@@ -49,27 +49,36 @@ function StatisticsPresenter(props) {
             function addToListsCB(location) {
                 if(!listOfPlaces.includes(location["name"])) {
                     listOfPlaces.push(location["name"]);
-                    let text = location["name"];
-                    var  splitArray = text.split(",");
-                    tempArray = splitArray.pop();
-                    if(!listOfCountries.includes(tempArray)){
-                       listOfCountries.push(tempArray);
-                    }
                 }
             }
             trip.locations.forEach(addToListsCB);
         }
+        function getListOfCountriesCB(place) {
+            var splitArray = place.split(",");
+            var countryName = splitArray.pop();
+            var alreadyInList = false;
+            listOfCountries.forEach((item) => {
+                if(item.replace(/\s/g, '') === countryName.replace(/\s/g, '')) {
+                    alreadyInList = true;
+                }
+            });
+            if(!alreadyInList) {
+                listOfCountries.push(countryName);
+            }
+        }
+
         var temp = props.model.myTripsList;
         var listOfPlaces = [];
         var listOfCountries = [];
         var tempArray = [];
-       
+        console.log("TEMP ARRAY", tempArray);
         temp.map(updateStatisticsLists);
+        listOfPlaces.map(getListOfCountriesCB);
         
-        setNumberOfPlaces(listOfPlaces.length);
         setListOfPlaces(listOfPlaces);
-        setNumberOfCountries(listOfCountries.length);
+        setNumberOfPlaces(listOfPlaces.length);
         setListOfCountries(listOfCountries);
+        setNumberOfCountries(listOfCountries.length);
        
         return listOfPlaces.length, listOfCountries.length, listOfPlaces, listOfCountries;        
     }
@@ -82,8 +91,10 @@ function StatisticsPresenter(props) {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }} 
             >
-                <i className="fa-solid fa-arrow-trend-up"></i>
-                STATISTICS
+                <i className="fa-solid fa-arrow-trend-up" id="sidebar-icon" style={{ color:"rgb(234, 201, 181)" }}></i>
+                <div className="sidebar-name" style={{ borderColor:"rgb(234, 201, 181)" }}>
+                    STATISTICS
+                </div>
             </motion.div>
             {isVisible && <StatisticsView 
                 myTripsList={props.model.myTripsList}

@@ -43,6 +43,9 @@ function SignUpPresenter(props){
             function setUserNameCB(){
                 ReactSession.set("uid", userId);
                 ReactSession.set("uName", user.displayName);
+                localStorage.setItem('loggedin', true);
+                localStorage.setItem('username', user.displayName);
+                localStorage.setItem('userId', userId);
                 setUsername("");
                 setEmail("");
                 setPassword("");

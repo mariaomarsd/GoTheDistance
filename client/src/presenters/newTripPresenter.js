@@ -3,8 +3,6 @@ import * as geometry from 'spherical-geometry-js';
 import randomColor from "randomcolor";
 import {testReadFromDatabase} from "../firebaseModel";
 import { motion } from "framer-motion";
-import { PlusOutlined  } from '@ant-design/icons';
-
 
 const NewTripView = require("../views/newTripView.js").default;
 const EditNewTripView = require("../views/editTripView.js").default;
@@ -62,6 +60,13 @@ function NewTripPresenter(props) {
     }
 
     function saveTripACB(item) {
+        if(item.locations.length<2){
+            // let user know there needs to be more than one stop
+        console.log("Trip has to be more than one stop")
+        
+       }else{
+        console.log("item")
+        console.log(item)
         item.name = tripName; 
         item.distanceNewTrip = calculateDistanceCB();
         item.color = randomColor();
@@ -70,6 +75,7 @@ function NewTripPresenter(props) {
         setIsVisible(props.visible[0]);
         props.confirmation()
         setAddLocationsVisible(false);
+       }
     }
 
     function setVisibleCB() {
@@ -103,8 +109,10 @@ function NewTripPresenter(props) {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }} 
             >
-                <i className="fa-solid fa-route"></i>
-                NEW TRIP
+                <i className="fa-solid fa-route" id="sidebar-icon" style={{ color:"rgb(184, 138, 124)" }} ></i>
+                <div className="sidebar-name" style={{ borderColor:"rgb(184, 138, 124)" }} >
+                    NEW TRIP
+                </div>
             </motion.div>
             <div>   
                 {isVisible && <div><NewTripView
