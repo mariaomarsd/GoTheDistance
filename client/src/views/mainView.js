@@ -47,14 +47,20 @@ function MainView(props){
     setSignup(false)
   }
 
+
+
   return(
       <div className="main-view">
+       
           <div className={ userLoggedIn ? "map-container" : "map-blur"}>
               <MapPresenter value={isLoaded}
                 model={props.model}
               />
           </div>
-          <div>
+          <div className="logo">GO THE DISTANCE
+            <div className="logo-icon">
+              <i className="fa-solid fa-paper-plane"></i>
+            </div>
           </div>
           <div> {  userLoggedIn  &&
               <div 
@@ -96,6 +102,7 @@ function MainView(props){
                   visible = {!userLoggedIn}
                   isLoggedIn = {isLoggedIn}
                   // setFirstSignin={setFirstSignin}
+                  
               />
           </motion.div>}
           {signup && <SiteInfo click={continueSignup}/>}
