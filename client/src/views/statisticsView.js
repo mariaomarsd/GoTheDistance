@@ -5,6 +5,7 @@ function StatisticsView(props) {
 
     const[placesToggle, setPlacesToggle] =  useState(true);
     const[countriesToggle, setCountriesToggle] =  useState(true);
+    const[kmToggle, setkmToggle] =  useState(true);
     
     function togglePlaces(){
         setPlacesToggle(!placesToggle);
@@ -13,6 +14,11 @@ function StatisticsView(props) {
     function toggleCountries(){
         setCountriesToggle(!countriesToggle);
     }
+
+    function toggleKm(){
+        setkmToggle(!kmToggle);
+    }
+
     function renderPlacesCB(name) {
         return  <div className="places" key={name}>
                     <div className="statistic-text">
@@ -29,16 +35,41 @@ function StatisticsView(props) {
                 </div>   
     }
 
+    function renderDistanceCB(item) {
+        return  <div className="Distance" >
+                    <div className="statistic-text">
+                        <b>{item.name}</b><span>: </span>
+                        {item.distanceNewTrip.toFixed(2)}<span> km</span>
+                    </div>
+                </div>   
+    }
+
     return(
         <div className="statistic-view">
             <div className="statistic-wrapper">
                 <div className="statistic-title">
                     Distance Travelled
                 </div>
-                {props.myTripsList.length === 0 ? <div>0.0 km</div> :
-                <div className="statistic-km-number">
-                    <Counter from={0} to={props.totalDistance}/><p className="km">km</p>
-                </div>}
+                <button className="display-button" onClick={toggleKm}>
+                    {kmToggle ? 
+                        <div className="number-of-places">
+                             {props.myTripsList.length === 0 ? <div>0.0 km</div> :
+                            <div className="statistic-km-number">
+                                <Counter from={0} to={props.totalDistance}/> <span className="km">km</span>
+                            </div>}
+                            <u className="extra-text">See distribution</u> 
+                        </div>
+                        : 
+                        <div className="list-of-places">
+                            {props.myTripsList.length === 0 ? <div>none</div> :
+                            <div className="statistic-text">
+                                <div className="scroll">
+                                    {props.myTripsList.map(renderDistanceCB)}
+                                </div>
+                            </div>}
+                            <u className="extra-text">See total km</u> 
+                        </div> }
+                </button>
             </div>
             <div className="statistic-wrapper">
                 <div className="statistic-title">
@@ -82,8 +113,10 @@ function StatisticsView(props) {
                         <div className="list-of-places">
                             {props.myTripsList.length === 0 ? <div>none</div> :
                             <div className="statistic-text">
+                                <div className="test">
                                 <div className="scroll">
                                     {props.ListOfCountries.map(renderCountriesCB)}
+                                </div>
                                 </div>
                             </div>}
                             <u className="extra-text">See total number</u> 

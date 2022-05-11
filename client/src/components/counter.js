@@ -14,7 +14,7 @@ function Counter({ from, to }) {
       return () => controls.stop();
     }, [from, to]);
   
-    return <p ref={ref} />;
+    return <div ref={ref} />;
 }
 
 export default Counter;

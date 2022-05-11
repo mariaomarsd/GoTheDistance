@@ -34,6 +34,7 @@
 
 .statistic-number {
     font-size: 20px;
+    padding: 5px;
 }
 
 .statistic-text {
@@ -50,11 +51,15 @@
     display: flex;
     flex-direction: row;
     margin-right: 5px;
+    padding: 5px;
 }
 
+.scoll2 {
+    height: 15px;
+}
 .scroll {
     overflow-y: scroll;
-    /* height: 120px; */
+    height: 120px; 
     width: 165px;
     margin: 10px 5px; 
     padding: 5px;
@@ -87,3 +92,4 @@
     padding: 3px;
     color: gray;
 }
+
