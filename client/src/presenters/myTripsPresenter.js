@@ -40,6 +40,10 @@ function MyTripsPresenter(props) {
     function setVisibleTripsCB(id) {
         props.model.setVisableTrips(id);
     }
+
+    function openEditCB(open) {
+        props.openEdit(open);
+    }
     
     return(
         <motion.div className="my-trips-presenter" variants={props.variants} >

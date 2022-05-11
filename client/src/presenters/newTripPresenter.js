@@ -5,6 +5,7 @@ import {testReadFromDatabase} from "../firebaseModel";
 import { motion } from "framer-motion";
 
 const NewTripView = require("../views/newTripView.js").default;
+const EditNewTripView = require("../views/editTripView.js").default;
 
 const variants = {
     open: {
@@ -20,6 +21,8 @@ function NewTripPresenter(props) {
     
     const [locationList, setLocationList] = useState(props.model.newTripsLocationList);
     const [isVisible, setIsVisible] = useState();
+    const [addLocationsVisible, setAddLocationsVisible] = useState(false);
+    const [tripName, setTripName] = useState();
 
     // called when component is created or the list changes
     useEffect(observerCB, []);
@@ -57,12 +60,14 @@ function NewTripPresenter(props) {
     }
 
     function saveTripACB(item) {
+        item.name = tripName; 
         item.distanceNewTrip = calculateDistanceCB();
         item.color = randomColor();
         props.model.saveTrip(item);
         props.setVisible(0)
         setIsVisible(props.visible[0]);
         props.confirmation()
+        setAddLocationsVisible(false);
     }
 
     function setVisibleCB() {
@@ -83,6 +88,11 @@ function NewTripPresenter(props) {
         return distanceLength/1000 /*+ "KM"*/;
     }
 
+    function setTripNameCB(name) {
+        setTripName(name);
+        setAddLocationsVisible(true);
+    }
+    
     return(
         <motion.div className="new-trip-presenter" variants={props.variants} >
             <motion.div 
@@ -96,13 +106,21 @@ function NewTripPresenter(props) {
                     NEW TRIP
                 </div>
             </motion.div>
-            {isVisible && <NewTripView
-                locationList={locationList} 
-                addToTrip={addToNewTripACB}
-                removeFromTrip={removeFromNewTripACB}
-                confirmTrip={saveTripACB}
-                updateOrder={updateOrderACB}
-            />}
+            <div>   
+                {isVisible && <div><NewTripView
+                    saveTripName = {setTripNameCB}
+                />
+                {addLocationsVisible && <EditNewTripView
+                    locationList={locationList} 
+                    addToTrip={addToNewTripACB}
+                    removeFromTrip={removeFromNewTripACB}
+                    confirmTrip={saveTripACB}
+                    updateOrder={updateOrderACB}
+                />
+                }
+                </div>
+                }
+            </div>
         </motion.div>
     );
 }

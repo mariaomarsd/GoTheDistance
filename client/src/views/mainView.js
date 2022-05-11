@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {useLoadScript} from "@react-google-maps/api";
-import * as geometry from 'spherical-geometry-js';
 import { ReactSession } from "react-client-session";
 import { motion } from "framer-motion"
 import { updateModelFromFirebase } from "../firebaseModel.js";
@@ -8,11 +7,6 @@ import ProfilePresenter from "../presenters/profilePresenter.js";
 
 const MapPresenter = require("../presenters/mapPresenter.js").default;
 const SidebarView = require("../views/sidebarView.js").default;
-const ProfileView = require("../views/profileView.js").default;
-
-
-const SignUpPresenter = require("../presenters/signUpPresenter").default;
-const LoginPresenter = require("../presenters/loginPresenter").default;
 const AuthenticationPresenter = require("../presenters/authenticationPresenter").default;
 
 const libraries = ["places", "geometry"];
@@ -61,7 +55,6 @@ function MainView(props){
                         model = {props.model} 
                         value = {isLoaded}
                         visible = {isLoggedIn}
-                        // visible = {true} // Change to use authentication
                         isLoggedIn  = {isLoggedIn}
                         setLoc = {setInNewTripCB}
                     />
@@ -92,7 +85,6 @@ function MainView(props){
                               >
                 <AuthenticationPresenter
                     visible = {!userLoggedIn}
-                    //visible = {false} // Change to use authentication
                     isLoggedIn = {isLoggedIn}
                 />
             </motion.div>}
