@@ -74,6 +74,10 @@ function EditNewTripView(props){
         props.updateOrder(items)
     }
     
+    function cancelCB(){
+        props.cancel();
+    }
+    
     return(
         <div className="new-trip-view"
             // initial={{ height: 0 }} 
@@ -103,6 +107,7 @@ function EditNewTripView(props){
           <button className="new-trip-button" id="save" onClick={saveTripACB}>
             Save Trip
           </button>
+          <button onClick={cancelCB}>CANCEL</button>
         </div>
     );
 }

@@ -100,6 +100,11 @@ function NewTripPresenter(props) {
         setTripName(name);
         setAddLocationsVisible(true);
     }
+
+    function cancelCB(){
+        props.model.newTripsLocationList = [];
+        setAddLocationsVisible(false);
+    }
     
     return(
         <motion.div className="new-trip-presenter" variants={props.variants} >
@@ -124,6 +129,7 @@ function NewTripPresenter(props) {
                     removeFromTrip={removeFromNewTripACB}
                     confirmTrip={saveTripACB}
                     updateOrder={updateOrderACB}
+                    cancel={cancelCB}
                 />
                 }
                 </div>
