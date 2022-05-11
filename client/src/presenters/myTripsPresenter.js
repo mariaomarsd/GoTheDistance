@@ -49,6 +49,7 @@ function MyTripsPresenter(props) {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }} 
             >
+                <i className="fa-solid fa-map-location-dot"></i>
                 MY TRIPS
             </motion.div>
             {isVisible && <MyTripsView

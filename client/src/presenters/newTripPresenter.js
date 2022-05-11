@@ -93,7 +93,7 @@ function NewTripPresenter(props) {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }} 
             >
-                <i class="fa-solid fa-route"></i>
+                <i className="fa-solid fa-route"></i>
                 NEW TRIP
             </motion.div>
             {isVisible && <NewTripView
