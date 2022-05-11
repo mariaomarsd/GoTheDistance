@@ -55,7 +55,7 @@ function NewTripView(props) {
     function renderListItemCB(item) {
         // console.log("eitt item", items)
         // props.updateOrder(items)
-        updateOrdertest()
+        updateOrdertest();
         return <Reorder.Item className="new-trip-item" key={item.name} value={item} >
                     <button className="new-trip-item-button" onClick={() => removeFromTripACB(item.name)}>
                         X
@@ -87,34 +87,31 @@ function NewTripView(props) {
     }
     
     return(
-        <div className="new-trip-view"
-            // initial={{ height: 0 }} 
-            // animate={{ height: 200 }}
-            >
-          <div className="search-component">
-            <SearchBar 
-                selectPlace={selectPlace}
-                data={data}
-                status={status}
-                setValue={setValue}
-                ready={ready}
-            />
-            <button className="new-trip-button" id="add" onClick={addToTripACB}>
-                Add
+        <motion.div className="new-trip-view"
+            variants={props.variants}
+        >
+            <div className="search-component">
+                <SearchBar 
+                    selectPlace={selectPlace}
+                    data={data}
+                    status={status}
+                    setValue={setValue}
+                    ready={ready}
+                />
+                <button className="new-trip-button" id="add" onClick={addToTripACB}>
+                    Add
+                </button>
+            </div>
+            <div>
+                <Reorder.Group className="new-trips-item-list" values={items} onReorder={setItems}>
+                    {items.map(renderListItemCB)}
+                </Reorder.Group>
+            </div>
+            <button className="new-trip-button" id="save" onClick={openModal}>
+                Save Trip
             </button>
-          </div>
-          <div>
-              {/* Start location */}
-              <Reorder.Group className="new-trips-item-list" values={items} onReorder={setItems}>
-                  {items.map(renderListItemCB)}
-              </Reorder.Group>
-              {/* End location */}
-          </div>
-          <button className="new-trip-button" id="save" onClick={openModal}>
-            Save Trip
-          </button>
-          {visible && <SaveTripPopup confirm={saveTripACB} cancel={closeModal}/>}
-        </div>
+            {visible && <SaveTripPopup confirm={saveTripACB} cancel={closeModal}/>}
+        </motion.div>
     );
 }
 

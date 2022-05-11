@@ -5,6 +5,15 @@ import { motion } from "framer-motion";
 
 const MyTripsView = require("../views/myTripsView.js").default;
 
+const variants = {
+    open: {
+      transition: { staggerChildren: 0.07, delayChildren: 0.2 }
+    },
+    closed: {
+      transition: { staggerChildren: 0.05, staggerDirection: -1 }
+    }
+  };
+
 function MyTripsPresenter(props) {
 
     useEffect(observerCB, []);
@@ -33,25 +42,19 @@ function MyTripsPresenter(props) {
     }
     
     return(
-        <motion.div className="my-trips-presenter" 
-            // variants={props.variants}
-            // whileHover={{ scale: 1.1 }}
-            // whileTap={{ scale: 0.95 }}
-        >
-            <motion.div className="sidebar-titles" 
-                variants={props.variants}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
+        <motion.div className="my-trips-presenter" variants={props.variants} >
+            <motion.div 
+                className="sidebar-titles" 
                 onClick={setVisibleCB}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }} 
             >
                 MY TRIPS
             </motion.div>
-            <div>
-                {isVisible && <MyTripsView
-                    myTripsList={tripList}
-                    setVisibleTrips={setVisibleTripsCB}
-                />}
-            </div>
+            {isVisible && <MyTripsView
+                myTripsList={tripList}
+                setVisibleTrips={setVisibleTripsCB}
+            />}
         </motion.div>
     );
 }

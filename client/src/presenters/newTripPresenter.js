@@ -3,9 +3,20 @@ import * as geometry from 'spherical-geometry-js';
 import randomColor from "randomcolor";
 import {testReadFromDatabase} from "../firebaseModel";
 import { motion } from "framer-motion";
+import { PlusOutlined  } from '@ant-design/icons';
 
 
 const NewTripView = require("../views/newTripView.js").default;
+
+const variants = {
+    open: {
+      transition: { staggerChildren: 0.07, delayChildren: 0.2 }
+    },
+    closed: {
+      transition: { staggerChildren: 0.05, staggerDirection: -1 }
+    }
+  };
+  
 
 function NewTripPresenter(props) {
     
@@ -37,7 +48,6 @@ function NewTripPresenter(props) {
         else if (item.name != props.model.newTripsLocationList.at(-1).name) { 
             props.model.addToNewTrip(item);
         }
-        // console.log('her')
     }
 
     function removeFromNewTripACB(id) {
@@ -51,8 +61,6 @@ function NewTripPresenter(props) {
     function saveTripACB(item) {
         item.distanceNewTrip = calculateDistanceCB();
         item.color = randomColor();
-        // console.log("ITEM",item);
-        // console.log("DISTANCE:", item.distanceNewTrip)
         props.model.saveTrip(item);
         props.setVisible(0)
         setIsVisible(props.visible[0]);
@@ -78,26 +86,23 @@ function NewTripPresenter(props) {
     }
 
     return(
-        <motion.div className="new-trip-presenter"
-            // variants={props.variants}
-            // whileHover={{ scale: 1.1 }}
-            // whileTap={{ scale: 0.95 }}
-        >
-            <motion.div className="sidebar-titles" onClick={setVisibleCB}
-                variants={props.variants}
+        <motion.div className="new-trip-presenter" variants={props.variants} >
+            <motion.div 
+                className="sidebar-titles"
+                onClick={setVisibleCB}
                 whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}>
+                whileTap={{ scale: 0.95 }} 
+            >
+                <i class="fa-solid fa-route"></i>
                 NEW TRIP
             </motion.div>
-            <div>   
-                {isVisible && <NewTripView
-                    locationList={locationList} 
-                    addToTrip={addToNewTripACB}
-                    removeFromTrip={removeFromNewTripACB}
-                    confirmTrip={saveTripACB}
-                    updateOrder={updateOrderACB}
-                />}
-            </div>
+            {isVisible && <NewTripView
+                locationList={locationList} 
+                addToTrip={addToNewTripACB}
+                removeFromTrip={removeFromNewTripACB}
+                confirmTrip={saveTripACB}
+                updateOrder={updateOrderACB}
+            />}
         </motion.div>
     );
 }
