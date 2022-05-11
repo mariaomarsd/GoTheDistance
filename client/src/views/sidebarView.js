@@ -3,6 +3,7 @@ import Confirm from "../components/confirm.js";
 import { motion, useCycle } from "framer-motion";
 import { useDimensions } from "./usedeme.js";
 import { MenuToggle } from "./menuToggle.js";
+import ListWarning from "../components/listTooShort";
 
 const NewTripPresenter = require("../presenters/newTripPresenter.js").default;
 const MyTripsPresenter = require("../presenters/myTripsPresenter.js").default;
@@ -52,6 +53,7 @@ function SidebarView(props) {
 
     const [visibleList, setVisibleList] = useState([false, false, false, false]);
     const [confirmationVisible, setConfirmationVisible] = useState(false);
+    const [listwarningVisible, setListWarningVisible] = useState(false);
     const [isOpen, toggleOpen] = useCycle(false, true);
     const containerRef = useRef(null);
     const { height } = useDimensions(containerRef);
@@ -70,6 +72,10 @@ function SidebarView(props) {
     function setConfirmationCB() {
         setConfirmationVisible(true)
         setTimeout(function() {setConfirmationVisible(false) }, 2500)
+    }
+    function setlistwarningCD(){
+        setListWarningVisible(true)
+        setTimeout(function() {setListWarningVisible(false) }, 2500)
     }
 
     return(
@@ -94,6 +100,7 @@ function SidebarView(props) {
                         setVisible={setVisibleCB}
                         confirmation={setConfirmationCB}
                         variants={variants}
+                        listWarning={setlistwarningCD}
                     />}
                 </div>
                 <div className="sidebar-item">
@@ -115,6 +122,7 @@ function SidebarView(props) {
                     />
                 </div>
                 {confirmationVisible && <Confirm />}
+                {listwarningVisible && <ListWarning />}
             </div>
             <MenuToggle toggle={() => toggleOpen()} />
         </motion.nav>}
