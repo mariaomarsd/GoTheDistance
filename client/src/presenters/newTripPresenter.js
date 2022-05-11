@@ -62,8 +62,8 @@ function NewTripPresenter(props) {
     function saveTripACB(item) {
         if(item.locations.length<2){
             // let user know there needs to be more than one stop
-        console.log("Trip has to be more than one stop")
-        
+        //console.log("Trip has to be more than one stop")
+        props.listWarning()
        }else{
         console.log("item")
         console.log(item)
