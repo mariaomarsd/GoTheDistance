@@ -71,6 +71,11 @@ function MyTripsPresenter(props) {
 
     }
 
+    function cancelCB(){
+        props.model.emptyLocationList();
+        setEditTrip(false);
+    }
+
     function setTripToEditACB(trip) {
         console.log(trip);
         console.log(trip.locations);
@@ -107,6 +112,7 @@ function MyTripsPresenter(props) {
                 removeFromTrip={removeFromTripACB}
                 confirmTrip={saveTripACB}
                 updateOrder={updateOrderACB}
+                cancel = {cancelCB}
                 // editTrip  = {setTripToEditACB}
                 />
             }

@@ -16,18 +16,22 @@ class TripsModel {
         this.notifyObservers();
     }
 
+    emptyLocationList(){
+        this.newTripsLocationList = [];
+        this.notifyObservers();
+    }
+
     editTrip(trip) {
         this.newTripsLocationList  = trip.locations;
         this.notifyObservers();
     }
 
-    updateLocationList(trip, newLocationList) {
+    updateLocationList(trip) {
         var ind = this.myTripsList.indexOf(trip);
         this.myTripsList[ind].locations = this.newTripsLocationList;
         this.newTripsLocationList = [];
         this.notifyObservers({tripToAdd: trip, uid: localStorage.getItem('userId')});
     }
-
 
 
     // signIn(uid) {

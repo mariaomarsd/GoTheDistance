@@ -62,8 +62,8 @@ function NewTripPresenter(props) {
     function saveTripACB(item) {
         if(item.locations.length<2){
             // let user know there needs to be more than one stop
-        console.log("Trip has to be more than one stop")
-        
+        //console.log("Trip has to be more than one stop")
+        props.listWarning()
        }else{
         console.log("item")
         console.log(item)
@@ -100,6 +100,11 @@ function NewTripPresenter(props) {
         setTripName(name);
         setAddLocationsVisible(true);
     }
+
+    function cancelCB(){
+        props.model.newTripsLocationList = [];
+        setAddLocationsVisible(false);
+    }
     
     return(
         <motion.div className="new-trip-presenter" variants={props.variants} >
@@ -124,6 +129,7 @@ function NewTripPresenter(props) {
                     removeFromTrip={removeFromNewTripACB}
                     confirmTrip={saveTripACB}
                     updateOrder={updateOrderACB}
+                    cancel={cancelCB}
                 />
                 }
                 </div>
