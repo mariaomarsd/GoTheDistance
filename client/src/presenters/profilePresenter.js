@@ -6,6 +6,8 @@ import { ReactSession } from "react-client-session";
 
 const ProfileView = require("../views/profileView.js").default;
 
+
+
 firebase.initializeApp(firebaseConfig);
 const auth = getAuth();
 
@@ -38,8 +40,13 @@ function ProfilePresenter(props) {
     }
 
     return(
-        <div className="profile-presenter">
-            <div className="sidebar-titles" onClick={setVisibleCB}>
+        <div className="user-view">
+            <ProfileView 
+                signout = {signoutCB}
+                loggedInUser = {loggedIn}
+                login = {loginCB}
+            />
+            {/* <div className="sidebar-titles" onClick={setVisibleCB}>
                 PROFILE
             </div>
             <div>
@@ -48,8 +55,8 @@ function ProfilePresenter(props) {
                     signout = {signoutCB}
                     loggedInUser = {loggedIn}
                     login = {loginCB}
-                />}
-            </div>
+                />} */}
+            {/* </div> */}
         </div>
     );
 }

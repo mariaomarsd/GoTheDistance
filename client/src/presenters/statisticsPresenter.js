@@ -52,8 +52,6 @@ function StatisticsPresenter(props) {
                     let text = location["name"];
                     var  splitArray = text.split(",");
                     tempArray = splitArray.pop();
-                    //listOfCountries.push(tempArray);
-                    
                     if(!listOfCountries.includes(tempArray)){
                        listOfCountries.push(tempArray);
                     }
