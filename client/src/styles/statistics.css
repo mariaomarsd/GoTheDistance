@@ -54,9 +54,7 @@
     padding: 5px;
 }
 
-.scoll2 {
-    height: 15px;
-}
+
 .scroll {
     overflow-y: scroll;
     height: 120px; 

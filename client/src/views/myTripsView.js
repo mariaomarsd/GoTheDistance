@@ -24,15 +24,32 @@ function MyTripsView(props) {
     }
 
     function renderItemsCB(item) {
-        return <div>
-                    <button onClick={() => editTripCB(item)}>EDIT TRIP</button>
-                    <div onClick={() => click(item)} className="my-trips-item" key={item.name} >
+        return <div className="my-trips-item">
+                    
+                    
+                    <div onClick={() => click(item)}  key={item.name} >
+                        <input type="checkbox"  readOnly checked={item.show} className="my-trips-item-check" />
+                    </div>
+                    <button className="edit-button" onClick={() => editTripCB(item)}>
+                        <div className="my-trips-item-name">
+                            {item.name} 
+                        </div>
+                        <div className="edit-icon">
+                            <i className="fa-solid fa-pencil" style={{color: "grey"}}></i>
+                        </div>
+                    </button>
+                    
+                    {/* <div onClick={() => click(item)} className="my-trips-item" key={item.name} >
                         {/* <Checkbox checked={item.show} className="my-trips-item-check"/> */}
-                        <input type="checkbox" readOnly checked={item.show} className="my-trips-item-check" />
+                        {/* <input type="checkbox" readOnly checked={item.show} className="my-trips-item-check" />
                         <div className="my-trips-item-name">
                             {item.name}
                         </div>
-                    </div>
+                        <button className="edit-button" onClick={() => editTripCB(item)}>
+                    <i className="fa-solid fa-pencil"></i>
+                    </button>
+                    </div> */} 
+                   
                 </div>
     }
 
@@ -46,7 +63,7 @@ function MyTripsView(props) {
 
     return(
         <div className="my-trips-view">
-            <div>
+            <div className="scroll">
                 {props.myTripsList.length === 0 ? <div>You have no trips</div> :
                 <ul className="my-trips-item-list">
                     {props.myTripsList.map(renderItemsCB)}
