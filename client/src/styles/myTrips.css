@@ -27,3 +27,7 @@
 .my-trips-item-name {
     font-size: 20px;
 }
+
+.my-trips-view .scroll {
+    height: 200px;
+}

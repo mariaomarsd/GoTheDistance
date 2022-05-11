@@ -79,7 +79,7 @@ function EditNewTripView(props){
     }
     
     return(
-        <div className="new-trip-view"
+        <div className="edit-trip-view"
             // initial={{ height: 0 }} 
             // animate={{ height: 200 }}
             >

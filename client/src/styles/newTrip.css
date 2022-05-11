@@ -1,5 +1,5 @@
 .new-trip-view {
-    background-color: white;
+    /* background-color: white;
     padding: 5px;
     display: flex;
     flex-direction: column;
@@ -17,9 +17,14 @@
     border-width: 0.5px;
     width: 300px;
     height: 300px;
-    overflow: hidden;
+    overflow: hidden; */
 
-
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 14px;
+    padding-bottom: 14px;
 /* 
     background-color: white;
     padding: 5px;
@@ -215,4 +220,32 @@
 .stop-icon{
     font-size: 20px;
     color:rgb(240, 161, 177);
+}
+
+.edit-trip-view {
+    /* background-color: white;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    position: relative;
+    bottom: 20%;
+    right: 50%;
+    left: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    top: -100px;
+    border-style: solid;
+    border-width: 0.5px;
+    width: 300px;
+    height: 300px; */
+
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 14px;
+    padding-bottom: 14px;
 }

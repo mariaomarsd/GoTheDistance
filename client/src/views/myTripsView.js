@@ -46,11 +46,11 @@ function MyTripsView(props) {
 
     return(
         <div className="my-trips-view">
-            <div>
+            <div className = "scroll">
                 {props.myTripsList.length === 0 ? <div>You have no trips</div> :
                 <ul className="my-trips-item-list">
                     {props.myTripsList.map(renderItemsCB)}
-                </ul>}
+                </ul>}   
             </div>
         </div>
     );

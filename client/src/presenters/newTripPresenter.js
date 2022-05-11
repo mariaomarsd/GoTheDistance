@@ -20,8 +20,9 @@ const variants = {
 function NewTripPresenter(props) {
     
     const [locationList, setLocationList] = useState(props.model.newTripsLocationList);
-    const [isVisible, setIsVisible] = useState();
+    const [isVisible, setIsVisible] = useState(props.model.sidebartoggle[0]);
     const [addLocationsVisible, setAddLocationsVisible] = useState(false);
+    const [isNewTripVisible, setIsNewTripVisible] = useState();
     const [tripName, setTripName] = useState();
 
     // called when component is created or the list changes
@@ -39,6 +40,7 @@ function NewTripPresenter(props) {
     
     function setLocationListCB() {
         setLocationList(props.model.newTripsLocationList);
+        setIsVisible(props.model.sidebartoggle[0]);
     }
 
     function addToNewTripACB(item) {
@@ -72,7 +74,8 @@ function NewTripPresenter(props) {
         item.color = randomColor();
         props.model.saveTrip(item);
         props.setVisible(0)
-        setIsVisible(props.visible[0]);
+        setIsVisible(false);
+        // setIsVisible(props.visible[0]);
         props.confirmation()
         setAddLocationsVisible(false);
        }
@@ -80,7 +83,9 @@ function NewTripPresenter(props) {
 
     function setVisibleCB() {
         props.setVisible(0);
-        setIsVisible(props.visible[0]);
+        //setIsVisible(props.isVisible);
+        setIsNewTripVisible(props.visible[0]);
+        //setAddLocationsVisible(false);
     }
 
     function calculateDistanceCB() {
@@ -98,11 +103,12 @@ function NewTripPresenter(props) {
 
     function setTripNameCB(name) {
         setTripName(name);
+        setIsNewTripVisible(false);
         setAddLocationsVisible(true);
     }
 
     function cancelCB(){
-        props.model.newTripsLocationList = [];
+        props.model.emptyLocationList();
         setAddLocationsVisible(false);
     }
     
@@ -119,10 +125,13 @@ function NewTripPresenter(props) {
                     NEW TRIP
                 </div>
             </motion.div>
-            <div>   
-                {isVisible && <div><NewTripView
+            {/* <div>    */}
+                {isVisible && 
+                
+                <div>
+                {isNewTripVisible && <NewTripView
                     saveTripName = {setTripNameCB}
-                />
+                />}
                 {addLocationsVisible && <EditNewTripView
                     locationList={locationList} 
                     addToTrip={addToNewTripACB}
@@ -134,7 +143,6 @@ function NewTripPresenter(props) {
                 }
                 </div>
                 }
-            </div>
         </motion.div>
     );
 }
