@@ -28,7 +28,7 @@ function MyTripsView(props) {
                     <button onClick={() => editTripCB(item)}>EDIT TRIP</button>
                     <div onClick={() => click(item)} className="my-trips-item" key={item.name} >
                         {/* <Checkbox checked={item.show} className="my-trips-item-check"/> */}
-                        <input type="checkbox" checked={item.show} className="my-trips-item-check" />
+                        <input type="checkbox" readOnly checked={item.show} className="my-trips-item-check" />
                         <div className="my-trips-item-name">
                             {item.name}
                         </div>

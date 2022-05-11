@@ -1,12 +1,54 @@
 .new-trip-view {
     background-color: white;
+    padding: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 14px;
     padding-bottom: 14px;
+    position: relative;
+    top: 80%;
+    right: 50%;
+    left: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    top: -100px;
+    border-style: solid;
+    border-width: 0.5px;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+
+
+/* 
+    background-color: white;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    height: 50px;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    top: -100px;
+    align-items: center;
+    justify-content: center;
+    border-style: solid;
+    border-width: 0.5px; */
+
     /* overflow: auto; */
     /* height: 200px; */
+}
+
+.new-trip-view-name {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 14px;
+    padding-bottom: 14px;
 }
 
 .search-component {
@@ -56,6 +98,10 @@
     background-color: rgb(255, 214, 167);
 }
 
+#close {
+    background-color: rgb(246, 132, 132);
+    margin-right: 5px;
+}
 #save:hover {
     background-color: rgb(251, 242, 231);
     border-color:rgb(255, 214, 167);
@@ -165,4 +211,8 @@
 .confirmation-icon {
     font-size: 20px;
     color:rgb(161, 240, 177);
+}
+.stop-icon{
+    font-size: 20px;
+    color:rgb(240, 161, 177);
 }

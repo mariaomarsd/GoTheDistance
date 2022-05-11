@@ -74,6 +74,10 @@ function EditNewTripView(props){
         props.updateOrder(items)
     }
     
+    function cancelCB(){
+        props.cancel();
+    }
+    
     return(
         <div className="new-trip-view"
             // initial={{ height: 0 }} 
@@ -93,16 +97,21 @@ function EditNewTripView(props){
                 Add
             </button>
           </div>
-          <div>
+            <div className="scroll">
               {/* Start location */}
               <Reorder.Group className="new-trips-item-list" values={items} onReorder={setItems}>
                   {items.map(renderListItemCB)}
               </Reorder.Group>
               {/* End location */}
-          </div>
-          <button className="new-trip-button" id="save" onClick={saveTripACB}>
-            Save Trip
-          </button>
+            </div>
+            <div className="new-trip-button-container">
+            <button className="new-trip-button" id="close" onClick={cancelCB}>
+                Cancel
+            </button>
+            <button className="new-trip-button" id="save" onClick={saveTripACB}>
+                Save Trip
+            </button>
+            </div>
         </div>
     );
 }
