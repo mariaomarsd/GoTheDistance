@@ -42,9 +42,10 @@ class TripsModel {
         this.notifyObservers();
     }
 
-    updateLocationList(trip) {
+    updateLocationList(trip, dist) {
         var ind = this.myTripsList.indexOf(trip);
         this.myTripsList[ind].locations = this.newList;
+        this.myTripsList[ind].distanceNewTrip = dist;
         this.newList = [];
         // this.myTripsList[ind].locations = this.newTripsLocationList;
         // this.newTripsLocationList = [];
