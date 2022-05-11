@@ -103,7 +103,8 @@ function MyTripsPresenter(props) {
                 myTripsList={tripList}
                 setVisibleTrips={setVisibleTripsCB}
                 setTripToChange={setTripToChange}
-                editTrip  = {setTripToEditACB}
+                editTrip={setTripToEditACB}
+                model={props.model}
             />}
             {editTrip && 
                 <EditTripView 
