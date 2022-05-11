@@ -29,6 +29,9 @@ const pathOptions = {
 
 function MapPresenter(props){
 
+    localStorage.getItem('token')
+    console.log(localStorage.getItem('token'))
+
     useEffect(observerCB, []);
 
     const mapRef = useRef(); // part of move mapview to chosen destination

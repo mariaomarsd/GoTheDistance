@@ -8,7 +8,6 @@ class TripsModel {
         this.newTripsLocationList = newTripsLocationList;
         this.myTripsList = myTripsList;
         this.observers = [];
-        //this.uid = uid; 
     }
 
     /* Safe location to new trips list in the model (not safe to the database) */
@@ -17,10 +16,19 @@ class TripsModel {
         this.notifyObservers();
     }
 
-    editTrip(locationList) {
-        this.newTripsLocationList  = locationList;
+    editTrip(trip) {
+        this.newTripsLocationList  = trip.locations;
         this.notifyObservers();
     }
+
+    updateLocationList(trip, newLocationList) {
+        var ind = this.myTripsList.indexOf(trip);
+        this.myTripsList[ind].locations = this.newTripsLocationList;
+        this.newTripsLocationList = [];
+        this.notifyObservers({tripToAdd: trip, uid: localStorage.getItem('userId')});
+    }
+
+
 
     // signIn(uid) {
     //     this.uid = uid;
@@ -50,8 +58,8 @@ class TripsModel {
     saveTrip(item) {
         this.myTripsList = [...this.myTripsList, item];
         this.newTripsLocationList = [];
-        // console.log("Current My item: ", item);
-        this.notifyObservers({tripToAdd: item, uid: ReactSession.get("uid")});
+        console.log("Can save ", localStorage.getItem('userId'));
+        this.notifyObservers({tripToAdd: item, uid: localStorage.getItem('userId')});
     }
 
     setMyTripsList(list) {

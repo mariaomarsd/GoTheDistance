@@ -57,12 +57,12 @@ function SidebarView(props) {
     const { height } = useDimensions(containerRef);
 
     function setVisibleCB(id) {
-        if(visibleList[0] === true) {
-            props.setLoc(1)
-        }
-        else{
-            props.setLoc(0)
-        }
+        // if(visibleList[0] === true) {
+        //     props.setLoc(1)
+        // }
+        // else{
+        //     props.setLoc(0)
+        // }
         visibleList[id] = !visibleList[id];
         setVisibleList(visibleList);
     }

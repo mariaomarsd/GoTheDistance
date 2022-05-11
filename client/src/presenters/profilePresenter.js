@@ -14,37 +14,41 @@ const auth = getAuth();
 function ProfilePresenter(props) {
 
     const [isVisible, setIsVisible] = useState();
-    const [loggedIn, setLoggedIn] = useState(ReactSession.get("uName"));
+    // const [loggedIn, setLoggedIn] = useState(ReactSession.get("uName"));
 
-    function setVisibleCB() {
-        props.setVisible(3)
-        setIsVisible(props.visible[3]);
-        setLoggedIn(ReactSession.get("uName"));
-    }
+    // function setVisibleCB() {
+    //     props.setVisible(3)
+    //     setIsVisible(props.visible[3]);
+    //     setLoggedIn(ReactSession.get("uName"));
+    // }
 
-    function removeCredentialsCB(){
-        ReactSession.set("uid", null);
-        ReactSession.set("uName", null);
-        setLoggedIn(ReactSession.get("uName"));
-    }
+    // function removeCredentialsCB(){
+    //     ReactSession.set("uid", null);
+    //     ReactSession.set("uName", null);
+    //     setLoggedIn(ReactSession.get("uName"));
+    // }
 
     function signoutCB() {
-        signOut(auth)
-            .then(removeCredentialsCB)
-            .then(props.isLoggedIn)
+        // signOut(auth)
+        //     .then(removeCredentialsCB)
+        //     .then(props.isLoggedIn)
+        //     .catch((error) => {console.log("error", error.message)});
+         signOut(auth)
+            .then(props.logout)
             .catch((error) => {console.log("error", error.message)});
     }
 
-    function loginCB(){
+
+    // function loginCB(){
         
-    }
+    // }
 
     return(
         <div className="user-view">
             <ProfileView 
                 signout = {signoutCB}
-                loggedInUser = {loggedIn}
-                login = {loginCB}
+                loggedInUser={props.loggedIn}
+                // login = {loginCB}
             />
             {/* <div className="sidebar-titles" onClick={setVisibleCB}>
                 PROFILE

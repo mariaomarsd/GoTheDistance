@@ -24,8 +24,10 @@ function ReactRoot() {
   // const [model, setModel] = useState();
   
   useEffect(function onStartACB() {
-      updateFirebaseFromModel(tripsModel)
+    updateModelFromFirebase(tripsModel, localStorage.getItem('userId'));
+    updateFirebaseFromModel(tripsModel)
   }, [])
+
   return (
     <BrowserRouter>
       <App model={tripsModel}/>
