@@ -18,6 +18,8 @@ function StatisticsPresenter(props) {
     const [numberOfPlaces, setNumberOfPlaces] = useState();
     const [numberOfCountries, setNumberOfCountries] = useState();
     const [totalDistance, setTotalDistance] = useState();
+    const [getListOfPlaces, setListOfPlaces] = useState();
+    const [getListOfCountries, setListOfCountries] = useState();
     
     function setVisibleCB() {
         props.setVisible(2)
@@ -55,13 +57,13 @@ function StatisticsPresenter(props) {
         var listOfCountries = [];
         var tempArray = [];
        
-        console.log("PLACES", listOfPlaces);
-        console.log("Countries: ", listOfCountries);
         temp.map(updateListOfPlaces)
         setNumberOfPlaces(listOfPlaces.length);
         setNumberOfCountries(listOfCountries.length);
+        setListOfPlaces(listOfPlaces);
+        setListOfCountries(listOfCountries);
        
-        return listOfPlaces.length, listOfCountries.length;        
+        return listOfPlaces.length, listOfCountries.length, listOfPlaces, listOfCountries;        
     }
 
     return(
@@ -81,7 +83,11 @@ function StatisticsPresenter(props) {
             {isVisible && <StatisticsView myTripsList={props.model.myTripsList}
                 numberOfPlaces = {numberOfPlaces}
                 totalDistance = {totalDistance}
-                numberOfCountries = {numberOfCountries} />}
+                numberOfCountries = {numberOfCountries}
+                ListOfPlaces = {getListOfPlaces}
+                ListOfCountries = {getListOfCountries}
+             />}
+
         </motion.div>
     );
 }
