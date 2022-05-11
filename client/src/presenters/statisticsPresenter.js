@@ -1,6 +1,5 @@
 import { FundViewOutlined } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
-// import "../styles/presenters.css";
 import { motion } from "framer-motion";
 
 const StatisticsView = require("../views/statisticsView.js").default;
@@ -19,7 +18,7 @@ function StatisticsPresenter(props) {
     useEffect(listChangedCB ,[props.model.myTripsList]);
 
     function listChangedCB(){
-        getNumberOfPlacesCB();
+        getStatisticsFromTripsCB();
         getTotalKM();
     }
 
@@ -45,10 +44,9 @@ function StatisticsPresenter(props) {
         return totalDistance;
     }
 
-    function getNumberOfPlacesCB() {
-        function updateListOfPlaces(trip) {
-            function addToListCB(location) {
-                console.log("Location", location);
+    function getStatisticsFromTripsCB() {
+        function updateStatisticsLists(trip) {
+            function addToListsCB(location) {
                 if(!listOfPlaces.includes(location["name"])) {
                     listOfPlaces.push(location["name"]);
                     let text = location["name"];
@@ -59,17 +57,18 @@ function StatisticsPresenter(props) {
                     }
                 }
             }
-            trip.locations.forEach(addToListCB);
+            trip.locations.forEach(addToListsCB);
         }
         var temp = props.model.myTripsList;
         var listOfPlaces = [];
         var listOfCountries = [];
         var tempArray = [];
        
-        temp.map(updateListOfPlaces)
+        temp.map(updateStatisticsLists);
+        
         setNumberOfPlaces(listOfPlaces.length);
-        setNumberOfCountries(listOfCountries.length);
         setListOfPlaces(listOfPlaces);
+        setNumberOfCountries(listOfCountries.length);
         setListOfCountries(listOfCountries);
        
         return listOfPlaces.length, listOfCountries.length, listOfPlaces, listOfCountries;        
@@ -94,7 +93,6 @@ function StatisticsPresenter(props) {
                 ListOfPlaces = {getListOfPlaces}
                 ListOfCountries = {getListOfCountries}
              />}
-
         </motion.div>
     );
 }
