@@ -24,7 +24,8 @@ function ReactRoot() {
   // const [model, setModel] = useState();
   
   useEffect(function onStartACB() {
-    updateModelFromFirebase(tripsModel, localStorage.getItem('userId'))
+    updateModelFromFirebase(tripsModel, localStorage.getItem('userId'));
+    updateFirebaseFromModel(tripsModel)
   }, [])
 
   return (

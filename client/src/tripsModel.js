@@ -25,7 +25,7 @@ class TripsModel {
         var ind = this.myTripsList.indexOf(trip);
         this.myTripsList[ind].locations = this.newTripsLocationList;
         this.newTripsLocationList = [];
-        this.notifyObservers({tripToAdd: trip, uid: ReactSession.get("uid")});
+        this.notifyObservers({tripToAdd: trip, uid: localStorage.getItem('userId')});
     }
 
 
@@ -58,8 +58,8 @@ class TripsModel {
     saveTrip(item) {
         this.myTripsList = [...this.myTripsList, item];
         this.newTripsLocationList = [];
-        // console.log("Current My item: ", item);
-        this.notifyObservers({tripToAdd: item, uid: ReactSession.get("uid")});
+        console.log("Can save ", localStorage.getItem('userId'));
+        this.notifyObservers({tripToAdd: item, uid: localStorage.getItem('userId')});
     }
 
     setMyTripsList(list) {
