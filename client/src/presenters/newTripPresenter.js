@@ -3,8 +3,6 @@ import * as geometry from 'spherical-geometry-js';
 import randomColor from "randomcolor";
 import {testReadFromDatabase} from "../firebaseModel";
 import { motion } from "framer-motion";
-import { PlusOutlined  } from '@ant-design/icons';
-
 
 const NewTripView = require("../views/newTripView.js").default;
 const EditNewTripView = require("../views/editTripView.js").default;
@@ -103,8 +101,10 @@ function NewTripPresenter(props) {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }} 
             >
-                <i className="fa-solid fa-route"></i>
-                NEW TRIP
+                <i className="fa-solid fa-route" id="sidebar-icon" style={{ color:"rgb(184, 138, 124)" }} ></i>
+                <div className="sidebar-name" style={{ borderColor:"rgb(184, 138, 124)" }} >
+                    NEW TRIP
+                </div>
             </motion.div>
             <div>   
                 {isVisible && <div><NewTripView

@@ -22,7 +22,7 @@ function AuthenticationPresenter(props){
                 </div>
                 <hr className="divide-solid"/>
                 <button className="auth-button" onClick={toggleFuntion}>
-                    {loginToggle ? <div> Need an acount? <u>SIGN UP</u> </div> : <div> Already a user? <u>LOGIN</u> </div>}
+                    {loginToggle ? <div> Need an account? <u>SIGN UP</u> </div> : <div> Already a user? <u>LOGIN</u> </div>}
                 </button>
                
             </div>
