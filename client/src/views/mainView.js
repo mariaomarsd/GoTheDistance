@@ -3,6 +3,7 @@ import {useLoadScript} from "@react-google-maps/api";
 import { ReactSession } from "react-client-session";
 import { motion } from "framer-motion"
 import { updateModelFromFirebase } from "../firebaseModel.js";
+import ProfilePresenter from "../presenters/profilePresenter.js";
 
 const MapPresenter = require("../presenters/mapPresenter.js").default;
 const SidebarView = require("../views/sidebarView.js").default;
@@ -47,7 +48,9 @@ function MainView(props){
                 />
             </div>
             <div> {  userLoggedIn  &&
-                <div className="sidebar-container">
+                <div 
+                  className="sidebar-container"
+                  >
                     <SidebarView
                         model = {props.model} 
                         value = {isLoaded}
@@ -56,6 +59,19 @@ function MainView(props){
                         setLoc = {setInNewTripCB}
                     />
                 </div>
+                
+                }
+            </div>
+            <div> {  userLoggedIn  &&
+                <div className="user-container">
+                    <ProfilePresenter
+                        model = {props.model} 
+                        value = {isLoaded}
+                        visible = {isLoggedIn}
+                        isLoggedIn  = {isLoggedIn}
+                    />
+                </div>
+                
                 }
             </div>
             <div>

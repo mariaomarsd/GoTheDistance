@@ -1,8 +1,60 @@
+
+.user-container {
+    position: absolute;
+    top: 1%;
+    left: 75%;
+    width: 20vw;
+}
 .profile-view {
     background-color: white;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: right;
     padding-top: 14px;
     padding-bottom: 14px;
+}
+
+.user-button {
+    width: 65px;
+    height: 22px;
+    border: none;
+    font-size: 10px;
+    display: inline-block;
+    border-radius: 6px;
+    transition-duration: 0.4s;
+    opacity: 50%; 
+    margin-left: 43px; 
+    margin-top: 2px;  
+}
+
+.user-button:hover {
+    border-style: solid;
+    border: none;
+}
+
+#user {
+    background-color: lightgray;
+}
+
+#user:hover {
+    background-color: lightpink;
+    opacity: 100%;
+}
+
+.user-view {
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+#screen{
+    background-color: rgb(255, 214, 167);
+}
+
+
+.user {
+    font-size: 14px;
+    font-weight: bold;
 }

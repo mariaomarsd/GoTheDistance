@@ -1,9 +1,23 @@
 import React, { useEffect, useState } from "react";
 import * as geometry from 'spherical-geometry-js';
 import randomColor from "randomcolor";
+import {testReadFromDatabase} from "../firebaseModel";
+import { motion } from "framer-motion";
+import { PlusOutlined  } from '@ant-design/icons';
+
 
 const NewTripView = require("../views/newTripView.js").default;
 const EditNewTripView = require("../views/editTripView.js").default;
+
+const variants = {
+    open: {
+      transition: { staggerChildren: 0.07, delayChildren: 0.2 }
+    },
+    closed: {
+      transition: { staggerChildren: 0.05, staggerDirection: -1 }
+    }
+  };
+  
 
 function NewTripPresenter(props) {
     
@@ -82,11 +96,16 @@ function NewTripPresenter(props) {
     }
     
     return(
-        <div className="new-trip-presenter"
+        <motion.div className="new-trip-presenter" variants={props.variants} >
+            <motion.div 
+                className="sidebar-titles"
+                onClick={setVisibleCB}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }} 
             >
-            <div className="sidebar-titles" onClick={setVisibleCB}>
+                <i className="fa-solid fa-route"></i>
                 NEW TRIP
-            </div>
+            </motion.div>
             <div>   
                 {isVisible && <div><NewTripView
                     saveTripName = {setTripNameCB}
@@ -102,7 +121,7 @@ function NewTripPresenter(props) {
                 </div>
                 }
             </div>
-        </div>
+        </motion.div>
     );
 }
 
