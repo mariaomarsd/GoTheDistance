@@ -11,9 +11,13 @@ const REF = "gothedistance"
 function updateFirebaseFromModel(model) {
     
     function observerACB(payload) {
-        console.log('testing', payload)
+        //console.log('testing', payload)
         if(payload && payload.tripToAdd) {
             firebase.database().ref(REF+"/"+payload.uid+"/userTrips/"+payload.tripToAdd.name).set(payload.tripToAdd);
+        }
+        if(payload && payload.tripToDelete) {
+            console.log("KEMST HINGAÐ",payload.tripToDelete );
+            firebase.database().ref(REF+"/"+payload.uid+"/userTrips/"+payload.tripToDelete.name).set(null);
         }
     }
     model.addObserver(observerACB);

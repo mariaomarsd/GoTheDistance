@@ -31,7 +31,7 @@ const pathOptions = {
 function MapPresenter(props){
 
     localStorage.getItem('token')
-    console.log(localStorage.getItem('token'))
+    //console.log(localStorage.getItem('token'))
 
     useEffect(observerCB, []);
 
@@ -107,7 +107,7 @@ function MapPresenter(props){
             strokeOpacity: 1.0,
             strokeWeight: 4
         };
-        console.log('POLYLINE', trip)
+        //console.log('POLYLINE', trip)
         if(trip[2] === false) {
             return
         }

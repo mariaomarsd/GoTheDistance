@@ -51,23 +51,57 @@ const sidebar = {
 
 function SidebarView(props) {
 
-    const [visibleList, setVisibleList] = useState([false, false, false, false]);
+    const [visibleList, setVisibleList] = useState(props.model.sidebartoggle);
+    const [newTripVis, setNewTripVis] = useState(false);
+    const [myTripsVis, setMyTripVis] = useState(false);
+    const [StatisticsVis, setStatisticsVis] = useState(false);
     const [confirmationVisible, setConfirmationVisible] = useState(false);
     const [listwarningVisible, setListWarningVisible] = useState(false);
     const [isOpen, toggleOpen] = useCycle(false, true);
     const containerRef = useRef(null);
     const { height } = useDimensions(containerRef);
 
+    // toggleSidebar(toOpen){
+    //     this.sidebartoggle[toOpen] = !this.sidebartoggle[toOpen];
+    //     this.notifyObservers();
+    // }
+
     function setVisibleCB(id) {
-        // if(visibleList[0] === true) {
-        //     props.setLoc(1)
+        // for(var i = 0; visibleList.length; i++) {
+        //     // if(id === i) {
+        //     //     visibleList[i] = !visibleList[i];
+        //     //     console.log("toggle");
+        //     //     console.log(visibleList[i]);
+        //     // }
+        //     // else {
+        //     //     visibleList[i] = false;
+        //     // }
         // }
-        // else{
-        //     props.setLoc(0)
+        // visibleList[id] = !visibleList[id];
+        // setVisibleList(visibleList);
+        //var ble =  visibleList;
+        // for(var i = 0; i<visibleList.length; i++) {
+        //     visibleList[i] = !visibleList[i];
         // }
-        visibleList[id] = !visibleList[id];
-        setVisibleList(visibleList);
+        // ble[1] = !ble[1];
+        // setVisibleList(ble);
+        // console.log(visibleList);
+        // console.log(visibleList[0]);
+        // console.log(visibleList[1]);
+        // console.log("pressed", id);
+        // setNewTripVis(ble[1]);
+        // console.log("MYTRIPSVIS", myTripsVis);
+        // setMyTripVis(true);
+        // setStatisticsVis(true);
+        props.model.toggleSidebar(id);
+        console.log(props.model.sidebartoggle);
     }
+
+    // function changeVisibility(id, bool){
+    //     var temp = visibleList;
+    //     visibleList
+    //     setVisibleList()
+    // }
 
     function setConfirmationCB() {
         setConfirmationVisible(true)
@@ -101,6 +135,7 @@ function SidebarView(props) {
                         confirmation={setConfirmationCB}
                         variants={variants}
                         listWarning={setlistwarningCD}
+                        isVisible={visibleList[0]}
                     />}
                 </div>
                 <div className="sidebar-item">
@@ -110,6 +145,7 @@ function SidebarView(props) {
                         visible={visibleList}
                         setVisible={setVisibleCB}
                         variants={variants}
+                        isVisible={myTripsVis}
                     />
                 </div>
                 <div className="sidebar-item">
@@ -119,6 +155,7 @@ function SidebarView(props) {
                         visible={visibleList}
                         setVisible={setVisibleCB}
                         variants={variants}
+                        isVisible={visibleList[2]}
                     />
                 </div>
                 {confirmationVisible && <Confirm />}

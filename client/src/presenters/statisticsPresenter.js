@@ -15,23 +15,29 @@ const variants = {
 
 function StatisticsPresenter(props) {
 
-    useEffect(listChangedCB ,[props.model.myTripsList]);
-
-    function listChangedCB(){
-        getStatisticsFromTripsCB();
-        getTotalKM();
-    }
-
-    const [isVisible, setIsVisible] = useState();
+    const [isVisible, setIsVisible] = useState(props.model.sidebartoggle[2]);
     const [numberOfPlaces, setNumberOfPlaces] = useState();
     const [numberOfCountries, setNumberOfCountries] = useState();
     const [totalDistance, setTotalDistance] = useState();
     const [getListOfPlaces, setListOfPlaces] = useState();
     const [getListOfCountries, setListOfCountries] = useState();
+
+    useEffect(listChangedCB ,[]);
+
+    function listChangedCB(){
+        props.model.addObserver(doSomethingCB)
+    }
+
+    function doSomethingCB(){
+        getStatisticsFromTripsCB();
+        getTotalKM();
+        setIsVisible(props.model.sidebartoggle[2]);
+    }
     
     function setVisibleCB() {
-        props.setVisible(2)
-        setIsVisible(props.visible[2]);
+        props.setVisible(2);
+        //setIsVisible(props.visible[2]);
+        console.log("stat", isVisible);
     }
 
     function getTotalKM() {

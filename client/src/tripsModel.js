@@ -1,18 +1,33 @@
-import resolvePromise from "./resolvePromise.js";
-import { ReactSession } from "react-client-session";
-
-
+// import resolvePromise from "./resolvePromise.js";
+// import { ReactSession } from "react-client-session";
 
 class TripsModel {
-    constructor(newTripsLocationList = [], myTripsList = []) {
+    constructor(newTripsLocationList = [], myTripsList = [], newList = []) {
         this.newTripsLocationList = newTripsLocationList;
         this.myTripsList = myTripsList;
+        this.newList = newList;
         this.observers = [];
+        this.sidebartoggle=[false, false, false];
+    }
+
+    toggleSidebar(toOpen){
+        this.sidebartoggle[toOpen] = !this.sidebartoggle[toOpen];
+        for(var i = 0; i<this.sidebartoggle.length; i++) {
+            if(i !== toOpen) {
+                this.sidebartoggle[i] = false;
+            }
+        }
+        this.notifyObservers();
     }
 
     /* Safe location to new trips list in the model (not safe to the database) */
     addToNewTrip(item) {
         this.newTripsLocationList = [...this.newTripsLocationList, item];
+        this.notifyObservers();
+    }
+
+    addToNewList(item){
+        this.newList = [...this.newList, item];
         this.notifyObservers();
     }
 
@@ -22,25 +37,22 @@ class TripsModel {
     }
 
     editTrip(trip) {
-        this.newTripsLocationList  = trip.locations;
+        this.newList = trip.locations;
+        // this.newTripsLocationList  = trip.locations;
         this.notifyObservers();
     }
 
     updateLocationList(trip) {
         var ind = this.myTripsList.indexOf(trip);
-        this.myTripsList[ind].locations = this.newTripsLocationList;
-        this.newTripsLocationList = [];
+        this.myTripsList[ind].locations = this.newList;
+        this.newList = [];
+        // this.myTripsList[ind].locations = this.newTripsLocationList;
+        // this.newTripsLocationList = [];
         this.notifyObservers({tripToAdd: trip, uid: localStorage.getItem('userId')});
     }
 
-
-    // signIn(uid) {
-    //     this.uid = uid;
-    // }
-
     /* Remove location from the new trip list in the model */
     removeFromNewTrip(id) {
-        
         function hasSameIdCB(item) {
             //console.log("removeFromNewTrip: "+ item.id + " id: "+ id )
             console.log("item.id: "+item.id+" id: "+ id)
@@ -48,7 +60,6 @@ class TripsModel {
             return id !== item.id; // change later 
         }
         this.newTripsLocationList = this.newTripsLocationList.filter(hasSameIdCB);
-        
         this.notifyObservers();
     }
 
@@ -79,8 +90,13 @@ class TripsModel {
 
     setVisableTrips(id) {
         this.myTripsList[id].show = !this.myTripsList[id].show;
-        console.log('IS ID VISIBLE ', this.myTripsList[id].show);
+        // console.log('IS ID VISIBLE ', this.myTripsList[id].show);
         this.notifyObservers();
+    }
+
+    deleteMyTrip(trip) {
+        // console.log("trip to delete", trip)
+        this.notifyObservers({tripToDelete: trip, uid: localStorage.getItem('userId')});
     }
 
     addObserver(callback) {
