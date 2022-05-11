@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { GoogleMap, useLoadScript, Polyline, Marker } from "@react-google-maps/api";
 import mapStyles from "../mapStyles";
+import mapStylesBlack from "../mapStylesBlack";
 
 const center = { // where to start the map, stockholm
     lat: 23.818858,
@@ -130,8 +131,45 @@ function MapPresenter(props){
        }catch(error){}
     }
 
+    function ChangeMapStiles(){
+
+        return (
+            <div className = "CangeMapLook">
+                
+                 <button className = "CangeMapLookToggleButton" onClick={rotateMapStiles} value="White" id="CangeMapLookToggleButton">
+                 Change map style
+                 </button>
+            </div>
+        ) 
+    }
+    function rotateMapStiles(){
+        var button = document.getElementById("CangeMapLookToggleButton");
+        
+        const optionsBlack = {
+            backgroundColor: "light blue",
+            styles: mapStylesBlack,
+            disableDefaultUI: true,
+            zoomControl: true,
+            minZoom: 3,
+            maxZoom: 6,
+        };
+
+        if(button.value === "Black" ){
+            mapRef.current.setOptions(options);
+            button.value = "White";
+            
+        }
+        else if(button.value === "White" ){
+            mapRef.current.setOptions(optionsBlack);
+            button.value = "Black";
+            
+        }
+        
+    }
+
     return(
           <div>
+              {<ChangeMapStiles/>}
               {props.value && <GoogleMap id="map"
                 mapContainerStyle={mapContainerStyle}
                 zoom={3}
@@ -158,9 +196,14 @@ function MapPresenter(props){
                 })}
                 {/*center the map view on the place most recently chosen*/
                 moveViewinMap(newTripPathList)}
-                </GoogleMap>}
+                
+                </GoogleMap>
+                }{<ChangeMapStiles/>}
+                
           </div>
       );
 }
+
+
 
 export default MapPresenter;
