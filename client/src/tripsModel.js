@@ -8,7 +8,6 @@ class TripsModel {
         this.newTripsLocationList = newTripsLocationList;
         this.myTripsList = myTripsList;
         this.observers = [];
-        //this.uid = uid; 
     }
 
     /* Safe location to new trips list in the model (not safe to the database) */
@@ -17,10 +16,19 @@ class TripsModel {
         this.notifyObservers();
     }
 
-    editTrip(locationList) {
-        this.newTripsLocationList  = locationList;
+    editTrip(trip) {
+        this.newTripsLocationList  = trip.locations;
         this.notifyObservers();
     }
+
+    updateLocationList(trip, newLocationList) {
+        var ind = this.myTripsList.indexOf(trip);
+        this.myTripsList[ind].locations = this.newTripsLocationList;
+        this.newTripsLocationList = [];
+        this.notifyObservers({tripToAdd: trip, uid: ReactSession.get("uid")});
+    }
+
+
 
     // signIn(uid) {
     //     this.uid = uid;

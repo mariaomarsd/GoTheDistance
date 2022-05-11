@@ -7,8 +7,6 @@ function EditNewTripView(props){
     useEffect(listChangedCB, [props.locationList]);
     const [chosen, setChosen] = useState();
     const [items, setItems] = useState(props.locationList);
-    // const [visible, setVisisble] = useState(false);
-    // const [confirmVisible, setConfirmVisible] = useState(false);
 
     const {
         ready, // is it set up and redy to go with libraries, see above  in app function
@@ -28,31 +26,22 @@ function EditNewTripView(props){
         } catch (error) {
             console.log(" Error: ", error);
         }
-        // console.log("items", items)
     }
 
     function listChangedCB(){
-        // console.log("NUNA");
         setItems(props.locationList)
-        // console.log(" OG SVO NUNA", items);
     }
 
     function addToTripACB() {
-        // console.log("first", items)
         props.addToTrip(chosen);
         console.log("now", items)
-        // props.addToTrip(items)
     }
 
-    // id is name temp
     function removeFromTripACB(id) {
         props.removeFromTrip(id);
-        // console.log("remove list?", props.locationList);
     }
 
     function renderListItemCB(item) {
-        // console.log("eitt item", items)
-        // props.updateOrder(items)
         updateOrdertest()
         return <Reorder.Item className="new-trip-item" key={item.name} value={item} >
                     <button className="new-trip-item-button" onClick={() => removeFromTripACB(item.name)}>
@@ -66,13 +55,10 @@ function EditNewTripView(props){
     }
 
     function saveTripACB() {
-        // console.log('SAVED', items)
         props.confirmTrip({locations: items, show: true, color: ""});
-        //setVisisble(false);
     }
 
     function updateOrdertest() {
-        // console.log('NOW', items)
         props.updateOrder(items)
     }
     
