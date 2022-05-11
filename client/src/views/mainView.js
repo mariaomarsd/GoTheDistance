@@ -54,7 +54,9 @@ function MainView(props){
                 />
             </div>
             <div> {  userLoggedIn  &&
-                <div className="sidebar-container">
+                <div 
+                  className="sidebar-container"
+                  >
                     <SidebarView
                         model = {props.model} 
                         value = {isLoaded}

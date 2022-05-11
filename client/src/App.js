@@ -4,7 +4,7 @@ import "@reach/combobox/styles.css";
 
 import './styles/mainView.css';
 import "./styles/presenters.css";
-import "./styles/sidebarView.css";
+import "./styles/sidebar.css";
 import "./styles/newTrip.css";
 import "./styles/myTrips.css";
 import "./styles/statistics.css";

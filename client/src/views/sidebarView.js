@@ -63,9 +63,7 @@ const sidebar = {
 function SidebarView(props) {
 
     const [visibleList, setVisibleList] = useState([false, false, false, false]);
-
     const [confirmationVisible, setConfirmationVisible] = useState(false);
-    
     const [isOpen, toggleOpen] = useCycle(false, true);
     const containerRef = useRef(null);
     const { height } = useDimensions(containerRef);
@@ -87,19 +85,20 @@ function SidebarView(props) {
     }
 
     return(
-        <motion.nav className="sidebar-view"
-            // animate={{ x: -50 }}
-            // transition={{ ease: "easeOut", duration: 2 }}
-            initial={false}
-            animate={isOpen ? "open" : "closed"}
-            custom={height}
-            ref={containerRef}
-        >
-        <MenuToggle toggle={() => toggleOpen()} />
-        {props.visible  &&
-            <motion.div
-                variants={sidebar}
+        <>
+        {props.visible  && <motion.nav 
+                className="sidebar-view"
+                initial={false}
+                animate={isOpen ? "open" : "closed"}
+                custom={height}
+                ref={containerRef}
             >
+            <motion.div
+                className="sidebar-background"
+                style={{ height: height }}
+                variants={sidebar}
+            />
+            <div className="sidebar-item-list">
                 <div className="sidebar-item" >
                     {props.value && <NewTripPresenter
                         model = {props.model}
@@ -138,10 +137,10 @@ function SidebarView(props) {
                 </div>
                 
                 {confirmationVisible && <Confirm />}
-            </motion.div>
-        }
-        
-        </motion.nav>
+            </div>
+            <MenuToggle toggle={() => toggleOpen()} />
+        </motion.nav>}
+        </>
     );
 }
 

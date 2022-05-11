@@ -5,6 +5,15 @@ import { motion } from "framer-motion";
 
 const StatisticsView = require("../views/statisticsView.js").default;
 
+const variants = {
+    open: {
+      transition: { staggerChildren: 0.07, delayChildren: 0.2 }
+    },
+    closed: {
+      transition: { staggerChildren: 0.05, staggerDirection: -1 }
+    }
+  };
+
 function StatisticsPresenter(props) {
 
     useEffect(listChangedCB ,[props.model.myTripsList]);
@@ -67,20 +76,18 @@ function StatisticsPresenter(props) {
     }
 
     return(
-        <motion.div className="statistics-presenter"
-            // variants={props.variants}
-            // whileHover={{ scale: 1.1 }}
-            // whileTap={{ scale: 0.95 }}
-        >
-            <motion.div className="sidebar-titles" 
-                variants={props.variants}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
+        <motion.div className="statistics-presenter" variants={props.variants} >
+            <motion.div 
+                className="sidebar-titles"
                 onClick={setVisibleCB}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }} 
             >
+                <i className="fa-solid fa-arrow-trend-up"></i>
                 STATISTICS
             </motion.div>
-            {isVisible && <StatisticsView myTripsList={props.model.myTripsList}
+            {isVisible && <StatisticsView 
+                myTripsList={props.model.myTripsList}
                 numberOfPlaces = {numberOfPlaces}
                 totalDistance = {totalDistance}
                 numberOfCountries = {numberOfCountries}
