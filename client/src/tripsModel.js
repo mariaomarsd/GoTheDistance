@@ -1,7 +1,5 @@
-import resolvePromise from "./resolvePromise.js";
-import { ReactSession } from "react-client-session";
-
-
+// import resolvePromise from "./resolvePromise.js";
+// import { ReactSession } from "react-client-session";
 
 class TripsModel {
     constructor(newTripsLocationList = [], myTripsList = [], newList = []) {
@@ -53,14 +51,8 @@ class TripsModel {
         this.notifyObservers({tripToAdd: trip, uid: localStorage.getItem('userId')});
     }
 
-
-    // signIn(uid) {
-    //     this.uid = uid;
-    // }
-
     /* Remove location from the new trip list in the model */
     removeFromNewTrip(id) {
-        
         function hasSameIdCB(item) {
             //console.log("removeFromNewTrip: "+ item.id + " id: "+ id )
             console.log("item.id: "+item.id+" id: "+ id)
@@ -68,7 +60,6 @@ class TripsModel {
             return id !== item.id; // change later 
         }
         this.newTripsLocationList = this.newTripsLocationList.filter(hasSameIdCB);
-        
         this.notifyObservers();
     }
 
@@ -99,8 +90,13 @@ class TripsModel {
 
     setVisableTrips(id) {
         this.myTripsList[id].show = !this.myTripsList[id].show;
-        console.log('IS ID VISIBLE ', this.myTripsList[id].show);
+        // console.log('IS ID VISIBLE ', this.myTripsList[id].show);
         this.notifyObservers();
+    }
+
+    deleteMyTrip(trip) {
+        // console.log("trip to delete", trip)
+        this.notifyObservers({tripToDelete: trip, uid: localStorage.getItem('userId')});
     }
 
     addObserver(callback) {

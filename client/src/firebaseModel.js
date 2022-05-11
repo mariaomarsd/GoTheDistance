@@ -15,6 +15,10 @@ function updateFirebaseFromModel(model) {
         if(payload && payload.tripToAdd) {
             firebase.database().ref(REF+"/"+payload.uid+"/userTrips/"+payload.tripToAdd.name).set(payload.tripToAdd);
         }
+        if(payload && payload.tripToDelete) {
+            console.log("KEMST HINGAÐ",payload.tripToDelete );
+            firebase.database().ref(REF+"/"+payload.uid+"/userTrips/"+payload.tripToDelete.name).set(null);
+        }
     }
     model.addObserver(observerACB);
 }

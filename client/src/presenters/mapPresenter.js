@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { GoogleMap, useLoadScript, Polyline, Marker } from "@react-google-maps/api";
 import mapStyles from "../mapStyles";
+import mapStylesBlack from "../mapStylesBlack";
 
 const center = { // where to start the map, stockholm
     lat: 23.818858,
@@ -62,12 +63,14 @@ function MapPresenter(props){
         var temp = []
         var temp_color = []
         var temp_show = []
+        var temp_name = []
         myList.forEach(item => {
-            delete item['name'];
+            // delete item['name'];
             // delete item['show'];
-            delete item['distanceNewTrip'];
+            // delete item['distanceNewTrip'];
             temp_color.push(item.color)
             temp_show.push(item.show)
+            temp_name.push(item.name)
             // console.log("TEMpo color", temp_color)
         });
         for(var i = 0; i<myList.length; i++) {
@@ -78,6 +81,7 @@ function MapPresenter(props){
             });
             latLng[1] = temp_color[i]
             latLng[2] = temp_show[i]
+            latLng[3] = temp_name[i]
             temp.push(latLng)
         }
         setMyTripsPathList(temp);
@@ -107,7 +111,18 @@ function MapPresenter(props){
         if(trip[2] === false) {
             return
         }
-        return <Polyline key={trip[1]} path={trip[0]} options={myTripsPathOptions}/>
+        return <><Polyline key={trip[1]} path={trip[0]} options={myTripsPathOptions}>
+                    <div className="test-hover" >
+                        hallo hæ
+                    </div>
+                    </Polyline>
+                    <Marker key={trip[1]}
+                        position={trip[0][0]}
+                        // icon={{url:  "/BlackAndWhite-marker.png"}}
+                        label={trip[3]}
+                        // styles={{size:"20px"}}
+                    />
+                </> 
     }
 
     function moveViewinMap(locationList){
@@ -116,8 +131,45 @@ function MapPresenter(props){
        }catch(error){}
     }
 
+    function ChangeMapStiles(){
+
+        return (
+            <div className = "CangeMapLook">
+                
+                 <button className = "CangeMapLookToggleButton" onClick={rotateMapStiles} value="White" id="CangeMapLookToggleButton">
+                 Change map style
+                 </button>
+            </div>
+        ) 
+    }
+    function rotateMapStiles(){
+        var button = document.getElementById("CangeMapLookToggleButton");
+        
+        const optionsBlack = {
+            backgroundColor: "light blue",
+            styles: mapStylesBlack,
+            disableDefaultUI: true,
+            zoomControl: true,
+            minZoom: 3,
+            maxZoom: 6,
+        };
+
+        if(button.value === "Black" ){
+            mapRef.current.setOptions(options);
+            button.value = "White";
+            
+        }
+        else if(button.value === "White" ){
+            mapRef.current.setOptions(optionsBlack);
+            button.value = "Black";
+            
+        }
+        
+    }
+
     return(
           <div>
+              {<ChangeMapStiles/>}
               {props.value && <GoogleMap id="map"
                 mapContainerStyle={mapContainerStyle}
                 zoom={3}
@@ -129,23 +181,29 @@ function MapPresenter(props){
                     path={newTripPathList}
                     options={pathOptions}
                 /> 
+                {/* <FontAwesomeIcon icon="fa-solid fa-location-pin" /> */}
                 {/* Draw polyline for all trips that are in my trips */}
                 {myTripsPathList.map(renderPolyline)}
                 {/* Draw markers for the new trip that is created */}
                 { newTripPathList.map((item, index) => {                      
                         return (
                         <Marker key= {(index+1).toString()}
-                        position = {item}
-                        icon = {{ url: "/BlackAndWhite-marker.png" }}
-                        label = {(index+1).toString()}
+                            position = {item}
+                            icon = {{ url: "/BlackAndWhite-marker.png" }}
+                            label = {(index+1).toString()}
                     /> );
                     
                 })}
                 {/*center the map view on the place most recently chosen*/
                 moveViewinMap(newTripPathList)}
-                </GoogleMap>}
+                
+                </GoogleMap>
+                }{<ChangeMapStiles/>}
+                
           </div>
       );
 }
+
+
 
 export default MapPresenter;

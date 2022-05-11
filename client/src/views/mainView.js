@@ -4,6 +4,8 @@ import { ReactSession } from "react-client-session";
 import { motion } from "framer-motion"
 import { updateModelFromFirebase } from "../firebaseModel.js";
 import ProfilePresenter from "../presenters/profilePresenter.js";
+import SiteInfo from "../components/siteInfo.js";
+
 // import { getAuth } from "@firebase/auth";
 // import firebase from "firebase/compat/app";
 // import firebaseConfig from "../firebaseConfig";
@@ -12,9 +14,6 @@ const MapPresenter = require("../presenters/mapPresenter.js").default;
 const SidebarView = require("../views/sidebarView.js").default;
 const AuthenticationPresenter = require("../presenters/authenticationPresenter").default;
 
-// firebase.initializeApp(firebaseConfig);
-// const auth = getAuth();
-
 const libraries = ["places", "geometry"];
 
 function MainView(props){
@@ -22,37 +21,46 @@ function MainView(props){
   const{ isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries,
-    });
-
-  // const [userLoggedIn, setUserLoggedIn] = useState(ReactSession.get("uid") != null);
+  });
+  
+  const [signup, setSignup] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
-  // const [username, setUsername] = useState("");
 
   useEffect(() => {
     setUserLoggedIn(localStorage.getItem('loggedin')=="true")
   },[])
 
   function isLoggedIn(){
-      setUserLoggedIn(true);
-      // props.model.signIn(ReactSession.get("uid"));
-      console.log("USER ID MODEL", localStorage.getItem("userId"))
-      updateModelFromFirebase(props.model, localStorage.getItem("userId"));
-      // setUsername(ReactSession.get("uid"))
-      // console.log("session", ReactSession.get("uid"));
-      // console.log("model", ReactSession.get("uid"));
-      // console.log('USERNAME', username)
-    }
+    setUserLoggedIn(true);
+    // console.log("USER ID MODEL", localStorage.getItem("userId"))
+    setSignup(localStorage.getItem("firstSignin")=="true")
+    updateModelFromFirebase(props.model, localStorage.getItem("userId"));
+  }
 
   function logout() {
+    localStorage.removeItem('firstSignin');
+    // localStorage.clear()
     setUserLoggedIn(false);
   }
 
+  function continueSignup() {
+    setSignup(false)
+  }
+
+
+
   return(
       <div className="main-view">
+       
           <div className={ userLoggedIn ? "map-container" : "map-blur"}>
               <MapPresenter value={isLoaded}
                 model={props.model}
               />
+          </div>
+          <div className="logo">GO THE DISTANCE
+            <div className="logo-icon">
+              <i className="fa-solid fa-paper-plane"></i>
+            </div>
           </div>
           <div> {  userLoggedIn  &&
               <div 
@@ -69,18 +77,17 @@ function MainView(props){
               }
           </div>
           <div> {  userLoggedIn  &&
+              <>
               <div className="user-container">
-                  <ProfilePresenter
-                      model = {props.model} 
-                      value = {isLoaded}
-                      // visible = {isLoggedIn}
-                      // isLoggedIn  = {userLoggedIn}
-                      loggedIn={userLoggedIn}
-                      logout={logout}
-                  />
+                <ProfilePresenter
+                  model={props.model}
+                  value={isLoaded}
+                  // visible = {isLoggedIn}
+                  // isLoggedIn  = {userLoggedIn}
+                  loggedIn={userLoggedIn}
+                  logout={logout} />
               </div>
-              
-              }
+            </>}
           </div>
           <div>
           {!userLoggedIn && <motion.div 
@@ -94,8 +101,11 @@ function MainView(props){
               <AuthenticationPresenter
                   visible = {!userLoggedIn}
                   isLoggedIn = {isLoggedIn}
+                  // setFirstSignin={setFirstSignin}
+                  
               />
           </motion.div>}
+          {signup && <SiteInfo click={continueSignup}/>}
           </div>
       </div>
   );
