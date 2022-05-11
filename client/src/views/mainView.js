@@ -35,6 +35,7 @@ function MainView(props){
   function isLoggedIn(){
       setUserLoggedIn(true);
       // props.model.signIn(ReactSession.get("uid"));
+      console.log("USER ID MODEL", localStorage.getItem("userId"))
       updateModelFromFirebase(props.model, localStorage.getItem("userId"));
       // setUsername(ReactSession.get("uid"))
       // console.log("session", ReactSession.get("uid"));
