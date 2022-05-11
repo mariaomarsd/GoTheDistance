@@ -82,8 +82,8 @@ function StatisticsPresenter(props) {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }} 
             >
-                <i className="fa-solid fa-arrow-trend-up" id="sidebar-icon" style={{ color:"pink" }}></i>
-                <div className="sidebar-name">
+                <i className="fa-solid fa-arrow-trend-up" id="sidebar-icon" style={{ color:"rgb(234, 201, 181)" }}></i>
+                <div className="sidebar-name" style={{ borderColor:"rgb(234, 201, 181)" }}>
                     STATISTICS
                 </div>
             </motion.div>

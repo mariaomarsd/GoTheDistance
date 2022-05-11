@@ -4,7 +4,6 @@ import { motion, useCycle } from "framer-motion";
 import { useDimensions } from "./usedeme.js";
 import { MenuToggle } from "./menuToggle.js";
 
-
 const NewTripPresenter = require("../presenters/newTripPresenter.js").default;
 const MyTripsPresenter = require("../presenters/myTripsPresenter.js").default;
 const StatisticsPresenter = require("../presenters/statisticsPresenter.js").default;
@@ -28,16 +27,6 @@ const variants = {
       }
     }
   };
-
-
-//   const variants2 = {
-//     open: {
-//       transition: { staggerChildren: 0.07, delayChildren: 0.2 }
-//     },
-//     closed: {
-//       transition: { staggerChildren: 0.05, staggerDirection: -1 }
-//     }
-//   };
 
 const sidebar = {
     open: (height = 1000) => ({
@@ -94,7 +83,7 @@ function SidebarView(props) {
             >
             <motion.div
                 className="sidebar-background"
-                style={{ height: height }}
+                style={{ height: "40vh" }}
                 variants={sidebar}
             />
             <div className="sidebar-item-list">
