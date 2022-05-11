@@ -46,6 +46,7 @@ function SignUpPresenter(props){
                 localStorage.setItem('loggedin', true);
                 localStorage.setItem('username', user.displayName);
                 localStorage.setItem('userId', userId);
+                localStorage.setItem('firstSignin', true);
                 setUsername("");
                 setEmail("");
                 setPassword("");
