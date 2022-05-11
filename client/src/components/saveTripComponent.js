@@ -15,6 +15,7 @@ function SaveTripPopup(props){
             <input
                 placeholder="Name your trip"
                 id="trip-name"
+                autoComplete="off"
             />
             <div className="save-trip-button-container">
                 <button onClick={props.cancel} className="new-trip-button" id="cancel" >Cancel</button>

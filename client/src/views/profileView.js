@@ -2,19 +2,20 @@ import React from "react";
 
 function ProfileView(props) {
     function signoutCB(){
+        localStorage.setItem("loggedin", false)
         props.signout();
     }
-    function loginCB(){
-        //props.login();
-    }
+    // function loginCB(){
+    //     //props.login();
+    // }
     return(
 
         <div className="user-container">
             <div> 
-                {props.loggedInUser != null && 
+                {localStorage.getItem('loggedin') == "true" && 
                     <div className="user-view">
                         {/* <i className="fa-solid fa-user"></i> */}
-                        <span className="user">Welcome {props.loggedInUser}!</span>
+                        <span className="user">Welcome {localStorage.getItem("username")}!</span>
                         <div> 
                             <button className="user-button" id="user"onClick={signoutCB}>
                                 Sign out
@@ -24,10 +25,10 @@ function ProfileView(props) {
                 }
             </div>
 
-            <div>
+            {/* <div>
                 {props.loggedInUser == null && 
                 <button onClick={loginCB}>Log in</button>}
-            </div>
+            </div> */}
         </div>
         
         // <div className="user-container">

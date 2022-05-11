@@ -12,6 +12,9 @@ import "./styles/profile.css"
 
 const MainView = require("./views/mainView.js").default;
 
+
+
+
 export default function App(props) {
   return (
     <div className="app">
