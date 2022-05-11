@@ -24,7 +24,8 @@
     transition-duration: 0.4s;
     opacity: 50%; 
     margin-left: 43px; 
-    margin-top: 2px;  
+    margin-top: 2px;
+    cursor: pointer;
 }
 
 .user-button:hover {

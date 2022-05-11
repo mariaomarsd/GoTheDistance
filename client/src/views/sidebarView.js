@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Confirm from "../components/confirm.js";
 import { motion, useCycle } from "framer-motion";
-import { useDimensions } from "./usedeme.js";
-import { MenuToggle } from "./menuToggle.js";
+import { useDimensions } from "../components/useDimensions.js";
+import { MenuToggle } from "../components/menuToggle.js";
 import ListWarning from "../components/listTooShort";
 
 const NewTripPresenter = require("../presenters/newTripPresenter.js").default;
@@ -89,7 +89,7 @@ function SidebarView(props) {
             >
             <motion.div
                 className="sidebar-background"
-                style={{ height: "40vh" }}
+                style={{ height: height }}
                 variants={sidebar}
             />
             <div className="sidebar-item-list">
