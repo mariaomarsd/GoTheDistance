@@ -60,6 +60,13 @@ function NewTripPresenter(props) {
     }
 
     function saveTripACB(item) {
+        if(item.locations.length<2){
+            // let user know there needs to be more than one stop
+        console.log("Trip has to be more than one stop")
+        
+       }else{
+        console.log("item")
+        console.log(item)
         item.name = tripName; 
         item.distanceNewTrip = calculateDistanceCB();
         item.color = randomColor();
@@ -68,6 +75,7 @@ function NewTripPresenter(props) {
         setIsVisible(props.visible[0]);
         props.confirmation()
         setAddLocationsVisible(false);
+       }
     }
 
     function setVisibleCB() {
