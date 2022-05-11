@@ -23,7 +23,7 @@ function MainView(props){
         libraries,
   });
   
-  const [firstSignin, setFirstSignin] = useState(localStorage.getItem("firstSignin")=="true");
+  const [signup, setSignup] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -31,16 +31,20 @@ function MainView(props){
   },[])
 
   function isLoggedIn(){
-    console.log("HALLOHÆ", localStorage.getItem("firstSignin")=="true")
-    console.log("HHHHHHH", firstSignin)
     setUserLoggedIn(true);
     // console.log("USER ID MODEL", localStorage.getItem("userId"))
+    setSignup(localStorage.getItem("firstSignin")=="true")
     updateModelFromFirebase(props.model, localStorage.getItem("userId"));
   }
 
   function logout() {
     localStorage.removeItem('firstSignin');
+    // localStorage.clear()
     setUserLoggedIn(false);
+  }
+
+  function continueSignup() {
+    setSignup(false)
   }
 
   return(
@@ -94,7 +98,7 @@ function MainView(props){
                   // setFirstSignin={setFirstSignin}
               />
           </motion.div>}
-          {firstSignin && <SiteInfo />}
+          {signup && <SiteInfo click={continueSignup}/>}
           </div>
       </div>
   );

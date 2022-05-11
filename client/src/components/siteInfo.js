@@ -1,6 +1,10 @@
 
 function SiteInfo(props){
 
+    function continueOnSite() {
+        props.click(false)
+    }
+
     return(
         <div className="first-signin-view">
             <div className="site-title">
@@ -18,6 +22,9 @@ function SiteInfo(props){
             <div className="first-signin-text">
                 You can also see various statistics about your travels.
             </div>
+            <button onClick={continueOnSite}>
+                Continue on site
+            </button>
         </div>
     );
 }
