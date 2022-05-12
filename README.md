@@ -2,7 +2,7 @@
 
 ### git clone https://github.com/mariaomarsd/GoTheDistance.git
 
-### d client
+### cd client
 
 ### `npm install`
 ### `npm start`
