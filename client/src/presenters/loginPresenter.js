@@ -1,19 +1,12 @@
-import React, { useReducer, useState } from "react";
+import React, { useState } from "react";
 import LoginView from "../views/loginView";
-import { 
-    getAuth,
-    signInWithEmailAndPassword,
-    setPersistence,
-    browserSessionPersistence,
-    browserLocalPersistence,
-    onAuthStateChanged
-} from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import firebase from "firebase/compat/app";
 import firebaseConfig from "../firebaseConfig";
 import { ReactSession } from "react-client-session";
 
-
 firebase.initializeApp(firebaseConfig);
+
 const auth = getAuth();
 
 function LoginPresenter(props) {
@@ -41,6 +34,7 @@ function LoginPresenter(props) {
             ReactSession.set("uid", uid);
             ReactSession.set("uName", uName);
         }
+
         function handleError(error) {
             const errorCode = error.code;
             if(errorCode === "auth/invalid-email") {
@@ -56,12 +50,14 @@ function LoginPresenter(props) {
                 setErrorMessage(errorCode);
             }
         }
+
         if(password !== "") {
             signInWithEmailAndPassword(auth, email, password)
             .then(signIn)
             .then(props.isLoggedIn)
             .catch(handleError);
         }
+        
         else {
             setErrorMessage("Type password")
         }
