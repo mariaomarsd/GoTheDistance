@@ -135,10 +135,10 @@ function MapPresenter(props){
 
         return (
             <div className="CangeMapLook">
-                 <button className = "map-button" onClick={rotateMapStiles} value="White" id="CangeMapLookToggleButton">
+                 <button className="map-button" onClick={rotateMapStiles} value="White" id="CangeMapLookToggleButton">
                     Change map style
                     <span className="logo-icon">
-                        <i class="fa-solid fa-earth-americas"></i>
+                        <i className="fa-solid fa-earth-americas"></i>
                     </span>
                 </button>
             </div>
