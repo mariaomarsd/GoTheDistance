@@ -29,9 +29,9 @@ function NewTripView(props) {
                         id="trip-name"
                     />
                     <div className="new-trip-button-container">
-                        <button onClick={closeForm} className="new-trip-button" id="cancel" >Cancel</button>
+                        <button onClick={closeForm} className="new-trip-button" id="close" >Cancel</button>
                         <span className="confirm">
-                            <button onClick={saveTripNameACB} className="new-trip-button" id="confirm">Confirm</button>
+                            <button onClick={saveTripNameACB} className="new-trip-button" id="save">Confirm</button>
                         </span>
                     </div>
                 </div>
