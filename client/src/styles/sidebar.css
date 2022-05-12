@@ -1,17 +1,3 @@
-/* .sidebar-container {
-    position: absolute;
-    top: 10%;
-    left: 75%;
-    width: 20vw;
-    background-color: blue;
-} */
-
-/* 
-.sidebar-item {
-    border-style: solid;
-    border-width: 0.02px
-} */
-  
 .sidebar-view {
     position: absolute;
     top: 10%;
@@ -22,9 +8,6 @@
 .sidebar-toggle-button {
     outline: none;
     border: none;
-    /* -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none; */
     cursor: pointer;
     position: absolute;
     top: 18px;
@@ -72,7 +55,6 @@
 #sidebar-icon {
     padding-right: 18px;
     padding-left: 10px;
-    /* color: greenyellow; */
 }
 
 .sidebar-name {

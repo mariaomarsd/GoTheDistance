@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import "@reach/combobox/styles.css";
 
 import './styles/mainView.css';
-import "./styles/presenters.css";
 import "./styles/sidebar.css";
 import "./styles/newTrip.css";
 import "./styles/myTrips.css";

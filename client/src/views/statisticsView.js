@@ -45,7 +45,7 @@ function StatisticsView(props) {
     }
 
     return(
-        <div className="test-view">
+        <div className="statistic-view-container">
         <div className="statistic-view">
             <div className="statistic-wrapper">
             <button className="display-button" onClick={toggleKm}>
