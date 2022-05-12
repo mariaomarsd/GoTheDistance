@@ -158,9 +158,10 @@
     display: inline-block;
     border-radius: 6px;
     transition-duration: 0.4s;
-    opacity: 50%; 
+    opacity: 100%; 
     cursor: pointer;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    color: red;
 }
 
 .map-button:hover {
@@ -171,7 +172,7 @@
 }
 
 #CangeMapLook{
-    background-color: lightgray;
+    background-color: lightsalmon;
 }
 
 #CangeMapLook:hover {

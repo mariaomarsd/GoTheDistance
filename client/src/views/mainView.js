@@ -38,6 +38,7 @@ function MainView(props){
 
   function logout() {
     localStorage.removeItem('firstSignin');
+    props.model.logout();
     // localStorage.clear()
     setUserLoggedIn(false);
   }
