@@ -58,6 +58,9 @@
 .user {
     font-size: 14px;
     font-weight: bold;
+    color: rgb(85, 55, 46);
+    letter-spacing: 1px;
+    font-variant: small-caps;
 }
 
 .first-signin-view {
