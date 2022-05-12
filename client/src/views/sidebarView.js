@@ -55,7 +55,6 @@ function SidebarView(props) {
 
     function setVisibleCB(id) {
         props.model.toggleSidebar(id);
-        console.log(props.model.sidebartoggle);
     }
 
     function setConfirmationCB() {
