@@ -1,22 +1,11 @@
 import React, { useEffect, useState } from "react";
 import * as geometry from 'spherical-geometry-js';
 import randomColor from "randomcolor";
-// import {testReadFromDatabase} from "../firebaseModel";
 import { motion } from "framer-motion";
 import ListWarning from "../components/listTooShort";
 
 const NewTripView = require("../views/newTripView.js").default;
 const EditNewTripView = require("../views/editTripView.js").default;
-
-const variants = {
-    open: {
-      transition: { staggerChildren: 0.07, delayChildren: 0.2 }
-    },
-    closed: {
-      transition: { staggerChildren: 0.05, staggerDirection: -1 }
-    }
-  };
-  
 
 function NewTripPresenter(props) {
     
@@ -28,7 +17,6 @@ function NewTripPresenter(props) {
     const [errorMessage, setErrorMessage] = useState();
     const [listwarningVisible, setListWarningVisible] = useState(false);
 
-    // called when component is created or the list changes
     useEffect(observerCB, []);
 
     function observerCB(){
@@ -36,8 +24,6 @@ function NewTripPresenter(props) {
         function componentDiesCB() {
             props.model.removeObserver(setLocationListCB);
         }
-       
-        // called when the component is taken down
         return componentDiesCB;
     }
     
@@ -51,7 +37,7 @@ function NewTripPresenter(props) {
         if((props.model.newTripsLocationList.length === 0 )){
             props.model.addToNewTrip(item);
         }
-        else if (item.name != props.model.newTripsLocationList.at(-1).name) { 
+        else if (item.name !== props.model.newTripsLocationList.at(-1).name) { 
             props.model.addToNewTrip(item);
         }
     }
@@ -98,7 +84,7 @@ function NewTripPresenter(props) {
         for (let i = 0; i < tempDistanceList.length - 1; i++) {
             distanceLength  += geometry.computeDistanceBetween(tempDistanceList[i], tempDistanceList[i + 1]);
         }
-        return distanceLength/1000 /*+ "KM"*/;
+        return distanceLength/1000;
     }
 
     function setTripNameCB(name) {

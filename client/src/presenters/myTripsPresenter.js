@@ -8,7 +8,6 @@ const EditTripView = require("../views/editTripView.js").default;
 
 function MyTripsPresenter(props) {
 
-    useEffect(observerCB, [props.model.myTripsList]);
     const [tripList, setTripList] = useState(props.model.myTripsList);
     const [tripListVisible, setTripListVisible] = useState();
     const [isVisible, setIsVisible] = useState(props.model.sidebartoggle[1]);
@@ -17,6 +16,8 @@ function MyTripsPresenter(props) {
     const [tripToChange, setTripToChange] = useState();
     const [listwarningVisible, setListWarningVisible] = useState(false);
     const [errorMessage, setErrorMessage] = useState();
+
+    useEffect(observerCB, [props.model.myTripsList]);
 
     function observerCB(){
         props.model.addObserver(setTripListCB);
@@ -61,7 +62,7 @@ function MyTripsPresenter(props) {
         for (let i = 0; i < tempDistanceList.length - 1; i++) {
             distanceLength  += geometry.computeDistanceBetween(tempDistanceList[i], tempDistanceList[i + 1]);
         }
-        return distanceLength/1000 /*+ "KM"*/;
+        return distanceLength/1000;
     }
 
     function saveTripACB(item) {

@@ -1,5 +1,3 @@
-// import {  CheckCircleFilled } from '@ant-design/icons';
-
 function ConfirmDelete(props){
 
     return(
@@ -11,7 +9,6 @@ function ConfirmDelete(props){
                 <button className="new-trip-button" id = "cancel" onClick={props.cancel}> No </button>
                 <button className="new-trip-button" id = "confirm" onClick={props.confirm}> Yes </button>
             </div>
-            {/* <CheckCircleFilled className="confirmation-icon"/> */}
         </div>
     );
 }

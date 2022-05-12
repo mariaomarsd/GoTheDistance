@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { getAuth, signOut } from "firebase/auth";
 import firebase from "firebase/compat/app";
 import firebaseConfig from "../firebaseConfig";
