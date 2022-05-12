@@ -22,6 +22,7 @@ function MyTripsPresenter(props) {
     useEffect(observerCB, []);
     // useEffect(visibleCB, [props.model.sidebartoggle]);
     const [tripList, setTripList] = useState(props.model.myTripsList);
+    const [tripListVisible, setTripListVisible] = useState();
     const [isVisible, setIsVisible] = useState(props.model.sidebartoggle[1]);
     const [locationList, setLocationList] = useState();
     const [editTrip, setEditTrip] = useState(false);
@@ -51,9 +52,10 @@ function MyTripsPresenter(props) {
 
     function setVisibleCB() {
         props.setVisible(1)
-        setIsVisible(props.isVisible);
-        props.model.emptyLocationList();
-        //props.setNewTripVisible(!props.visible[1]);
+        //setIsVisible(props.isVisible);
+        setTripListVisible(true);
+        setEditTrip(false);
+        props.model.emptyNewList();
     }
 
     function setVisibleTripsCB(id) {
@@ -72,7 +74,7 @@ function MyTripsPresenter(props) {
     }
 
     function removeFromTripACB(id) {
-        props.model.removeFromNewTrip(id)
+        props.model.removeFromEditList(id);
     }
 
     function calculateDistanceCB() {
@@ -93,6 +95,7 @@ function MyTripsPresenter(props) {
         var dist = calculateDistanceCB();
         props.model.updateLocationList(tripToChange, dist);
         setEditTrip(false);
+        setTripListVisible(true);
     }
 
     function updateOrderACB() {
@@ -102,6 +105,7 @@ function MyTripsPresenter(props) {
     function cancelCB(){
         //props.model.emptyLocationList();
         setEditTrip(false);
+        setTripListVisible(true);
     }
 
     function setTripToEditACB(trip) {
@@ -110,6 +114,7 @@ function MyTripsPresenter(props) {
         setTripToChange(trip);
         props.model.editTrip(trip);
         setEditTrip(true);
+        setTripListVisible(false);
         console.log("location  list in model", props.model.newTripsLocationList);
         console.log("location list in mytripsview", locationList);
     }
@@ -127,14 +132,14 @@ function MyTripsPresenter(props) {
                     MY TRIPS
                 </div>
             </motion.div>
-            {isVisible && <MyTripsView
+            {isVisible && tripListVisible && <MyTripsView
                 myTripsList={tripList}
                 setVisibleTrips={setVisibleTripsCB}
                 setTripToChange={setTripToChange}
                 editTrip={setTripToEditACB}
                 model={props.model}
             />}
-            {editTrip && 
+            {isVisible && editTrip && 
                 <EditTripView 
                 locationList={locationList}
                 addToTrip={addToTripACB}
