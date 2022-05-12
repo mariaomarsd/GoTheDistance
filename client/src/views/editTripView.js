@@ -38,7 +38,7 @@ function EditNewTripView(props){
 
     function addToTripACB() {
         props.addToTrip(chosen);
-        console.log("now", items)
+        console.log("NOW", chosen);
         // console.log("first", items)
 
         // props.addToTrip(chosen);

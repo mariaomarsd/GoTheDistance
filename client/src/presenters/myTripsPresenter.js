@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 // import usePlacesAutocomplete from "use-places-autocomplete";
 import { motion } from "framer-motion";
 import * as geometry from 'spherical-geometry-js';
+import ListWarning from "../components/listTooShort";
+
 
 const MyTripsView = require("../views/myTripsView.js").default;
 const EditTripView = require("../views/editTripView.js").default;
@@ -27,6 +29,10 @@ function MyTripsPresenter(props) {
     const [locationList, setLocationList] = useState();
     const [editTrip, setEditTrip] = useState(false);
     const [tripToChange, setTripToChange] = useState();
+    const [listwarningVisible, setListWarningVisible] = useState(false);
+    const [errorMessage, setErrorMessage] = useState();
+
+
 
     function observerCB(){
         props.model.addObserver(setTripListCB);
@@ -91,11 +97,18 @@ function MyTripsPresenter(props) {
     }
 
     function saveTripACB(item) {
-        console.log(item);
-        var dist = calculateDistanceCB();
-        props.model.updateLocationList(tripToChange, dist);
-        setEditTrip(false);
-        setTripListVisible(true);
+        if(props.model.newList.length < 2) {
+            setErrorMessage("Trip needs to have at least two stops!");
+            setlistwarningCB();
+            
+        }
+        else {
+            console.log(item);
+            var dist = calculateDistanceCB();
+            props.model.updateLocationList(tripToChange, dist);
+            setEditTrip(false);
+            setTripListVisible(true);
+        }
     }
 
     function updateOrderACB(item) {
@@ -118,7 +131,12 @@ function MyTripsPresenter(props) {
         console.log("location  list in model", props.model.newTripsLocationList);
         console.log("location list in mytripsview", locationList);
     }
-    
+
+    function setlistwarningCB(){
+        setListWarningVisible(true)
+        setTimeout(function() {setListWarningVisible(false) }, 2500)
+    }
+ 
     return(
         <motion.div className="my-trips-presenter" variants={props.variants} >
             <motion.div 
@@ -150,6 +168,7 @@ function MyTripsPresenter(props) {
                 // editTrip  = {setTripToEditACB}
                 />
             }
+            {isVisible && listwarningVisible && <ListWarning warning = {errorMessage}/>}
         </motion.div>
     );
 }

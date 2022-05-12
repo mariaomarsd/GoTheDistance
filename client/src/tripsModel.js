@@ -64,7 +64,15 @@ class TripsModel {
             //console.log(id)
             return id !== item.id; // change later 
         }
-        this.newTripsLocationList = this.newTripsLocationList.filter(hasSameIdCB);
+        if(this.newTripsLocationList.length === 1) {
+            console.log("in here", this.newTripsLocationList);
+            this.newTripsLocationList =  [];
+            console.log("in here (after)", this.newTripsLocationList);
+        }
+        else {
+            this.newTripsLocationList = this.newTripsLocationList.filter(hasSameIdCB);
+
+        }
         this.notifyObservers();
     }
 
