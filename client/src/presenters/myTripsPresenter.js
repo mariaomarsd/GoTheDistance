@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 // import {GoogleMap,useLoadScript,Polyline} from "@react-google-maps/api";
 // import usePlacesAutocomplete from "use-places-autocomplete";
 import { motion } from "framer-motion";
+import * as geometry from 'spherical-geometry-js';
 
 const MyTripsView = require("../views/myTripsView.js").default;
 const EditTripView = require("../views/editTripView.js").default;
@@ -19,12 +20,12 @@ const variants = {
 function MyTripsPresenter(props) {
 
     useEffect(observerCB, []);
+    // useEffect(visibleCB, [props.model.sidebartoggle]);
     const [tripList, setTripList] = useState(props.model.myTripsList);
-    const [isVisible, setIsVisible] = useState();
+    const [isVisible, setIsVisible] = useState(props.model.sidebartoggle[1]);
     const [locationList, setLocationList] = useState();
     const [editTrip, setEditTrip] = useState(false);
     const [tripToChange, setTripToChange] = useState();
- 
 
     function observerCB(){
         props.model.addObserver(setTripListCB);
@@ -34,14 +35,25 @@ function MyTripsPresenter(props) {
         return componentDiesCB;
     }
 
+    // function visibleCB(){
+    //     props.model.addObserver(updateVisibilityCB);
+    // }
+
     function setTripListCB() {
         setTripList(props.model.myTripsList);
-        setLocationList(props.model.newTripsLocationList);
+        setLocationList(props.model.newList);
+        setIsVisible(props.model.sidebartoggle[1]);
     }
+
+    // function updateVisibilityCB(){
+    //     setIsVisible(props.model.myTripsList);
+    // }
 
     function setVisibleCB() {
         props.setVisible(1)
-        setIsVisible(props.visible[1]);
+        setIsVisible(props.isVisible);
+        props.model.emptyLocationList();
+        //props.setNewTripVisible(!props.visible[1]);
     }
 
     function setVisibleTripsCB(id) {
@@ -53,7 +65,8 @@ function MyTripsPresenter(props) {
     }
 
     function addToTripACB(item) {
-        props.model.addToNewTrip(item);
+        //props.model.addToNewTrip(item);
+        props.model.addToNewList(item);
         console.log("in model", props.model.newTripsLocationList);
         console.log("in presenter", locationList);
     }
@@ -62,8 +75,23 @@ function MyTripsPresenter(props) {
         props.model.removeFromNewTrip(id)
     }
 
+    function calculateDistanceCB() {
+        var distanceLength = 0;
+        var tempDistanceList = JSON.parse(JSON.stringify(props.model.newList));
+        tempDistanceList.forEach(item => {
+            delete item['name'];
+        });
+        
+        for (let i = 0; i < tempDistanceList.length - 1; i++) {
+            distanceLength  += geometry.computeDistanceBetween(tempDistanceList[i], tempDistanceList[i + 1]);
+        }
+        return distanceLength/1000 /*+ "KM"*/;
+    }
+
     function saveTripACB(item) {
-        props.model.updateLocationList(tripToChange);
+        console.log(item);
+        var dist = calculateDistanceCB();
+        props.model.updateLocationList(tripToChange, dist);
         setEditTrip(false);
     }
 
@@ -72,7 +100,7 @@ function MyTripsPresenter(props) {
     }
 
     function cancelCB(){
-        props.model.emptyLocationList();
+        //props.model.emptyLocationList();
         setEditTrip(false);
     }
 

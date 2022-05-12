@@ -84,7 +84,7 @@ function MyTripsView(props) {
                 {props.myTripsList.length === 0 ? <div>You have no trips</div> :
                 <ul className="my-trips-item-list">
                     {props.myTripsList.map(renderItemsCB)}
-                </ul>}
+                </ul>}   
             </div>
             {confirmVisible && <ConfirmDelete cancel={cancel} confirm={props.model.deleteMyTrip(tripToDelete)}/>}
         </div>

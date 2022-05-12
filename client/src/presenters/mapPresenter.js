@@ -31,7 +31,7 @@ const pathOptions = {
 function MapPresenter(props){
 
     localStorage.getItem('token')
-    console.log(localStorage.getItem('token'))
+    //console.log(localStorage.getItem('token'))
 
     useEffect(observerCB, []);
 
@@ -107,7 +107,7 @@ function MapPresenter(props){
             strokeOpacity: 1.0,
             strokeWeight: 4
         };
-        console.log('POLYLINE', trip)
+        //console.log('POLYLINE', trip)
         if(trip[2] === false) {
             return
         }
@@ -134,11 +134,13 @@ function MapPresenter(props){
     function ChangeMapStiles(){
 
         return (
-            <div className = "CangeMapLook">
-                
-                 <button className = "CangeMapLookToggleButton" onClick={rotateMapStiles} value="White" id="CangeMapLookToggleButton">
-                 Change map style
-                 </button>
+            <div className="CangeMapLook">
+                 <button className = "map-button" onClick={rotateMapStiles} value="White" id="CangeMapLookToggleButton">
+                    Change map style
+                    <span className="logo-icon">
+                        <i class="fa-solid fa-earth-americas"></i>
+                    </span>
+                </button>
             </div>
         ) 
     }

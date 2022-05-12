@@ -18,7 +18,7 @@ function NewTripView(props) {
     }
     
     return(
-        <div className="new-trip-view-name">
+        <div className="new-trip-view">
             { visible &&
                 <div>
                     <div>

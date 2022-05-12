@@ -143,20 +143,37 @@
 }
 
 .CangeMapLook{
-    
-    font-size: 8px;
-    margin-top: 50px;
-    margin-left: 50px;
-    width: 120px;
-    height: 50px;
-    position:absolute;
-    z-index: 1;
+    position: absolute;
+    top: 3.7%;
+    left: 1%;
+    width: 90px;
 }
-.CangeMapLookToggleButton{
-    background-color: white;
-    width: 120px;
-    height: 50px;
-    z-index: 2;
+
+.map-button {
+    width: 110px;
+    height: 22px;
+    border: none;
+    font-size: 10px;
+    display: inline-block;
+    border-radius: 6px;
+    transition-duration: 0.4s;
+    opacity: 50%; 
+    cursor: pointer;
+}
+
+.map-button:hover {
+    border-style: solid;
+    border: none;
+    background-color: lightpink;
+    opacity: 100%;
+}
+
+#CangeMapLook{
+    background-color: lightgray;
+}
+
+#CangeMapLook:hover {
+    
 }
 /* Located in sidebar presenter files */
 
