@@ -5,15 +5,11 @@ import firebase from "firebase/compat/app";
 import firebaseConfig from "../firebaseConfig";
 import { ReactSession } from "react-client-session";
 
-// const TripsModel = require("../tripsModel.js").default;
-// const tripsModel= new TripsModel();
-
 let firebaseModel = require("../firebaseModel");
-const {updateFirebaseFromModel, updataModelFromFirebase} = firebaseModel;
+// const {updateFirebaseFromModel, updataModelFromFirebase} = firebaseModel;
 
 firebase.initializeApp(firebaseConfig);
 const auth = getAuth();
-
 
 function SignUpPresenter(props){
     const [username, setUsername] = useState("");
@@ -64,7 +60,7 @@ function SignUpPresenter(props){
        function handleError(error) {
            const errorCode = error.code;
            if(errorCode === "auth/invalid-email") {
-            setDiplayErrorMessage("This email address is invalid");
+                setDiplayErrorMessage("This email address is invalid");
             }
             else if(errorCode === "auth/email-already-in-use") {
                 setDiplayErrorMessage("This email address is already in use");

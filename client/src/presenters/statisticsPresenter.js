@@ -1,17 +1,17 @@
-import { FundViewOutlined } from "@ant-design/icons";
+// import { FundViewOutlined } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const StatisticsView = require("../views/statisticsView.js").default;
 
-const variants = {
-    open: {
-      transition: { staggerChildren: 0.07, delayChildren: 0.2 }
-    },
-    closed: {
-      transition: { staggerChildren: 0.05, staggerDirection: -1 }
-    }
-  };
+// const variants = {
+//     open: {
+//       transition: { staggerChildren: 0.07, delayChildren: 0.2 }
+//     },
+//     closed: {
+//       transition: { staggerChildren: 0.05, staggerDirection: -1 }
+//     }
+//   };
 
 function StatisticsPresenter(props) {
 
@@ -74,7 +74,7 @@ function StatisticsPresenter(props) {
         var temp = props.model.myTripsList;
         var listOfPlaces = [];
         var listOfCountries = [];
-        var tempArray = [];
+        // var tempArray = [];
         temp.map(updateStatisticsLists);
         listOfPlaces.map(getListOfCountriesCB);
         
