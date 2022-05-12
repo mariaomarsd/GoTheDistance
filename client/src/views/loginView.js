@@ -1,12 +1,15 @@
 import React from "react";
 
 function LoginView(props) {
+
     function updateEmailCB(event){
         props.updateEmail(event.target.value);
     }
+
     function updatePasswordCB(event){
         props.updatePassword(event.target.value);
     }
+
     function loginCB() {
         props.login();
     }
@@ -14,7 +17,7 @@ function LoginView(props) {
     return(
         <div className="login-view">
             <form className="login-form">
-                <div className="login-heading">
+                <div className="login-heading" >
                     LOGIN
                 </div>
                 <div className="login-email">

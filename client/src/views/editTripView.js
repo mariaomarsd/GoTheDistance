@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Children, useEffect, useState } from "react";
 import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
 import { motion, Reorder } from "framer-motion";
 import SearchBar from "../components/searchbarComponent.js";
@@ -26,6 +26,8 @@ function EditNewTripView(props){
             const temp_results = (results[0].formatted_address).split(',')
             const temp_place = temp_results[0] + ", " + temp_results.pop()
             setChosen({id: Math.random(),name: temp_place, lat: lat, lng: lng})
+            console.log("CHOSEN",chosen)
+            onInputChangeACB()
 
         } catch (error) {
             console.log(" Error: ", error);
@@ -37,25 +39,12 @@ function EditNewTripView(props){
     }
 
     function addToTripACB() {
-        // console.log("chosen", chosen)
         if(chosen === undefined) {
-            console.log("KEMST")
+            // console.log("KEMST")
         }
         else {
             props.addToTrip(chosen);
         }
-        // props.addToTrip(chosen);
-        // console.log("now", items)
-        // props.addToTrip(chosen);
-        // console.log("NOW", chosen);
-        // console.log("first", items)
-
-        // props.addToTrip(chosen);
-        // console.log("tets", selectPlace)
-        // setTemp(true)
-        // console.log("tets", temp)
-        // // console.log("now", items)
-        // // props.addToTrip(items)
     }
 
     function removeFromTripACB(id) {
@@ -73,13 +62,29 @@ function EditNewTripView(props){
     function cancelCB(){
         props.cancel();
     }
+
+    function onInputChangeACB(event){
+        // props.searchInput(event.target.value);
+        // const searchInputVar = document.getElementById("search-input");
+        document.addEventListener("keydown", function(event) {
+            if(event.code === "Enter") { 
+                event.preventDefault();
+                // props.searchClick();
+                // addToTripACB()
+                // console.log("gerist núna", chosen)
+            }
+        })
+        // console.log("gerist núna", chosen)
+
+    }
     
     return(
         <div className="edit-trip-view"
             // initial={{ height: 0 }} 
             // animate={{ height: 200 }}
+            // onChange={onInputChangeACB} 
             >
-          <div className="search-component">
+          <div className="search-component" /*onChange={onInputChangeACB}*/ /*id="search-input"*/ >
             <SearchBar 
                 selectPlace={selectPlace}
                 data={data}
@@ -88,6 +93,7 @@ function EditNewTripView(props){
                 // setVal={setVal}
                 ready={ready}
                 // val={temp}
+                // onChange={onInputChangeACB}
             />
             <button className="new-trip-button" id="add" onClick={addToTripACB}>
                 Add
