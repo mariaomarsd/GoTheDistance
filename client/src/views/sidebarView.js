@@ -167,9 +167,9 @@ function SidebarView(props) {
                     />
                 </div>
                 {confirmationVisible && <Confirm text="Trip Saved!" />}
-                {/* {listwarningVisible && <ListWarning />} */}
-                {listwarningVisible && <Confirm text="Trip needs to have at least two stops! "/>}
-                {confirmDeleteVisible && <Confirm text="Trip Deleted" />}
+                {listwarningVisible && <ListWarning />}
+                {/* {listwarningVisible && <Confirm text="Trip needs to have at least two stops! "/>} */}
+                {confirmDeleteVisible && <Confirm text="Trip Deleted!" />}
             </div>
             <MenuToggle toggle={() => toggleOpen()} />
         </motion.nav>}

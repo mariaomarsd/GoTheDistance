@@ -69,8 +69,8 @@ function MyTripsPresenter(props) {
     function addToTripACB(item) {
         //props.model.addToNewTrip(item);
         props.model.addToNewList(item);
-        console.log("in model", props.model.newTripsLocationList);
-        console.log("in presenter", locationList);
+        // console.log("in model", props.model.newTripsLocationList);
+        // console.log("in presenter", locationList);
     }
 
     function removeFromTripACB(id) {
@@ -91,7 +91,7 @@ function MyTripsPresenter(props) {
     }
 
     function saveTripACB(item) {
-        console.log(item);
+        // console.log(item);
         var dist = calculateDistanceCB();
         props.model.updateLocationList(tripToChange, dist);
         setEditTrip(false);
@@ -109,14 +109,14 @@ function MyTripsPresenter(props) {
     }
 
     function setTripToEditACB(trip) {
-        console.log(trip);
-        console.log(trip.locations);
+        // console.log(trip);
+        // console.log(trip.locations);
         setTripToChange(trip);
         props.model.editTrip(trip);
         setEditTrip(true);
         setTripListVisible(false);
-        console.log("location  list in model", props.model.newTripsLocationList);
-        console.log("location list in mytripsview", locationList);
+        // console.log("location  list in model", props.model.newTripsLocationList);
+        // console.log("location list in mytripsview", locationList);
     }
 
     function test() {
