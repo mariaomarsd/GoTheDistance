@@ -1,9 +1,7 @@
-
 .map-blur {
     filter: blur(6px);
 }
 
-/* Authentication styles */
 .auth-container {
     position: absolute;
     top: 35%;
@@ -12,7 +10,6 @@
     height: 40vh;
     background-color: white;
     padding: 20px;
-    /* border-style: solid; */
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -54,11 +51,6 @@
     font-size: 18px;
 }
 
-/* .login-email .login-password {
-    display: flex;
-    flex-direction: column;
-} */
-
 .login-password {
     padding-top: 20px;
 }
@@ -72,10 +64,6 @@
     width: 12vw;
     height: 22px;
 }
-
-/* .sign-up-username{
-    padding-top: 20px;
-} */
 
 .sign-up-email {
     padding-top: 8px;
@@ -125,7 +113,6 @@
     border-width: 0px;
     font-size: 16px;
     padding-top: 10px;
-    /* padding: 0px; */
 }
 
 .logo {
@@ -138,8 +125,6 @@
     display: flex;
     letter-spacing: 2px;
     font-variant: small-caps;
-    /* background-color:rgb(251, 226, 216); */
-    /* padding-bottom: 20px; */
 }
 
 .logo-icon {
@@ -150,7 +135,6 @@
     position: absolute;
     top: 3.7%;
     left: 1%;
-    /* width: 100px; */
     padding-top: 10px;
 }
 
@@ -169,7 +153,6 @@
     background-color: rgb(251, 226, 216);
     opacity: 0.8;
     font-weight: 600;
-    /* padding-top: 10px; */
 }
 
 .map-button:hover {
@@ -182,33 +165,6 @@
 #CangeMapLook{
     background-color: lightsalmon;
 }
-
-#CangeMapLook:hover {
-    
-}
-/* Located in sidebar presenter files */
-
-/* 
-@media screen and (min-width: 1100px) {
-    .sidebar-container {
-        position: absolute;
-        top: 10%;
-        left: 75%;
-        width: 260px;
-    }
-    .auth-container {
-        position: absolute;
-        top: 35%;
-        left: 50%;
-        width: 260px;
-        background-color: white;
-        padding: 20px;
-    }
-} */
-
-/* .test-hover{
-     display: hide;
-} */
 
 .test-hover {
     background-color: greenyellow;
@@ -241,8 +197,6 @@
     position: absolute;
     top: 1%;
     left: 18%;
-    /* width: 20vw; */
-    /* size: 30px; */
     font-size: 20px;
     cursor: pointer;
 }
