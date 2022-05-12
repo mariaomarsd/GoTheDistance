@@ -20,7 +20,7 @@ function ProfileView(props) {
                         > 
                             <button className="user-button" id="user"onClick={signoutCB}>
                                 Sign out
-                            <span> <i className="fa-solid fa-person-walking-luggage"></i> </span>
+                                <span> <i className="fa-solid fa-person-walking-luggage"></i> </span>
                             </button>
                         </motion.div>
                     </div>
