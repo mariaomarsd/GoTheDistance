@@ -1,6 +1,6 @@
-import React, { Children, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
-import { motion, Reorder } from "framer-motion";
+import { Reorder } from "framer-motion";
 import SearchBar from "../components/searchbarComponent.js";
 
 function EditNewTripView(props){
@@ -77,7 +77,7 @@ function EditNewTripView(props){
                             onReorder={setItems}
                         >
                   {
-                    items.map((item,index) => {
+                    items.map((item) => {
                         updateOrdertest()
                     return <Reorder.Item className="new-trip-item" key={item.id} value={item} >
                     <button className="new-trip-item-button" onClick={() => removeFromTripACB(item.id)}>

@@ -1,16 +1,11 @@
 import React, { useState } from "react";
-// import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
-// import { motion, Reorder } from "framer-motion";
-// import SearchBar from "../components/searchbarComponent.js";
 
 function NewTripView(props) {
     const [visible, setVisisble] = useState(true);
-    // const [confirmVisible, setConfirmVisible] = useState(false);
 
     function saveTripNameACB() {
         var name = document.getElementById("trip-name").value;
         props.saveTripName(name);
-        //setVisisble(false);
     }
 
     function closeForm() {

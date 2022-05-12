@@ -44,7 +44,6 @@ function SignUpView(props) {
                         onChange={updateUsernameCB}
                         value={props.username}
                         onKeyUp={onKeyUpCB}
-                        // placeholder="Enter your username"
                     />
                 </div>
                 <div className="sign-up-email">
@@ -57,7 +56,6 @@ function SignUpView(props) {
                         onChange={updateEmailCB}
                         value = {props.email}
                         onKeyUp={onKeyUpCB}
-                        // placeholder="Enter your email address"
                     />
                 </div>
                 <div className="sign-up-password">
@@ -70,7 +68,6 @@ function SignUpView(props) {
                         onChange={updatePasswordCB}
                         value={props.password}
                         onKeyUp={onKeyUpCB}
-                        // placeholder="Enter your password"
                     />
                 </div>
                 <div className="sign-up-password">
@@ -83,7 +80,6 @@ function SignUpView(props) {
                         onChange={updateConfirmPasswordCB}
                         value={props.confirmPassword}
                         onKeyUp={onKeyUpCB}
-                        // placeholder="Repeat your password"
                     />
                 </div>    
                 <p className="sign-up-error-message">

@@ -1,5 +1,3 @@
-// import resolvePromise from "./resolvePromise.js";
-// import { ReactSession } from "react-client-session";
 
 class TripsModel {
     constructor(newTripsLocationList = [], myTripsList = [], newList = []) {
@@ -38,7 +36,6 @@ class TripsModel {
 
     editTrip(trip) {
         this.newList = trip.locations;
-        // this.newTripsLocationList  = trip.locations;
         this.notifyObservers();
     }
 
@@ -51,8 +48,6 @@ class TripsModel {
         this.myTripsList[ind].locations = this.newList;
         this.myTripsList[ind].distanceNewTrip = dist;
         this.newList = [];
-        // this.myTripsList[ind].locations = this.newTripsLocationList;
-        // this.newTripsLocationList = [];
         this.notifyObservers({tripToAdd: trip, uid: localStorage.getItem('userId')});
     }
 
@@ -117,7 +112,6 @@ class TripsModel {
         this.myTripsList = this.myTripsList.filter(hasSameIdCB);
 
         this.notifyObservers({tripToDelete: trip, uid: localStorage.getItem('userId')});
-        // this.myTripsList = this.myTripsList;
     }
 
     addObserver(callback) {

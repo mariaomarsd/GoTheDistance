@@ -33,7 +33,6 @@ function LoginView(props) {
                         className="login-input"
                         type="email"
                         value={props.email}
-                        // placeholder="Enter your email address"
                         onChange={updateEmailCB}
                         onKeyUp={onKeyUpCB}
                     />
@@ -46,7 +45,6 @@ function LoginView(props) {
                         className="login-input"
                         type="password"
                         value={props.password}
-                        // placeholder="Enter your password"
                         onChange={updatePasswordCB}
                         onKeyUp={onKeyUpCB}
                     />

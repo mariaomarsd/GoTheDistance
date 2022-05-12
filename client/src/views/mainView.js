@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
 import {useLoadScript} from "@react-google-maps/api";
-import { ReactSession } from "react-client-session";
 import { motion } from "framer-motion"
 import { updateModelFromFirebase } from "../firebaseModel.js";
 import ProfilePresenter from "../presenters/profilePresenter.js";
 import SiteInfo from "../components/siteInfo.js";
-
-// import { getAuth } from "@firebase/auth";
-// import firebase from "firebase/compat/app";
-// import firebaseConfig from "../firebaseConfig";
 
 const MapPresenter = require("../presenters/mapPresenter.js").default;
 const SidebarView = require("../views/sidebarView.js").default;
