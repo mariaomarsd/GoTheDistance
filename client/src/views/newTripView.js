@@ -21,16 +21,18 @@ function NewTripView(props) {
         <div className="new-trip-view">
             { visible &&
                 <div>
-                    <div>
-                        Give your trip a fun name!
+                    <div className="info-search">
+                        Give your trip a name!
                     </div>
-                    <input
-                        placeholder="Name your trip"
+                    <input className="info-search"
+                        placeholder="Vacation 2022"
                         id="trip-name"
                     />
                     <div className="new-trip-button-container">
                         <button onClick={closeForm} className="new-trip-button" id="cancel" >Cancel</button>
-                        <button onClick={saveTripNameACB} className="new-trip-button" id="confirm">Confirm</button>
+                        <span className="confirm">
+                            <button onClick={saveTripNameACB} className="new-trip-button" id="confirm">Confirm</button>
+                        </span>
                     </div>
                 </div>
             }
