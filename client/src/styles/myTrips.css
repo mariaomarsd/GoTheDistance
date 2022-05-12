@@ -18,27 +18,48 @@
     justify-self: center;
 }
 
+.my-trip-checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-self: center;
+    cursor: pointer;
+}
+
 .my-trips-item-check {
     width: 15px;
     height: 15px;
+    accent-color: rgb(191, 109, 86);
 }
 
 .my-trips-item-name {
     font-size: 15px;
     padding: 5px;
+    /* align-items: center; */
+    /* justify-content: center; */
+    text-align: left;
 }
 
-.edit-button {
+/* .edit-button {
     background-color: white;
     border-width: 0px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-self: center;
-    
+} */
+
+.my-trip-icon-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
 }
 
 .edit-icon {
-    margin-right: 5px;
+    /* margin-right: 5px; */
+    padding-right: 10px;
 }
 
+.delete-icon {
+    padding-right: 10px;
+}

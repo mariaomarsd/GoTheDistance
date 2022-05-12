@@ -5,7 +5,7 @@ function ConfirmComponent(props){
     return(
         <div className="confirm-container">
             <div className="confirmation-text">
-                Trip saved!
+                {props.text}
             </div>
             <CheckCircleFilled className="confirmation-icon"/>
         </div>

@@ -21,7 +21,7 @@ const variants = {
 
 function MyTripsPresenter(props) {
 
-    useEffect(observerCB, []);
+    useEffect(observerCB, [props.model.myTripsList]);
     // useEffect(visibleCB, [props.model.sidebartoggle]);
     const [tripList, setTripList] = useState(props.model.myTripsList);
     const [tripListVisible, setTripListVisible] = useState();
@@ -75,8 +75,8 @@ function MyTripsPresenter(props) {
     function addToTripACB(item) {
         //props.model.addToNewTrip(item);
         props.model.addToNewList(item);
-        console.log("in model", props.model.newTripsLocationList);
-        console.log("in presenter", locationList);
+        // console.log("in model", props.model.newTripsLocationList);
+        // console.log("in presenter", locationList);
     }
 
     function removeFromTripACB(id) {
@@ -122,14 +122,18 @@ function MyTripsPresenter(props) {
     }
 
     function setTripToEditACB(trip) {
-        console.log(trip);
-        console.log(trip.locations);
+        // console.log(trip);
+        // console.log(trip.locations);
         setTripToChange(trip);
         props.model.editTrip(trip);
         setEditTrip(true);
         setTripListVisible(false);
-        console.log("location  list in model", props.model.newTripsLocationList);
-        console.log("location list in mytripsview", locationList);
+        // console.log("location  list in model", props.model.newTripsLocationList);
+        // console.log("location list in mytripsview", locationList);
+    }
+
+    function test() {
+        props.deleteConfirm()
     }
 
     function setlistwarningCB(){
@@ -145,9 +149,9 @@ function MyTripsPresenter(props) {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }} 
             >
-                <i className="fa-solid fa-map-location-dot" id="sidebar-icon" style={{ color:"rgb(227, 177, 151)" }}></i>
-               <div className="sidebar-name" style={{ borderColor:"rgb(227, 177, 151)" }}>
-                    MY TRIPS
+                <i className="fa-solid fa-map-location-dot" id="sidebar-icon" style={{ color:"rgb(191, 109, 86)" }}></i>
+                <div className="sidebar-name" style={{color:"rgb(191, 109, 86)", borderColor:"rgb(191, 109, 86)" }}>
+                    My Trips
                 </div>
             </motion.div>
             {isVisible && tripListVisible && <MyTripsView
@@ -156,6 +160,7 @@ function MyTripsPresenter(props) {
                 setTripToChange={setTripToChange}
                 editTrip={setTripToEditACB}
                 model={props.model}
+                confirmDelete={test}
             />}
             {isVisible && editTrip && 
                 <EditTripView 
