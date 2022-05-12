@@ -1,5 +1,3 @@
-// import {  CheckCircleFilled } from '@ant-design/icons';
-
 function ConfirmDelete(props){
 
     return(

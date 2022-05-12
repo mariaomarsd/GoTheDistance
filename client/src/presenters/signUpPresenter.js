@@ -5,13 +5,11 @@ import firebase from "firebase/compat/app";
 import firebaseConfig from "../firebaseConfig";
 import { ReactSession } from "react-client-session";
 
-let firebaseModel = require("../firebaseModel");
-// const {updateFirebaseFromModel, updataModelFromFirebase} = firebaseModel;
-
 firebase.initializeApp(firebaseConfig);
 const auth = getAuth();
 
 function SignUpPresenter(props){
+    
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
