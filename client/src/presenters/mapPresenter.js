@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import { GoogleMap, useLoadScript, Polyline, Marker } from "@react-google-maps/api";
 import mapStyles from "../mapStyles";
 import mapStylesBlack from "../mapStylesBlack";
+import { motion } from "framer-motion";
+
 
 const center = { // where to start the map, stockholm
     lat: 23.818858,
@@ -120,16 +122,17 @@ function MapPresenter(props){
     }
 
     function ChangeMapStiles(){
-
         return (
-            <div className="CangeMapLook">
+            <motion.div className="CangeMapLook"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }} >
                  <button className="map-button" onClick={rotateMapStiles} value="White" id="CangeMapLookToggleButton">
                     Change map style
                     <span className="logo-icon">
                         <i className="fa-solid fa-earth-americas"></i>
                     </span>
                 </button>
-            </div>
+            </motion.div>
         ) 
     }
     function rotateMapStiles(){
@@ -157,7 +160,7 @@ function MapPresenter(props){
 
     return(
           <div>
-              {<ChangeMapStiles/>}
+              <ChangeMapStiles />
               {props.value && <GoogleMap id="map"
                 mapContainerStyle={mapContainerStyle}
                 zoom={3}
