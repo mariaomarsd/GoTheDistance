@@ -78,7 +78,7 @@ function SidebarView(props) {
             >
             <motion.div
                 className="sidebar-background"
-                style={{ height: 725 }}
+                style={{ height: 600 }}
                 variants={sidebar}
             />
             
