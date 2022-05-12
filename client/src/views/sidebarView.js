@@ -56,7 +56,6 @@ function SidebarView(props) {
     const [myTripsVis, setMyTripVis] = useState(false);
     const [StatisticsVis, setStatisticsVis] = useState(false);
     const [confirmationVisible, setConfirmationVisible] = useState(false);
-    const [listwarningVisible, setListWarningVisible] = useState(false);
     const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false);
     const [isOpen, toggleOpen] = useCycle(false, true);
     const containerRef = useRef(null);
@@ -108,11 +107,10 @@ function SidebarView(props) {
         setConfirmationVisible(true)
         setTimeout(function() {setConfirmationVisible(false) }, 2500)
     }
-
-    function setlistwarningCD(){
-        setListWarningVisible(true)
-        setTimeout(function() {setListWarningVisible(false) }, 2500)
-    }
+    // function setlistwarningCD(){
+    //     setListWarningVisible(true)
+    //     setTimeout(function() {setListWarningVisible(false) }, 2500)
+    // }
 
     function setConfirmCD(){
         setConfirmDeleteVisible(true)
@@ -141,7 +139,7 @@ function SidebarView(props) {
                         setVisible={setVisibleCB}
                         confirmation={setConfirmationCB}
                         variants={variants}
-                        listWarning={setlistwarningCD}
+                        //listWarning={setlistwarningCD}
                         isVisible={visibleList[0]}
                     />}
                 </div>
@@ -167,8 +165,6 @@ function SidebarView(props) {
                     />
                 </div>
                 {confirmationVisible && <Confirm text="Trip Saved!" />}
-                {listwarningVisible && <ListWarning />}
-                {/* {listwarningVisible && <Confirm text="Trip needs to have at least two stops! "/>} */}
                 {confirmDeleteVisible && <Confirm text="Trip Deleted!" />}
             </div>
             <MenuToggle toggle={() => toggleOpen()} />

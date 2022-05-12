@@ -10,11 +10,11 @@ function NewTripView(props) {
     function saveTripNameACB() {
         var name = document.getElementById("trip-name").value;
         props.saveTripName(name);
-        setVisisble(false);
+        //setVisisble(false);
     }
 
     function closeForm() {
-        setVisisble(false);
+        props.cancelSetName();
     }
     
     return(

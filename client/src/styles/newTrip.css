@@ -224,6 +224,16 @@
     border-width: 0.5px;
 }
 
+.warning-container {
+    background-color: white;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    border-style: solid;
+    border-width: 0.5px;
+    position: absolute;
+}
+
 .confirmation-text {
     font-size: 20px;
     padding-right: 15px;

@@ -30,9 +30,7 @@ const pathOptions = {
 
 function MapPresenter(props){
 
-    localStorage.getItem('token')
-    //console.log(localStorage.getItem('token'))
-
+    // localStorage.getItem('token')
     useEffect(observerCB, []);
 
     const mapRef = useRef(); // part of move mapview to chosen destination
@@ -43,7 +41,6 @@ function MapPresenter(props){
 
     const [newTripPathList, setNewTripPathList] = useState([]);
     const [myTripsPathList, setMyTripsPathList] = useState([]);
-    // const [color, setColor] = useState([]);
 
     function observerCB(){
         props.model.addObserver(getCurrentPathCB);
@@ -65,13 +62,9 @@ function MapPresenter(props){
         var temp_show = []
         var temp_name = []
         myList.forEach(item => {
-            // delete item['name'];
-            // delete item['show'];
-            // delete item['distanceNewTrip'];
             temp_color.push(item.color)
             temp_show.push(item.show)
             temp_name.push(item.name)
-            // console.log("TEMpo color", temp_color)
         });
         for(var i = 0; i<myList.length; i++) {
             var latLng = [[],[],[]];
@@ -107,22 +100,17 @@ function MapPresenter(props){
             strokeOpacity: 1.0,
             strokeWeight: 4
         };
-        //console.log('POLYLINE', trip)
         if(trip[2] === false) {
             return
         }
-        return <><Polyline key={trip[1]} path={trip[0]} options={myTripsPathOptions}>
-                    <div className="test-hover" >
-                        hallo hæ
-                    </div>
-                    </Polyline>
-                    <Marker key={trip[1]}
-                        position={trip[0][0]}
-                        // icon={{url:  "/BlackAndWhite-marker.png"}}
-                        label={trip[3]}
-                        // styles={{size:"20px"}}
-                    />
-                </> 
+        return <div key={trip[1]}>
+                <Polyline path={trip[0]} options={myTripsPathOptions}/>
+                <Marker
+                    position={trip[0][0]}
+                    // icon={{url:  "/BlackAndWhite-marker.png"}}
+                    label={trip[3]}
+                />
+                </div> 
     }
 
     function moveViewinMap(locationList){
@@ -164,9 +152,7 @@ function MapPresenter(props){
         else if(button.value === "White" ){
             mapRef.current.setOptions(optionsBlack);
             button.value = "Black";
-            
-        }
-        
+        } 
     }
 
     return(

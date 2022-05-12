@@ -3,6 +3,7 @@ import * as geometry from 'spherical-geometry-js';
 import randomColor from "randomcolor";
 import {testReadFromDatabase} from "../firebaseModel";
 import { motion } from "framer-motion";
+import ListWarning from "../components/listTooShort";
 
 const NewTripView = require("../views/newTripView.js").default;
 const EditNewTripView = require("../views/editTripView.js").default;
@@ -24,6 +25,8 @@ function NewTripPresenter(props) {
     const [addLocationsVisible, setAddLocationsVisible] = useState(false);
     const [isNewTripVisible, setIsNewTripVisible] = useState();
     const [tripName, setTripName] = useState();
+    const [errorMessage, setErrorMessage] = useState();
+    const [listwarningVisible, setListWarningVisible] = useState(false);
 
     // called when component is created or the list changes
     useEffect(observerCB, []);
@@ -47,6 +50,7 @@ function NewTripPresenter(props) {
         // to prevent putting in the same place twice in a row
         if((props.model.newTripsLocationList.length === 0 )){
             props.model.addToNewTrip(item);
+            console.log("ADDING", item);
         }
         else if (item.name != props.model.newTripsLocationList.at(-1).name) { 
             props.model.addToNewTrip(item);
@@ -65,7 +69,9 @@ function NewTripPresenter(props) {
         if(item.locations.length<2){
             // let user know there needs to be more than one stop
         //console.log("Trip has to be more than one stop")
-        props.listWarning()
+        //props.listWarning()
+        setErrorMessage("Trip needs to have at least two stops!");
+        setlistwarningCD();
        }else{
         console.log("item")
         console.log(item)
@@ -86,6 +92,7 @@ function NewTripPresenter(props) {
         //setIsVisible(props.isVisible);
         setIsNewTripVisible(true);
         setAddLocationsVisible(false);
+        setErrorMessage("");
         props.model.emptyLocationList();
     }
 
@@ -103,14 +110,51 @@ function NewTripPresenter(props) {
     }
 
     function setTripNameCB(name) {
-        setTripName(name);
-        setIsNewTripVisible(false);
-        setAddLocationsVisible(true);
+        var nameTaken =  false;
+        var temp = props.model.myTripsList;
+        for(var i = 0; i<temp.length; i++) {
+            if (temp[i].name === name) {
+                nameTaken = true;
+            }
+        }
+
+        if(name !== "" && !nameTaken) {
+            console.log("HÉR!!!");
+            setTripName(name);
+            setIsNewTripVisible(false);
+            setAddLocationsVisible(true);
+            setErrorMessage("");
+        }
+
+        else {
+            console.log("HERE");
+            //setIsNewTripVisible(true);
+            //setAddLocationsVisible(false);
+            if(name === "") {
+                setErrorMessage("Give your trip a name");
+                setlistwarningCD();
+                return;
+            }
+            if (nameTaken) {
+                setErrorMessage("You already have a trip named " + name);
+                setlistwarningCD();
+                return;
+            }
+        }
     }
 
     function cancelCB(){
         props.model.emptyLocationList();
         setAddLocationsVisible(false);
+    }
+
+    function cancelSetNameCB(){
+        setIsNewTripVisible(false);
+    }
+
+    function setlistwarningCD(){
+        setListWarningVisible(true)
+        setTimeout(function() {setListWarningVisible(false) }, 2500)
     }
     
     return(
@@ -132,6 +176,7 @@ function NewTripPresenter(props) {
                 <div>
                 {isNewTripVisible && <NewTripView
                     saveTripName = {setTripNameCB}
+                    cancelSetName = {cancelSetNameCB}
                 />}
                 {addLocationsVisible && <EditNewTripView
                     locationList={locationList} 
@@ -142,6 +187,7 @@ function NewTripPresenter(props) {
                     cancel={cancelCB}
                 />
                 }
+                {listwarningVisible && <ListWarning warning = {errorMessage}/>}
                 </div>
                 }
         </motion.div>
