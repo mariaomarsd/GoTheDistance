@@ -13,6 +13,7 @@ function LoginView(props) {
     function loginCB() {
         props.login();
     }
+    
     function onKeyUpCB(event){
         if(event.key === 'Enter') {
             props.login();
