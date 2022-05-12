@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 // import { Checkbox } from 'antd';
+import ConfirmDelete from '../components/confirmDelete.js'
 
 function MyTripsView(props) {
 
     useEffect(listChangedCB ,[props.myTripsList])
 
     const [visableList, setVisibleList] = useState([props.myTripsList]);
+    
+    const [confirmVisible, setConfirmVisible] = useState(false);
+    const [tripToDelete, setTripToDelete] = useState()
 
     function listChangedCB(){
         getVisibleList();
@@ -25,7 +29,9 @@ function MyTripsView(props) {
 
     function deleteTripCB(item){
         console.log("TRIP TO DELETE", item)
-        props.model.deleteMyTrip(item)
+        setConfirmVisible(true)
+        setTripToDelete(item)
+        // props.model.deleteMyTrip(item)
     }
 
     function renderItemsCB(item) {
@@ -67,6 +73,10 @@ function MyTripsView(props) {
         }
         setVisibleList(tempList)
     }
+    
+    function cancel() {
+        setConfirmVisible(false)
+    }
 
     return(
         <div className="my-trips-view">
@@ -76,6 +86,7 @@ function MyTripsView(props) {
                     {props.myTripsList.map(renderItemsCB)}
                 </ul>}
             </div>
+            {confirmVisible && <ConfirmDelete cancel={cancel} confirm={props.model.deleteMyTrip(tripToDelete)}/>}
         </div>
     );
 }

@@ -53,8 +53,6 @@ function EditNewTripView(props){
         props.removeFromTrip(id);
     }
 
-    
-
     function saveTripACB() {
         props.confirmTrip({locations: items, show: true, color: ""});
     }
