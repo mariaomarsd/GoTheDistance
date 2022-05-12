@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as geometry from 'spherical-geometry-js';
 import randomColor from "randomcolor";
 import { motion } from "framer-motion";
-import ListWarning from "../components/listTooShort";
+import WarningMessage from "../components/warningMessage.js";
 
 const NewTripView = require("../views/newTripView.js").default;
 const EditNewTripView = require("../views/editTripView.js").default;
@@ -15,7 +15,7 @@ function NewTripPresenter(props) {
     const [isNewTripVisible, setIsNewTripVisible] = useState();
     const [tripName, setTripName] = useState();
     const [errorMessage, setErrorMessage] = useState();
-    const [listwarningVisible, setListWarningVisible] = useState(false);
+    const [warningMessageVisible, setWarningMessageVisible] = useState(false);
 
     useEffect(observerCB, []);
 
@@ -127,8 +127,8 @@ function NewTripPresenter(props) {
     }
 
     function setlistwarningCD(){
-        setListWarningVisible(true)
-        setTimeout(function() {setListWarningVisible(false) }, 2500)
+        setWarningMessageVisible(true)
+        setTimeout(function() {setWarningMessageVisible(false) }, 2500)
     }
     
     return(
@@ -158,7 +158,7 @@ function NewTripPresenter(props) {
                 cancel={cancelCB}
             />
             }
-            {listwarningVisible && <ListWarning warning = {errorMessage}/>}
+            {warningMessageVisible && <WarningMessage warning = {errorMessage}/>}
             </>
             }
         </motion.div>

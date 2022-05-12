@@ -45,6 +45,7 @@ function StatisticsView(props) {
     }
 
     return(
+        <div className="statistic-view-container">
         <div className="statistic-view">
             <div className="statistic-wrapper">
             <button className="display-button" onClick={toggleKm}>
@@ -69,7 +70,7 @@ function StatisticsView(props) {
                             <div className="list-of-places">
                                 {props.myTripsList.length === 0 ? <div>none</div> :
                                 <div className="statistic-text">
-                                    <div className="scroll">
+                                    <div className="scrollStats">
                                         {props.myTripsList.map(renderDistanceCB)}
                                     </div>
                                 </div>}
@@ -102,7 +103,7 @@ function StatisticsView(props) {
                     <div className="list-of-places">
                         {props.myTripsList.length === 0 ? <div>none</div> :
                         <div className="statistic-text">
-                            <div className="scroll">
+                            <div className="scrollStats">
                                 {props.ListOfPlaces.map(renderPlacesCB)}
                             </div>
                         </div>}
@@ -136,7 +137,7 @@ function StatisticsView(props) {
                         {props.myTripsList.length === 0 ? <div>none</div> :
                         <div className="statistic-text">
                             <div className="test">
-                            <div className="scroll">
+                            <div className="scrollStats">
                                 {props.ListOfCountries.map(renderCountriesCB)}
                             </div>
                             </div>
@@ -147,6 +148,7 @@ function StatisticsView(props) {
                     }
                 </button>
             </div>
+        </div>
         </div>
     );
 }

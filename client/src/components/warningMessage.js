@@ -1,6 +1,6 @@
 import {  StopOutlined } from '@ant-design/icons';
 
-function listTooShort(props){
+function WarningMessage(props){
 
     return(
         <div className="warning-container">
@@ -12,5 +12,5 @@ function listTooShort(props){
     );
 }
 
-export default listTooShort;
+export default WarningMessage;
 
