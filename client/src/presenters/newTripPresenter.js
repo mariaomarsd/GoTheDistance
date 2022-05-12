@@ -171,6 +171,7 @@ function NewTripPresenter(props) {
                     cancelSetName = {cancelSetNameCB}
                 />}
                 {addLocationsVisible && <EditNewTripView
+                    model = {props.model}
                     locationList={locationList} 
                     addToTrip={addToNewTripACB}
                     removeFromTrip={removeFromNewTripACB}
