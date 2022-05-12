@@ -84,8 +84,9 @@ function NewTripPresenter(props) {
     function setVisibleCB() {
         props.setVisible(0);
         //setIsVisible(props.isVisible);
-        setIsNewTripVisible(props.visible[0]);
-        //setAddLocationsVisible(false);
+        setIsNewTripVisible(true);
+        setAddLocationsVisible(false);
+        props.model.emptyLocationList();
     }
 
     function calculateDistanceCB() {
