@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import {GoogleMap,useLoadScript,Polyline} from "@react-google-maps/api";
-// import usePlacesAutocomplete from "use-places-autocomplete";
 import { motion } from "framer-motion";
 import * as geometry from 'spherical-geometry-js';
 import ListWarning from "../components/listTooShort";
@@ -9,20 +7,9 @@ import ListWarning from "../components/listTooShort";
 const MyTripsView = require("../views/myTripsView.js").default;
 const EditTripView = require("../views/editTripView.js").default;
 
-
-const variants = {
-    open: {
-      transition: { staggerChildren: 0.07, delayChildren: 0.2 }
-    },
-    closed: {
-      transition: { staggerChildren: 0.05, staggerDirection: -1 }
-    }
-  };
-
 function MyTripsPresenter(props) {
 
     useEffect(observerCB, [props.model.myTripsList]);
-    // useEffect(visibleCB, [props.model.sidebartoggle]);
     const [tripList, setTripList] = useState(props.model.myTripsList);
     const [tripListVisible, setTripListVisible] = useState();
     const [isVisible, setIsVisible] = useState(props.model.sidebartoggle[1]);
@@ -32,8 +19,6 @@ function MyTripsPresenter(props) {
     const [listwarningVisible, setListWarningVisible] = useState(false);
     const [errorMessage, setErrorMessage] = useState();
 
-
-
     function observerCB(){
         props.model.addObserver(setTripListCB);
         function componentDiesCB() {
@@ -42,23 +27,14 @@ function MyTripsPresenter(props) {
         return componentDiesCB;
     }
 
-    // function visibleCB(){
-    //     props.model.addObserver(updateVisibilityCB);
-    // }
-
     function setTripListCB() {
         setTripList(props.model.myTripsList);
         setLocationList(props.model.newList);
         setIsVisible(props.model.sidebartoggle[1]);
     }
 
-    // function updateVisibilityCB(){
-    //     setIsVisible(props.model.myTripsList);
-    // }
-
     function setVisibleCB() {
         props.setVisible(1)
-        //setIsVisible(props.isVisible);
         setTripListVisible(true);
         setEditTrip(false);
         props.model.emptyNewList();
@@ -73,10 +49,7 @@ function MyTripsPresenter(props) {
     }
 
     function addToTripACB(item) {
-        //props.model.addToNewTrip(item);
         props.model.addToNewList(item);
-        // console.log("in model", props.model.newTripsLocationList);
-        // console.log("in presenter", locationList);
     }
 
     function removeFromTripACB(id) {
@@ -116,20 +89,15 @@ function MyTripsPresenter(props) {
     }
 
     function cancelCB(){
-        //props.model.emptyLocationList();
         setEditTrip(false);
         setTripListVisible(true);
     }
 
     function setTripToEditACB(trip) {
-        // console.log(trip);
-        // console.log(trip.locations);
         setTripToChange(trip);
         props.model.editTrip(trip);
         setEditTrip(true);
         setTripListVisible(false);
-        // console.log("location  list in model", props.model.newTripsLocationList);
-        // console.log("location list in mytripsview", locationList);
     }
 
     function test() {

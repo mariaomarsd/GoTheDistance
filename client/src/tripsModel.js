@@ -59,15 +59,10 @@ class TripsModel {
     /* Remove location from the new trip list in the model */
     removeFromNewTrip(id) {
         function hasSameIdCB(item) {
-            //console.log("removeFromNewTrip: "+ item.id + " id: "+ id )
-            // console.log("item.id: "+item.id+" id: "+ id)
-            //console.log(id)
             return id !== item.id; // change later 
         }
         if(this.newTripsLocationList.length === 1) {
-            console.log("in here", this.newTripsLocationList);
             this.newTripsLocationList =  [];
-            console.log("in here (after)", this.newTripsLocationList);
         }
         else {
             this.newTripsLocationList = this.newTripsLocationList.filter(hasSameIdCB);
@@ -78,23 +73,15 @@ class TripsModel {
 
     removeFromEditList(id) {
         function hasSameIdCB(item) {
-            //console.log("removeFromNewTrip: "+ item.id + " id: "+ id )
-            console.log("item.id: "+item.id+" id: "+ id)
-            //console.log(id)
             return id !== item.id; // change later 
         }
-        console.log("TO DELETE", id);
-        console.log("BEFORE", this.newList)
         this.newList = this.newList.filter(hasSameIdCB);
-        console.log("AFTER", this.newList)
         this.notifyObservers();
     }
 
 
     newOrder(item) {
         this.newTripsLocationList = item;
-        //console.log("NEW LIST", this.newTripsLocationList)
-        // this.notifyObservers();
     }
 
     newOrderEditList(item) {
@@ -105,13 +92,11 @@ class TripsModel {
     saveTrip(item) {
         this.myTripsList = [...this.myTripsList, item];
         this.newTripsLocationList = [];
-        console.log("Can save ", localStorage.getItem('userId'));
         this.notifyObservers({tripToAdd: item, uid: localStorage.getItem('userId')});
     }
 
     setMyTripsList(list) {
         this.myTripsList = list
-        // console.log("CURENT LIST FROM MODEL ", this.myTripsList);
         this.notifyObservers();
     }
 
@@ -122,7 +107,6 @@ class TripsModel {
 
     setVisableTrips(id) {
         this.myTripsList[id].show = !this.myTripsList[id].show;
-        // console.log('IS ID VISIBLE ', this.myTripsList[id].show);
         this.notifyObservers();
     }
 
@@ -157,6 +141,13 @@ class TripsModel {
         catch(error) {
             console.log(error);
         }
+    }
+
+    logout(){
+        this.myTripsList = [];
+        this.newTripsLocationList = [];
+        this.newList = [];
+        this.notifyObservers();
     }
 }
 

@@ -32,13 +32,13 @@ function MainView(props){
 
   function isLoggedIn(){
     setUserLoggedIn(true);
-    // console.log("USER ID MODEL", localStorage.getItem("userId"))
     setSignup(localStorage.getItem("firstSignin")=="true")
     updateModelFromFirebase(props.model, localStorage.getItem("userId"));
   }
 
   function logout() {
     localStorage.removeItem('firstSignin');
+    props.model.logout();
     // localStorage.clear()
     setUserLoggedIn(false);
   }

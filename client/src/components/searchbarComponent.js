@@ -4,7 +4,7 @@ import {
     ComboboxPopover,
     ComboboxOption,
 } from "@reach/combobox";
-import { useState } from "react";
+// import { useState } from "react";
 
 function SearchBar(props){
 
@@ -12,7 +12,7 @@ function SearchBar(props){
 
     return(
         <div className="search-bar-component">
-            <Combobox onSelect={props.selectPlace}>
+            <Combobox onSelect={props.selectPlace} >
                 <ComboboxInput
                     // value={props.val ? "": props.selectPlace.address}
                     value={props.selectPlace.address}
@@ -21,8 +21,7 @@ function SearchBar(props){
                     disabled={!props.ready}
                     placeholder="Search a place!"
                     id="search-bar-input"
-                    autoComplete="off"
-                    
+                    autoComplete="off"                    
                 />
                 <ComboboxPopover >
                     {props.status === "OK" && props.data.map(({ place_id, description, }) => ( 

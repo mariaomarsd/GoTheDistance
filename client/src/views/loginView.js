@@ -1,20 +1,28 @@
 import React from "react";
 
 function LoginView(props) {
+
     function updateEmailCB(event){
         props.updateEmail(event.target.value);
     }
+
     function updatePasswordCB(event){
         props.updatePassword(event.target.value);
     }
+
     function loginCB() {
         props.login();
+    }
+    function onKeyUpCB(event){
+        if(event.key === 'Enter') {
+            props.login();
+        }
     }
     
     return(
         <div className="login-view">
             <form className="login-form">
-                <div className="login-heading">
+                <div className="login-heading" >
                     LOGIN
                 </div>
                 <div className="login-email">
@@ -27,6 +35,7 @@ function LoginView(props) {
                         value={props.email}
                         // placeholder="Enter your email address"
                         onChange={updateEmailCB}
+                        onKeyUp={onKeyUpCB}
                     />
                 </div>
                 <div className="login-password">
@@ -39,6 +48,7 @@ function LoginView(props) {
                         value={props.password}
                         // placeholder="Enter your password"
                         onChange={updatePasswordCB}
+                        onKeyUp={onKeyUpCB}
                     />
                     <p>{props.errorMessage}</p>
                 </div>

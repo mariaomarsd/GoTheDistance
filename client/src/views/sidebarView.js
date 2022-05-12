@@ -3,14 +3,10 @@ import Confirm from "../components/confirm.js";
 import { motion, useCycle } from "framer-motion";
 import { useDimensions } from "../components/useDimensions.js";
 import { MenuToggle } from "../components/menuToggle.js";
-import ListWarning from "../components/listTooShort";
 
 const NewTripPresenter = require("../presenters/newTripPresenter.js").default;
 const MyTripsPresenter = require("../presenters/myTripsPresenter.js").default;
 const StatisticsPresenter = require("../presenters/statisticsPresenter.js").default;
-const ProfilePresenter = require("../presenters/profilePresenter.js").default;
-const SignUpPresenter = require("../presenters/signUpPresenter.js").default;
-const LoginPresenter = require("../presenters/loginPresenter.js").default;
 
 const variants = {
     open: {
@@ -51,66 +47,21 @@ const sidebar = {
 
 function SidebarView(props) {
 
-    const [visibleList, setVisibleList] = useState(props.model.sidebartoggle);
-    const [newTripVis, setNewTripVis] = useState(false);
-    const [myTripsVis, setMyTripVis] = useState(false);
-    const [StatisticsVis, setStatisticsVis] = useState(false);
     const [confirmationVisible, setConfirmationVisible] = useState(false);
     const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false);
     const [isOpen, toggleOpen] = useCycle(false, true);
     const containerRef = useRef(null);
     const { height } = useDimensions(containerRef);
 
-    // toggleSidebar(toOpen){
-    //     this.sidebartoggle[toOpen] = !this.sidebartoggle[toOpen];
-    //     this.notifyObservers();
-    // }
-
     function setVisibleCB(id) {
-        // for(var i = 0; visibleList.length; i++) {
-        //     // if(id === i) {
-        //     //     visibleList[i] = !visibleList[i];
-        //     //     console.log("toggle");
-        //     //     console.log(visibleList[i]);
-        //     // }
-        //     // else {
-        //     //     visibleList[i] = false;
-        //     // }
-        // }
-        // visibleList[id] = !visibleList[id];
-        // setVisibleList(visibleList);
-        //var ble =  visibleList;
-        // for(var i = 0; i<visibleList.length; i++) {
-        //     visibleList[i] = !visibleList[i];
-        // }
-        // ble[1] = !ble[1];
-        // setVisibleList(ble);
-        // console.log(visibleList);
-        // console.log(visibleList[0]);
-        // console.log(visibleList[1]);
-        // console.log("pressed", id);
-        // setNewTripVis(ble[1]);
-        // console.log("MYTRIPSVIS", myTripsVis);
-        // setMyTripVis(true);
-        // setStatisticsVis(true);
         props.model.toggleSidebar(id);
         console.log(props.model.sidebartoggle);
     }
-
-    // function changeVisibility(id, bool){
-    //     var temp = visibleList;
-    //     visibleList
-    //     setVisibleList()
-    // }
 
     function setConfirmationCB() {
         setConfirmationVisible(true)
         setTimeout(function() {setConfirmationVisible(false) }, 2500)
     }
-    // function setlistwarningCD(){
-    //     setListWarningVisible(true)
-    //     setTimeout(function() {setListWarningVisible(false) }, 2500)
-    // }
 
     function setConfirmCD(){
         setConfirmDeleteVisible(true)
@@ -135,33 +86,24 @@ function SidebarView(props) {
                 <div className="sidebar-item" >
                     {props.value && <NewTripPresenter
                         model = {props.model}
-                        visible={visibleList}
                         setVisible={setVisibleCB}
                         confirmation={setConfirmationCB}
                         variants={variants}
-                        //listWarning={setlistwarningCD}
-                        isVisible={visibleList[0]}
                     />}
                 </div>
                 <div className="sidebar-item">
                     <MyTripsPresenter
                         model={props.model}
-                        // visible={false}
-                        visible={visibleList}
                         setVisible={setVisibleCB}
                         variants={variants}
-                        isVisible={myTripsVis}
                         deleteConfirm={setConfirmCD}
                     />
                 </div>
                 <div className="sidebar-item">
                     <StatisticsPresenter 
                         model={props.model}
-                        // visible={false}
-                        visible={visibleList}
                         setVisible={setVisibleCB}
                         variants={variants}
-                        isVisible={visibleList[2]}
                     />
                 </div>
                 {confirmationVisible && <Confirm text="Trip Saved!" />}

@@ -36,7 +36,7 @@ function StatisticsView(props) {
     }
 
     function renderDistanceCB(item) {
-        return  <div className="Distance" >
+        return  <div className="Distance" key={item.name}>
                     <div className="statistic-text">
                         <b>{item.name}</b><span>: </span>
                         {item.distanceNewTrip.toFixed(2)}<span> km</span>
