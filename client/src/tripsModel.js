@@ -56,7 +56,7 @@ class TripsModel {
     removeFromNewTrip(id) {
         function hasSameIdCB(item) {
             //console.log("removeFromNewTrip: "+ item.id + " id: "+ id )
-            console.log("item.id: "+item.id+" id: "+ id)
+            // console.log("item.id: "+item.id+" id: "+ id)
             //console.log(id)
             return id !== item.id; // change later 
         }
@@ -96,8 +96,13 @@ class TripsModel {
     }
 
     deleteMyTrip(trip) {
-        // console.log("trip to delete", trip)
+        function hasSameIdCB(item) {
+            return trip.name !== item.name;
+        }
+        this.myTripsList = this.myTripsList.filter(hasSameIdCB);
+
         this.notifyObservers({tripToDelete: trip, uid: localStorage.getItem('userId')});
+        // this.myTripsList = this.myTripsList;
     }
 
     addObserver(callback) {

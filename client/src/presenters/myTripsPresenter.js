@@ -19,7 +19,7 @@ const variants = {
 
 function MyTripsPresenter(props) {
 
-    useEffect(observerCB, []);
+    useEffect(observerCB, [props.model.myTripsList]);
     // useEffect(visibleCB, [props.model.sidebartoggle]);
     const [tripList, setTripList] = useState(props.model.myTripsList);
     const [isVisible, setIsVisible] = useState(props.model.sidebartoggle[1]);
@@ -113,6 +113,10 @@ function MyTripsPresenter(props) {
         console.log("location  list in model", props.model.newTripsLocationList);
         console.log("location list in mytripsview", locationList);
     }
+
+    function test() {
+        props.deleteConfirm()
+    }
     
     return(
         <motion.div className="my-trips-presenter" variants={props.variants} >
@@ -123,7 +127,7 @@ function MyTripsPresenter(props) {
                 whileTap={{ scale: 0.95 }} 
             >
                 <i className="fa-solid fa-map-location-dot" id="sidebar-icon" style={{ color:"rgb(227, 177, 151)" }}></i>
-               <div className="sidebar-name" style={{ borderColor:"rgb(227, 177, 151)" }}>
+                <div className="sidebar-name" style={{ borderColor:"rgb(227, 177, 151)" }}>
                     MY TRIPS
                 </div>
             </motion.div>
@@ -133,6 +137,7 @@ function MyTripsPresenter(props) {
                 setTripToChange={setTripToChange}
                 editTrip={setTripToEditACB}
                 model={props.model}
+                confirmDelete={test}
             />}
             {editTrip && 
                 <EditTripView 

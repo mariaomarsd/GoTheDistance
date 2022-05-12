@@ -42,6 +42,7 @@ function MyTripsView(props) {
                             {item.name} 
                         </div>
                     </div>
+                    <div>                   
                         <button className="edit-button" onClick={() => editTripCB(item)}>
                             <div className="edit-icon">
                                 <i className="fa-solid fa-pencil" style={{ color:"rgb(184, 138, 124)" }}></i>
@@ -50,19 +51,7 @@ function MyTripsView(props) {
                         <button onClick={() => deleteTripCB(item)}>
                             <i className="fa-solid fa-trash-can" style={{ color:"rgb(184, 138, 124)" }}></i>
                         </button>
-                    
-                    
-                    {/* <div onClick={() => click(item)} className="my-trips-item" key={item.name} >
-                        {/* <Checkbox checked={item.show} className="my-trips-item-check"/> */}
-                        {/* <input type="checkbox" readOnly checked={item.show} className="my-trips-item-check" />
-                        <div className="my-trips-item-name">
-                            {item.name}
-                        </div>
-                        <button className="edit-button" onClick={() => editTripCB(item)}>
-                    <i className="fa-solid fa-pencil"></i>
-                    </button>
-                    </div> */} 
-                   
+                    </div>
                 </div>
     }
 
@@ -78,6 +67,12 @@ function MyTripsView(props) {
         setConfirmVisible(false)
     }
 
+    function confirm() {
+        setConfirmVisible(false)
+        props.model.deleteMyTrip(tripToDelete)
+        props.confirmDelete()
+    }
+
     return(
         <div className="my-trips-view">
             <div className="scroll">
@@ -86,7 +81,7 @@ function MyTripsView(props) {
                     {props.myTripsList.map(renderItemsCB)}
                 </ul>}   
             </div>
-            {confirmVisible && <ConfirmDelete cancel={cancel} confirm={props.model.deleteMyTrip(tripToDelete)}/>}
+            {confirmVisible && <ConfirmDelete cancel={cancel} confirm={confirm}/>}
         </div>
     );
 }
