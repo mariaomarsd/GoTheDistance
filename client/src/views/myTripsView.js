@@ -45,11 +45,11 @@ function MyTripsView(props) {
                     <div className="my-trip-icon-container">
                         {/* <button className="edit-button" onClick={() => editTripCB(item)}> */}
                             <div className="edit-icon" onClick={() => editTripCB(item)}>
-                                <i className="fa-solid fa-pencil" style={{ color:"rgb(184, 138, 124)" }}></i>
+                                <i className="fa-solid fa-pencil" style={{ color:"rgb(191, 109, 86)" }}></i>
                             </div>
                         {/* </button> */}
                         <div onClick={() => deleteTripCB(item)} className="delete-icon">
-                            <i className="fa-solid fa-trash-can" style={{ color:"rgb(184, 138, 124)" }}></i>
+                            <i className="fa-solid fa-trash-can" style={{ color:"rgb(191, 109, 86)" }}></i>
                         </div>
                     </div>
                 </div>
