@@ -121,9 +121,9 @@ function NewTripPresenter(props) {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }} 
             >
-                <i className="fa-solid fa-route" id="sidebar-icon" style={{ color:"rgb(184, 138, 124)" }} ></i>
-                <div className="sidebar-name" style={{ borderColor:"rgb(184, 138, 124)" }} >
-                    NEW TRIP
+                <i className="fa-solid fa-route" id="sidebar-icon" style={{ color:"rgb(85, 55, 46)" }} ></i>
+                <div className="sidebar-name" style={{color:"rgb(85, 55, 46)", borderColor:"rgb(85, 55, 46)" }} >
+                    New Trips
                 </div>
             </motion.div>
             {/* <div>    */}

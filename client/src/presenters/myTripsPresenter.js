@@ -131,9 +131,9 @@ function MyTripsPresenter(props) {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }} 
             >
-                <i className="fa-solid fa-map-location-dot" id="sidebar-icon" style={{ color:"rgb(227, 177, 151)" }}></i>
-                <div className="sidebar-name" style={{ borderColor:"rgb(227, 177, 151)" }}>
-                    MY TRIPS
+                <i className="fa-solid fa-map-location-dot" id="sidebar-icon" style={{ color:"rgb(191, 109, 86)" }}></i>
+                <div className="sidebar-name" style={{color:"rgb(191, 109, 86)", borderColor:"rgb(191, 109, 86)" }}>
+                    My Trips
                 </div>
             </motion.div>
             {isVisible && tripListVisible && <MyTripsView

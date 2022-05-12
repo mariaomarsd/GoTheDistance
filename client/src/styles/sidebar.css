@@ -40,9 +40,10 @@
     top: 0;
     left: 0;
     bottom: 0;
-    width: 16vw;
-    background-color: rgb(255, 255, 255);
+    width: 18vw;
+    background-color: rgb(251, 226, 216);
     border-radius: 25px;
+    opacity: 0.8;
 }
 
 .sidebar-item-list {
@@ -69,22 +70,24 @@
 }
 
 #sidebar-icon {
-    padding-right: 20px;
+    padding-right: 18px;
+    padding-left: 10px;
     /* color: greenyellow; */
 }
 
 .sidebar-name {
     border-style: solid;
     border-width: 1.5px;
-    border-radius: 10px;
-    padding: 6px;
+    border-radius: 10px; 
     width: 160px;
     height: 40px;
-    /* align-content: center;
-    justify-content: center; */
     text-align: center;
     padding-top: 12px;
+    padding-bottom: 6px;
+    padding-left: 2px;
+    padding-right: 2px;
     letter-spacing: 2px;
+    font-variant: small-caps;
 }
    
 /* 
