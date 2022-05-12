@@ -32,7 +32,7 @@ function MainView(props){
 
   function isLoggedIn(){
     setUserLoggedIn(true);
-    setSignup(localStorage.getItem("firstSignin")=="true")
+    setSignup(localStorage.getItem("firstSignin")=="true");
     updateModelFromFirebase(props.model, localStorage.getItem("userId"));
   }
 
@@ -47,7 +47,9 @@ function MainView(props){
     setSignup(false)
   }
 
-
+  function click() {
+    setSignup(!signup)
+  }
 
   return(
       <div className="main-view">
@@ -87,6 +89,9 @@ function MainView(props){
                   loggedIn={userLoggedIn}
                   logout={logout} />
               </div>
+              <div className="info" onClick={click}>
+                <i className="fa-regular fa-circle-question" style={{color:"rgb(85, 55, 46)"}}></i>
+              </div>
             </>}
           </div>
           <div>
@@ -100,9 +105,7 @@ function MainView(props){
                             >
               <AuthenticationPresenter
                   visible = {!userLoggedIn}
-                  isLoggedIn = {isLoggedIn}
-                  // setFirstSignin={setFirstSignin}
-                  
+                  isLoggedIn = {isLoggedIn}                  
               />
           </motion.div>}
           {signup && <SiteInfo click={continueSignup}/>}
