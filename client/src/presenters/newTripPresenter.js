@@ -165,7 +165,7 @@ function NewTripPresenter(props) {
             {/* <div>    */}
                 {isVisible && 
                 
-                <div>
+                <>
                 {isNewTripVisible && <NewTripView
                     saveTripName = {setTripNameCB}
                     cancelSetName = {cancelSetNameCB}
@@ -180,7 +180,7 @@ function NewTripPresenter(props) {
                 />
                 }
                 {listwarningVisible && <ListWarning warning = {errorMessage}/>}
-                </div>
+                </>
                 }
         </motion.div>
     );

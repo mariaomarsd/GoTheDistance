@@ -8,8 +8,6 @@ function EditNewTripView(props){
     const [chosen, setChosen] = useState();
     const [items, setItems] = useState(props.locationList);
     const [temp, setTemp] = useState()
-    // const [visible, setVisisble] = useState(false);
-    // const [confirmVisible, setConfirmVisible] = useState(false);
 
     const {
         ready, // is it set up and redy to go with libraries, see above  in app function
@@ -26,8 +24,6 @@ function EditNewTripView(props){
             const temp_results = (results[0].formatted_address).split(',')
             const temp_place = temp_results[0] + ", " + temp_results.pop()
             setChosen({id: Math.random(),name: temp_place, lat: lat, lng: lng})
-            onInputChangeACB()
-
         } catch (error) {
             console.log(" Error: ", error);
         }
@@ -60,22 +56,9 @@ function EditNewTripView(props){
     function cancelCB(){
         props.cancel();
     }
-
-    function onInputChangeACB(event){
-        document.addEventListener("keydown", function(event) {
-            if(event.code === "Enter") { 
-                event.preventDefault();
-            }
-        })
-
-    }
     
     return(
-        <div className="edit-trip-view"
-            // initial={{ height: 0 }} 
-            // animate={{ height: 200 }}
-            // onChange={onInputChangeACB} 
-            >
+        <div className="edit-trip-view">
           <div className="search-component" /*onChange={onInputChangeACB}*/ /*id="search-input"*/ >
             <SearchBar 
                 selectPlace={selectPlace}
@@ -90,31 +73,35 @@ function EditNewTripView(props){
           </div>
             <div className="scroll">
               {/* Start location */}
-              <Reorder.Group className="new-trips-item-list" values={items} onReorder={setItems}>
+              <Reorder.Group className="new-trips-item-list"
+                            values={items} 
+                            onReorder={setItems}
+                        >
                   {
                     items.map((item,index) => {
                         updateOrdertest()
-                    return <Reorder.Item className="new-trip-item" key={index} value={item} >
+                    return <Reorder.Item className="new-trip-item" key={item.id} value={item} >
                     <button className="new-trip-item-button" onClick={() => removeFromTripACB(item.id)}>
-                        X
+                    <i className="fa-solid fa-circle-xmark" style={{color: "lightblue"}}></i>
                     </button>
-                    <div className="new-trip-item-name">
+                    <div className="new-trip-item-name" >
                         {item.name}
                     </div>
-                    {/* {item.name} */}
-                             </Reorder.Item>
+                            </Reorder.Item>
                     })
+                    
                   }
+                  
               </Reorder.Group>
-              {/* End location */}
             </div>
             <div className="new-trip-button-container">
-            <button className="new-trip-button" id="close" onClick={cancelCB}>
-                Cancel
-            </button>
-            <button className="new-trip-button" id="save" onClick={saveTripACB}>
-                Save Trip
-            </button>
+                <button className="new-trip-button" id="close" onClick={cancelCB}>
+                    Cancel
+                </button>
+                <button className="new-trip-button" id="save" onClick={saveTripACB}>
+                    Save Trip
+                </button>
+            
             </div>
         </div>
     );
