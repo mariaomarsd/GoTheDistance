@@ -89,6 +89,10 @@ class TripsModel {
         // this.notifyObservers();
     }
 
+    newOrderEditList(item) {
+        this.newList  = item;
+    }
+
     /* Safe current trip to users trips  */
     saveTrip(item) {
         this.myTripsList = [...this.myTripsList, item];
