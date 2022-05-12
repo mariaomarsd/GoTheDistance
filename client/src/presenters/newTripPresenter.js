@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as geometry from 'spherical-geometry-js';
 import randomColor from "randomcolor";
-import {testReadFromDatabase} from "../firebaseModel";
+// import {testReadFromDatabase} from "../firebaseModel";
 import { motion } from "framer-motion";
 import ListWarning from "../components/listTooShort";
 
@@ -75,7 +75,6 @@ function NewTripPresenter(props) {
         props.model.saveTrip(item);
         props.setVisible(0)
         setIsVisible(false);
-        // setIsVisible(props.visible[0]);
         props.confirmation()
         setAddLocationsVisible(false);
        }
@@ -83,7 +82,6 @@ function NewTripPresenter(props) {
 
     function setVisibleCB() {
         props.setVisible(0);
-        //setIsVisible(props.isVisible);
         setIsNewTripVisible(true);
         setAddLocationsVisible(false);
         setErrorMessage("");
@@ -120,8 +118,6 @@ function NewTripPresenter(props) {
         }
 
         else {
-            //setIsNewTripVisible(true);
-            //setAddLocationsVisible(false);
             if(name === "") {
                 setErrorMessage("Give your trip a name");
                 setlistwarningCD();
@@ -162,27 +158,23 @@ function NewTripPresenter(props) {
                     New Trips
                 </div>
             </motion.div>
-            {/* <div>    */}
-                {isVisible && 
-                
-                <>
-                {isNewTripVisible && <NewTripView
-                    saveTripName = {setTripNameCB}
-                    cancelSetName = {cancelSetNameCB}
-                />}
-                {addLocationsVisible && <EditNewTripView
-                    model = {props.model}
-                    locationList={locationList} 
-                    addToTrip={addToNewTripACB}
-                    removeFromTrip={removeFromNewTripACB}
-                    confirmTrip={saveTripACB}
-                    updateOrder={updateOrderACB}
-                    cancel={cancelCB}
-                />
-                }
-                {listwarningVisible && <ListWarning warning = {errorMessage}/>}
-                </>
-                }
+            {isVisible && <>
+            {isNewTripVisible && <NewTripView
+                saveTripName = {setTripNameCB}
+                cancelSetName = {cancelSetNameCB}
+            />}
+            {addLocationsVisible && <EditNewTripView
+                locationList={locationList} 
+                addToTrip={addToNewTripACB}
+                removeFromTrip={removeFromNewTripACB}
+                confirmTrip={saveTripACB}
+                updateOrder={updateOrderACB}
+                cancel={cancelCB}
+            />
+            }
+            {listwarningVisible && <ListWarning warning = {errorMessage}/>}
+            </>
+            }
         </motion.div>
     );
 }

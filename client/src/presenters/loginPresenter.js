@@ -16,19 +16,6 @@ import { ReactSession } from "react-client-session";
 firebase.initializeApp(firebaseConfig);
 const auth = getAuth();
 
-// onAuthStateChanged(auth, (user) => {
-//     if (user) {
-//       // User is signed in, see docs for a list of available properties
-//       // https://firebase.google.com/docs/reference/js/firebase.User
-//       const uid = user.uid;
-//       // ...
-//       console.log('WORKS', uid)
-//     } else {
-//       // User is signed out
-//       // ...
-//     }
-//   });
-
 function LoginPresenter(props) {
 
     const [email, setEmail] = useState("");
@@ -70,7 +57,6 @@ function LoginPresenter(props) {
             }
         }
         if(password !== "") {
-            // setPersistence(auth, browserLocalPersistence)
             signInWithEmailAndPassword(auth, email, password)
             .then(signIn)
             .then(props.isLoggedIn)
@@ -80,30 +66,6 @@ function LoginPresenter(props) {
             setErrorMessage("Type password")
         }
     }
-
-    // firebase.auth().onAuthStateChanged((user) => {
-    //     if (user) {
-    //       // User is signed in, see docs for a list of available properties
-    //       // https://firebase.google.com/docs/reference/js/firebase.User
-    //       var uid = user.uid;
-    //       // ...
-    //     } else {
-    //       // User is signed out
-    //       // ...
-    //     }
-    //   });
-
-    // onAuthStateChanged(auth, (user) => {
-    //     if (user) {
-    //       // User is signed in, see docs for a list of available properties
-    //       // https://firebase.google.com/docs/reference/js/firebase.User
-    //       const uid = user.uid;
-    //       // ...
-    //     } else {
-    //       // User is signed out
-    //       // ...
-    //     }
-    //   });
 
     return(
         <div>
@@ -115,7 +77,6 @@ function LoginPresenter(props) {
                 updatePassword = {updatePasswordCB}
                 errorMessage = {errorMessage}
             />
-            {/* <button onClick={test}>TEST</button> */}
         </div>
     );
 }

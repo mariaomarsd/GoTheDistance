@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import { GoogleMap, useLoadScript, Polyline, Marker } from "@react-google-maps/api";
+import { GoogleMap, Polyline, Marker } from "@react-google-maps/api";
 import mapStyles from "../mapStyles";
 import mapStylesBlack from "../mapStylesBlack";
 import { motion } from "framer-motion";
 
 
-const center = { // where to start the map, stockholm
+const center = {
     lat: 23.818858,
     lng: 6.094477,
 };
@@ -32,7 +32,6 @@ const pathOptions = {
 
 function MapPresenter(props){
 
-    // localStorage.getItem('token')
     useEffect(observerCB, []);
 
     const mapRef = useRef(); // part of move mapview to chosen destination
@@ -90,9 +89,6 @@ function MapPresenter(props){
         });
         setNewTripPathList(tempPathList);
         getMyTripsPathListCB();
-        // if(props.model.myTripsList.length !== 0) {
-        //     getMyTripsPathListCB();
-        // }
     }
 
     function renderPolyline(trip) {
@@ -109,16 +105,14 @@ function MapPresenter(props){
                 <Polyline path={trip[0]} options={myTripsPathOptions}/>
                 <Marker
                     position={trip[0][0]}
-                    // icon={{url:  "/BlackAndWhite-marker.png"}}
                     label={trip[3]}
                 />
                 </div> 
     }
 
     function moveViewinMap(locationList){
-       try{
-         mapRef.current.panTo(locationList.at(-1));
-       }catch(error){}
+       try{ mapRef.current.panTo(locationList.at(-1));}
+       catch(error){}
     }
 
     function ChangeMapStiles(){
@@ -172,7 +166,6 @@ function MapPresenter(props){
                     path={newTripPathList}
                     options={pathOptions}
                 /> 
-                {/* <FontAwesomeIcon icon="fa-solid fa-location-pin" /> */}
                 {/* Draw polyline for all trips that are in my trips */}
                 {myTripsPathList.map(renderPolyline)}
                 {/* Draw markers for the new trip that is created */}
@@ -187,7 +180,6 @@ function MapPresenter(props){
                 })}
                 {/*center the map view on the place most recently chosen*/
                 moveViewinMap(newTripPathList)}
-                
                 </GoogleMap>
                 }{<ChangeMapStiles/>}
                 
