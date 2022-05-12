@@ -26,7 +26,6 @@ function EditNewTripView(props){
             const temp_results = (results[0].formatted_address).split(',')
             const temp_place = temp_results[0] + ", " + temp_results.pop()
             setChosen({id: Math.random(),name: temp_place, lat: lat, lng: lng})
-            console.log("CHOSEN",chosen)
             onInputChangeACB()
 
         } catch (error) {
@@ -40,7 +39,6 @@ function EditNewTripView(props){
 
     function addToTripACB() {
         if(chosen === undefined) {
-            // console.log("KEMST")
         }
         else {
             props.addToTrip(chosen);
@@ -64,17 +62,11 @@ function EditNewTripView(props){
     }
 
     function onInputChangeACB(event){
-        // props.searchInput(event.target.value);
-        // const searchInputVar = document.getElementById("search-input");
         document.addEventListener("keydown", function(event) {
             if(event.code === "Enter") { 
                 event.preventDefault();
-                // props.searchClick();
-                // addToTripACB()
-                // console.log("gerist núna", chosen)
             }
         })
-        // console.log("gerist núna", chosen)
 
     }
     
@@ -90,10 +82,7 @@ function EditNewTripView(props){
                 data={data}
                 status={status}
                 setValue={setValue}
-                // setVal={setVal}
                 ready={ready}
-                // val={temp}
-                // onChange={onInputChangeACB}
             />
             <button className="new-trip-button" id="add" onClick={addToTripACB}>
                 Add
@@ -105,7 +94,6 @@ function EditNewTripView(props){
                   {
                     items.map((item,index) => {
                         updateOrdertest()
-                        console.log()
                     return <Reorder.Item className="new-trip-item" key={index} value={item} >
                     <button className="new-trip-item-button" onClick={() => removeFromTripACB(item.id)}>
                         X

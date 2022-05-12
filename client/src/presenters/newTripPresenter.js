@@ -50,7 +50,6 @@ function NewTripPresenter(props) {
         // to prevent putting in the same place twice in a row
         if((props.model.newTripsLocationList.length === 0 )){
             props.model.addToNewTrip(item);
-            console.log("ADDING", item);
         }
         else if (item.name != props.model.newTripsLocationList.at(-1).name) { 
             props.model.addToNewTrip(item);
@@ -67,14 +66,9 @@ function NewTripPresenter(props) {
 
     function saveTripACB(item) {
         if(item.locations.length<2){
-            // let user know there needs to be more than one stop
-        //console.log("Trip has to be more than one stop")
-        //props.listWarning()
         setErrorMessage("Trip needs to have at least two stops!");
         setlistwarningCD();
        }else{
-        console.log("item")
-        console.log(item)
         item.name = tripName; 
         item.distanceNewTrip = calculateDistanceCB();
         item.color = randomColor();
@@ -119,7 +113,6 @@ function NewTripPresenter(props) {
         }
 
         if(name !== "" && !nameTaken) {
-            console.log("HÉR!!!");
             setTripName(name);
             setIsNewTripVisible(false);
             setAddLocationsVisible(true);
@@ -127,7 +120,6 @@ function NewTripPresenter(props) {
         }
 
         else {
-            console.log("HERE");
             //setIsNewTripVisible(true);
             //setAddLocationsVisible(false);
             if(name === "") {

@@ -11,12 +11,10 @@ const REF = "gothedistance"
 function updateFirebaseFromModel(model) {
     
     function observerACB(payload) {
-        //console.log('testing', payload)
         if(payload && payload.tripToAdd) {
             firebase.database().ref(REF+"/"+payload.uid+"/userTrips/"+payload.tripToAdd.name).set(payload.tripToAdd);
         }
         if(payload && payload.tripToDelete) {
-            console.log("KEMST HINGAÐ",payload.tripToDelete );
             firebase.database().ref(REF+"/"+payload.uid+"/userTrips/"+payload.tripToDelete.name).set(null);
         }
     }
@@ -44,7 +42,6 @@ function updateModelFromFirebase(model, uid) {
             if(firebaseData.val()) {
                 const tripList = Object.values(firebaseData.val());
                 tripList.map(updateModelCB); 
-                console.log(Object.values(firebaseData.val()));
             }
         });
     }
