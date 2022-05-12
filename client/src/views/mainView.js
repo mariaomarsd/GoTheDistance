@@ -89,9 +89,12 @@ function MainView(props){
                   loggedIn={userLoggedIn}
                   logout={logout} />
               </div>
-              <div className="info" onClick={click}>
+              <motion.div className="info" 
+                        onClick={click}
+                        whileHover={{ scale: 1.3 }}
+                        whileTap={{ scale: 0.95 }}   >
                 <i className="fa-regular fa-circle-question" style={{color:"rgb(85, 55, 46)"}}></i>
-              </div>
+              </motion.div>
             </>}
           </div>
           <div>
