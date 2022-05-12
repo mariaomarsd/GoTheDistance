@@ -37,25 +37,12 @@ function EditNewTripView(props){
     }
 
     function addToTripACB() {
-        // console.log("chosen", chosen)
         if(chosen === undefined) {
             console.log("KEMST")
         }
         else {
             props.addToTrip(chosen);
         }
-        // props.addToTrip(chosen);
-        // console.log("now", items)
-        // props.addToTrip(chosen);
-        // console.log("NOW", chosen);
-        // console.log("first", items)
-
-        // props.addToTrip(chosen);
-        // console.log("tets", selectPlace)
-        // setTemp(true)
-        // console.log("tets", temp)
-        // // console.log("now", items)
-        // // props.addToTrip(items)
     }
 
     function removeFromTripACB(id) {
