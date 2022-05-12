@@ -3,12 +3,14 @@
 function ConfirmDelete(props){
 
     return(
-        <div className="confirm-container">
-            <div className="confirmation-text">
+        <div className="delete-container">
+            <div className="delete-text">
                 Are you sure that you want to delete your trip?
             </div>
-            <button onClick={props.cancel}> No </button>
-            <button onClick={props.confirm}> Yes </button>
+            <div className="delete-container-buttons">
+                <button className="new-trip-button" id = "cancel" onClick={props.cancel}> No </button>
+                <button className="new-trip-button" id = "confirm" onClick={props.confirm}> Yes </button>
+            </div>
             {/* <CheckCircleFilled className="confirmation-icon"/> */}
         </div>
     );

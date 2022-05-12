@@ -76,7 +76,6 @@ function MyTripsPresenter(props) {
             
         }
         else {
-            console.log(item);
             var dist = calculateDistanceCB();
             props.model.updateLocationList(tripToChange, dist);
             setEditTrip(false);
