@@ -1,34 +1,22 @@
 import React from 'react';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import './styles/base.css'
-import './styles/sidebarMenu.css'
-import './styles/statisticsView.css'
+import { Routes, Route } from 'react-router-dom';
+import "@reach/combobox/styles.css";
 
+import './styles/mainView.css';
+import "./styles/sidebar.css";
+import "./styles/newTrip.css";
+import "./styles/myTrips.css";
+import "./styles/statistics.css";
+import "./styles/profile.css"
 
-//tjekka hvort virki, breyta svo í presenter
-const Map = require("./views/mapView.js").default;
-const NewTrip = require("./views/newTripView.js").default;
-const Sidebar = require("./views/sidebarView.js").default;
-const Presenter = require("./presenters/mainPresenter").default;
+const MainView = require("./views/mainView.js").default;
 
-export default function App() {
+export default function App(props) {
   return (
     <div className="app">
-      {/* <div className="map-sidebar">
-        <div className="map-container">
-          <Map></Map>
-        </div>
-        <div className="sidebar-container">
-          <Sidebar></Sidebar>
-        </div>
-      </div> */}
-      <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<Presenter/>} />
+          <Route exact path="/" element={<MainView model={props.model} />} />
         </Routes>
-      </BrowserRouter>
     </div>
   );
 }
-
-

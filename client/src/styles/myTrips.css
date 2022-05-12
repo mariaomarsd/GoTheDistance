@@ -1,0 +1,54 @@
+.my-trips-view {
+    background-color: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 14px;
+    margin-left: 60px;
+}
+
+.my-trips-item-list {
+    padding-left: 0px;
+}
+
+.my-trips-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-self: center;
+}
+
+.my-trip-checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-self: center;
+    cursor: pointer;
+}
+
+.my-trips-item-check {
+    width: 15px;
+    height: 15px;
+    accent-color: rgb(191, 109, 86);
+}
+
+.my-trips-item-name {
+    font-size: 15px;
+    padding: 5px;
+    text-align: left;
+}
+
+.my-trip-icon-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+}
+
+.edit-icon {
+    padding-right: 10px;
+}
+
+.delete-icon {
+    padding-right: 10px;
+}

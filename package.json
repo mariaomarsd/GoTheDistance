@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "server": "^1.0.37"
+    "firebase": "^9.6.11",
+    "server": "^1.0.37",
+    "use-places-autocomplete": "^2.0.0"
   }
 }

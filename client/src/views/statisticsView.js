@@ -1,31 +1,156 @@
-import React from "react";
+import {React, useState} from "react";
+import Counter from "../components/counter.js"
 
-function StatisticsView(){
+function StatisticsView(props) {
+
+    const[placesToggle, setPlacesToggle] =  useState(true);
+    const[countriesToggle, setCountriesToggle] =  useState(true);
+    const[kmToggle, setkmToggle] =  useState(true);
     
-    return(
-    <div className="statistics-view">
-        <div className="statistics-row">
-            <div className="statistics-container">
-                <div className="statistic-item">Distance travelled</div>
-                <div className="statistic-item">16879 km</div>
-            </div>
-            <div className="statistics-container">
-                <div>Countries visited</div>
-                <div>22/195</div>
-            </div>
-        </div>
-            <div className="statistics-row">
-            <div className="statistics-container">
-                <div>Places explored</div>
-                <div>72</div>
-            </div>
-            <div className="statistics-container">
-                <div>Continents</div>
-                <div>3/7</div>
-            </div>
-        </div>
+    function togglePlaces(){
+        setPlacesToggle(!placesToggle);
+    }
 
-    </div>);
+    function toggleCountries(){
+        setCountriesToggle(!countriesToggle);
+    }
+
+    function toggleKm(){
+        setkmToggle(!kmToggle);
+    }
+
+    function renderPlacesCB(name) {
+        return  <div className="places" key={name}>
+                    <div className="statistic-text">
+                        {name}
+                    </div>
+                </div>     
+    }
+
+    function renderCountriesCB(name) {
+        return  <div className="countries" key={name}>
+                    <div className="statistic-text">
+                        {name}
+                    </div>
+                </div>   
+    }
+
+    function renderDistanceCB(item) {
+        return  <div className="Distance" key={item.name}>
+                    <div className="statistic-text">
+                        <b>{item.name}</b><span>: </span>
+                        {item.distanceNewTrip.toFixed(2)}<span> km</span>
+                    </div>
+                </div>   
+    }
+
+    return(
+        <div className="statistic-view-container">
+        <div className="statistic-view">
+            <div className="statistic-wrapper">
+            <button className="display-button" onClick={toggleKm}>
+                {kmToggle ? 
+            <div>
+                <div className="statistic-title">
+                    Distance Travelled
+                    </div>
+                        <div className="number-of-places">
+                             {props.myTripsList.length === 0 ? <div>0.0 km</div> :
+                            <div className="statistic-km-number">
+                                <Counter from={0} to={props.totalDistance}/> <span className="km">km</span>
+                            </div>}
+                            <u className="extra-text">See distribution</u> 
+                        </div>
+                        </div>
+                        : 
+                        <div> 
+                            <div className="statistic-title">
+                                Distance Travelled
+                            </div>
+                            <div className="list-of-places">
+                                {props.myTripsList.length === 0 ? <div>none</div> :
+                                <div className="statistic-text">
+                                    <div className="scrollStats">
+                                        {props.myTripsList.map(renderDistanceCB)}
+                                    </div>
+                                </div>}
+                            <u className="extra-text">See total km</u> 
+                            </div> 
+                        </div> 
+                        } 
+                </button>
+            </div>
+                <div className="statistic-wrapper">
+                    <button className="display-button" onClick={togglePlaces}>
+                        {placesToggle ? 
+                    <div>
+                        <div className="statistic-title">
+                            Places Visited
+                        </div>
+                        <div className="number-of-places">
+                            {props.myTripsList.length === 0 ? <div>0</div> :
+                            <div className="statistic-number">
+                                    <Counter from={0} to={props.numberOfPlaces} />
+                            </div>}
+                            <u className="extra-text">See total list</u> 
+                        </div>
+                    </div>
+                    : 
+                    <div>
+                    <div className="statistic-title">
+                            Places Visited
+                        </div>
+                    <div className="list-of-places">
+                        {props.myTripsList.length === 0 ? <div>none</div> :
+                        <div className="statistic-text">
+                            <div className="scrollStats">
+                                {props.ListOfPlaces.map(renderPlacesCB)}
+                            </div>
+                        </div>}
+                        <u className="extra-text">See total number</u> 
+                    </div>
+                    </div>
+                    }
+                </button>
+            </div>
+            <div className="statistic-wrapper">
+                <button className="display-button" onClick={toggleCountries}>
+                    {countriesToggle ? 
+                <div>
+                    <div className="statistic-title">
+                        Countries Visited
+                    </div>
+                        <div className="number-of-places">
+                            {props.myTripsList.length === 0 ? <div>0</div> :
+                            <div className="statistic-number">
+                                <Counter from={0} to={props.numberOfCountries} />
+                            </div>}
+                            <u className="extra-text">See total list</u> 
+                        </div>
+                    </div>
+                    : 
+                    <div>
+                    <div className="statistic-title">
+                        Countries Visited
+                    </div>
+                    <div className="list-of-places">
+                        {props.myTripsList.length === 0 ? <div>none</div> :
+                        <div className="statistic-text">
+                            <div className="test">
+                            <div className="scrollStats">
+                                {props.ListOfCountries.map(renderCountriesCB)}
+                            </div>
+                            </div>
+                        </div>}
+                        <u className="extra-text">See total number</u> 
+                    </div>
+                    </div>
+                    }
+                </button>
+            </div>
+        </div>
+        </div>
+    );
 }
 
 export default StatisticsView;
