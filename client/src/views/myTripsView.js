@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { Checkbox } from 'antd';
 import ConfirmDelete from '../components/confirmDelete.js'
 
 function MyTripsView(props) {
@@ -16,7 +15,6 @@ function MyTripsView(props) {
     }
 
     function click(id) {
-        // console.log('ONCLICK', id)
         var temp = props.myTripsList.indexOf(id, 0);
         props.setVisibleTrips(temp);
         getVisibleList()
@@ -24,30 +22,25 @@ function MyTripsView(props) {
 
     function editTripCB(item){
         props.editTrip(item);
-        // console.log(item);
     }
 
     function deleteTripCB(item){
-        // console.log("TRIP TO DELETE", item)
         setConfirmVisible(true)
         setTripToDelete(item)
-        // props.model.deleteMyTrip(item)
     }
 
     function renderItemsCB(item) {
-        return <div className="my-trips-item">
-                    <div onClick={() => click(item)}  key={item.name} className="my-trip-checkbox">
+        return <div className="my-trips-item" key={item.name}>
+                    <div onClick={() => click(item)} className="my-trip-checkbox">
                         <input type="checkbox" readOnly checked={item.show} className="my-trips-item-check" />
                         <div className="my-trips-item-name">
                             {item.name} 
                         </div>
                     </div>
                     <div className="my-trip-icon-container">
-                        {/* <button className="edit-button" onClick={() => editTripCB(item)}> */}
-                            <div className="edit-icon" onClick={() => editTripCB(item)}>
-                                <i className="fa-solid fa-pencil" style={{ color:"rgb(191, 109, 86)" }}></i>
-                            </div>
-                        {/* </button> */}
+                        <div className="edit-icon" onClick={() => editTripCB(item)}>
+                            <i className="fa-solid fa-pencil" style={{ color:"rgb(191, 109, 86)" }}></i>
+                        </div>
                         <div onClick={() => deleteTripCB(item)} className="delete-icon">
                             <i className="fa-solid fa-trash-can" style={{ color:"rgb(191, 109, 86)" }}></i>
                         </div>
