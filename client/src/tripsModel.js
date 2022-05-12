@@ -158,6 +158,13 @@ class TripsModel {
             console.log(error);
         }
     }
+
+    logout(){
+        this.myTripsList = [];
+        this.newTripsLocationList = [];
+        this.newList = [];
+        this.notifyObservers();
+    }
 }
 
 export default TripsModel;
