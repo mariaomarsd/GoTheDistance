@@ -98,8 +98,8 @@ function MyTripsPresenter(props) {
         setTripListVisible(true);
     }
 
-    function updateOrderACB() {
-
+    function updateOrderACB(item) {
+        props.model.newOrderEditList(item);
     }
 
     function cancelCB(){
