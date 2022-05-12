@@ -42,6 +42,10 @@ class TripsModel {
         this.notifyObservers();
     }
 
+    emptyNewList() {
+        this.newList = [];
+    }
+
     updateLocationList(trip, dist) {
         var ind = this.myTripsList.indexOf(trip);
         this.myTripsList[ind].locations = this.newList;
@@ -56,7 +60,7 @@ class TripsModel {
     removeFromNewTrip(id) {
         function hasSameIdCB(item) {
             //console.log("removeFromNewTrip: "+ item.id + " id: "+ id )
-            console.log("item.id: "+item.id+" id: "+ id)
+            // console.log("item.id: "+item.id+" id: "+ id)
             //console.log(id)
             return id !== item.id; // change later 
         }
@@ -64,10 +68,29 @@ class TripsModel {
         this.notifyObservers();
     }
 
+    removeFromEditList(id) {
+        function hasSameIdCB(item) {
+            //console.log("removeFromNewTrip: "+ item.id + " id: "+ id )
+            console.log("item.id: "+item.id+" id: "+ id)
+            //console.log(id)
+            return id !== item.id; // change later 
+        }
+        console.log("TO DELETE", id);
+        console.log("BEFORE", this.newList)
+        this.newList = this.newList.filter(hasSameIdCB);
+        console.log("AFTER", this.newList)
+        this.notifyObservers();
+    }
+
+
     newOrder(item) {
         this.newTripsLocationList = item;
         //console.log("NEW LIST", this.newTripsLocationList)
         // this.notifyObservers();
+    }
+
+    newOrderEditList(item) {
+        this.newList  = item;
     }
 
     /* Safe current trip to users trips  */
@@ -96,8 +119,13 @@ class TripsModel {
     }
 
     deleteMyTrip(trip) {
-        // console.log("trip to delete", trip)
+        function hasSameIdCB(item) {
+            return trip.name !== item.name;
+        }
+        this.myTripsList = this.myTripsList.filter(hasSameIdCB);
+
         this.notifyObservers({tripToDelete: trip, uid: localStorage.getItem('userId')});
+        // this.myTripsList = this.myTripsList;
     }
 
     addObserver(callback) {
