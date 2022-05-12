@@ -62,16 +62,21 @@ function StatisticsView(props) {
                         </div>
                         </div>
                         : 
-                        <div className="list-of-places">
-                            {props.myTripsList.length === 0 ? <div>none</div> :
-                            <div className="statistic-text">
-                                <div className="scroll">
-                                    {props.myTripsList.map(renderDistanceCB)}
-                                </div>
-                            </div>}
+                        <div> 
+                            <div className="statistic-title">
+                                Distance Travelled
+                            </div>
+                            <div className="list-of-places">
+                                {props.myTripsList.length === 0 ? <div>none</div> :
+                                <div className="statistic-text">
+                                    <div className="scroll">
+                                        {props.myTripsList.map(renderDistanceCB)}
+                                    </div>
+                                </div>}
                             <u className="extra-text">See total km</u> 
+                            </div> 
                         </div> 
-                        }
+                        } 
                 </button>
             </div>
                 <div className="statistic-wrapper">
@@ -90,6 +95,10 @@ function StatisticsView(props) {
                         </div>
                     </div>
                     : 
+                    <div>
+                    <div className="statistic-title">
+                            Places Visited
+                        </div>
                     <div className="list-of-places">
                         {props.myTripsList.length === 0 ? <div>none</div> :
                         <div className="statistic-text">
@@ -98,7 +107,9 @@ function StatisticsView(props) {
                             </div>
                         </div>}
                         <u className="extra-text">See total number</u> 
-                    </div>}
+                    </div>
+                    </div>
+                    }
                 </button>
             </div>
             <div className="statistic-wrapper">
@@ -117,6 +128,10 @@ function StatisticsView(props) {
                         </div>
                     </div>
                     : 
+                    <div>
+                    <div className="statistic-title">
+                        Countries Visited
+                    </div>
                     <div className="list-of-places">
                         {props.myTripsList.length === 0 ? <div>none</div> :
                         <div className="statistic-text">
@@ -127,7 +142,9 @@ function StatisticsView(props) {
                             </div>
                         </div>}
                         <u className="extra-text">See total number</u> 
-                    </div>}
+                    </div>
+                    </div>
+                    }
                 </button>
             </div>
         </div>
