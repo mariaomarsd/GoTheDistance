@@ -82,9 +82,9 @@ function EditNewTripView(props){
                         updateOrdertest()
                     return <Reorder.Item className="new-trip-item" key={item.id} value={item} >
                     <button className="new-trip-item-button" onClick={() => removeFromTripACB(item.id)}>
-                        X
+                    <i className="fa-solid fa-circle-xmark" style={{color: "lightblue"}}></i>
                     </button>
-                    <div className="new-trip-item-name">
+                    <div className="new-trip-item-name" >
                         {item.name}
                     </div>
                             </Reorder.Item>
@@ -101,6 +101,7 @@ function EditNewTripView(props){
                 <button className="new-trip-button" id="save" onClick={saveTripACB}>
                     Save Trip
                 </button>
+            
             </div>
         </div>
     );

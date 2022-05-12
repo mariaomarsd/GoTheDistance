@@ -22,6 +22,11 @@ function SignUpView(props) {
         console.log("clicked submit button");
         props.createUser();
     }
+    function onKeyUpCB(event){
+        if(event.key === 'Enter') {
+            props.createUsers();
+        }
+    }
     
     return(
         <div className="sign-up-view">
@@ -38,6 +43,7 @@ function SignUpView(props) {
                         type="text"   
                         onChange={updateUsernameCB}
                         value={props.username}
+                        onKeyUp={onKeyUpCB}
                         // placeholder="Enter your username"
                     />
                 </div>
@@ -50,6 +56,7 @@ function SignUpView(props) {
                         type="email"
                         onChange={updateEmailCB}
                         value = {props.email}
+                        onKeyUp={onKeyUpCB}
                         // placeholder="Enter your email address"
                     />
                 </div>
@@ -62,6 +69,7 @@ function SignUpView(props) {
                         type="password"
                         onChange={updatePasswordCB}
                         value={props.password}
+                        onKeyUp={onKeyUpCB}
                         // placeholder="Enter your password"
                     />
                 </div>
@@ -74,6 +82,7 @@ function SignUpView(props) {
                         type="password"
                         onChange={updateConfirmPasswordCB}
                         value={props.confirmPassword}
+                        onKeyUp={onKeyUpCB}
                         // placeholder="Repeat your password"
                     />
                 </div>    

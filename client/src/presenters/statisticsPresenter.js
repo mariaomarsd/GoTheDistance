@@ -36,8 +36,6 @@ function StatisticsPresenter(props) {
     
     function setVisibleCB() {
         props.setVisible(2);
-        //setIsVisible(props.visible[2]);
-        console.log("stat", isVisible);
     }
 
     function getTotalKM() {
@@ -77,7 +75,6 @@ function StatisticsPresenter(props) {
         var listOfPlaces = [];
         var listOfCountries = [];
         var tempArray = [];
-        console.log("TEMP ARRAY", tempArray);
         temp.map(updateStatisticsLists);
         listOfPlaces.map(getListOfCountriesCB);
         

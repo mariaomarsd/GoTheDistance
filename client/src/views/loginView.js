@@ -13,6 +13,11 @@ function LoginView(props) {
     function loginCB() {
         props.login();
     }
+    function onKeyUpCB(event){
+        if(event.key === 'Enter') {
+            props.login();
+        }
+    }
     
     return(
         <div className="login-view">
@@ -30,6 +35,7 @@ function LoginView(props) {
                         value={props.email}
                         // placeholder="Enter your email address"
                         onChange={updateEmailCB}
+                        onKeyUp={onKeyUpCB}
                     />
                 </div>
                 <div className="login-password">
@@ -42,6 +48,7 @@ function LoginView(props) {
                         value={props.password}
                         // placeholder="Enter your password"
                         onChange={updatePasswordCB}
+                        onKeyUp={onKeyUpCB}
                     />
                     <p>{props.errorMessage}</p>
                 </div>
