@@ -11,7 +11,6 @@ function ConfirmDelete(props){
                 <button className="new-trip-button" id = "cancel" onClick={props.cancel}> No </button>
                 <button className="new-trip-button" id = "confirm" onClick={props.confirm}> Yes </button>
             </div>
-            {/* <CheckCircleFilled className="confirmation-icon"/> */}
         </div>
     );
 }

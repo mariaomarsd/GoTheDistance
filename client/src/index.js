@@ -21,7 +21,6 @@ initializeApp(firebaseConfig);
 const {updateFirebaseFromModel, updateModelFromFirebase}=require("./firebaseModel.js");
 
 function ReactRoot() {
-  // const [model, setModel] = useState();
   
   useEffect(function onStartACB() {
     updateModelFromFirebase(tripsModel, localStorage.getItem('userId'));
@@ -36,9 +35,6 @@ function ReactRoot() {
 }
 
 ReactDOM.render(
-  // <React.StrictMode>
-  //   <App />
-  // </React.StrictMode>,
   <ReactRoot/>,
   document.getElementById('root')
 );

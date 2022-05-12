@@ -59,7 +59,7 @@ function EditNewTripView(props){
     
     return(
         <div className="edit-trip-view">
-          <div className="search-component" /*onChange={onInputChangeACB}*/ /*id="search-input"*/ >
+          <div className="search-component">
             <SearchBar 
                 selectPlace={selectPlace}
                 data={data}
@@ -72,7 +72,6 @@ function EditNewTripView(props){
             </button>
           </div>
             <div className="scroll">
-              {/* Start location */}
               <Reorder.Group className="new-trips-item-list"
                             values={items} 
                             onReorder={setItems}
@@ -89,9 +88,7 @@ function EditNewTripView(props){
                     </div>
                             </Reorder.Item>
                     })
-                    
                   }
-                  
               </Reorder.Group>
             </div>
             <div className="new-trip-button-container">

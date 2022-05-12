@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Confirm from "../components/confirm.js";
 import { motion, useCycle } from "framer-motion";
 import { useDimensions } from "../components/useDimensions.js";
@@ -49,7 +49,7 @@ function SidebarView(props) {
 
     const [confirmationVisible, setConfirmationVisible] = useState(false);
     const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false);
-    const [isOpen, toggleOpen] = useCycle(false, true);
+    const [isOpen, toggleOpen] = useCycle(true, false);
     const containerRef = useRef(null);
     const { height } = useDimensions(containerRef);
 
@@ -81,6 +81,7 @@ function SidebarView(props) {
                 style={{ height: 725 }}
                 variants={sidebar}
             />
+            
             <div className="sidebar-item-list">
                 <div className="sidebar-item" >
                     {props.value && <NewTripPresenter

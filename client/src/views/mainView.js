@@ -37,10 +37,9 @@ function MainView(props){
   }
 
   function logout() {
-    localStorage.removeItem('firstSignin');
     props.model.logout();
-    // localStorage.clear()
     setUserLoggedIn(false);
+    localStorage.clear()
   }
 
   function continueSignup() {
@@ -64,39 +63,28 @@ function MainView(props){
               <i className="fa-solid fa-paper-plane"></i>
             </div>
           </div>
-          <div> {  userLoggedIn  &&
-              <div 
-                className="sidebar-container"
-                >
-                  <SidebarView
-                      model = {props.model} 
-                      value = {isLoaded}
-                      visible = {userLoggedIn}
-                      // isLoggedIn  = {isLoggedIn}
-                  />
-              </div>
-              
-              }
-          </div>
-          <div> {  userLoggedIn  &&
-              <>
+          <div> {  userLoggedIn  && <>
+            <div className="sidebar-container">
+              <SidebarView
+                model={props.model}
+                value={isLoaded}
+                visible={userLoggedIn} />
+            </div>
+            <div>
               <div className="user-container">
                 <ProfilePresenter
                   model={props.model}
                   value={isLoaded}
-                  // visible = {isLoggedIn}
-                  // isLoggedIn  = {userLoggedIn}
                   loggedIn={userLoggedIn}
                   logout={logout} />
               </div>
-              <motion.div className="info" 
-                        onClick={click}
-                        whileHover={{ scale: 1.3 }}
-                        whileTap={{ scale: 0.95 }}   >
-                <i className="fa-regular fa-circle-question" style={{color:"rgb(85, 55, 46)"}}></i>
+              <motion.div className="info"
+                onClick={click}
+                whileHover={{ scale: 1.3 }}
+                whileTap={{ scale: 0.95 }}>
+                <i className="fa-regular fa-circle-question" style={{ color: "rgb(85, 55, 46)" }}></i>
               </motion.div>
-            </>}
-          </div>
+            </div></>}
           <div>
           {!userLoggedIn && <motion.div 
                             className="auth-container"
@@ -114,6 +102,7 @@ function MainView(props){
           {signup && <SiteInfo click={continueSignup}/>}
           </div>
       </div>
+    </div>
   );
 }
 export default MainView;

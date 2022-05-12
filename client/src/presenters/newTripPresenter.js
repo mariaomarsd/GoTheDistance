@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import * as geometry from 'spherical-geometry-js';
 import randomColor from "randomcolor";
-import {testReadFromDatabase} from "../firebaseModel";
+// import {testReadFromDatabase} from "../firebaseModel";
 import { motion } from "framer-motion";
-import ListWarning from "../components/listTooShort";
+import WarningMessage from "../components/warningMessage.js";
 
 const NewTripView = require("../views/newTripView.js").default;
 const EditNewTripView = require("../views/editTripView.js").default;
@@ -26,7 +26,7 @@ function NewTripPresenter(props) {
     const [isNewTripVisible, setIsNewTripVisible] = useState();
     const [tripName, setTripName] = useState();
     const [errorMessage, setErrorMessage] = useState();
-    const [listwarningVisible, setListWarningVisible] = useState(false);
+    const [warningMessageVisible, setWarningMessageVisible] = useState(false);
 
     // called when component is created or the list changes
     useEffect(observerCB, []);
@@ -75,7 +75,6 @@ function NewTripPresenter(props) {
         props.model.saveTrip(item);
         props.setVisible(0)
         setIsVisible(false);
-        // setIsVisible(props.visible[0]);
         props.confirmation()
         setAddLocationsVisible(false);
        }
@@ -83,7 +82,6 @@ function NewTripPresenter(props) {
 
     function setVisibleCB() {
         props.setVisible(0);
-        //setIsVisible(props.isVisible);
         setIsNewTripVisible(true);
         setAddLocationsVisible(false);
         setErrorMessage("");
@@ -120,8 +118,6 @@ function NewTripPresenter(props) {
         }
 
         else {
-            //setIsNewTripVisible(true);
-            //setAddLocationsVisible(false);
             if(name === "") {
                 setErrorMessage("Give your trip a name");
                 setlistwarningCD();
@@ -145,8 +141,8 @@ function NewTripPresenter(props) {
     }
 
     function setlistwarningCD(){
-        setListWarningVisible(true)
-        setTimeout(function() {setListWarningVisible(false) }, 2500)
+        setWarningMessageVisible(true)
+        setTimeout(function() {setWarningMessageVisible(false) }, 2500)
     }
     
     return(
@@ -162,26 +158,23 @@ function NewTripPresenter(props) {
                     New Trips
                 </div>
             </motion.div>
-            {/* <div>    */}
-                {isVisible && 
-                
-                <>
-                {isNewTripVisible && <NewTripView
-                    saveTripName = {setTripNameCB}
-                    cancelSetName = {cancelSetNameCB}
-                />}
-                {addLocationsVisible && <EditNewTripView
-                    locationList={locationList} 
-                    addToTrip={addToNewTripACB}
-                    removeFromTrip={removeFromNewTripACB}
-                    confirmTrip={saveTripACB}
-                    updateOrder={updateOrderACB}
-                    cancel={cancelCB}
-                />
-                }
-                {listwarningVisible && <ListWarning warning = {errorMessage}/>}
-                </>
-                }
+            {isVisible && <>
+            {isNewTripVisible && <NewTripView
+                saveTripName = {setTripNameCB}
+                cancelSetName = {cancelSetNameCB}
+            />}
+            {addLocationsVisible && <EditNewTripView
+                locationList={locationList} 
+                addToTrip={addToNewTripACB}
+                removeFromTrip={removeFromNewTripACB}
+                confirmTrip={saveTripACB}
+                updateOrder={updateOrderACB}
+                cancel={cancelCB}
+            />
+            }
+            {warningMessageVisible && <WarningMessage warning = {errorMessage}/>}
+            </>
+            }
         </motion.div>
     );
 }
