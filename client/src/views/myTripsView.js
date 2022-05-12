@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import ConfirmDelete from '../components/confirmDelete.js'
 
 function MyTripsView(props) {
-
-    useEffect(listChangedCB ,[props.myTripsList])
-
     const [visableList, setVisibleList] = useState([props.myTripsList]);
-    
     const [confirmVisible, setConfirmVisible] = useState(false);
     const [tripToDelete, setTripToDelete] = useState()
+
+    useEffect(listChangedCB ,[props.myTripsList])
 
     function listChangedCB(){
         getVisibleList();
