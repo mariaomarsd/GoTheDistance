@@ -25,10 +25,14 @@ function StatisticsPresenter(props) {
     useEffect(listChangedCB ,[]);
 
     function listChangedCB(){
-        props.model.addObserver(doSomethingCB)
+        props.model.addObserver(updateStatisticsCB)
+        function componentDiesCB(){
+            props.model.removeObserver(updateStatisticsCB)
+        }
+        return componentDiesCB;
     }
 
-    function doSomethingCB(){
+    function updateStatisticsCB(){
         getStatisticsFromTripsCB();
         getTotalKM();
         setIsVisible(props.model.sidebartoggle[2]);

@@ -126,6 +126,7 @@ function MyTripsPresenter(props) {
             />}
             {isVisible && editTrip && 
                 <EditTripView 
+                model = {props.model}
                 locationList={locationList}
                 addToTrip={addToTripACB}
                 removeFromTrip={removeFromTripACB}
