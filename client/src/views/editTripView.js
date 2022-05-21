@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-//import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
 import { Reorder } from "framer-motion";
 import SearchBar from "../components/searchbarComponent.js";
 
@@ -7,12 +6,6 @@ function EditNewTripView(props){
     useEffect(listChangedCB, [props.locationList]);
     const [chosen, setChosen] = useState();
     const [items, setItems] = useState(props.locationList);
-
-    // const {
-    //     ready, // is it set up and redy to go with libraries, see above  in app function
-    //     suggestions: { status, data }, // what is the data from these suggestions
-    //     setValue 
-    // } = usePlacesAutocomplete();
 
     async function selectPlace(address) {
         const results = await props.selectPlace(address);
