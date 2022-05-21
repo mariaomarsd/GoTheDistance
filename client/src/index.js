@@ -3,18 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
-// import firebase from "firebase/compat/app";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "./firebaseConfig.js";
 import { BrowserRouter } from 'react-router-dom';
 
 const TripsModel = require("./tripsModel").default;
 const tripsModel= new TripsModel();
-
-// var admin = require("firebase-admin");
-
-// var serviceAccount = require("path/to/serviceAccountKey.json");
 
 initializeApp(firebaseConfig);
 
