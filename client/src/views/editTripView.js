@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
+//import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
 import { Reorder } from "framer-motion";
 import SearchBar from "../components/searchbarComponent.js";
 
@@ -8,23 +8,16 @@ function EditNewTripView(props){
     const [chosen, setChosen] = useState();
     const [items, setItems] = useState(props.locationList);
 
-    const {
-        ready, // is it set up and redy to go with libraries, see above  in app function
-        // value, // what is the current value that user is writing
-        suggestions: { status, data }, // what is the data from these suggestions
-        setValue 
-    } = usePlacesAutocomplete();
+    // const {
+    //     ready, // is it set up and redy to go with libraries, see above  in app function
+    //     suggestions: { status, data }, // what is the data from these suggestions
+    //     setValue 
+    // } = usePlacesAutocomplete();
 
     async function selectPlace(address) {
-        try {
-            const results = await getGeocode({ address });
-            const { lat, lng } = await getLatLng(results[0]);
-            const temp_results = (results[0].formatted_address).split(',')
-            const temp_place = temp_results[0] + ", " + temp_results.pop()
-            setChosen({id: Math.random(),name: temp_place, lat: lat, lng: lng})
-        } catch (error) {
-            console.log(" Error: ", error);
-        }
+        const results = await props.selectPlace(address);
+        setChosen(results);
+        console.log(results);
     }
 
     function listChangedCB(){
@@ -60,10 +53,10 @@ function EditNewTripView(props){
           <div className="search-component">
             <SearchBar 
                 selectPlace={selectPlace}
-                data={data}
-                status={status}
-                setValue={setValue}
-                ready={ready}
+                data={props.data}
+                status={props.status}
+                setValue={props.setValue}
+                ready={props.ready}
             />
             <button className="new-trip-button" id="add" onClick={addToTripACB}>
                 Add

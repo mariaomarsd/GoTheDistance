@@ -3,6 +3,8 @@ import * as geometry from 'spherical-geometry-js';
 import randomColor from "randomcolor";
 import { motion } from "framer-motion";
 import WarningMessage from "../components/warningMessage.js";
+import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
+
 
 const NewTripView = require("../views/newTripView.js").default;
 const EditNewTripView = require("../views/editTripView.js").default;
@@ -17,6 +19,12 @@ function NewTripPresenter(props) {
     const [errorMessage, setErrorMessage] = useState();
     const [warningMessageVisible, setWarningMessageVisible] = useState(false);
 
+    const {
+        ready, // is it set up and redy to go with libraries, see above  in app function
+        suggestions: { status, data }, // what is the data from these suggestions
+        setValue 
+    } = usePlacesAutocomplete();
+
     useEffect(observerCB, []);
 
     function observerCB(){
@@ -30,6 +38,18 @@ function NewTripPresenter(props) {
     function setLocationListCB() {
         setLocationList(props.model.newTripsLocationList);
         setIsVisible(props.model.sidebartoggle[0]);
+    }
+
+    async function selectPlace(address) {
+        try {
+            const results = await getGeocode({ address });
+            const { lat, lng } = await getLatLng(results[0]);
+            const temp_results = (results[0].formatted_address).split(',')
+            const temp_place = temp_results[0] + ", " + temp_results.pop()
+            return {id: Math.random(),name: temp_place, lat: lat, lng: lng};
+        } catch (error) {
+            console.log(" Error: ", error);
+        }
     }
 
     function addToNewTripACB(item) {
@@ -156,6 +176,11 @@ function NewTripPresenter(props) {
                 confirmTrip={saveTripACB}
                 updateOrder={updateOrderACB}
                 cancel={cancelCB}
+                selectPlace = {selectPlace}
+                data={data}
+                status={status}
+                setValue={setValue}
+                ready={ready}
             />
             }
             {warningMessageVisible && <WarningMessage warning = {errorMessage}/>}

@@ -89,6 +89,10 @@ function SignUpView(props) {
             <button className="sign-up-button" type="submit" onClick={createUserCB}>
                 SIGN UP
             </button>
+            <hr className="divide-solid"/>
+            <button className="auth-button" onClick={props.toggle}>
+                <div> Already a user? <u>LOGIN</u> </div>
+            </button>
         </div>
     );
 }
