@@ -9,13 +9,13 @@ import "./styles/myTrips.css";
 import "./styles/statistics.css";
 import "./styles/profile.css"
 
-const MainView = require("./views/mainView.js").default;
+const MainPresenter = require("./presenters/mainPresenter.js").default;
 
 export default function App(props) {
   return (
     <div className="app">
         <Routes>
-          <Route exact path="/" element={<MainView model={props.model} />} />
+          <Route exact path="/" element={<MainPresenter model={props.model} />} />
         </Routes>
     </div>
   );

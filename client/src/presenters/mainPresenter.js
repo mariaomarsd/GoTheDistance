@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import {useLoadScript} from "@react-google-maps/api";
 import { motion } from "framer-motion"
 import { updateModelFromFirebase } from "../firebaseModel.js";
-import ProfilePresenter from "../presenters/profilePresenter.js";
+
+import ProfilePresenter from "./profilePresenter.js";
 import SiteInfo from "../components/siteInfo.js";
 
-const MapPresenter = require("../presenters/mapPresenter.js").default;
+const MapPresenter = require("./mapPresenter.js").default;
 const SidebarView = require("../views/sidebarView.js").default;
-const AuthenticationPresenter = require("../presenters/authenticationPresenter").default;
+const AuthenticationPresenter = require("./authenticationPresenter").default;
 
 const libraries = ["places", "geometry"];
 
-function MainView(props){
+function MainPresenter(props){
 
   const [signup, setSignup] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
@@ -92,4 +93,4 @@ function MainView(props){
     </div>
   );
 }
-export default MainView;
+export default MainPresenter;

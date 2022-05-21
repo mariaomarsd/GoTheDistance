@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 
 function ProfileView(props) {
     function signoutCB(){
-        localStorage.setItem("loggedin", false)
         props.signout();
     }
 

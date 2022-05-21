@@ -10,7 +10,8 @@ const auth = getAuth();
 function ProfilePresenter(props) {
 
     function signoutCB() {
-         signOut(auth)
+        localStorage.setItem("loggedin", false)
+        signOut(auth)
             .then(props.logout)
             .catch((error) => {console.log("error", error.message)});
     }
