@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import {useLoadScript} from "@react-google-maps/api";
-import { motion } from "framer-motion"
 import { updateModelFromFirebase } from "../firebaseModel.js";
 
 import ProfilePresenter from "./profilePresenter.js";
 import SiteInfo from "../components/siteInfo.js";
+import Logo from "../components/logo.js";
+import InfoMark from "../components/infoMark.js";
 
 const MapPresenter = require("./mapPresenter.js").default;
 const SidebarView = require("../views/sidebarView.js").default;
@@ -51,11 +52,7 @@ function MainPresenter(props){
       <div className={ userLoggedIn ? "map-container" : "map-blur"}>
           <MapPresenter value={isLoaded} model={props.model} />
       </div>
-      <div className="logo">GO THE DISTANCE
-        <div className="logo-icon">
-          <i className="fa-solid fa-paper-plane"></i>
-        </div>
-      </div>
+      <Logo/>
       <div> {  userLoggedIn  && <>
         <div className="sidebar-container">
           <SidebarView
@@ -63,32 +60,16 @@ function MainPresenter(props){
             value={isLoaded}
             visible={userLoggedIn} />
         </div>
-        <div>
-          <div className="user-container">
+        <div className="user-container">
             <ProfilePresenter
               model={props.model}
               value={isLoaded}
               loggedIn={userLoggedIn}
               logout={logout} />
-          </div>
-          <motion.div className="info"
-              onClick={showInfo}
-              whileHover={{ scale: 1.3 }}
-              whileTap={{ scale: 0.95 }}>
-            <i className="fa-regular fa-circle-question" style={{ color: "rgb(85, 55, 46)" }}></i>
-          </motion.div>
-        </div></>}
-        <div> {!userLoggedIn && <motion.div 
-                          className="auth-container"
-                          animate={{
-                            scale: [1, 1, 1, 1, 1],
-                            rotate: [180, 130, 80, 30, 0],
-                            borderRadius: ["10%", "10%", "10%", "10%", "10%"],
-                          }} >
-          <AuthenticationPresenter visible = {!userLoggedIn} isLoggedIn = {isLoggedIn} />
-          </motion.div>}
-        {signup && <SiteInfo click={continueSignup}/>}
         </div>
+        <InfoMark showInfo={showInfo}/> </>}
+        {!userLoggedIn && <AuthenticationPresenter visible = {!userLoggedIn} isLoggedIn = {isLoggedIn} /> }
+        {signup && <SiteInfo click={continueSignup}/>}
       </div>
     </div>
   );

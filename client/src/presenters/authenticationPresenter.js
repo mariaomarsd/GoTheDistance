@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
+
 const LoginPresenter = require("./loginPresenter").default;
 const SignUpPresenter = require("./signUpPresenter").default;
 
@@ -10,7 +12,14 @@ function AuthenticationPresenter(props){
     }
 
     return(
-        <div>
+        <motion.div 
+            className="auth-container"
+            animate={{
+                scale: [1, 1, 1, 1, 1],
+                rotate: [180, 130, 80, 30, 0],
+                borderRadius: ["10%", "10%", "10%", "10%", "10%"],
+            }}
+        >
             {props.visible && 
                 <div>
                     <div>
@@ -32,7 +41,7 @@ function AuthenticationPresenter(props){
                     </div>
                 </div>
             }
-        </div>
+        </motion.div>
     );
 }
 
