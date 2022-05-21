@@ -11,7 +11,7 @@ function SiteInfo(props){
                 Welcome to Go The Distance!
             </div>
             <div className="first-signin-text">
-                The perfrect website to keep track of all your travels
+                The perfect website to keep track of all your travels
                 <span className="logo-icon">
                     <i className="fa-solid fa-thumbtack"></i>
                 </span>
