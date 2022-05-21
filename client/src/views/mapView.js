@@ -91,7 +91,8 @@ function MapView(props) {
                 zoom={3}
                 center={center}
                 options={options}
-                onLoad={props.onMapLoad}>
+                onLoad={props.onMapLoad}
+                >
                 {/* Draw polyline for the new trip that is created */}
                 <Polyline
                     path={props.newTripPathList}
@@ -100,13 +101,14 @@ function MapView(props) {
                 {/* Draw polyline for all trips that are in my trips */}
                 {props.myTripsPathList.map(renderPolyline)}
                 {/* Draw markers for the new trip that is created */}
-                {props.newTripPathList.map((item, index) => {                      
+                { props.newTripPathList.map((item, index) => {                      
                         return (
-                        <Marker key= {(index+1).toString()}
-                            position = {item}
-                            icon = {{ url: "/BlackAndWhite-marker.png" }}
-                            label = {(index+1).toString()}
-                    /> );     
+                            <Marker key= {(index+1).toString()}
+                                position = {item}
+                                icon = {{ url: "/BlackAndWhite-marker.png" }}
+                                label = {(index+1).toString()}
+                            />
+                        );
                 })}
                 {/*center the map view on the place most recently chosen*/}
                 {moveViewinMap(props.newTripPathList)}
