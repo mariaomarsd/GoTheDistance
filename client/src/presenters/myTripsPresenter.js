@@ -166,6 +166,7 @@ function MyTripsPresenter(props) {
                     status={status}
                     setValue={setValue}
                     ready={ready}
+                    setItems = {setLocationList}
                 />
             }
             {isVisible && warningMessageVisible && <WarningMessage warning = {errorMessage}/>}
