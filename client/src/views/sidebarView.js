@@ -92,12 +92,13 @@ function SidebarView(props) {
                     />}
                 </div>
                 <div className="sidebar-item">
-                    <MyTripsPresenter
+                    {props.value && <MyTripsPresenter
                         model={props.model}
                         setVisible={setVisibleCB}
                         variants={variants}
                         deleteConfirm={setConfirmCD}
                     />
+                    }
                 </div>
                 <div className="sidebar-item">
                     <StatisticsPresenter 
