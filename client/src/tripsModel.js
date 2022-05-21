@@ -122,11 +122,11 @@ class TripsModel {
 
     getUser() {
         return {
-                loggedin: localStorage.getItem('loggedin'),
-                firstSignin: localStorage.getItem('firstSignin'),
-                username: localStorage.getItem('username'),
-                userId: localStorage.getItem('userId')
-            }
+            loggedin: localStorage.getItem('loggedin'),
+            firstSignin: localStorage.getItem('firstSignin'),
+            username: localStorage.getItem('username'),
+            userId: localStorage.getItem('userId')
+        }
     }
 
     addObserver(callback) {
