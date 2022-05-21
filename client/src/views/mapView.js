@@ -85,46 +85,46 @@ function MapView(props) {
 
     return(
         <div>
-        <GoogleMap 
-            id="map"
-            mapContainerStyle={mapContainerStyle}
-            zoom={3}
-            center={center}
-            options={options}
-            onLoad={props.onMapLoad}>
-            {/* Draw polyline for the new trip that is created */}
-            <Polyline
-                path={props.newTripPathList}
-                options={pathOptions}
-            /> 
-            {/* Draw polyline for all trips that are in my trips */}
-            {props.myTripsPathList.map(renderPolyline)}
-            {/* Draw markers for the new trip that is created */}
-            {props.newTripPathList.map((item, index) => {                      
-                    return (
-                    <Marker key= {(index+1).toString()}
-                        position = {item}
-                        icon = {{ url: "/BlackAndWhite-marker.png" }}
-                        label = {(index+1).toString()}
-                /> );     
-            })}
-            {/*center the map view on the place most recently chosen*/}
-            {moveViewinMap(props.newTripPathList)}
-        </GoogleMap>
-        <motion.div 
-            className="CangeMapLook"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }} >
-                <button
-                    className="map-button" 
-                    onClick={rotateMapStiles} 
-                    value="White" 
-                    id="CangeMapLookToggleButton">
-                        Change map style
-                        <span className="logo-icon">
-                            <i className="fa-solid fa-earth-americas"></i>
-                        </span>
-                </button>
+            <GoogleMap 
+                id="map"
+                mapContainerStyle={mapContainerStyle}
+                zoom={3}
+                center={center}
+                options={options}
+                onLoad={props.onMapLoad}>
+                {/* Draw polyline for the new trip that is created */}
+                <Polyline
+                    path={props.newTripPathList}
+                    options={pathOptions}
+                /> 
+                {/* Draw polyline for all trips that are in my trips */}
+                {props.myTripsPathList.map(renderPolyline)}
+                {/* Draw markers for the new trip that is created */}
+                {props.newTripPathList.map((item, index) => {                      
+                        return (
+                        <Marker key= {(index+1).toString()}
+                            position = {item}
+                            icon = {{ url: "/BlackAndWhite-marker.png" }}
+                            label = {(index+1).toString()}
+                    /> );     
+                })}
+                {/*center the map view on the place most recently chosen*/}
+                {moveViewinMap(props.newTripPathList)}
+            </GoogleMap>
+            <motion.div 
+                className="CangeMapLook"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }} >
+                    <button
+                        className="map-button" 
+                        onClick={rotateMapStiles} 
+                        value="White" 
+                        id="CangeMapLookToggleButton">
+                            Change map style
+                            <span className="logo-icon">
+                                <i className="fa-solid fa-earth-americas"></i>
+                            </span>
+                    </button>
             </motion.div>
         </div>
     );
