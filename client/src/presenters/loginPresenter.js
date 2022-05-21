@@ -64,17 +64,15 @@ function LoginPresenter(props) {
     }
 
     return(
-        <div>
-            <LoginView 
-                login =  {loginCB}
-                email =  {email}
-                updateEmail = {updateEmailCB}
-                password =  {password}
-                updatePassword = {updatePasswordCB}
-                errorMessage = {errorMessage}
-                toggle = {props.toggle}
-            />
-        </div>
+        <LoginView 
+            login =  {loginCB}
+            email =  {email}
+            updateEmail = {updateEmailCB}
+            password =  {password}
+            updatePassword = {updatePasswordCB}
+            errorMessage = {errorMessage}
+            toggle = {props.toggle}
+        />
     );
 }
 

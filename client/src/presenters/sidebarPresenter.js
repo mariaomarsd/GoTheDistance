@@ -1,29 +1,25 @@
 import React, { useState, useRef } from "react";
-import Confirm from "../components/confirm.js";
 import { motion, useCycle } from "framer-motion";
 import { useDimensions } from "../components/useDimensions.js";
 import { MenuToggle } from "../components/menuToggle.js";
+import Confirm from "../components/confirm.js";
 
-const NewTripPresenter = require("../presenters/newTripPresenter.js").default;
-const MyTripsPresenter = require("../presenters/myTripsPresenter.js").default;
-const StatisticsPresenter = require("../presenters/statisticsPresenter.js").default;
+const NewTripPresenter = require("./newTripPresenter.js").default;
+const MyTripsPresenter = require("./myTripsPresenter.js").default;
+const StatisticsPresenter = require("./statisticsPresenter.js").default;
 
 const variants = {
     open: {
       y: 0,
       opacity: 1,
-      transition: {
-        y: { stiffness: 1000, velocity: -100 }
-      }
+      transition: { y: { stiffness: 1000, velocity: -100 } }
     },
     closed: {
       y: 50,
       opacity: 0,
-      transition: {
-        y: { stiffness: 1000 }
-      }
+      transition: { y: { stiffness: 1000 } }
     }
-  };
+};
 
 const sidebar = {
     open: (height = 1000) => ({
@@ -45,7 +41,7 @@ const sidebar = {
     }
 };
 
-function SidebarView(props) {
+function SidebarPresenter(props) {
 
     const [confirmationVisible, setConfirmationVisible] = useState(false);
     const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false);
@@ -76,37 +72,27 @@ function SidebarView(props) {
                 custom={height}
                 ref={containerRef}
             >
-            <motion.div
-                className="sidebar-background"
-                style={{ height: 600 }}
-                variants={sidebar}
-            />
-            
+            <motion.div className="sidebar-background" style={{ height: 600 }} variants={sidebar} />
             <div className="sidebar-item-list">
-                <div className="sidebar-item" >
-                    {props.value && <NewTripPresenter
-                        model = {props.model}
+                {props.value && <>
+                    <NewTripPresenter
+                        model={props.model}
                         setVisible={setVisibleCB}
                         confirmation={setConfirmationCB}
                         variants={variants}
-                    />}
-                </div>
-                <div className="sidebar-item">
-                    {props.value && <MyTripsPresenter
+                    />
+                    <MyTripsPresenter
                         model={props.model}
                         setVisible={setVisibleCB}
                         variants={variants}
                         deleteConfirm={setConfirmCD}
                     />
-                    }
-                </div>
-                <div className="sidebar-item">
-                    <StatisticsPresenter 
-                        model={props.model}
-                        setVisible={setVisibleCB}
-                        variants={variants}
-                    />
-                </div>
+                </>}
+                <StatisticsPresenter 
+                    model={props.model}
+                    setVisible={setVisibleCB}
+                    variants={variants}
+                />
                 {confirmationVisible && <Confirm text="Trip Saved!" />}
                 {confirmDeleteVisible && <Confirm text="Trip Deleted!" />}
             </div>
@@ -116,4 +102,4 @@ function SidebarView(props) {
     );
 }
 
-export default SidebarView;
+export default SidebarPresenter;
