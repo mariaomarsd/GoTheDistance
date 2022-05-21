@@ -19,7 +19,7 @@ function SignUpView(props) {
     }
 
     function createUserCB(event){
-        console.log("clicked submit button");
+        // console.log("clicked submit button");
         props.createUser();
     }
     function onKeyUpCB(event){
