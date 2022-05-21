@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const StatisticsView = require("../views/statisticsView.js").default;
+const SidebarTitleComponent = require("../components/sidebarTitleComponent.js").default;
 
 function StatisticsPresenter(props) {
 
@@ -79,17 +80,10 @@ function StatisticsPresenter(props) {
 
     return(
         <motion.div className="statistics-presenter" variants={props.variants} >
-            <motion.div 
-                className="sidebar-titles"
-                onClick={setVisibleCB}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }} 
-            >
-                <i className="fa-solid fa-arrow-trend-up" id="sidebar-icon" style={{ color:"rgb(163 112 89)" }}></i>
-                <div className="sidebar-name" style={{color: "rgb(163 112 89)", borderColor:"rgb(163 112 89)" }}>
-                    Statistics
-                </div>
-            </motion.div>
+            <SidebarTitleComponent
+                setVisible = {setVisibleCB}
+                sidebarTitle = "Statistics"
+            />
             {isVisible && <StatisticsView 
                 myTripsList={props.model.myTripsList}
                 numberOfPlaces = {numberOfPlaces}

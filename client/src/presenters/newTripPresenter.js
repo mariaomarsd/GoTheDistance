@@ -8,6 +8,7 @@ import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocom
 
 const NewTripView = require("../views/newTripView.js").default;
 const EditNewTripView = require("../views/editTripView.js").default;
+const SidebarTitleComponent = require("../components/sidebarTitleComponent.js").default;
 
 function NewTripPresenter(props) {
     
@@ -153,17 +154,10 @@ function NewTripPresenter(props) {
     
     return(
         <motion.div className="new-trip-presenter" variants={props.variants} >
-            <motion.div 
-                className="sidebar-titles"
-                onClick={setVisibleCB}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }} 
-            >
-                <i className="fa-solid fa-route" id="sidebar-icon" style={{ color:"rgb(85, 55, 46)" }} ></i>
-                <div className="sidebar-name" style={{color:"rgb(85, 55, 46)", borderColor:"rgb(85, 55, 46)" }} >
-                    New Trips
-                </div>
-            </motion.div>
+            <SidebarTitleComponent
+                setVisible = {setVisibleCB}
+                sidebarTitle = "New Trip"
+            />
             {isVisible && <>
             {isNewTripVisible && <NewTripView
                 saveTripName = {setTripNameCB}
