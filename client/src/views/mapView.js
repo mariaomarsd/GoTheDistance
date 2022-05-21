@@ -100,7 +100,7 @@ function MapView(props) {
             {/* Draw polyline for all trips that are in my trips */}
             {props.myTripsPathList.map(renderPolyline)}
             {/* Draw markers for the new trip that is created */}
-            { props.newTripPathList.map((item, index) => {                      
+            {props.newTripPathList.map((item, index) => {                      
                     return (
                     <Marker key= {(index+1).toString()}
                         position = {item}

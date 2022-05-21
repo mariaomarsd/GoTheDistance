@@ -70,17 +70,15 @@ function MapPresenter(props){
     }
 
     return(
-          <div>
-              {props.value && 
-                <MapView
-                    newTripPathList = {newTripPathList}
-                    myTripsPathList = {myTripsPathList}
-                    onMapLoad = {onMapLoad}
-                    mapRef = {mapRef}
-                />
-                }
-          </div>
-      );
+        <> {props.value && 
+            <MapView
+                newTripPathList = {newTripPathList}
+                myTripsPathList = {myTripsPathList}
+                onMapLoad = {onMapLoad}
+                mapRef = {mapRef}
+            />
+        }</>
+    );
 }
 
 export default MapPresenter;
