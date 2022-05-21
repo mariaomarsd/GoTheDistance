@@ -82,7 +82,9 @@ function StatisticsPresenter(props) {
         <motion.div className="statistics-presenter" variants={props.variants} >
             <SidebarTitleComponent
                 setVisible = {setVisibleCB}
-                sidebarTitle = "Statistics"
+                icon = {"fa-solid fa-arrow-trend-up"}
+                color = {"rgb(163 112 89)"}
+                title = {"Statistics"}
             />
             {isVisible && <StatisticsView 
                 myTripsList={props.model.myTripsList}

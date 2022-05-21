@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-function SidebarTitleComponent(props){
+function SidebarTitleComponent(props){   
     return(
         <motion.div 
                 className="sidebar-titles" 
@@ -9,10 +9,10 @@ function SidebarTitleComponent(props){
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }} 
             >
-                <i className="fa-solid fa-map-location-dot" id="sidebar-icon" style={{ color:"rgb(213 121 81)" }}></i>
-                <div className="sidebar-name" style={{color:"rgb(213 121 81)", borderColor:"rgb(213 121 81)" }}>
-                    {props.sidebarTitle}
-                </div>
+            <i className={props.icon} id="sidebar-icon" style={{ color: props.color }}></i>
+            <div className="sidebar-name" style={{color: props.color, borderColor: props.color}}>
+                {props.title}
+            </div>
         </motion.div>
     );
 }

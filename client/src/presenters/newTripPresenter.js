@@ -156,7 +156,9 @@ function NewTripPresenter(props) {
         <motion.div className="new-trip-presenter" variants={props.variants} >
             <SidebarTitleComponent
                 setVisible = {setVisibleCB}
-                sidebarTitle = "New Trip"
+                icon = {"fa-solid fa-route"}
+                color = {"rgb(85, 55, 46)"}
+                title = {"New trip"}
             />
             {isVisible && <>
             {isNewTripVisible && <NewTripView

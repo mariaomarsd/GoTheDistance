@@ -144,7 +144,9 @@ function MyTripsPresenter(props) {
         <motion.div className="my-trips-presenter" variants={props.variants} >
             <SidebarTitleComponent
                 setVisible = {setVisibleCB}
-                sidebarTitle = "My Trips"
+                icon = {"fa-solid fa-map-location-dot"}
+                color = {"rgb(213 121 81)"}
+                title = {"My trips"}
             />
             {isVisible && tripListVisible && 
                 <MyTripsView
