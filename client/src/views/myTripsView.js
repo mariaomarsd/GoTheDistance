@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ConfirmDelete from '../components/confirmDelete.js'
 
 function MyTripsView(props) {
-    const [visableList, setVisibleList] = useState([props.myTripsList]);
     const [confirmVisible, setConfirmVisible] = useState(false);
     const [tripToDelete, setTripToDelete] = useState()
-
-    useEffect(listChangedCB ,[props.myTripsList])
-
-    function listChangedCB(){
-        getVisibleList();
-    }
 
     function click(id) {
         var temp = props.myTripsList.indexOf(id, 0);
         props.setVisibleTrips(temp);
-        getVisibleList()
     }
 
     function editTripCB(item){
@@ -25,6 +17,15 @@ function MyTripsView(props) {
     function deleteTripCB(item){
         setConfirmVisible(true)
         setTripToDelete(item)
+    }
+
+    function cancel() {
+        setConfirmVisible(false)
+    }
+
+    function confirm() {
+        setConfirmVisible(false)
+        props.confirmDelete(tripToDelete)
     }
 
     function renderItemsCB(item) {
@@ -44,24 +45,6 @@ function MyTripsView(props) {
                         </div>
                     </div>
                 </div>
-    }
-
-    function getVisibleList() {
-        var tempList = [];
-        for(let i = 0; i<props.myTripsList.length; i++) {
-            tempList.push(props.myTripsList[i].show)
-        }
-        setVisibleList(tempList)
-    }
-    
-    function cancel() {
-        setConfirmVisible(false)
-    }
-
-    function confirm() {
-        setConfirmVisible(false)
-        props.model.deleteMyTrip(tripToDelete)
-        props.confirmDelete()
     }
 
     return(
