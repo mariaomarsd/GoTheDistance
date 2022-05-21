@@ -23,7 +23,7 @@ const {updateFirebaseFromModel, updateModelFromFirebase}=require("./firebaseMode
 function ReactRoot() {
   
   useEffect(function onStartACB() {
-    updateModelFromFirebase(tripsModel, localStorage.getItem('userId'));
+    updateModelFromFirebase(tripsModel, tripsModel.getUser().userId);
     updateFirebaseFromModel(tripsModel)
   }, [])
 

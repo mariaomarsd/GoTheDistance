@@ -16,9 +16,10 @@ function MainPresenter(props){
 
   const [signup, setSignup] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  // const [user, setUser] = useState(props.model.getUser())
 
   useEffect(() => {
-    setUserLoggedIn(localStorage.getItem('loggedin')==="true")
+    setUserLoggedIn(props.model.getUser().loggedin==="true")
   },[])
 
   const{ isLoaded } = useLoadScript({
@@ -28,14 +29,13 @@ function MainPresenter(props){
   
   function isLoggedIn(){
     setUserLoggedIn(true);
-    setSignup(localStorage.getItem("firstSignin")==="true");
-    updateModelFromFirebase(props.model, localStorage.getItem("userId"));
+    setSignup(props.model.getUser().firstSignin==="true");
+    updateModelFromFirebase(props.model, props.model.getUser().userId);
   }
 
   function logout() {
     props.model.logout();
     setUserLoggedIn(false);
-    localStorage.clear()
   }
 
   function continueSignup() {
@@ -62,7 +62,7 @@ function MainPresenter(props){
           model={props.model}
           value={isLoaded}
           loggedIn={userLoggedIn}
-          userName={localStorage.getItem("username")}
+          userName={props.model.getUser().username}
           logout={logout}
         />
         <InfoMark showInfo={showInfo}/> </> 

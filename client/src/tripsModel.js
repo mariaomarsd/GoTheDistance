@@ -120,6 +120,15 @@ class TripsModel {
         localStorage.setItem('firstSignin', item.firstSignin);
     }
 
+    getUser() {
+        return {
+                loggedin: localStorage.getItem('loggedin'),
+                firstSignin: localStorage.getItem('firstSignin'),
+                username: localStorage.getItem('username'),
+                userId: localStorage.getItem('userId')
+            }
+    }
+
     addObserver(callback) {
         this.observers.push(callback);
     }
@@ -147,6 +156,7 @@ class TripsModel {
         this.myTripsList = [];
         this.newTripsLocationList = [];
         this.newList = [];
+        localStorage.clear()
         this.notifyObservers();
     }
 }
