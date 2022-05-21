@@ -149,7 +149,8 @@ function MyTripsPresenter(props) {
                     setTripToChange={setTripToChange}
                     editTrip={setTripToEditACB}
                     confirmDelete={test}
-            />}
+                />
+            }
             {isVisible && editTrip && 
                 <EditTripView 
                     locationList={locationList}
@@ -163,7 +164,8 @@ function MyTripsPresenter(props) {
                     status={status}
                     setValue={setValue}
                     ready={ready}
-            />}
+                />
+            }
             {isVisible && warningMessageVisible && <WarningMessage warning = {errorMessage}/>}
         </motion.div>
     );

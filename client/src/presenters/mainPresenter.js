@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {useLoadScript} from "@react-google-maps/api";
 import { updateModelFromFirebase } from "../firebaseModel.js";
-
-import ProfilePresenter from "./profilePresenter.js";
 import SiteInfo from "../components/siteInfo.js";
 import Logo from "../components/logo.js";
 import InfoMark from "../components/infoMark.js";
@@ -10,6 +8,7 @@ import InfoMark from "../components/infoMark.js";
 const MapPresenter = require("./mapPresenter.js").default;
 const SidebarPresenter = require("./sidebarPresenter.js").default;
 const AuthenticationPresenter = require("./authenticationPresenter").default;
+const ProfilePresenter = require("./profilePresenter.js").default;
 
 const libraries = ["places", "geometry"];
 
@@ -53,24 +52,21 @@ function MainPresenter(props){
           <MapPresenter value={isLoaded} model={props.model} />
       </div>
       <Logo/>
-      <div> {  userLoggedIn  && <>
-        <div className="sidebar-container">
-          <SidebarPresenter
-            model={props.model}
-            value={isLoaded}
-            visible={userLoggedIn} />
-        </div>
-        <div className="user-container">
-            <ProfilePresenter
-              model={props.model}
-              value={isLoaded}
-              loggedIn={userLoggedIn}
-              logout={logout} />
-        </div>
-        <InfoMark showInfo={showInfo}/> </>}
-        {!userLoggedIn && <AuthenticationPresenter visible={!userLoggedIn} isLoggedIn={isLoggedIn} /> }
-        {signup && <SiteInfo click={continueSignup}/>}
-      </div>
+      { userLoggedIn ? <>
+        <SidebarPresenter
+          model={props.model}
+          value={isLoaded}
+          visible={userLoggedIn}
+        />
+        <ProfilePresenter
+          model={props.model}
+          value={isLoaded}
+          loggedIn={userLoggedIn}
+          logout={logout}
+        />
+        <InfoMark showInfo={showInfo}/> </> 
+      : <AuthenticationPresenter visible={!userLoggedIn} isLoggedIn={isLoggedIn} /> }
+      {signup && <SiteInfo click={continueSignup}/>}
     </div>
   );
 }

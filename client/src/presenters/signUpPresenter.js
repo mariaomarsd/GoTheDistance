@@ -91,21 +91,19 @@ function SignUpPresenter(props){
     }
     
     return(
-        <div>
-            <SignUpView
-                username = {username}
-                updateUsername = {updateUsername}
-                email = {email}
-                updateEmail = {updateEmail}
-                password = {password}
-                updatePassword = {updatePassword}
-                confirmPassword = {confirmPassword}
-                updateConfirmPassword = {updateConfirmPassword} 
-                createUser = {createUser}
-                displayErrorMessage = {displayErrorMessage}
-                toggle = {props.toggle}
-            />
-        </div>
+        <SignUpView
+            username = {username}
+            updateUsername = {updateUsername}
+            email = {email}
+            updateEmail = {updateEmail}
+            password = {password}
+            updatePassword = {updatePassword}
+            confirmPassword = {confirmPassword}
+            updateConfirmPassword = {updateConfirmPassword} 
+            createUser = {createUser}
+            displayErrorMessage = {displayErrorMessage}
+            toggle = {props.toggle}
+        />
     );
 
 }

@@ -20,23 +20,19 @@ function AuthenticationPresenter(props){
                 borderRadius: ["10%", "10%", "10%", "10%", "10%"],
             }}>
             {props.visible && <>
-                <div>
-                    {loginToggle && 
-                        <LoginPresenter 
-                            isLoggedIn = {props.isLoggedIn}
-                            toggle = {toggleFunction}
-                        />
-                    }
-                </div>
-                <div>
-                    {!loginToggle && 
-                        <SignUpPresenter 
-                            isLoggedIn = {props.isLoggedIn}
-                            setFirstSignin={props.setFirstSignin}
-                            toggle = {toggleFunction}
-                        />
-                    }
-                </div>
+                {loginToggle && 
+                    <LoginPresenter 
+                        isLoggedIn = {props.isLoggedIn}
+                        toggle = {toggleFunction}
+                    />
+                }
+                {!loginToggle && 
+                    <SignUpPresenter 
+                        isLoggedIn = {props.isLoggedIn}
+                        setFirstSignin={props.setFirstSignin}
+                        toggle = {toggleFunction}
+                    />
+                }
             </>}
         </motion.div>
     );

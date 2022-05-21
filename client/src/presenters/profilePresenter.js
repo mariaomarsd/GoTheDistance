@@ -17,7 +17,7 @@ function ProfilePresenter(props) {
     }
 
     return(
-        <div className="user-view">
+        <div className="user-container">
             <ProfileView 
                 signout = {signoutCB}
                 loggedInUser={props.loggedIn}
