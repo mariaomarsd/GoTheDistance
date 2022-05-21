@@ -8,7 +8,7 @@ import Logo from "../components/logo.js";
 import InfoMark from "../components/infoMark.js";
 
 const MapPresenter = require("./mapPresenter.js").default;
-const SidebarView = require("../views/sidebarView.js").default;
+const SidebarPresenter = require("./sidebarPresenter.js").default;
 const AuthenticationPresenter = require("./authenticationPresenter").default;
 
 const libraries = ["places", "geometry"];
@@ -55,7 +55,7 @@ function MainPresenter(props){
       <Logo/>
       <div> {  userLoggedIn  && <>
         <div className="sidebar-container">
-          <SidebarView
+          <SidebarPresenter
             model={props.model}
             value={isLoaded}
             visible={userLoggedIn} />
@@ -68,7 +68,7 @@ function MainPresenter(props){
               logout={logout} />
         </div>
         <InfoMark showInfo={showInfo}/> </>}
-        {!userLoggedIn && <AuthenticationPresenter visible = {!userLoggedIn} isLoggedIn = {isLoggedIn} /> }
+        {!userLoggedIn && <AuthenticationPresenter visible={!userLoggedIn} isLoggedIn={isLoggedIn} /> }
         {signup && <SiteInfo click={continueSignup}/>}
       </div>
     </div>

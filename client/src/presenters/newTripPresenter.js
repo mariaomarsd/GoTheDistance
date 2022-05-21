@@ -72,18 +72,19 @@ function NewTripPresenter(props) {
     }
 
     function saveTripACB(item) {
-        if(item.locations.length<2){
-        setErrorMessage("Trip needs to have at least two stops!");
-        setlistwarningCD();
-       }else{
-        item.name = tripName; 
-        item.distanceNewTrip = calculateDistanceCB();
-        item.color = randomColor();
-        props.model.saveTrip(item);
-        props.setVisible(0)
-        setIsVisible(false);
-        props.confirmation()
-        setAddLocationsVisible(false);
+        if(item.locations.length<2) {
+            setErrorMessage("Trip needs to have at least two stops!");
+            setlistwarningCD();
+        }
+        else {
+            item.name = tripName; 
+            item.distanceNewTrip = calculateDistanceCB();
+            item.color = randomColor();
+            props.model.saveTrip(item);
+            props.setVisible(0)
+            setIsVisible(false);
+            props.confirmation()
+            setAddLocationsVisible(false);
        }
     }
 
@@ -153,7 +154,7 @@ function NewTripPresenter(props) {
     }
     
     return(
-        <motion.div className="new-trip-presenter" variants={props.variants} >
+        <motion.div className="sidebar-item" variants={props.variants} >
             <SidebarTitleComponent
                 setVisible = {setVisibleCB}
                 sidebarTitle = "New Trip"

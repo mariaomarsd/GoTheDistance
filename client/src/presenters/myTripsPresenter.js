@@ -4,12 +4,9 @@ import * as geometry from 'spherical-geometry-js';
 import WarningMessage from "../components/warningMessage.js";
 import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
 
-
 const MyTripsView = require("../views/myTripsView.js").default;
 const EditTripView = require("../views/editTripView.js").default;
 const SidebarTitleComponent = require("../components/sidebarTitleComponent.js").default;
-
-
 
 function MyTripsPresenter(props) {
 
@@ -23,7 +20,6 @@ function MyTripsPresenter(props) {
     const [errorMessage, setErrorMessage] = useState();
 
     const [tripsVisableList, setTripsVisibleList] = useState();
-
 
     const {
         ready, // is it set up and redy to go with libraries, see above  in app function
@@ -141,7 +137,7 @@ function MyTripsPresenter(props) {
     }
  
     return(
-        <motion.div className="my-trips-presenter" variants={props.variants} >
+        <motion.div className="sidebar-item" variants={props.variants} >
             <SidebarTitleComponent
                 setVisible = {setVisibleCB}
                 sidebarTitle = "My Trips"
@@ -152,9 +148,7 @@ function MyTripsPresenter(props) {
                     setVisibleTrips={setVisibleTripsCB}
                     setTripToChange={setTripToChange}
                     editTrip={setTripToEditACB}
-                    // model={props.model}
                     confirmDelete={test}
-                    // tripsVisableList={tripsVisableList}
             />}
             {isVisible && editTrip && 
                 <EditTripView 

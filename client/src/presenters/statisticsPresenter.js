@@ -79,7 +79,7 @@ function StatisticsPresenter(props) {
     }
 
     return(
-        <motion.div className="statistics-presenter" variants={props.variants} >
+        <motion.div className="sidebar-item" variants={props.variants} >
             <SidebarTitleComponent
                 setVisible = {setVisibleCB}
                 sidebarTitle = "Statistics"
