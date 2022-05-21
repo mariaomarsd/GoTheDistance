@@ -8,7 +8,6 @@ function EditNewTripView(props){
     async function selectPlace(address) {
         const results = await props.selectPlace(address);
         setChosen(results);
-        console.log(results);
     }
 
     function addToTripACB() {
