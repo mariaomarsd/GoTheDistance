@@ -72,6 +72,7 @@ function LoginPresenter(props) {
                 password =  {password}
                 updatePassword = {updatePasswordCB}
                 errorMessage = {errorMessage}
+                toggle = {props.toggle}
             />
         </div>
     );

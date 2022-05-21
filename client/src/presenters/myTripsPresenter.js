@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import * as geometry from 'spherical-geometry-js';
 import WarningMessage from "../components/warningMessage.js";
+import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
+
 
 const MyTripsView = require("../views/myTripsView.js").default;
 const EditTripView = require("../views/editTripView.js").default;
+
+
 
 function MyTripsPresenter(props) {
 
@@ -17,6 +21,12 @@ function MyTripsPresenter(props) {
     const [warningMessageVisible, setWarningMessageVisible] = useState(false);
     const [errorMessage, setErrorMessage] = useState();
 
+    const {
+        ready, // is it set up and redy to go with libraries, see above  in app function
+        suggestions: { status, data }, // what is the data from these suggestions
+        setValue 
+    } = usePlacesAutocomplete();
+
     useEffect(observerCB, [props.model.myTripsList]);
 
     function observerCB(){
@@ -25,6 +35,18 @@ function MyTripsPresenter(props) {
             props.model.removeObserver(setTripListCB);
         }
         return componentDiesCB;
+    }
+
+    async function selectPlace(address) {
+        try {
+            const results = await getGeocode({ address });
+            const { lat, lng } = await getLatLng(results[0]);
+            const temp_results = (results[0].formatted_address).split(',')
+            const temp_place = temp_results[0] + ", " + temp_results.pop()
+            return {id: Math.random(),name: temp_place, lat: lat, lng: lng};
+        } catch (error) {
+            console.log(" Error: ", error);
+        }
     }
 
     function setTripListCB() {
@@ -134,6 +156,11 @@ function MyTripsPresenter(props) {
                 confirmTrip={saveTripACB}
                 updateOrder={updateOrderACB}
                 cancel = {cancelCB}
+                selectPlace = {selectPlace}
+                data={data}
+                status={status}
+                setValue={setValue}
+                ready={ready}
                 />
             }
             {isVisible && warningMessageVisible && <WarningMessage warning = {errorMessage}/>}

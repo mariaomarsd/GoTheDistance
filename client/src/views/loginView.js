@@ -53,6 +53,9 @@ function LoginView(props) {
                 </div>
             </form>
             <button className="login-button" onClick={loginCB}>LOGIN</button>
+            <button className="auth-button" onClick={props.toggle}>
+                <div> Need an account? <u>SIGN UP</u> </div>
+            </button>
         </div>
     );
 }

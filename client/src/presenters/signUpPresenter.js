@@ -103,6 +103,7 @@ function SignUpPresenter(props){
                 updateConfirmPassword = {updateConfirmPassword} 
                 createUser = {createUser}
                 displayErrorMessage = {displayErrorMessage}
+                toggle = {props.toggle}
             />
         </div>
     );

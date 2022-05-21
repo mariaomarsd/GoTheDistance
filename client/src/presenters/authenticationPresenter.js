@@ -17,6 +17,7 @@ function AuthenticationPresenter(props){
                         {loginToggle && 
                             <LoginPresenter 
                                 isLoggedIn = {props.isLoggedIn}
+                                toggle = {toggleFunction}
                             />
                         }
                     </div>
@@ -25,13 +26,10 @@ function AuthenticationPresenter(props){
                             <SignUpPresenter 
                                 isLoggedIn = {props.isLoggedIn}
                                 setFirstSignin={props.setFirstSignin}
+                                toggle = {toggleFunction}
                             />
                         }
                     </div>
-                    <hr className="divide-solid"/>
-                    <button className="auth-button" onClick={toggleFunction}>
-                        {loginToggle ? <div> Need an account? <u>SIGN UP</u> </div> : <div> Already a user? <u>LOGIN</u> </div>}
-                    </button>
                 </div>
             }
         </div>
