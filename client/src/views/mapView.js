@@ -84,7 +84,7 @@ function MapView(props) {
      }
 
     return(
-        <div>
+        <div className={ props.userLoggedIn ? "map-container" : "map-blur"}>
             <GoogleMap 
                 id="map"
                 mapContainerStyle={mapContainerStyle}

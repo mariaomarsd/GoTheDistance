@@ -48,9 +48,7 @@ function MainPresenter(props){
 
   return(
     <div className="main-view">
-      <div className={ userLoggedIn ? "map-container" : "map-blur"}>
-          <MapPresenter value={isLoaded} model={props.model} />
-      </div>
+      <MapPresenter value={isLoaded} model={props.model} userLoggedIn={userLoggedIn}/>
       <Logo/>
       { userLoggedIn ? <>
         <SidebarPresenter

@@ -70,14 +70,15 @@ function MapPresenter(props){
     }
 
     return(
-        <> {props.value && 
+        <> {props.value &&
             <MapView
                 newTripPathList = {newTripPathList}
                 myTripsPathList = {myTripsPathList}
                 onMapLoad = {onMapLoad}
                 mapRef = {mapRef}
-            />
-        }</>
+                userLoggedIn={props.userLoggedIn}
+            />}
+        </>
     );
 }
 
