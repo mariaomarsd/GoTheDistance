@@ -1,20 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Reorder } from "framer-motion";
 import SearchBar from "../components/searchbarComponent.js";
 
 function EditNewTripView(props){
-    useEffect(listChangedCB, [props.locationList]);
     const [chosen, setChosen] = useState();
-    const [items, setItems] = useState(props.locationList);
 
     async function selectPlace(address) {
         const results = await props.selectPlace(address);
         setChosen(results);
         console.log(results);
-    }
-
-    function listChangedCB(){
-        setItems(props.locationList)
     }
 
     function addToTripACB() {
@@ -30,11 +24,11 @@ function EditNewTripView(props){
     }
 
     function saveTripACB() {
-        props.confirmTrip({locations: items, show: true, color: ""});
+        props.confirmTrip({locations: props.locationList, show: true, color: ""});
     }
 
     function updateOrdertest() {
-        props.updateOrder(items)
+        props.updateOrder(props.locationList)
     }
     
     function cancelCB(){
@@ -56,8 +50,8 @@ function EditNewTripView(props){
             </button>
         </div>
         <div className="scroll">
-            <Reorder.Group className="new-trips-item-list" values={items} onReorder={setItems} >
-            { items.map((item) => { updateOrdertest()
+            <Reorder.Group className="new-trips-item-list" values={props.locationList} onReorder={props.setItems}>
+            { props.locationList.map((item) => { updateOrdertest()
                 return <Reorder.Item className="new-trip-item" key={item.id} value={item} >
                     <button className="new-trip-item-button" onClick={() => removeFromTripACB(item.id)}>
                         <i className="fa-solid fa-circle-xmark" style={{color: "lightblue"}}></i>

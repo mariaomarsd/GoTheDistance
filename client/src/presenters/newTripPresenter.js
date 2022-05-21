@@ -178,6 +178,7 @@ function NewTripPresenter(props) {
                 status={status}
                 setValue={setValue}
                 ready={ready}
+                setItems={setLocationList}
             />
             }
             {warningMessageVisible && <WarningMessage warning = {errorMessage}/>}
