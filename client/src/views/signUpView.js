@@ -18,8 +18,7 @@ function SignUpView(props) {
         props.updateConfirmPassword(event.target.value);
     }
 
-    function createUserCB(event){
-        // console.log("clicked submit button");
+    function createUserCB(){
         props.createUser();
     }
     function onKeyUpCB(event){
