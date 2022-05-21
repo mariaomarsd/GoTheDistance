@@ -22,6 +22,9 @@ function MyTripsPresenter(props) {
     const [warningMessageVisible, setWarningMessageVisible] = useState(false);
     const [errorMessage, setErrorMessage] = useState();
 
+    const [tripsVisableList, setTripsVisibleList] = useState();
+
+
     const {
         ready, // is it set up and redy to go with libraries, see above  in app function
         suggestions: { status, data }, // what is the data from these suggestions
@@ -54,6 +57,15 @@ function MyTripsPresenter(props) {
         setTripList(props.model.myTripsList);
         setLocationList(props.model.newList);
         setIsVisible(props.model.sidebartoggle[1]);
+        getVisibleList();
+    }
+
+    function getVisibleList() {
+        var tempList = [];
+        for(let i = 0; i<props.model.myTripsList.length; i++) {
+            tempList.push(props.model.myTripsList[i].show)
+        }
+        setTripsVisibleList(tempList)
     }
 
     function setVisibleCB() {
@@ -118,8 +130,9 @@ function MyTripsPresenter(props) {
         setTripListVisible(false);
     }
 
-    function test() {
-        props.deleteConfirm()
+    function test(item) {
+        props.model.deleteMyTrip(item);
+        props.deleteConfirm();
     }
 
     function setlistwarningCB(){
@@ -133,30 +146,30 @@ function MyTripsPresenter(props) {
                 setVisible = {setVisibleCB}
                 sidebarTitle = "My Trips"
             />
-            {isVisible && tripListVisible && <MyTripsView
-                myTripsList={tripList}
-                setVisibleTrips={setVisibleTripsCB}
-                setTripToChange={setTripToChange}
-                editTrip={setTripToEditACB}
-                model={props.model}
-                confirmDelete={test}
+            {isVisible && tripListVisible && 
+                <MyTripsView
+                    myTripsList={tripList}
+                    setVisibleTrips={setVisibleTripsCB}
+                    setTripToChange={setTripToChange}
+                    editTrip={setTripToEditACB}
+                    // model={props.model}
+                    confirmDelete={test}
+                    // tripsVisableList={tripsVisableList}
             />}
             {isVisible && editTrip && 
                 <EditTripView 
-                model = {props.model}
-                locationList={locationList}
-                addToTrip={addToTripACB}
-                removeFromTrip={removeFromTripACB}
-                confirmTrip={saveTripACB}
-                updateOrder={updateOrderACB}
-                cancel = {cancelCB}
-                selectPlace = {selectPlace}
-                data={data}
-                status={status}
-                setValue={setValue}
-                ready={ready}
-                />
-            }
+                    locationList={locationList}
+                    addToTrip={addToTripACB}
+                    removeFromTrip={removeFromTripACB}
+                    confirmTrip={saveTripACB}
+                    updateOrder={updateOrderACB}
+                    cancel = {cancelCB}
+                    selectPlace = {selectPlace}
+                    data={data}
+                    status={status}
+                    setValue={setValue}
+                    ready={ready}
+            />}
             {isVisible && warningMessageVisible && <WarningMessage warning = {errorMessage}/>}
         </motion.div>
     );
