@@ -110,8 +110,14 @@ class TripsModel {
             return trip.name !== item.name;
         }
         this.myTripsList = this.myTripsList.filter(hasSameIdCB);
-
         this.notifyObservers({tripToDelete: trip, uid: localStorage.getItem('userId')});
+    }
+
+    saveUserInfo(item) {
+        localStorage.setItem('loggedin', item.loggedin);
+        localStorage.setItem('username', item.username);
+        localStorage.setItem('userId', item.userId);
+        localStorage.setItem('firstSignin', item.firstSignin);
     }
 
     addObserver(callback) {

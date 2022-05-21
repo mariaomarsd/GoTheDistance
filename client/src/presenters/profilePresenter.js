@@ -21,6 +21,7 @@ function ProfilePresenter(props) {
             <ProfileView 
                 signout = {signoutCB}
                 loggedInUser={props.loggedIn}
+                user={props.userName}
             />
         </div>
     );

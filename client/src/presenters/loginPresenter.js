@@ -24,13 +24,10 @@ function LoginPresenter(props) {
     }
 
     function loginCB(){
-
         function signIn(userCredential){
             const uid = userCredential.user.uid;
             const uName = userCredential.user.displayName;
-            localStorage.setItem('loggedin', true);
-            localStorage.setItem('username', uName);
-            localStorage.setItem('userId', uid);
+            props.model.saveUserInfo({loggedin: true, username: uName, userId: uid, firstSignin: false});
             ReactSession.set("uid", uid);
             ReactSession.set("uName", uName);
         }
@@ -56,8 +53,7 @@ function LoginPresenter(props) {
             .then(signIn)
             .then(props.isLoggedIn)
             .catch(handleError);
-        }
-        
+        }   
         else {
             setErrorMessage("Type password")
         }

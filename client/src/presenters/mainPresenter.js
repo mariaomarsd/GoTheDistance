@@ -62,10 +62,11 @@ function MainPresenter(props){
           model={props.model}
           value={isLoaded}
           loggedIn={userLoggedIn}
+          userName={localStorage.getItem("username")}
           logout={logout}
         />
         <InfoMark showInfo={showInfo}/> </> 
-      : <AuthenticationPresenter visible={!userLoggedIn} isLoggedIn={isLoggedIn} /> }
+      : <AuthenticationPresenter model={props.model} visible={!userLoggedIn} isLoggedIn={isLoggedIn} /> }
       {signup && <SiteInfo click={continueSignup}/>}
     </div>
   );

@@ -22,15 +22,16 @@ function AuthenticationPresenter(props){
             {props.visible && <>
                 {loginToggle && 
                     <LoginPresenter 
-                        isLoggedIn = {props.isLoggedIn}
-                        toggle = {toggleFunction}
+                        isLoggedIn={props.isLoggedIn}
+                        toggle={toggleFunction}
+                        model={props.model}
                     />
                 }
                 {!loginToggle && 
                     <SignUpPresenter 
                         isLoggedIn = {props.isLoggedIn}
-                        setFirstSignin={props.setFirstSignin}
                         toggle = {toggleFunction}
+                        model={props.model}
                     />
                 }
             </>}
