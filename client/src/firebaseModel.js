@@ -45,7 +45,6 @@ function updateModelFromFirebase(model, uid) {
             }
         });
     }
-    
 }
 
-export {updateFirebaseFromModel, updateModelFromFirebase, firebaseModelPromise}
+export {updateFirebaseFromModel, updateModelFromFirebase}
