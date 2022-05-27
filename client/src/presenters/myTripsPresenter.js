@@ -96,7 +96,7 @@ function MyTripsPresenter(props) {
         return distanceLength/1000;
     }
 
-    function saveTripACB(item) {
+    function saveTripACB() {
         if(props.model.newList.length < 2) {
             setErrorMessage("Trip needs to have at least two stops!");
             setlistwarningCB();
@@ -126,7 +126,7 @@ function MyTripsPresenter(props) {
         setTripListVisible(false);
     }
 
-    function test(item) {
+    function confirmDeleteCB(item) {
         props.model.deleteMyTrip(item);
         props.deleteConfirm();
     }
@@ -150,7 +150,7 @@ function MyTripsPresenter(props) {
                     setVisibleTrips={setVisibleTripsCB}
                     setTripToChange={setTripToChange}
                     editTrip={setTripToEditACB}
-                    confirmDelete={test}
+                    confirmDelete={confirmDeleteCB}
                 />
             }
             {isVisible && editTrip && 

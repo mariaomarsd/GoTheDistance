@@ -26,7 +26,7 @@ function EditNewTripView(props){
         props.confirmTrip({locations: props.locationList, show: true, color: ""});
     }
 
-    function updateOrdertest() {
+    function updateOrderList() {
         props.updateOrder(props.locationList)
     }
     
@@ -50,7 +50,7 @@ function EditNewTripView(props){
         </div>
         <div className="scroll">
             <Reorder.Group className="new-trips-item-list" values={props.locationList} onReorder={props.setItems}>
-            { props.locationList.map((item) => { updateOrdertest()
+            { props.locationList.map((item) => { updateOrderList()
                 return <Reorder.Item className="new-trip-item" key={item.id} value={item} >
                     <button className="new-trip-item-button" onClick={() => removeFromTripACB(item.id)}>
                         <i className="fa-solid fa-circle-xmark" style={{color: "lightblue"}}></i>
