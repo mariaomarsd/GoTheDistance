@@ -48,19 +48,4 @@ function updateModelFromFirebase(model, uid) {
     
 }
 
-function firebaseModelPromise() {
-    // function makeBigPromiseACB(firebaseData) {
-    //     function makeDishPromiseCB(dishId) {
-    //         return getDishDetails(dishId);
-    //     }
-    //     function createModelACB(dishArray) {
-    //         let myTripsList = firebaseData.val().myTripsList;
-    //         return new TripsModel(myTripsList);
-    //     }
-    //     const tripsPromiseArray= Object.keys(firebaseData.val().Dishes).map(makeDishPromiseCB);
-    //     return Promise.all(tripsPromiseArray).then(createModelACB);
-    // }
-    // return firebase.database().ref(REF).once("value").then(makeBigPromiseACB);
-}
-
 export {updateFirebaseFromModel, updateModelFromFirebase, firebaseModelPromise}
